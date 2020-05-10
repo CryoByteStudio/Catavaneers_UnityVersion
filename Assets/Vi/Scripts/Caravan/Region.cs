@@ -9,7 +9,7 @@ public class RegionData
     public int numberOfPoints;
     public float radius;
     public Transform parent;
-    public List<Transform> pointsList;
+    public List<Point> pointsList;
 }
 
 public class Region : MonoBehaviour
@@ -18,6 +18,9 @@ public class Region : MonoBehaviour
     [SerializeField] private RegionData innerRegion = new RegionData();
     [Header("Outer Region Settings")]
     [SerializeField] private RegionData outerRegion = new RegionData();
+
+    public RegionData InnerRegion { get { return innerRegion; } }
+    public RegionData OuterRegion { get { return outerRegion; } }
 
     private string pointName = "Point ";
 
@@ -30,7 +33,7 @@ public class Region : MonoBehaviour
 
     private void CreatRegionPoints(RegionData regionData)
     {
-        regionData.pointsList = new List<Transform>();
+        regionData.pointsList = new List<Point>();
         GameObject go;
 
         for (int i = 0; i < regionData.numberOfPoints; i++)
@@ -42,7 +45,7 @@ public class Region : MonoBehaviour
                 CustomMathf.GetEvenlySpacingPositionAroundAxis(regionData.numberOfPoints, i, CustomMathf.Axis.Y)
                 * regionData.radius + transform.position;
 
-            regionData.pointsList.Add(go.transform);
+            regionData.pointsList.Add(go.AddComponent<Point>());
         }
     }
 
@@ -54,13 +57,13 @@ public class Region : MonoBehaviour
         DrawPoints(outerRegion.pointsList);
     }
 
-    private static void DrawPoints(List<Transform> pointsList)
+    private static void DrawPoints(List<Point> pointsList)
     {
         if (pointsList.Count > 0)
         {
             for (int i = 0; i < pointsList.Count; i++)
             {
-                Gizmos.DrawSphere(pointsList[i].position, 0.3f);
+                Gizmos.DrawSphere(pointsList[i].Position, 0.3f);
             }
         }
     }

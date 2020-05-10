@@ -120,24 +120,32 @@ namespace AI
         private void InitFSM()
         {
             // add states
-            finiteStateMachine.AddState("Find Target", new FindTarget(this));
-            finiteStateMachine.AddState("Chase", new Chase(this));
-            finiteStateMachine.AddState("Attack", new Attack(this));
-            finiteStateMachine.AddState("Frenzy", new Frenzy(this));
+            finiteStateMachine.AddState(AIState.FindTarget.ToString(), new FindTarget(this));
+            finiteStateMachine.AddState(AIState.Chase.ToString(), new Chase(this));
+            finiteStateMachine.AddState(AIState.Attack.ToString(), new Attack(this));
+            finiteStateMachine.AddState(AIState.Frenzy.ToString(), new Frenzy(this));
 
             // add transitions
-            finiteStateMachine.AddTransition("Find Target", "Chase", BaseConditionToChase);
-            finiteStateMachine.AddTransition("Find Target", "Attack", BaseConditionToAttack);
-            finiteStateMachine.AddTransition("Find Target", "Frenzy", BaseConditionToFrenzy);
-            finiteStateMachine.AddTransition("Chase", "Attack", BaseConditionToAttack);
-            finiteStateMachine.AddTransition("Chase", "Find Target", BaseConditionToFindTarget);
-            finiteStateMachine.AddTransition("Chase", "Frenzy", BaseConditionToFrenzy);
-            finiteStateMachine.AddTransition("Attack", "Chase", BaseConditionToChase);
-            finiteStateMachine.AddTransition("Attack", "Find Target", BaseConditionToFindTarget);
-            finiteStateMachine.AddTransition("Attack", "Frenzy", BaseConditionToFrenzy);
-            finiteStateMachine.AddTransition("Frenzy", "Find Target", BaseConditionToFindTarget);
-            finiteStateMachine.AddTransition("Frenzy", "Chase", BaseConditionToChase);
-            finiteStateMachine.AddTransition("Frenzy", "Attack", BaseConditionToAttack);
+            //finiteStateMachine.AddTransition("Chase", "Find Target", BaseConditionToFindTarget);
+            //finiteStateMachine.AddTransition("Attack", "Find Target", BaseConditionToFindTarget);
+            //finiteStateMachine.AddTransition("Frenzy", "Find Target", BaseConditionToFindTarget);
+
+            //finiteStateMachine.AddTransition("Find Target", "Chase", BaseConditionToChase);
+            //finiteStateMachine.AddTransition("Attack", "Chase", BaseConditionToChase);
+            //finiteStateMachine.AddTransition("Frenzy", "Chase", BaseConditionToChase);
+
+            //finiteStateMachine.AddTransition("Find Target", "Attack", BaseConditionToAttack);
+            //finiteStateMachine.AddTransition("Chase", "Attack", BaseConditionToAttack);
+            //finiteStateMachine.AddTransition("Frenzy", "Attack", BaseConditionToAttack);
+
+            //finiteStateMachine.AddTransition("Find Target", "Frenzy", BaseConditionToFrenzy);
+            //finiteStateMachine.AddTransition("Chase", "Frenzy", BaseConditionToFrenzy);
+            //finiteStateMachine.AddTransition("Attack", "Frenzy", BaseConditionToFrenzy);
+
+            finiteStateMachine.AddAnyStateTransition(AIState.FindTarget.ToString(), BaseConditionToFindTarget);
+            finiteStateMachine.AddAnyStateTransition(AIState.Chase.ToString(), BaseConditionToChase);
+            finiteStateMachine.AddAnyStateTransition(AIState.Attack.ToString(), BaseConditionToAttack);
+            finiteStateMachine.AddAnyStateTransition(AIState.Frenzy.ToString(), BaseConditionToFrenzy);
         }
 
         #region TRANSITIONS

@@ -2,6 +2,7 @@
 using UnityEngine.AI;
 using FiniteStateMachine.StatePolymorphism;
 using CustomMathLibrary;
+using System.Collections.Generic;
 
 namespace AI.States
 {
@@ -56,6 +57,29 @@ namespace AI.States
             return positionNearTarget;
         }
 
+        private Vector3 FindOpenPoint(Region targetRegion)
+        {
+            for (int i = 0; i < targetRegion.InnerRegion.pointsList.Count; i++)
+            {
+                if (targetRegion.InnerRegion.pointsList[i].IsPointOpen())
+                {
+                    targetRegion.InnerRegion.pointsList[i].SetOccupant(controller.GetComponent<HealthComp>());
+                    return targetRegion.InnerRegion.pointsList[i].Position;
+                }
+            }
+
+            for (int i = 0; i < targetRegion.OuterRegion.pointsList.Count; i++)
+            {
+                if (targetRegion.OuterRegion.pointsList[i].IsPointOpen())
+                {
+                    targetRegion.OuterRegion.pointsList[i].SetOccupant(controller.GetComponent<HealthComp>());
+                    return targetRegion.OuterRegion.pointsList[i].Position;
+                }
+            }
+
+            return FindPositionNearTarget(targetRegion.transform.position, controller.AttackRange);
+        }
+
         /// <summary>
         /// The stuff that will be done in chase mode
         /// </summary>
@@ -65,10 +89,21 @@ namespace AI.States
 
             if (!targetHealth.IsDead())
             {
-                if (destination == Vector3.zero)
+                if (targetHealth.myClass == CharacterClass.Caravan)
                 {
-                    destination = FindPositionNearTarget(target.position, controller.AttackRange);
-                    Debug.Log(this + " Destination: " + destination);
+                    if (destination == Vector3.zero)
+                    {
+                        destination = FindOpenPoint(target.GetComponent<Region>());
+                    }
+                }
+                else
+                {
+                    if (destination == Vector3.zero)
+                    {
+                        destination = FindPositionNearTarget(target.position, controller.AttackRange);
+                        Debug.Log(this + " Destination: " + destination);
+                    }
+
                 }
 
                 agent.speed = controller.ChaseSpeed;
