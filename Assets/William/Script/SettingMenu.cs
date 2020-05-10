@@ -13,8 +13,13 @@ public class SettingMenu : MonoBehaviour
 
     public AudioMixer AudioMixer;
 
+    private bool IsMuted;
+
     void Start()
     {
+
+        IsMuted = false;
+
         Resolutions = Screen.resolutions;
 
         ResolutionDropDown.ClearOptions();
@@ -63,5 +68,11 @@ public class SettingMenu : MonoBehaviour
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+    }
+
+    public void MutePressed()
+    {
+        IsMuted = !IsMuted;
+        AudioListener.pause = IsMuted;
     }
 }
