@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(StartDelay());
+
         //if (!caravan_HC)
         //{
         //    HealthComp[] healthComps = FindObjectsOfType<HealthComp>();
@@ -65,34 +66,38 @@ public class GameManager : MonoBehaviour
             Debug.Log("NO Caravan attached to game manager");
         }
         //else if (caravan_HC.IsDead())
-            //{
-            //    caravan_HC = null;
-            //    ObjectPooler.DisableAllActiveObjects();
-            //    StartCoroutine("RestartLevel");
-            //}
-            if (caravan_HC)
+        //{
+        //    caravan_HC = null;
+        //    ObjectPooler.DisableAllActiveObjects();
+        //    StartCoroutine("RestartLevel");
+        //}
+
+        if (caravan_HC)
         {
-            if (caravan_HC.IsDead())
+            // always start coroutine once in update
+            if (caravan_HC.IsDead() && !doneOnce)
             {
+                doneOnce = true;
                 caravan_HC.SetIsDead(false);
 
-                ObjectPooler.DisableAllActiveObjects();
                 StartCoroutine("RestartLevel");
             }
         }
-        if (SpawnManager.HasFinishedSpawning && SpawnManager.EnemiesAlive <= 0 && !doneOnce)
-        {
-            StartCoroutine(QuitDelay());
-            doneOnce = true;
-        }
+
+        //if (SpawnManager.HasFinishedSpawning && SpawnManager.EnemiesAlive <= 0 && !doneOnce)
+        //{
+        //    StartCoroutine(QuitDelay());
+        //    doneOnce = true;
+        //}
     }
 
     private IEnumerator RestartLevel()
     {
+        ObjectPooler.DisableAllActiveObjects();
         yield return new WaitForSeconds(startDelay);
         string curScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("Menu_Main");
-        StartCoroutine(StartDelay());
+        //StartCoroutine(StartDelay());
     }
 
     private IEnumerator StartDelay()

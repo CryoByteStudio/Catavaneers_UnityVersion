@@ -62,11 +62,14 @@ public class Fighter : MonoBehaviour
         float halfRaycastLength = currentWeapon.GetWeaponRange();
         //rayStart.position = attackRayOrigin.position - new Vector3(halfRaycastLength, 0, 0);
         //rayEnd.position = attackRayOrigin.position + new Vector3(halfRaycastLength, 0, 0);
+        Vector3 raycastDirection = rayEnd.transform.position - rayStart.transform.position;
         float rayDistance = Vector3.Distance(rayStart.position, rayEnd.position);
-        RaycastHit[] hits = Physics.RaycastAll(rayStart.position, rayEnd.position, rayDistance);
+        RaycastHit[] hits = Physics.RaycastAll(rayStart.position, raycastDirection, rayDistance);
+        Debug.DrawRay(rayStart.position, raycastDirection, Color.red, 2f);
 
         foreach (RaycastHit hit in hits)
         {
+            Debug.Log("hit = " + hit.transform.name);
             target = hit.transform.GetComponent<HealthComp>();
             if (target != null)
             {

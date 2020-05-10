@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 8038307187931283271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.05262, y: 4.1981277, z: 1.1794688}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.57423407, y: 1.1196, z: 0.66515}
   m_Children:
   - {fileID: 8538064669819050950}
   m_Father: {fileID: 0}
@@ -120,7 +120,7 @@ MonoBehaviour:
   currentHealth: 0
   is_Regenerating: 0
   dmg_percentage: 0
-  health_slider: {fileID: 0}
+  health_slider: {fileID: 7984083603984435288}
 --- !u!54 &-6288847392109122927
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -331,6 +331,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 2.7296
       objectReference: {fileID: 0}
+    - target: {fileID: 4228759947577681572, guid: 2d1feb05bea632143ba2903bc3f4001a,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228759947577681572, guid: 2d1feb05bea632143ba2903bc3f4001a,
+        type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7357883830083187936, guid: 2d1feb05bea632143ba2903bc3f4001a,
         type: 3}
       propertyPath: m_Name
@@ -344,3 +354,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6080628575055589116}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7984083603984435288 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4228759947577681572, guid: 2d1feb05bea632143ba2903bc3f4001a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6080628575055589116}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

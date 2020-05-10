@@ -121,7 +121,7 @@ MonoBehaviour:
   currentHealth: 0
   is_Regenerating: 0
   dmg_percentage: 0
-  health_slider: {fileID: 0}
+  health_slider: {fileID: 8319951787413887798}
 --- !u!54 &1034904835980318866
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -327,6 +327,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.7529
       objectReference: {fileID: 0}
+    - target: {fileID: 4228759947577681572, guid: 2d1feb05bea632143ba2903bc3f4001a,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228759947577681572, guid: 2d1feb05bea632143ba2903bc3f4001a,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7357883830083187936, guid: 2d1feb05bea632143ba2903bc3f4001a,
         type: 3}
       propertyPath: m_Name
@@ -340,3 +350,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5321560230250298770}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8319951787413887798 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4228759947577681572, guid: 2d1feb05bea632143ba2903bc3f4001a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5321560230250298770}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

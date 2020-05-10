@@ -166,7 +166,7 @@ public class HealthComp : MonoBehaviour
                 break;
             case CharacterClass.Enemy:
                 dropController.DropItem();
-                ObjectPooler.SetInactive(gameObject);
+                ObjectPooler.SetInactive(this.gameObject);
                 break;
         }
     }

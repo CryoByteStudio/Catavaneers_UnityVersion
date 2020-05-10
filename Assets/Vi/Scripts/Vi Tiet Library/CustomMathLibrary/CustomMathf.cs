@@ -146,5 +146,33 @@ namespace CustomMathLibrary
 
             return Vector3.zero;
         }
+
+        /// <summary>
+        /// Used in for loop to get evenly spacing position with length of 1 around the specified axis
+        /// </summary>
+        /// <param name="maxIndex"> The max index of the for loop </param>
+        /// <param name="currentIndex"> The current index of the for loop </param>
+        public static Vector3 GetEvenlySpacingPositionAroundAxis(int maxIndex, int currentIndex, Axis axis)
+        {
+            Vector3 position = Vector3.zero;
+
+            switch (axis)
+            {
+                case Axis.X:
+                    position.z = Mathf.Cos(360f / maxIndex * currentIndex * Mathf.Deg2Rad);
+                    position.y = Mathf.Sin(360f / maxIndex * currentIndex * Mathf.Deg2Rad);
+                    break;
+                case Axis.Y:
+                    position.x = Mathf.Cos(360f / maxIndex * currentIndex * Mathf.Deg2Rad);
+                    position.z = Mathf.Sin(360f / maxIndex * currentIndex * Mathf.Deg2Rad);
+                    break;
+                case Axis.Z:
+                    position.x = Mathf.Cos(360f / maxIndex * currentIndex * Mathf.Deg2Rad);
+                    position.y = Mathf.Sin(360f / maxIndex * currentIndex * Mathf.Deg2Rad);
+                    break;
+            }
+
+            return position;
+        }
     }
 }

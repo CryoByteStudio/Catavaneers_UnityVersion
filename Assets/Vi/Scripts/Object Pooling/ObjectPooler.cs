@@ -161,8 +161,8 @@ namespace ObjectPooling
         private IEnumerator SetInactive(GameObject gameObject, float timer)
         {
             yield return new WaitForSeconds(timer);
-            RemoveFromActiveObjectList(gameObject);
             gameObject.SetActive(false);
+            RemoveFromActiveObjectList(gameObject);
 
             if (gameObject.transform.parent)
             {
@@ -177,8 +177,8 @@ namespace ObjectPooling
         /// <param name="gameObject"> The game object to be deactivated </param>
         public static void SetInactive(GameObject gameObject)
         {
-            RemoveFromActiveObjectList(gameObject);
             gameObject.SetActive(false);
+            RemoveFromActiveObjectList(gameObject);
 
             if (gameObject.transform.parent)
             {
@@ -210,11 +210,12 @@ namespace ObjectPooling
         /// </summary>
         public static void DisableAllActiveObjects()
         {
-            for (int i = 0; i < activeObjects.Count; i++)
+            while (activeObjects.Count > 0)
             {
-                SetInactive(activeObjects[i]);
+                SetInactive(activeObjects[0]);
             }
 
+            activeObjects.Clear();
             SpawnManager.EnemiesAlive = 0;
         }
 
@@ -224,7 +225,7 @@ namespace ObjectPooling
         /// <param name="gameObject"> The game object to be removed </param>
         private static void AddToActiveObjectList(GameObject gameObject)
         {
-            //if (!activeObjects.Contains(gameObject))
+            if (!activeObjects.Contains(gameObject))
                 activeObjects.Add(gameObject);
         }
 

@@ -39,7 +39,11 @@ public class MusicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (SceneManager.GetActiveScene().name == "Menu_Main")
+        {
+            Instance.PlaySoundTrack(SoundClipsInts.Default);
+            Debug.Log("soundtrack default");
+        }
     }
 
     public void PlaySoundTrack(SoundClipsInts TrackID)
