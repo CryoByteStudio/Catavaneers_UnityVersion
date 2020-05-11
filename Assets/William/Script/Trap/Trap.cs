@@ -41,8 +41,6 @@ public class Trap : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-
         if (AreaEffect == false & other.tag == "Player" & CurrentTime <= 0f)
         {
             Debug.Log("trap Activate");
@@ -56,10 +54,9 @@ public class Trap : MonoBehaviour
             if (type == TrapType.Damage) other.GetComponent<HealthComp>().TakeDamage(TrapDamage);         
         }
 
-        if (AreaEffect == false && other.tag == "Enemy" & CurrentTime <= 0f)
+        if (AreaEffect == false && other.tag == "Enemy")
         {
             Debug.Log("trap Activate");
-            CurrentTime += 3;
             UsageLeft--;
             Controller TempEnemyController = other.GetComponent<Controller>();
             if (type == TrapType.Damage) other.GetComponent<HealthComp>().TakeDamage(TrapDamage);
@@ -70,7 +67,7 @@ public class Trap : MonoBehaviour
         }
 
 
-        if (AreaEffect == true && CurrentTime <= 0f && ( other.tag == "Player" || other.tag == "Enemy"))
+        if (AreaEffect == true && ( other.tag == "Player" || other.tag == "Enemy"))
         {
             Debug.Log("trap Activate");
             UsageLeft--;
@@ -79,7 +76,7 @@ public class Trap : MonoBehaviour
 
             for (int i = 0; i < colliders.Length; i++)
             {
-                if( colliders[i].gameObject.tag == "Player")
+                if( colliders[i].gameObject.tag == "Player" && CurrentTime <= 0f)
                 {
                     if(colliders[i].GetComponent<PlayerController>() != null)
                     {
