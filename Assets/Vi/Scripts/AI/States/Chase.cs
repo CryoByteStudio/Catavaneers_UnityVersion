@@ -2,18 +2,16 @@
 using UnityEngine.AI;
 using FiniteStateMachine.StatePolymorphism;
 using CustomMathLibrary;
-using System.Collections.Generic;
 
 namespace AI.States
 {
     public class Chase : State
     {
-        // reference from external variables
         private Controller controller = null;
         private Transform target = null;
-        HealthComp targetHealth = null;
+        private HealthComp targetHealth = null;
         private NavMeshAgent agent = null;
-        Vector3 destination = Vector3.zero;
+        private Vector3 destination = Vector3.zero;
 
         public Chase(Controller controller)
         {
@@ -22,20 +20,7 @@ namespace AI.States
 
         override public void OnStateEnter()
         {
-            if (!controller)
-            {
-                Debug.LogWarning("Controller is not set in Patrol state");
-            }
-
-            if (!agent)
-            {
-                agent = controller.Agent;
-            }
-
-            destination = Vector3.zero;
-            agent.isStopped = false;
-            target = controller.CurrentTarget;
-            targetHealth = target.GetComponent<HealthComp>();
+            Init();
 
             controller.currentState = AIState.Chase;
         }
@@ -50,6 +35,30 @@ namespace AI.States
             agent.isStopped = true;
         }
 
+        private void Init()
+        {
+            if (!controller)
+                Debug.LogWarning("Controller is not set in Patrol state");
+            if (!agent)
+                agent = controller.Agent;
+
+            target = controller.CurrentTarget;
+            targetHealth = target.GetComponent<HealthComp>();
+
+            Reset();
+        }
+
+        private void Reset()
+        {
+            destination = Vector3.zero;
+            agent.isStopped = false;
+        }
+
+        /// <summary>
+        /// Get random position inside circle with radius relative to a specified target position.
+        /// </summary>
+        /// <param name="targetPosition"> The target position that the random position will be picked base on </param>
+        /// <param name="radius"> The radius in which the random point will be picked from </param>
         private Vector3 FindPositionNearTarget(Vector3 targetPosition, float radius)
         {
             Vector3 positionNearTarget = CustomMathf.RandomPointInCirclePerpendicularToAxis(radius, CustomMathf.Axis.Y) + targetPosition;
@@ -57,6 +66,12 @@ namespace AI.States
             return positionNearTarget;
         }
 
+        /// <summary>
+        /// Find the position of the open point inside the target region.
+        /// Return random position inside circle with attack radius if no open point found.
+        /// Set target point transform for transition condition in controller.
+        /// </summary>
+        /// <param name="targetRegion"> The target region to get open point from </param>
         private Vector3 FindOpenPoint(Region targetRegion)
         {
             for (int i = 0; i < targetRegion.InnerRegion.pointsList.Count; i++)
@@ -64,6 +79,7 @@ namespace AI.States
                 if (targetRegion.InnerRegion.pointsList[i].IsPointOpen())
                 {
                     targetRegion.InnerRegion.pointsList[i].SetOccupant(controller.GetComponent<HealthComp>());
+                    controller.SetTargetPoint(targetRegion.InnerRegion.pointsList[i].transform);
                     return targetRegion.InnerRegion.pointsList[i].Position;
                 }
             }
@@ -73,10 +89,12 @@ namespace AI.States
                 if (targetRegion.OuterRegion.pointsList[i].IsPointOpen())
                 {
                     targetRegion.OuterRegion.pointsList[i].SetOccupant(controller.GetComponent<HealthComp>());
+                    controller.SetTargetPoint(targetRegion.OuterRegion.pointsList[i].transform);
                     return targetRegion.OuterRegion.pointsList[i].Position;
                 }
             }
 
+            controller.SetTargetPoint(null);
             return FindPositionNearTarget(targetRegion.transform.position, controller.AttackRange);
         }
 
