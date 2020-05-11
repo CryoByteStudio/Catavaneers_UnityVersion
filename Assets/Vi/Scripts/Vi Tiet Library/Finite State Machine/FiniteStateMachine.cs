@@ -240,17 +240,14 @@ namespace FiniteStateMachine.StatePolymorphism
                 // add FromState and its transitions list to dictionary
                 transitions.Add(fromState, new List<Transition>());
             }
-            //otherwise, if have not already have a transition from FromState to ToState
-            else
-            {
-                // create a transition to ToState with condition
-                Transition transition = new Transition(toStateName, condition);
 
-                if (!transitions[fromState].Contains(transition))
-                {
-                    // add the transition to the transitions list
-                    transitions[fromState].Add(transition);
-                }
+            // create a transition to ToState with condition
+            Transition transition = new Transition(toStateName, condition);
+
+            if (!transitions[fromState].Contains(transition))
+            {
+                // add the transition to the transitions list
+                transitions[fromState].Add(transition);
             }
         }
 
@@ -276,7 +273,18 @@ namespace FiniteStateMachine.StatePolymorphism
         {
             activeState.Update(deltaTime);
 
-            CheckTransitions();
+            //CheckTransitions();
+
+            if (transitions.Count > 0 && transitions.ContainsKey(activeState))
+            {
+                foreach (Transition transition in transitions[activeState])
+                {
+                    if (transition.EvaluateCondition())
+                    {
+                        TransitionTo(transition.DestinationState);
+                    }
+                }
+            }
         }
 
         /// <summary>
