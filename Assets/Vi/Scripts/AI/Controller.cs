@@ -128,18 +128,6 @@ namespace AI
             finiteStateMachine.AddState(AIState.PreAttack.ToString(), new PreAttack(this));
 
             // add transitions
-            //finiteStateMachine.AddTransition("Chase", "Find Target", BaseConditionToFindTarget);
-            //finiteStateMachine.AddTransition("Attack", "Find Target", BaseConditionToFindTarget);
-            //finiteStateMachine.AddTransition("Frenzy", "Find Target", BaseConditionToFindTarget);
-
-            //finiteStateMachine.AddTransition("Find Target", "Chase", BaseConditionToChase);
-            //finiteStateMachine.AddTransition("Attack", "Chase", BaseConditionToChase);
-            //finiteStateMachine.AddTransition("Frenzy", "Chase", BaseConditionToChase);
-
-            //finiteStateMachine.AddTransition("Find Target", "Attack", BaseConditionToAttack);
-            //finiteStateMachine.AddTransition("Chase", "Attack", BaseConditionToAttack);
-            //finiteStateMachine.AddTransition("Frenzy", "Attack", BaseConditionToAttack);
-
             finiteStateMachine.AddTransition(AIState.FindTarget.ToString(), AIState.Frenzy.ToString(), BaseConditionToFrenzy);
             finiteStateMachine.AddTransition(AIState.Chase.ToString(), AIState.Frenzy.ToString(), BaseConditionToFrenzy);
             finiteStateMachine.AddTransition(AIState.Attack.ToString(), AIState.Frenzy.ToString(), BaseConditionToFrenzy);

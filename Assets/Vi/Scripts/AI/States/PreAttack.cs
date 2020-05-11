@@ -28,6 +28,7 @@ namespace AI.States
 
         public override void Update(float deltaTime)
         {
+            PreAttackBehaviour();
         }
 
         public override void OnStateExit()
