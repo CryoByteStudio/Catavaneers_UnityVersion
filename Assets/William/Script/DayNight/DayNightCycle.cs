@@ -23,6 +23,8 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField] private float SunVariation = 1.5f;
     [SerializeField] private Gradient SunColor;
 
+    [Header("Modules")]
+    private List<DNMouduleBase> ModuleList = new List<DNMouduleBase>();
 
     private void UpdateTimeScale()
     {
@@ -44,6 +46,7 @@ public class DayNightCycle : MonoBehaviour
 
         AdjustSunRotation();
         SunIntensity();
+        UpdateModules();
     }
 
     private void AdjustSunRotation()
@@ -63,5 +66,23 @@ public class DayNightCycle : MonoBehaviour
     private void AdjustSunColor()
     {
         Sun.color = SunColor.Evaluate(Intensity);
+    }
+
+    public void AddModule(DNMouduleBase module)
+    {
+        ModuleList.Add(module);
+    }
+
+    public void RemoveModule(DNMouduleBase module)
+    {
+        ModuleList.Remove(module);
+    }
+
+    private void UpdateModules()
+    {
+        foreach (DNMouduleBase module in ModuleList)
+        {
+            module.UpdateModule(Intensity);
+        }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerSelectController : MonoBehaviour
 {
-
+    public CharacterManager charman;
     public int PlayerID;
     public Image PlayerSelectReference;
     int SelectIndex;
@@ -21,7 +21,7 @@ public class PlayerSelectController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        charman = FindObjectOfType<CharacterManager>();
         SelectIndex = PlayerID;
     }
 
@@ -30,17 +30,14 @@ public class PlayerSelectController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T)) //Debug for if you only have one controller
         {
-            int readyplayers = 0;
+            
             foreach (PlayerSelectController player in FindObjectsOfType<PlayerSelectController>())
             {
-                Debug.Log("h");
-                readyplayers++;
-                
+                player.lockedin = true;
+                PlayerSelectReference.color = Color.black;
+
             }
-            if (readyplayers >= 4)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
+           
         }
 
 
@@ -51,8 +48,8 @@ public class PlayerSelectController : MonoBehaviour
             {
              
                 lockedin = true;
-                
-                
+                PlayerSelectReference.color = Color.black;
+                CheckForReady();
                 
             }
             else if (Input.GetAxis(inputhorizontalaxis) > 0 && Time.time > timer)
@@ -88,5 +85,44 @@ public class PlayerSelectController : MonoBehaviour
             SelectIndex = 0;
         }
         PlayerSelectReference.transform.position = new Vector3(Selections[SelectIndex].transform.position.x, PlayerSelectReference.transform.position.y, PlayerSelectReference.transform.position.z);
+    }
+
+    void CheckForReady()
+    {
+        int playerslocked = 0;
+        foreach (PlayerSelectController player in FindObjectsOfType<PlayerSelectController>())
+        {
+           
+            if (player.lockedin)
+            {
+
+                if (player.SelectIndex == 0)
+                {
+                    charman.charnames[player.PlayerID]="Russel";
+                }
+                else if (player.SelectIndex == 1)
+                {
+                    charman.charnames[player.PlayerID] = "Momo";
+                }
+                else if (player.SelectIndex == 2)
+                {
+                    charman.charnames[player.PlayerID] = "Kiki";
+                }
+                else if (player.SelectIndex == 3)
+                {
+                    charman.charnames[player.PlayerID] = "Jojo";
+
+                }
+
+                
+                playerslocked++;
+               
+            }
+           
+        }
+        if (playerslocked >= 4)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 }
