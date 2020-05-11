@@ -118,7 +118,7 @@ namespace AI.States
                 {
                     if (destination == Vector3.zero)
                     {
-                        destination = FindPositionNearTarget(target.position, controller.AttackRange);
+                        destination = target.position;
                         Debug.Log(this + " Destination: " + destination);
                     }
 
