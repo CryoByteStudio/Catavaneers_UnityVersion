@@ -157,7 +157,7 @@ namespace AI
         /// </summary>
         private bool BaseConditionToFindTarget()
         {
-            return !BaseConditionToFrenzy() && !currentTarget;
+            return !isFrenzy && !currentTarget;
         }
 
         /// <summary>
