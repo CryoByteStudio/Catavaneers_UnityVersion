@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 533129627958114987}
   - component: {fileID: 533129627958114984}
   - component: {fileID: 1982268532124465002}
+  - component: {fileID: 8140593018067924260}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -179,6 +180,25 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &8140593018067924260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533129627958114996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7500a78b041366f4892f8404600880ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerID: 0
+  rendref: {fileID: 533129627216455895}
+  Jojoskin: {fileID: 2100000, guid: 2d91c446e3fe97843b743dc4e748397e, type: 2}
+  Momoskin: {fileID: 2100000, guid: a8e20e46883aa944ea9f9b8955680ba3, type: 2}
+  Kikiskin: {fileID: 2100000, guid: 2d4cc94dc89817d488d7d378ba3d3e95, type: 2}
+  Russellskin: {fileID: 2100000, guid: 7418a88c2be8d5c43bb34fd047190078, type: 2}
+  charman: {fileID: 0}
 --- !u!1001 &533129627219529545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -239,6 +259,12 @@ PrefabInstance:
 --- !u!4 &533129627219962451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 435482, guid: 679ff741e12a7e740819ede24a7000b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 533129627219529545}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &533129627216455895 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13707166, guid: 679ff741e12a7e740819ede24a7000b7,
     type: 3}
   m_PrefabInstance: {fileID: 533129627219529545}
   m_PrefabAsset: {fileID: 0}
