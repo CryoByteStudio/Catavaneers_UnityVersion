@@ -11,6 +11,7 @@ namespace AI
     {
         FindTarget,
         Chase,
+        PreAttack,
         Attack,
         Frenzy
     }
@@ -42,7 +43,7 @@ namespace AI
         private FSM finiteStateMachine = new FSM();
         private float distanceToTarget = Mathf.Infinity;
         private NavMeshAgent agent = null;
-        //private static List<HealthComp> targets = new List<HealthComp>();
+        private Transform targetPointTransform = null;
         private Transform currentTarget = null;
         [SerializeField] private bool isFrenzy = false;
 
@@ -124,6 +125,7 @@ namespace AI
             finiteStateMachine.AddState(AIState.Chase.ToString(), new Chase(this));
             finiteStateMachine.AddState(AIState.Attack.ToString(), new Attack(this));
             finiteStateMachine.AddState(AIState.Frenzy.ToString(), new Frenzy(this));
+            finiteStateMachine.AddState(AIState.PreAttack.ToString(), new PreAttack(this));
 
             // add transitions
             //finiteStateMachine.AddTransition("Chase", "Find Target", BaseConditionToFindTarget);
@@ -138,14 +140,15 @@ namespace AI
             //finiteStateMachine.AddTransition("Chase", "Attack", BaseConditionToAttack);
             //finiteStateMachine.AddTransition("Frenzy", "Attack", BaseConditionToAttack);
 
-            //finiteStateMachine.AddTransition("Find Target", "Frenzy", BaseConditionToFrenzy);
-            //finiteStateMachine.AddTransition("Chase", "Frenzy", BaseConditionToFrenzy);
-            //finiteStateMachine.AddTransition("Attack", "Frenzy", BaseConditionToFrenzy);
+            finiteStateMachine.AddTransition(AIState.FindTarget.ToString(), AIState.Frenzy.ToString(), BaseConditionToFrenzy);
+            finiteStateMachine.AddTransition(AIState.Chase.ToString(), AIState.Frenzy.ToString(), BaseConditionToFrenzy);
+            finiteStateMachine.AddTransition(AIState.Attack.ToString(), AIState.Frenzy.ToString(), BaseConditionToFrenzy);
+
+            finiteStateMachine.AddTransition(AIState.Chase.ToString(), AIState.PreAttack.ToString(), BaseConditionToPreAttack);
 
             finiteStateMachine.AddAnyStateTransition(AIState.FindTarget.ToString(), BaseConditionToFindTarget);
             finiteStateMachine.AddAnyStateTransition(AIState.Chase.ToString(), BaseConditionToChase);
             finiteStateMachine.AddAnyStateTransition(AIState.Attack.ToString(), BaseConditionToAttack);
-            finiteStateMachine.AddAnyStateTransition(AIState.Frenzy.ToString(), BaseConditionToFrenzy);
         }
 
         #region TRANSITIONS
@@ -179,6 +182,11 @@ namespace AI
         private bool BaseConditionToFrenzy()
         {
             return isFrenzy;
+        }
+
+        private bool BaseConditionToPreAttack()
+        {
+            return targetPointTransform && Vector3.Distance(transform.position, targetPointTransform.position) <= 0.5f;
         }
         #endregion
 
@@ -370,6 +378,11 @@ namespace AI
             isFrenzy = !isFrenzy;
             yield return new WaitForSeconds(timer);
             isFrenzy = !isFrenzy;
+        }
+
+        public void SetTargetPoint(Transform pointTransform)
+        {
+            targetPointTransform = pointTransform;
         }
 
         public static void ResetTargets()
