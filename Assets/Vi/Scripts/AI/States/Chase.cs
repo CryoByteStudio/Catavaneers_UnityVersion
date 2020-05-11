@@ -116,12 +116,7 @@ namespace AI.States
                 }
                 else
                 {
-                    if (destination == Vector3.zero)
-                    {
-                        destination = target.position;
-                        Debug.Log(this + " Destination: " + destination);
-                    }
-
+                    destination = target.position;
                 }
 
                 agent.speed = controller.ChaseSpeed;
