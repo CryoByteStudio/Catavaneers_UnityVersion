@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94fcd11afffcb142908bfcb1e261fba, type: 3}
   m_Name: MotionBlur
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -37,10 +37,10 @@ MonoBehaviour:
   active: 1
   enabled:
     overrideState: 1
-    value: 0
+    value: 1
   intensity:
     overrideState: 1
-    value: 0.06
+    value: 1.28
   threshold:
     overrideState: 1
     value: 1.11
@@ -67,7 +67,7 @@ MonoBehaviour:
     value: {fileID: 2800000, guid: 8f307c961ec84ef4fb4607f2a5484a84, type: 3}
     defaultState: 1
   dirtIntensity:
-    overrideState: 1
+    overrideState: 0
     value: 3
 --- !u!114 &-1845412478363679660
 MonoBehaviour:
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
   m_Name: Grain
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -156,22 +156,22 @@ MonoBehaviour:
     value: 0
   colorFilter:
     overrideState: 1
-    value: {r: 1, g: 1, b: 1, a: 1}
+    value: {r: 0.70710677, g: 0.70710677, b: 0.70710677, a: 1}
   hueShift:
     overrideState: 1
-    value: 0
+    value: 9
   saturation:
     overrideState: 1
-    value: 6
+    value: 37
   brightness:
     overrideState: 0
     value: 0
   postExposure:
     overrideState: 1
-    value: 1
+    value: 1.17
   contrast:
     overrideState: 1
-    value: 23
+    value: 42
   mixerRedOutRedIn:
     overrideState: 1
     value: 100
@@ -200,14 +200,14 @@ MonoBehaviour:
     overrideState: 0
     value: 100
   lift:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    overrideState: 1
+    value: {x: 1, y: 0.96562386, z: 0.9448219, w: 0}
   gamma:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    overrideState: 1
+    value: {x: 1, y: 0.94827425, z: 0.9234816, w: -0.13779528}
   gain:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    overrideState: 1
+    value: {x: 0.69228315, y: 0.874636, z: 1, w: 0}
   masterCurve:
     overrideState: 0
     value:
@@ -1489,10 +1489,10 @@ MonoBehaviour:
     value: 1
   mode:
     overrideState: 1
-    value: 1
+    value: 0
   intensity:
     overrideState: 1
-    value: 1.15
+    value: 1.08
   color:
     overrideState: 1
     value: {r: 0, g: 0, b: 0, a: 1}
