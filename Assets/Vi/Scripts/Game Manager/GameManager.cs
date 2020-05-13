@@ -89,6 +89,11 @@ public class GameManager : MonoBehaviour
         //    StartCoroutine(QuitDelay());
         //    doneOnce = true;
         //}
+
+        if (Input.anyKeyDown && SceneManager.GetActiveScene().name == "Credits")
+        {
+            SceneManager.LoadScene("Menu_Main");
+        }
     }
 
     private IEnumerator RestartLevel()
@@ -96,7 +101,7 @@ public class GameManager : MonoBehaviour
         ObjectPooler.DisableAllActiveObjects();
         yield return new WaitForSeconds(startDelay);
         string curScene = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene("Menu_Main");
+        SceneManager.LoadScene(5);
         //StartCoroutine(StartDelay());
     }
 
@@ -120,5 +125,45 @@ public class GameManager : MonoBehaviour
         #else
             Application.Quit();
         #endif
+    }
+
+
+    //below section edit by Will
+    public void ToMainMenu()
+    {
+        doneOnce = true;
+        if (caravan_HC != null) caravan_HC.SetIsDead(false);
+        ObjectPooler.DisableAllActiveObjects();
+        SceneManager.LoadScene(0);
+    }
+
+    public void ToPlayerSelectionScene()
+    {
+        doneOnce = true;
+        if(caravan_HC != null) caravan_HC.SetIsDead(false);
+        ObjectPooler.DisableAllActiveObjects();
+        SceneManager.LoadScene(1);
+    }
+
+    public void LoadLevel(string leveltoload)
+    {
+        Debug.Log("Loading: " + leveltoload);
+        SceneManager.LoadScene(leveltoload);
+    }
+
+    public void StartSceneButton()
+    {
+        LoadLevel("Charselect");
+    }
+
+    public void CreditsSceneButton()
+    {
+        LoadLevel("Credits");
+    }
+
+    public void QuitApp()
+    {
+        Debug.Log("Quitting");
+        Application.Quit();
     }
 }
