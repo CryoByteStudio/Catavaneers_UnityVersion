@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         ObjectPooler.DisableAllActiveObjects();
         yield return new WaitForSeconds(startDelay);
         string curScene = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene("LoseScene");
         //StartCoroutine(StartDelay());
     }
 
@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
         doneOnce = true;
         if (caravan_HC != null) caravan_HC.SetIsDead(false);
         ObjectPooler.DisableAllActiveObjects();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Menu_Main");
     }
 
     public void ToPlayerSelectionScene()
@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
         doneOnce = true;
         if(caravan_HC != null) caravan_HC.SetIsDead(false);
         ObjectPooler.DisableAllActiveObjects();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Charselect");
     }
 
     public void LoadLevel(string leveltoload)
@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
 
     public void StartSceneButton()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Charselect");
     }
 
     public void CreditsSceneButton()
