@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance && instance != this)
+        if (instance)
         {
             Destroy(gameObject);
         }
@@ -32,25 +32,6 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-
-    private void Start()
-    {
-      //  StartCoroutine(StartDelay());
-
-        //if (!caravan_HC)
-        //{
-        //    HealthComp[] healthComps = FindObjectsOfType<HealthComp>();
-        //    foreach(HealthComp hc in healthComps)
-        //    {
-        //        if (hc.myClass == CharacterClass.Caravan)
-        //        {
-        //            caravan_HC = hc;
-        //            break;
-        //        }
-        //    }
-        //    Debug.Log("NO Caravan attached to game manager");
-        //}
-    }
 
     private void Update()
     {
@@ -67,12 +48,6 @@ public class GameManager : MonoBehaviour
             }
             Debug.Log("NO Caravan attached to game manager");
         }
-        //else if (caravan_HC.IsDead())
-        //{
-        //    caravan_HC = null;
-        //    ObjectPooler.DisableAllActiveObjects();
-        //    StartCoroutine("RestartLevel");
-        //}
 
         if (caravan_HC)
         {
@@ -85,12 +60,6 @@ public class GameManager : MonoBehaviour
                 StartCoroutine("RestartLevel");
             }
         }
-
-        //if (SpawnManager.HasFinishedSpawning && SpawnManager.EnemiesAlive <= 0 && !doneOnce)
-        //{
-        //    StartCoroutine(QuitDelay());
-        //    doneOnce = true;
-        //}
 
         if (Input.anyKeyDown && SceneManager.GetActiveScene().name == "Credits")
         {
