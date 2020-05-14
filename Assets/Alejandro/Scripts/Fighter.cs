@@ -15,6 +15,14 @@ public class Fighter : MonoBehaviour
     [SerializeField] Transform rayStart = null;
     [SerializeField] Transform rayEnd = null;
 
+    //this region is for the axis names as strings
+    [Space]
+    [Header("Axis Names")]
+    #region
+    [SerializeField] string attack = "";
+    [SerializeField] string dodge = "";
+    #endregion
+
     HealthComp target;
     float timeSinceLastAttack = Mathf.Infinity;
     PlayerController player;
@@ -28,7 +36,7 @@ public class Fighter : MonoBehaviour
         {
             EquipWeapon(currentWeapon);
         }
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -37,12 +45,12 @@ public class Fighter : MonoBehaviour
         timeSinceLastAttack += Time.deltaTime;
         UpdateRaycastOrientation();
         if (player.GetMoveState() == PlayerController.MoveStates.Freeze ) return;
-        if(Input.GetAxis("Attack") >0 && timeSinceLastAttack > GetCurrentAttackSpeed())
+        if(Input.GetAxis(attack) >0 && timeSinceLastAttack > GetCurrentAttackSpeed())
         {
             timeSinceLastAttack = 0;
             GetComponent<Animator>().SetTrigger("Attack");
         }
-        if (Input.GetButtonDown("Dodge"))
+        if (Input.GetButtonDown(dodge))
         {
             GetComponent<Animator>().SetTrigger("Roll");
         }

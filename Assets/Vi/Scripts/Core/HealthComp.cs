@@ -115,8 +115,10 @@ public class HealthComp : MonoBehaviour
     /// <param name="weapon_force"> The amount of knockback_force from the weapon </param>"
     public void TakeDamage(Transform damageDealer, int amount, float weapon_force)
     {
+        Debug.Log("is dead" + is_Dead);
         if (!is_Dead)
         {
+            Debug.Log("calculate damage");
             currentHealth -= amount;
             currentHealth = Mathf.Max(0, currentHealth);
             DisplayHealth();
@@ -157,6 +159,8 @@ public class HealthComp : MonoBehaviour
                 //MusicManager.Instance.PlaySoundTrack(soundCue);
                 //break;
             case CharacterClass.Player:
+                Debug.Log("Player Dead");
+                break;
             case CharacterClass.Caravan:
                 Debug.Log("Caravan Dead");
                 break;

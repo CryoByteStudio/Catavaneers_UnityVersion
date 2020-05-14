@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,11 +20,23 @@ public class PlayerController : MonoBehaviour
         Right,
         none
     }
+    [SerializeField] Transform caravan = null;
     [SerializeField] float speed = 0.0f;
     [SerializeField] float dodgeSpeed = 3.15f;
     [SerializeField] float dodgeTime = 0.0f;
     [SerializeField] float straffSensitiviy = 30.0f;
+    [SerializeField] float respawnTimer = 5f;
 
+    //this region is for the axis names as strings
+    [Space]
+    [Header("Axis Names")]
+    #region
+    [SerializeField] string horizontalLThumbstick = "";
+    [SerializeField] string verticalLThumbstick = "";
+    [SerializeField] string horizontalRThumbstick = "";
+    [SerializeField] string verticalRThumbstick = "";
+    #endregion
+    [Space]
     Vector3 LTumbInput = new Vector3(0,0,0);
     Vector3 RTumbInput = new Vector3(0, 0, 0);
     float leftInputMagnitud = 0.0f;
@@ -67,11 +80,26 @@ public class PlayerController : MonoBehaviour
             }
             CharacterMove(weaponWeight, reverseValue, slowValue);
         }
+        else
+        {
+            PlayerRespawn();
+        }
+    }
+
+    private void PlayerRespawn()
+    {
+        if (caravan == null) return;
+        StartCoroutine(RespawnTimer(respawnTimer));
+        Debug.Log("Player respawn");
+    }
+    IEnumerator RespawnTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
     }
     private void AxisInput()
     {
-            LTumbInput = new Vector3(Input.GetAxis("Horizontal Left Thumbstick"), 0, Input.GetAxis("Vertical Left Thumbstick"));
-            RTumbInput = new Vector3(Input.GetAxis("Horizontal Right Thumbstick"), 0, Input.GetAxis("Vertical Right Thumbstick"));        
+            LTumbInput = new Vector3(Input.GetAxis(horizontalLThumbstick), 0, Input.GetAxis(verticalLThumbstick));
+            RTumbInput = new Vector3(Input.GetAxis(horizontalRThumbstick), 0, Input.GetAxis(verticalRThumbstick));        
         Rotation();
         Direction();
     }
@@ -102,7 +130,7 @@ public class PlayerController : MonoBehaviour
     {
         if (RTumbInput != Vector3.zero)
         {
-            characterRotation = Mathf.Atan2(Input.GetAxis("Horizontal Right Thumbstick"), Input.GetAxis("Vertical Right Thumbstick")) * Mathf.Rad2Deg;
+            characterRotation = Mathf.Atan2(Input.GetAxis(horizontalRThumbstick), Input.GetAxis(verticalRThumbstick)) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, characterRotation, 0));
             //GetComponent<Fighter>().UpdateRaycastOrientation(characterRotation);
         }
