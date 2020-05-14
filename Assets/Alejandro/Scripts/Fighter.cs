@@ -18,6 +18,9 @@ public class Fighter : MonoBehaviour
     HealthComp target;
     float timeSinceLastAttack = Mathf.Infinity;
     PlayerController player;
+
+    public string attackAxis;
+    public string dodgeButton;
     void Start()
     {
         if (currentWeapon == null)
@@ -37,12 +40,12 @@ public class Fighter : MonoBehaviour
         timeSinceLastAttack += Time.deltaTime;
         UpdateRaycastOrientation();
         if (player.GetMoveState() == PlayerController.MoveStates.Freeze ) return;
-        if(Input.GetAxis("Attack") >0 && timeSinceLastAttack > GetCurrentAttackSpeed())
+        if(Input.GetAxis(attackAxis) >0 && timeSinceLastAttack > GetCurrentAttackSpeed())
         {
             timeSinceLastAttack = 0;
             GetComponent<Animator>().SetTrigger("Attack");
         }
-        if (Input.GetButtonDown("Dodge"))
+        if (Input.GetButtonDown(dodgeButton))
         {
             GetComponent<Animator>().SetTrigger("Roll");
         }
