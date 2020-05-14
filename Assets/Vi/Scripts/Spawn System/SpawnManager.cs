@@ -88,12 +88,23 @@ public class SpawnManager : MonoBehaviour
     public static float EnemyLeftToSpawn = 0;
     public static int EnemiesAlive = 0;
     public static bool HasFinishedSpawning = false;
-    public static bool CanSpawn = false;
+    public static bool canSpawn = false;
+    public bool CanSpawn = false;
     public static bool m_Debug = false;
+
+    public GameManager gman;
 
     private void Start()
     {
+        //CLEAN UP SASHA #TODO
+        gman = FindObjectOfType<GameManager>();
+        gman.sman = this;
+
+      
+
         Reset();
+        StartCoroutine(gman.StartDelay());
+       // CanSpawn = true;
 
         // update params to start spawning
         SpawnNextWave();

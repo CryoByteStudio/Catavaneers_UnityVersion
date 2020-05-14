@@ -17,10 +17,11 @@ public class PlayerSelectController : MonoBehaviour
     public string inputacceptbutton;   //Submit/Interact
     public string inputbackbutton;
     public bool lockedin=false;
- 
+    public GameManager gman;
     // Start is called before the first frame update
     void Start()
     {
+        gman = FindObjectOfType<GameManager>();
         charman = FindObjectOfType<CharacterManager>();
         SelectIndex = PlayerID;
     }
@@ -37,6 +38,7 @@ public class PlayerSelectController : MonoBehaviour
                 PlayerSelectReference.color = Color.black;
 
             }
+          //  StartCoroutine(gman.StartDelay());
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
         }
@@ -123,7 +125,11 @@ public class PlayerSelectController : MonoBehaviour
         }
         if (playerslocked >= 4)
         {
+           // StartCoroutine(gman.StartDelay());
+            
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
         }
     }
 }

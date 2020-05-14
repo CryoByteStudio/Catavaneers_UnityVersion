@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public float startDelay = 1;
     public float quitDelay = 0;
     private bool doneOnce = false;
+
+    public SpawnManager sman;
     [SerializeField] HealthComp caravan_HC;
 
     // Make this the one instance managing pooled objects throughout levels
@@ -33,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(StartDelay());
+      //  StartCoroutine(StartDelay());
 
         //if (!caravan_HC)
         //{
@@ -105,11 +107,13 @@ public class GameManager : MonoBehaviour
         //StartCoroutine(StartDelay());
     }
 
-    private IEnumerator StartDelay()
+   
+    public  IEnumerator StartDelay()
     {
-        SpawnManager.CanSpawn = false;
+        
+        sman.CanSpawn = false;
         yield return new WaitForSeconds(startDelay);
-        SpawnManager.CanSpawn = true;
+        sman.CanSpawn = true;
     }
 
     private IEnumerator QuitDelay()
