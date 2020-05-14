@@ -20,6 +20,7 @@ public class TrapSystem : MonoBehaviour
 
         if(Input.GetButtonDown(trapButton))
         {
+            Debug.Log("trapbutton");
             if (CurrentTrap == null) return;
             CurrentTrap.SpawnTrap(transform.position);
             if(CurrentTrap == Trap1) Trap1 = null;

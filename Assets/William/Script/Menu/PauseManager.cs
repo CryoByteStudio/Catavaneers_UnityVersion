@@ -16,7 +16,7 @@ public class PauseManager : MonoBehaviour
     void Start()
     {
     }
-    /* #TODO REENABLE THIS SASHA
+    
    // Update is called once per frame
    void Update()
    {
@@ -56,5 +56,5 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu_Main");   
-    }*/
+    }
 }
