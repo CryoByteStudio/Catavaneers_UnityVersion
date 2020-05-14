@@ -18,7 +18,7 @@ public class TrapSystem : MonoBehaviour
         else if (Trap1 == null && Trap2 != null) CurrentTrap = Trap2;
         else CurrentTrap = null;
 
-        if(Input.GetKeyDown(trapButton))
+        if(Input.GetButtonDown(trapButton))
         {
             if (CurrentTrap == null) return;
             CurrentTrap.SpawnTrap(transform.position);

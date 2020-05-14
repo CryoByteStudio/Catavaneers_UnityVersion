@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1322133191346694685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5978401501363556325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55261c89ee79be348b35e37baac9bc06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentTrap: {fileID: 0}
+  Trap1: {fileID: 0}
+  Trap2: {fileID: 0}
+  TrapSpawnLocation: {fileID: 0}
+  trapButton: P2UseTrap
+  dpadAxis: P2DPad X
 --- !u!1001 &6165853332029191505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7,10 +25,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 700459885, guid: dec8e7a87509abf45bf300fc5aab79ab, type: 3}
+      propertyPath: buyButton
+      value: P2Buy
+      objectReference: {fileID: 0}
+    - target: {fileID: 700459885, guid: dec8e7a87509abf45bf300fc5aab79ab, type: 3}
+      propertyPath: useItemButton
+      value: P2Use Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 700459885, guid: dec8e7a87509abf45bf300fc5aab79ab, type: 3}
+      propertyPath: cancelButton
+      value: P2Cancel/Shop3
+      objectReference: {fileID: 0}
     - target: {fileID: 533129627958114986, guid: dec8e7a87509abf45bf300fc5aab79ab,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 533129627958114986, guid: dec8e7a87509abf45bf300fc5aab79ab,
         type: 3}
@@ -65,7 +95,43 @@ PrefabInstance:
     - target: {fileID: 533129627958114996, guid: dec8e7a87509abf45bf300fc5aab79ab,
         type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Kiki
+      objectReference: {fileID: 0}
+    - target: {fileID: 533129627958114997, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: inputHorizontalLeftThumb
+      value: P2Horizontal Left Thumbstick
+      objectReference: {fileID: 0}
+    - target: {fileID: 533129627958114997, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: inputVerticalLeftThumb
+      value: P2Vertical Left Thumbstick
+      objectReference: {fileID: 0}
+    - target: {fileID: 533129627958114997, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: inputHorizontalRightThumb
+      value: P2Horizontal Right Thumbstick
+      objectReference: {fileID: 0}
+    - target: {fileID: 533129627958114997, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: inputVerticalRightThumb
+      value: P2Vertical Right Thumbstick
+      objectReference: {fileID: 0}
+    - target: {fileID: 621645804363221072, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: attackAxis
+      value: P2Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 621645804363221072, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: dodgeButton
+      value: P2Dodge
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dec8e7a87509abf45bf300fc5aab79ab, type: 3}
+--- !u!1 &5978401501363556325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 533129627958114996, guid: dec8e7a87509abf45bf300fc5aab79ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 6165853332029191505}
+  m_PrefabAsset: {fileID: 0}

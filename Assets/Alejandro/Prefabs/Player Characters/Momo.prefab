@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &6375728563713584851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7187095325055511655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55261c89ee79be348b35e37baac9bc06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentTrap: {fileID: 0}
+  Trap1: {fileID: 0}
+  Trap2: {fileID: 0}
+  TrapSpawnLocation: {fileID: 0}
+  trapButton: P3UseTrap
+  dpadAxis: P3DPad X
 --- !u!1001 &7267613035557033683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7,10 +25,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 700459885, guid: dec8e7a87509abf45bf300fc5aab79ab, type: 3}
+      propertyPath: buyButton
+      value: P3Buy
+      objectReference: {fileID: 0}
+    - target: {fileID: 700459885, guid: dec8e7a87509abf45bf300fc5aab79ab, type: 3}
+      propertyPath: useItemButton
+      value: P3Use Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 700459885, guid: dec8e7a87509abf45bf300fc5aab79ab, type: 3}
+      propertyPath: cancelButton
+      value: P3Cancel/Shop3
+      objectReference: {fileID: 0}
     - target: {fileID: 533129627958114986, guid: dec8e7a87509abf45bf300fc5aab79ab,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 533129627958114986, guid: dec8e7a87509abf45bf300fc5aab79ab,
         type: 3}
@@ -65,7 +95,43 @@ PrefabInstance:
     - target: {fileID: 533129627958114996, guid: dec8e7a87509abf45bf300fc5aab79ab,
         type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Momo
+      objectReference: {fileID: 0}
+    - target: {fileID: 533129627958114997, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: inputHorizontalLeftThumb
+      value: P3Horizontal Left Thumbstick
+      objectReference: {fileID: 0}
+    - target: {fileID: 533129627958114997, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: inputVerticalLeftThumb
+      value: P3Vertical Left Thumbstick
+      objectReference: {fileID: 0}
+    - target: {fileID: 533129627958114997, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: inputHorizontalRightThumb
+      value: P3Horizontal Right Thumbstick
+      objectReference: {fileID: 0}
+    - target: {fileID: 533129627958114997, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: inputVerticalRightThumb
+      value: P4Vertical Right Thumbstick
+      objectReference: {fileID: 0}
+    - target: {fileID: 621645804363221072, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: attackAxis
+      value: P3Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 621645804363221072, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: dodgeButton
+      value: P3Dodge
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dec8e7a87509abf45bf300fc5aab79ab, type: 3}
+--- !u!1 &7187095325055511655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 533129627958114996, guid: dec8e7a87509abf45bf300fc5aab79ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 7267613035557033683}
+  m_PrefabAsset: {fileID: 0}

@@ -16,12 +16,14 @@ public class PauseManager : MonoBehaviour
     void Start()
     {
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetButtonDown(pauseButton) || Input.GetKeyDown(KeyCode.Escape))
+    /* #TODO REENABLE THIS SASHA
+   // Update is called once per frame
+   void Update()
+   {
+       if(Input.GetButtonDown(pauseButton) || Input.GetKeyDown(KeyCode.Escape))
         {
+
+       
             if(GameIsPaused)
             {
                 Resume();
@@ -54,5 +56,5 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu_Main");   
-    }
+    }*/
 }

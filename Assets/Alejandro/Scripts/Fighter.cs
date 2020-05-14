@@ -31,7 +31,7 @@ public class Fighter : MonoBehaviour
         {
             EquipWeapon(currentWeapon);
         }
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame

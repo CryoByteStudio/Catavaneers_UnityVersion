@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 533129627958114984}
   - component: {fileID: 1982268532124465002}
   - component: {fileID: 8140593018067924260}
+  - component: {fileID: 5824462135385233196}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -70,9 +71,9 @@ MonoBehaviour:
   GoldUI: {fileID: 0}
   HealthUI: {fileID: 0}
   KillsUI: {fileID: 0}
-  buyButton: 
-  useItemButton: 
-  cancelButton: 
+  buyButton: P4Buy
+  useItemButton: P4Use Item
+  cancelButton: P4Cancel/Shop3
 --- !u!114 &621645804363221072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,6 +96,8 @@ MonoBehaviour:
   attackRayOrigin: {fileID: 8068187300202466740}
   rayStart: {fileID: 7080864623612053155}
   rayEnd: {fileID: 6609356662895137615}
+  attackAxis: P4Attack
+  dodgeButton: P4Dodge
 --- !u!114 &257404555756453891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +138,10 @@ MonoBehaviour:
   straffSensitiviy: 30
   reverseValue: 1
   slowValue: 1
+  inputHorizontalLeftThumb: P4Horizontal Left Thumbtick
+  inputVerticalLeftThumb: P4Vertical Left Thumbstick
+  inputHorizontalRightThumb: P4Horizontal Right Thumbstick
+  inputVerticalRightThumb: P4Vertical Right Thumbstick
 --- !u!95 &533129627958114987
 Animator:
   serializedVersion: 3
@@ -203,6 +210,24 @@ MonoBehaviour:
   Kikiskin: {fileID: 2100000, guid: 2d4cc94dc89817d488d7d378ba3d3e95, type: 2}
   Russellskin: {fileID: 2100000, guid: 7418a88c2be8d5c43bb34fd047190078, type: 2}
   charman: {fileID: 0}
+--- !u!114 &5824462135385233196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533129627958114996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55261c89ee79be348b35e37baac9bc06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentTrap: {fileID: 0}
+  Trap1: {fileID: 0}
+  Trap2: {fileID: 0}
+  TrapSpawnLocation: {fileID: 0}
+  trapButton: P4UseTrap
+  dpadAxis: P4DPad X
 --- !u!1001 &533129627219529545
 PrefabInstance:
   m_ObjectHideFlags: 0

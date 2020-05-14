@@ -6,8 +6,8 @@ public class SimpleCont : MonoBehaviour
 {
     public void GetInput()
     {
-        m_horizontalInput = Input.GetAxis("Horizontal");
-        m_verticalInput = Input.GetAxis("Vertical");
+       // m_horizontalInput = Input.GetAxis("Horizontal");
+       // m_verticalInput = Input.GetAxis("Vertical");
     }
 
     private void Steer()
@@ -72,5 +72,5 @@ public class SimpleCont : MonoBehaviour
 
 
 
-
+   
 }
