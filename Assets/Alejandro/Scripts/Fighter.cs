@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Fighter : MonoBehaviour
 {
-    [SerializeField] float CharacterSpeed = 0.0f;
     [SerializeField] float CharacterAttackSpeed = 0.0f;
-    [SerializeField] float CharacterAttackDamage = 0.0f;
+    [SerializeField] int CharacterAttackDamage = 0;
     [SerializeField] Weapon defaultWeapon = null;
     [SerializeField] Transform rightHandTransform = null;
     [SerializeField] Transform leftHandTransform = null;
@@ -76,7 +75,7 @@ public class Fighter : MonoBehaviour
             target = hit.transform.GetComponent<HealthComp>();
             if (target != null)
             {
-                target.TakeDamage(currentWeapon.GetDamage());
+                target.TakeDamage(GetCurrentAttackDamage());
                 Debug.Log("object name: " + hit.transform.name + " takes damage");
             }
             else
@@ -92,14 +91,17 @@ public class Fighter : MonoBehaviour
     }
     float GetCurrentAttackSpeed()
     {
+        Debug.Log("character attack speed: " + CharacterAttackSpeed);
+        Debug.Log("weapon attack speed: " + currentWeapon.GetWeaponAttackSpeed());
+        Debug.Log("final attack speed: " + CharacterAttackSpeed * currentWeapon.GetWeaponAttackSpeed());
         return CharacterAttackSpeed * currentWeapon.GetWeaponAttackSpeed();
     }
-    float GetCurrentAttackDamage()
+    int GetCurrentAttackDamage()
     {
         return CharacterAttackDamage * currentWeapon.GetDamage();
     }
-    float GetCurrentCharacterSpeed()
+    public float GetWeaponWeight()
     {
-        return CharacterSpeed * currentWeapon.GetWeaponWeight();
+        return currentWeapon.GetWeaponWeight();
     }
 }

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using ObjectPooling;
 using UnityEngine.UI;
-
+using System;
+using System.Collections;
 
 public enum CharacterClass { Player, Enemy, Caravan, Obj };
 public enum DifficultyLevel { Normal = 4, IronCat = 10, Catapocalypse = 25};
@@ -22,7 +23,11 @@ public class HealthComp : MonoBehaviour
     private bool is_Regenerating = false;
     [SerializeField]
     private float dmg_percentage;
-    
+    [SerializeField]
+    Transform playerSpawnPos;
+    [SerializeField]
+    GameObject playerMeshRenderer;
+
     private float nextDamageTime = 0;
     private float timeElapsed = 0;
     private bool is_Dead = false;
@@ -97,13 +102,16 @@ public class HealthComp : MonoBehaviour
     /// <param name="amount"> The amount that will be subtracted from health </param>
     public void TakeDamage(int amount)
     {
-        currentHealth -= amount;
-        currentHealth = Mathf.Max(0, currentHealth);
-        DisplayHealth();
-
-        if (currentHealth <= 0)
+        if (!is_Dead)
         {
-            Dead();
+            currentHealth -= amount;
+            currentHealth = Mathf.Max(0, currentHealth);
+            DisplayHealth();
+
+            if (currentHealth <= 0)
+            {
+                Dead();
+            }
         }
     }
 
@@ -150,6 +158,7 @@ public class HealthComp : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger("Die");
+            RespawnMethod();
         }
         switch (myClass)
         {
@@ -157,6 +166,8 @@ public class HealthComp : MonoBehaviour
                 //MusicManager.Instance.PlaySoundTrack(soundCue);
                 //break;
             case CharacterClass.Player:
+                Debug.Log("Player Dead");
+                break;
             case CharacterClass.Caravan:
                 Debug.Log("Caravan Dead");
                 break;
@@ -169,6 +180,27 @@ public class HealthComp : MonoBehaviour
                 ObjectPooler.SetInactive(this.gameObject);
                 break;
         }
+    }
+    /// <summary>
+    /// Handles player respawn when dead
+    /// </summary>
+    private void RespawnMethod()
+    {
+        StartCoroutine(Respawn());
+    }
+
+    private IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(4);
+        playerMeshRenderer.SetActive(false);
+        GetComponent<CapsuleCollider>().enabled = false;
+        transform.position = playerSpawnPos.position;
+        yield return new WaitForSeconds(6);
+        is_Dead = false;
+        currentHealth = startHealth;
+        playerMeshRenderer.SetActive(true);
+        GetComponent<CapsuleCollider>().enabled = true;
+
     }
 
     /// <summary>
