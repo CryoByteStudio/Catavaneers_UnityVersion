@@ -10,14 +10,15 @@ public class TrapSystem : MonoBehaviour
     [SerializeField] Transform TrapSpawnLocation;
 
     private float DPadX;
-
+    public string trapButton;
+    public string dpadAxis;
     private void Update()
     {
         if(Trap1 != null) CurrentTrap = Trap1;
         else if (Trap1 == null && Trap2 != null) CurrentTrap = Trap2;
         else CurrentTrap = null;
 
-        if(Input.GetKeyDown(KeyCode.JoystickButton4))
+        if(Input.GetKeyDown(trapButton))
         {
             if (CurrentTrap == null) return;
             CurrentTrap.SpawnTrap(transform.position);
@@ -25,7 +26,7 @@ public class TrapSystem : MonoBehaviour
             else if(CurrentTrap == Trap2) Trap2 = null;
         }
 
-        float X = Input.GetAxis("DPad X");
+        float X = Input.GetAxis(dpadAxis);
 
         if(DPadX != X)
         {

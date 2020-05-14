@@ -37,7 +37,8 @@ public class PlayerSelectController : MonoBehaviour
                 PlayerSelectReference.color = Color.black;
 
             }
-           
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
         }
 
 

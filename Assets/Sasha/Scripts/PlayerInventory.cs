@@ -26,6 +26,10 @@ public class PlayerInventory : MonoBehaviour //Sasha
     public Text GoldUI;
     public Text HealthUI;
     public Text KillsUI;
+
+    public string buyButton;
+    public string useItemButton;
+    public string cancelButton;
   
     // Start is called before the first frame update
 
@@ -41,7 +45,7 @@ public class PlayerInventory : MonoBehaviour //Sasha
         RefreshUI();
 
         //#TODO Move these inputs to the actual player controller
-        if (Input.GetButtonDown("Buy"))
+        if (Input.GetButtonDown(buyButton))
         {
             if (plotref)
             {
@@ -96,7 +100,7 @@ public class PlayerInventory : MonoBehaviour //Sasha
             {
                 Debug.Log("Tried to purchase but no plot reference");
             }
-        }else if (Input.GetButtonDown("Use Item"))
+        }else if (Input.GetButtonDown(useItemButton))
         {
             if (ConsumableItem)
             {
@@ -111,7 +115,7 @@ public class PlayerInventory : MonoBehaviour //Sasha
             }
         }
         
-        else if (Input.GetButtonDown("Cancel/Shop3"))
+        else if (Input.GetButtonDown(cancelButton))
         {
             if (TrapItem)
             {
