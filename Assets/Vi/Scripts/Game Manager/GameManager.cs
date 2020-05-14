@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
 
     public void StartSceneButton()
     {
-        LoadLevel("Charselect");
+        SceneManager.LoadScene(1);
     }
 
     public void CreditsSceneButton()
