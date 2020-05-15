@@ -103,8 +103,8 @@ public class SpawnManager : MonoBehaviour
       
 
         Reset();
-        StartCoroutine(gman.StartDelay());
-       // CanSpawn = true;
+        //StartCoroutine(gman.StartDelay());
+        CanSpawn = true;
 
         // update params to start spawning
         SpawnNextWave();
@@ -221,6 +221,7 @@ public class SpawnManager : MonoBehaviour
     /// </summary>
     private void Reset()
     {
+        Wave.number = 0;
         objectPooler = FindObjectOfType<ObjectPooler>();
         timeElapsed = 0;
         EnemyLeftToSpawn = 0;
