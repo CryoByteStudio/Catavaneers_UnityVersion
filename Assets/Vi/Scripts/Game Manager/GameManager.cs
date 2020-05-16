@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.anyKeyDown && SceneManager.GetActiveScene().name == "Credits")
+        if (Input.anyKeyDown && SceneManager.GetActiveScene().name == "Menu_Credits")
         {
             SceneManager.LoadScene("Menu_Main");
         }
