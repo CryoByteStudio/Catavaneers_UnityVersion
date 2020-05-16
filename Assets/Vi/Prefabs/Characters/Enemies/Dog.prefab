@@ -114,13 +114,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameDifficulty: 4
   myClass: 1
-  startHealth: 100
+  startHealth: 80
   debug: 0
   damageTakenPerSecond: 50
   soundCue: 4
   currentHealth: 0
   is_Regenerating: 0
   dmg_percentage: 0
+  playerSpawnPos: {fileID: 0}
+  playerMeshRenderer: {fileID: 0}
   health_slider: {fileID: 8319951787413887798}
 --- !u!54 &1034904835980318866
 Rigidbody:
@@ -151,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  chaseSpeed: 2
+  chaseSpeed: 1
   attackDamage: 10
   attackRange: 3
   attackInterval: 4
