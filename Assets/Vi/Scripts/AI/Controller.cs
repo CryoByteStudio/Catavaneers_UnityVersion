@@ -80,6 +80,7 @@ namespace AI
 
         private void Start()
         {
+            Reset();
             PopulateTargetLists();
 
             // override NavMeshAgent auto reposition when enabled
@@ -88,6 +89,14 @@ namespace AI
             agent.Warp(startPosition);
 
             InitFSM();
+        }
+
+        private void Reset()
+        {
+            healthComps = null;
+            mouseTargets.Clear();
+            catTargets.Clear();
+            dogTargets.Clear();
         }
 
         /// <summary>

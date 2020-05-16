@@ -1,4 +1,5 @@
 ﻿using ObjectPooling;
+using System;
 using System.Collections;
 using System.Timers;
 using UnityEngine;
@@ -70,13 +71,18 @@ public class GameManager : MonoBehaviour
     private IEnumerator RestartLevel()
     {
         ObjectPooler.DisableAllActiveObjects();
-        yield return new WaitForSeconds(startDelay);
-        string curScene = SceneManager.GetActiveScene().name;
+        yield return new WaitForSeconds(quitDelay);
+        //string curScene = SceneManager.GetActiveScene().name;
+        Reset();
         SceneManager.LoadScene("LoseScene");
         //StartCoroutine(StartDelay());
     }
 
-   
+    private void Reset()
+    {
+        doneOnce = false;
+    }
+
     public  IEnumerator StartDelay()
     {
         
