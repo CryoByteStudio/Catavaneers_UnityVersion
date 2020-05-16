@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(quitDelay);
         //string curScene = SceneManager.GetActiveScene().name;
         Reset();
-        SceneManager.LoadScene("LoseScene");
+        SceneManager.LoadScene("Menu_LoseScene");
         //StartCoroutine(StartDelay());
     }
 
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
         doneOnce = true;
         if(caravan_HC != null) caravan_HC.SetIsDead(false);
         ObjectPooler.DisableAllActiveObjects();
-        SceneManager.LoadScene("Charselect");
+        SceneManager.LoadScene("Menu_CharacterSelect");
     }
 
     public void LoadLevel(string leveltoload)
@@ -132,12 +132,12 @@ public class GameManager : MonoBehaviour
 
     public void StartSceneButton()
     {
-        SceneManager.LoadScene("Charselect");
+        SceneManager.LoadScene("Menu_CharacterSelect");
     }
 
     public void CreditsSceneButton()
     {
-        LoadLevel("Credits");
+        LoadLevel("Menu_Credits");
     }
 
     public void QuitApp()
