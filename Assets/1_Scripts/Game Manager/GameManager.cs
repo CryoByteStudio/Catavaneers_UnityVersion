@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
                 caravan_HC.SetIsDead(false);
 
                 StartCoroutine("RestartLevel");
+
+                transform.MyExtensionFunction();
             }
         }
 
