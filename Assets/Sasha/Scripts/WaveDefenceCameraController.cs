@@ -8,23 +8,42 @@ public class WaveDefenceCameraController : MonoBehaviour
     public List<Transform> camtargets = new List<Transform>();
     public Vector3 zeropoint;
     public Camera cam;
-    public float zMax=8f;
-    public float zMin = -2f;
-    public float xLimit=15f;
-    public float ScaleFactorThreshold;
-    public float camymax;
-    public float camymin;
-    public float xoffset;
+   
+    public float camxmax=12f;
+    public float camxmin=-12f;
+    public float camzmax=12f;
+    public float camzmin=-12f;
+    public float camymax = 25f;
+    public float camymin = 15f;
+    
     public float zoffset;
+    public float zoom=1f;
+    public float currentxlow = 0;
+    public float currentxhigh= 0;
+    public float currentzlow = 0;
+    public float currentzhigh = 0;
+    public float zoomxfactor;
+    public float zoomzfactor;
+
+    public float minxdist;
+    public float minzdist;
+
+
+    public float distx=0f;
+    public float distz = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
 
         cam = GetComponent<Camera>();
-        zeropoint = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z);
-    }
+        zeropoint = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z+zoffset);
+        camxmax = zeropoint.x + camxmax;
+        camxmin = zeropoint.x + camxmin;
+      
+}
 
-    // Update is called once per frame
+    
 
     private void Update()
     {
@@ -33,83 +52,130 @@ public class WaveDefenceCameraController : MonoBehaviour
     void RefreshCameraPos()
     {
         //Start at whatever was defined as the cameras 0 point
-        float xpos=zeropoint.x+xoffset;
+        float xpos=zeropoint.x;
         float ypos = zeropoint.y;
-        float zpos =zeropoint.z+zoffset;
-        float highestx=zeropoint.x;
-        float lowestx=zeropoint.x;
-        float highestz=zeropoint.z;
-        float lowestz=zeropoint.z;
+        float zpos =zeropoint.z;
 
+        float highestx=camtargets[0].position.x;
+        float highestz = camtargets[0].position.z;
+        float lowestz = camtargets[0].position.z; 
+        float lowestx = camtargets[0].position.x; 
+      
+       
+       
        foreach(Transform target in camtargets)
         {
-            //check for lowest/highest
-            if (zeropoint.x + target.position.x > highestx)
+
+            //get absolute x distance from zeropoint
+
+            float distfromzerox= Mathf.Abs(zeropoint.x - target.position.x);
+            float distfromzeroz = Mathf.Abs(zeropoint.z - target.position.z);
+            if (target.position.x > zeropoint.x)
             {
-                highestx = zeropoint.x + target.position.x;
+                //add to zeropoint
+                xpos += distfromzerox;
             }
-            if (zeropoint.x + target.position.x < lowestx)
+            else
             {
-                lowestx = zeropoint.x + target.position.x;
+                //subtract from zeropoint
+                xpos -= distfromzerox;
             }
-            if (zeropoint.z + target.position.z > highestz)
+            if (target.position.z > zeropoint.z)
             {
-                highestz = zeropoint.z + target.position.z;
+                //add to zeropoint
+                zpos += distfromzeroz;
             }
-            if (zeropoint.z + target.position.z < lowestz)
+            else
             {
-                lowestz = zeropoint.z + target.position.z;
+                //subtract from zeropoint
+               zpos -= distfromzeroz;
             }
 
 
-            //Add the distances from zeropoint to the targets current pos
-            xpos += target.position.x;
-            zpos += target.position.z;
 
-            
+
+            //calculate highests
+
+            if (target.position.x < lowestx)
+            {
+                lowestx = distfromzerox;
+            }
+          
+            if (target.position.x > highestx)
+            {
+                highestx = distfromzerox;
+            }
+            if (target.position.z < lowestz)
+            {
+                lowestz = distfromzeroz;
+            }
+
+            if (target.position.z > highestz)
+            {
+                highestz = distfromzeroz;
+            }
+
+
         }
-       //check cam within x limits  pos left/right
-        if (xpos > zeropoint.x+ xLimit+xoffset) 
+        currentxhigh = highestx;
+        currentxlow = lowestx;
+        currentzhigh = highestz;
+        currentzlow = lowestz;
+        distx = Mathf.Abs(currentxhigh - currentxlow);
+        distz = Mathf.Abs(currentzhigh - currentzlow);
+
+        if (distx < minxdist)
         {
-            Debug.Log("Camera above y buffer");
-            xpos = xLimit+xoffset;
+            distx = minxdist;
         }
-        if( xpos < zeropoint.x- xLimit+xoffset)
+        if (distz < minzdist)
         {
-            Debug.Log("Camera below x buffer");
-            xpos = -xLimit+xoffset;
-        }
-        //Check z limits   pos up/down
-        if (zpos > zeropoint.z+ zMax+zoffset)
-        {
-            Debug.Log("Camera above z buffer");
-            zpos = zeropoint.z+zMax;
-        }
-        if (zpos < zeropoint.z+ zMin+zoffset)
-        {
-            Debug.Log("Camera below z buffer");
-            zpos = zeropoint.z+zMin+zoffset;
+            distz = minzdist;
         }
 
-   
-        ypos = ypos* (highestx - lowestx)*ScaleFactorThreshold;
+        zoom = (distx * zoomxfactor)+(distz*zoomzfactor);
+     
 
-        // ypos = ypos * (highestz - lowestz);
-        ypos /= (ypos / zeropoint.y + 1.5f);
-        //check y limits   scale in/out
+
+        
+            ypos = zoom;
+        
+
+        //clamp x pos
+        if (xpos > camxmax)
+        {
+            xpos=camxmax;
+
+        }else if (xpos < camxmin)
+        {
+            xpos = camxmin;
+        }
+        //clamp z pos
+        if (zpos > camzmax)
+        {
+            zpos = camzmax;
+
+        }
+        else if (zpos < camzmin)
+        {
+            zpos = camzmin;
+        }
+        //clamp y pos
         if (ypos > camymax)
         {
             ypos = camymax;
+
         }
-        if (ypos < camymin)
+        else if (ypos < camymin)
         {
             ypos = camymin;
         }
-      
+
+
 
 
         //set cameras transform to the center of all objects.
-        cam.transform.position = new Vector3(xpos + xoffset,ypos, zpos + zoffset) ;
+        cam.transform.position = new Vector3(xpos ,ypos, zpos ) ;
 
     }
 }
