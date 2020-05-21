@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
         doneOnce = true;
         if (caravan_HC != null) caravan_HC.SetIsDead(false);
         ObjectPooler.DisableAllActiveObjects();
-        SceneManager.LoadScene("Menu_Main");
+        SceneManager.LoadScene(0);
     }
 
     public void ToPlayerSelectionScene()
