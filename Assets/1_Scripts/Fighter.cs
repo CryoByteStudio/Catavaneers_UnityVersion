@@ -47,7 +47,6 @@ public class Fighter : MonoBehaviour
             GetComponent<Animator>().SetTrigger("Roll");
         }
     }
-
     public void EquipWeapon(Weapon weapon)
     {
         currentWeapon = weapon;
