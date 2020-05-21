@@ -26,7 +26,7 @@ public class HealthComp : MonoBehaviour
     [SerializeField]
     Transform playerSpawnPos;
     [SerializeField]
-    GameObject playerMeshRenderer;
+    SkinnedMeshRenderer playerMeshRenderer;
 
     private float nextDamageTime = 0;
     private float timeElapsed = 0;
@@ -192,15 +192,22 @@ public class HealthComp : MonoBehaviour
     private IEnumerator Respawn()
     {
         yield return new WaitForSeconds(4);
-        playerMeshRenderer.SetActive(false);
-        GetComponent<CapsuleCollider>().enabled = false;
-        transform.position = playerSpawnPos.position;
+        playerMeshRenderer.enabled = false;
+        //GetComponent<CapsuleCollider>().enabled = false;
+        this.transform.position = playerSpawnPos.position;
+        StartCoroutine(Spawn());
+    }
+
+    private IEnumerator Spawn()
+    {
         yield return new WaitForSeconds(6);
         is_Dead = false;
+        animator.SetTrigger("Spawn");
         currentHealth = startHealth;
-        playerMeshRenderer.SetActive(true);
+        health_slider.value = currentHealth;
+        playerMeshRenderer.enabled = true;
         GetComponent<CapsuleCollider>().enabled = true;
-
+        Debug.Log("Respawn");
     }
 
     /// <summary>
