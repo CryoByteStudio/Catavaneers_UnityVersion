@@ -18,14 +18,11 @@ public class SpawnPoint : MonoBehaviour
 
     private static ObjectPooler objectPooler;
 
-    public SpawnManager sman;
-
     // for debugging
     private HealthComp healthComp;
 
     private void Start()
     {
-        sman = FindObjectOfType <SpawnManager>();
         if (!objectPooler)
             objectPooler = FindObjectOfType<ObjectPooler>();
     }
@@ -33,7 +30,7 @@ public class SpawnPoint : MonoBehaviour
     private void Update()
     {
         // if cannot spawn, do nothing
-        if (!sman.CanSpawn) return;
+        if (!SpawnManager.CanSpawn) return;
 
         // if still has enemy to spawn
         if (enemyLeftToSpawn > 0)
