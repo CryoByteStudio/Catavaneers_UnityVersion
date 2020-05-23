@@ -138,6 +138,8 @@ public class SettingMenu : MonoBehaviour
     {
         AudioListener.pause = isMute;
 
+        Debug.Log(AudioListener.pause);
+
         if(isMute == false)
         {
             PlayerPrefs.SetInt("Mutetogglestate", 0);

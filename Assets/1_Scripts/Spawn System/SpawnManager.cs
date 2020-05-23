@@ -1,25 +1,25 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using ObjectPooling;
-//using SpawnSystem.Standard;
-using SpawnSystem.ScriptableObj;
+using SpawnSystem.Standard;
+//using SpawnSystem.ScriptableObj;
 using System;
 
 namespace SpawnSystem
 {
     public enum SpawnPointOrder
     {
-        None = 0,
-        One = 1,
-        Two = 2,
-        Three = 3,
-        Four = 4,
-        Five = 5,
-        Siz = 6,
-        Seven = 7,
-        Eight = 8,
-        Nine = 9,
-        Ten = 10
+        None = -1,
+        One = 0,
+        Two = 1,
+        Three = 2,
+        Four = 3,
+        Five = 4,
+        Siz = 5,
+        Seven = 6,
+        Eight = 7,
+        Nine = 8,
+        Ten = 9
     }
 
     public enum EnemyType
@@ -120,12 +120,12 @@ namespace SpawnSystem
 
             // For standard spawn system
             //***************************//
-            //currentWave.SetSpawnParams();
+            currentWave.SetSpawnParams();
             //***************************//
 
             // For scriptable object spawn system
             //***************************//
-            SetSpawnPointParams();
+            //SetSpawnPointParams();
             //***************************//
 
             nextWaveTime = timeElapsed + currentWave.EnemyCount * currentWave.spawnInterval + timeBetweenWaves;
@@ -136,23 +136,23 @@ namespace SpawnSystem
         /// <summary>
         /// Set the spawn parameters for all matching spawn points
         /// </summary>
-        private void SetSpawnPointParams()
-        {
-            // check all spawn point currently have
-            for (int i = 0; i < spawnPoints.Count; i++)
-            {
-                // check all enemy to spawn in wave object
-                for (int j = 0; j < currentWave.enemiesToSpawn.Count; j++)
-                {
-                    // if the order of spawn point in current list (spawnPoints) equal the spawn point order of the enemy to spawn
-                    if ((int)currentWave.enemiesToSpawn[j].spawnPointOrder == i)
-                    {
-                        // set spawn parameter for the appropriate spawn point accordingly
-                        spawnPoints[i].SetSpawnParams(currentWave.enemiesToSpawn, currentWave.spawnInterval);
-                    }
-                }
-            }
-        }
+        //private void SetSpawnPointParams()
+        //{
+        //    // check all spawn point currently have
+        //    for (int i = 0; i < spawnPoints.Count; i++)
+        //    {
+        //        // check all enemy to spawn in wave object
+        //        for (int j = 0; j < currentWave.enemiesToSpawn.Count; j++)
+        //        {
+        //            // if the order of spawn point in current list (spawnPoints) equal the spawn point order of the enemy to spawn
+        //            if ((int)currentWave.enemiesToSpawn[j].spawnPointOrder == i)
+        //            {
+        //                // set spawn parameter for the appropriate spawn point accordingly
+        //                spawnPoints[i].SetSpawnParams(currentWave.enemiesToSpawn, currentWave.spawnInterval);
+        //            }
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// 1. Update name for easy usage...
