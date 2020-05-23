@@ -3,6 +3,7 @@ using UnityEngine;
 using ObjectPooling;
 //using SpawnSystem.Standard;
 using SpawnSystem.ScriptableObj;
+using System;
 
 namespace SpawnSystem
 {
@@ -35,8 +36,6 @@ namespace SpawnSystem
         public List<Wave> waves = new List<Wave>();
         public float timeBetweenWaves = 0;
 
-        [Header("Spawn Properties")]
-        public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
 
         [Header("Debug Settings")]
         public bool debug = false;
@@ -46,6 +45,7 @@ namespace SpawnSystem
         private Wave currentWave;
 
         private static ObjectPooler objectPooler;
+        private List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
 
         public static float EnemyLeftToSpawn = 0;
         public static int EnemiesAlive = 0;
@@ -133,6 +133,9 @@ namespace SpawnSystem
             print("Enemy Left To Spawn: " + EnemyLeftToSpawn);
         }
 
+        /// <summary>
+        /// Set the spawn parameters for all matching spawn points
+        /// </summary>
         private void SetSpawnPointParams()
         {
             // check all spawn point currently have
@@ -155,46 +158,48 @@ namespace SpawnSystem
         /// 1. Update name for easy usage...
         /// 2. If params are not correctly assigned, reassigned to base value
         /// </summary>
-        //private void UpdateWaveVariables()
-        //{
-        //    for (int i = 0; i < waves.Count; i++)
-        //    {
-        //        // 1
-        //        if (waves[i].name == "")
-        //            waves[i].name = "Wave " + (i + 1);
+        [Obsolete]
+        private void UpdateWaveVariables()
+        {
+            for (int i = 0; i < waves.Count; i++)
+            {
+                // 1
+                if (waves[i].name == "")
+                    waves[i].name = "Wave " + (i + 1);
 
-        //        // 2
-        //        if (waves[i].spawnInterval < 0)
-        //        {
-        //            waves[i].spawnInterval = 0;
-        //        }
-        //        UpdateEnemyToSpawnVariables(i);
-        //    }
+                // 2
+                if (waves[i].spawnInterval < 0)
+                {
+                    waves[i].spawnInterval = 0;
+                }
+                UpdateEnemyToSpawnVariables(i);
+            }
 
-        //    // set static debug variable to match debug value that was set in editor
-        //    m_Debug = debug;
-        //}
+            // set static debug variable to match debug value that was set in editor
+            m_Debug = debug;
+        }
 
         /// <summary>
         /// 1. Warns designers if their settings is going to cause an error at run time
         /// 2. Set name of enemy to spawn to the correct name base on type it not already matched
         /// </summary>
         /// <param name="index"></param>
-        //private void UpdateEnemyToSpawnVariables(int index)
-        //{
-        //    for (int j = 0; j < waves[index].enemiesToSpawn.Count; j++)
-        //    {
-        //        // 1
-        //        if (waves[index].enemiesToSpawn[j].count < 0)
-        //            Debug.LogError("Enemy count should be a positive number. Error at "
-        //                + waves[index].enemiesToSpawn[j].name
-        //                + " in Spawn Manager/Wave Settings/Enemy Properties");
+        [Obsolete]
+        private void UpdateEnemyToSpawnVariables(int index)
+        {
+            for (int j = 0; j < waves[index].enemiesToSpawn.Count; j++)
+            {
+                // 1
+                if (waves[index].enemiesToSpawn[j].count < 0)
+                    Debug.LogError("Enemy count should be a positive number. Error at "
+                        + waves[index].enemiesToSpawn[j].name
+                        + " in Spawn Manager/Wave Settings/Enemy Properties");
 
-        //        // 2
-        //        if (waves[index].enemiesToSpawn[j].name != waves[index].enemiesToSpawn[j].enemyToSpawnType.ToString())
-        //            waves[index].enemiesToSpawn[j].ResetName();
-        //    }
-        //}
+                // 2
+                if (waves[index].enemiesToSpawn[j].name != waves[index].enemiesToSpawn[j].enemyToSpawnType.ToString())
+                    waves[index].enemiesToSpawn[j].ResetName();
+            }
+        }
 
         /// <summary>
         /// Reset all params to base value
@@ -216,6 +221,9 @@ namespace SpawnSystem
         private void OnValidate()
         {
             //UpdateWaveVariables();
+
+            // set static debug variable to match debug value that was set in editor
+            m_Debug = debug;
         }
     }
 }

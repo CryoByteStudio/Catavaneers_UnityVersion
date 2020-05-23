@@ -108,7 +108,6 @@ namespace SpawnSystem
             {
                 for (int j = 0; j < enemiesToSpawn[i].count; j++)
                 {
-                    //if (enemiesToSpawn[i].spawnPoint == this) ********* Removed since spawn point had been checked
                         spawnQueue.Enqueue(enemiesToSpawn[i].name);
                 }
             }
