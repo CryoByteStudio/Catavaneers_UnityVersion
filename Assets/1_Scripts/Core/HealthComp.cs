@@ -3,6 +3,7 @@ using ObjectPooling;
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using AI;
 
 public enum CharacterClass { Player, Enemy, Caravan, Obj };
 public enum DifficultyLevel { Normal = 4, IronCat = 10, Catapocalypse = 25};
@@ -207,6 +208,7 @@ public class HealthComp : MonoBehaviour
         health_slider.value = currentHealth;
         playerMeshRenderer.enabled = true;
         GetComponent<CapsuleCollider>().enabled = true;
+        Controller.AddToTargetList(this);
         Debug.Log("Respawn");
     }
 
