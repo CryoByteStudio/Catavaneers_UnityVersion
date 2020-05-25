@@ -194,8 +194,11 @@ public class HealthComp : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         playerMeshRenderer.enabled = false;
+        
         //GetComponent<CapsuleCollider>().enabled = false;
         this.transform.position = playerSpawnPos.position;
+        GetComponent<PlayerInventory>().gold = Mathf.RoundToInt((float)GetComponent<PlayerInventory>().gold / 100 * 75);
+        health_slider.gameObject.SetActive(false);
         StartCoroutine(Spawn());
     }
 
@@ -210,6 +213,12 @@ public class HealthComp : MonoBehaviour
         GetComponent<CapsuleCollider>().enabled = true;
         Controller.AddToTargetList(this);
         Debug.Log("Respawn");
+
+
+       
+        health_slider.gameObject.SetActive(true);
+
+
     }
 
     /// <summary>

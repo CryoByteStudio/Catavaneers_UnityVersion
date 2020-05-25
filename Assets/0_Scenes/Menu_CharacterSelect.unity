@@ -559,6 +559,7 @@ MonoBehaviour:
   inputacceptbutton: P4Submit/Interact
   inputbackbutton: 
   lockedin: 0
+  totalplayers: 0
   gman: {fileID: 0}
 --- !u!4 &306367930
 Transform:
@@ -616,6 +617,7 @@ MonoBehaviour:
   inputacceptbutton: Submit/Interact
   inputbackbutton: 
   lockedin: 0
+  totalplayers: 0
   gman: {fileID: 0}
 --- !u!4 &366614182
 Transform:
@@ -752,6 +754,7 @@ MonoBehaviour:
   inputacceptbutton: P3Submit/Interact
   inputbackbutton: 
   lockedin: 0
+  totalplayers: 0
   gman: {fileID: 0}
 --- !u!4 &596236599
 Transform:
@@ -1566,8 +1569,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 647, y: -455}
-  m_SizeDelta: {x: 566.75, y: 100}
+  m_AnchoredPosition: {x: 647, y: -403.2}
+  m_SizeDelta: {x: 566.8, y: 203.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1327774279
 MonoBehaviour:
@@ -1714,8 +1717,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.6, y: 5.475}
-  m_SizeDelta: {x: 551.5, y: 89.05}
+  m_AnchoredPosition: {x: 7.6, y: 15.5}
+  m_SizeDelta: {x: 551.5, y: 109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1449479660
 MonoBehaviour:
@@ -1748,8 +1751,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press T if you only have one controller, otherwise all controllersmust
-    press A
+  m_Text: Press A to lock in (Each connected controller must lock in before the game
+    will start)
 --- !u!222 &1449479661
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1800,6 +1803,7 @@ MonoBehaviour:
   inputacceptbutton: P2Submit/Interact
   inputbackbutton: 
   lockedin: 0
+  totalplayers: 0
   gman: {fileID: 0}
 --- !u!4 &1491418213
 Transform:
@@ -1951,6 +1955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb3ba753cdfc44e44b453b05507e0137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playercount: 0
   charnames: []
 --- !u!4 &1750524055
 Transform:
