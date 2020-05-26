@@ -272,46 +272,94 @@ namespace AI
         /// Add a target to target list
         /// </summary>
         /// <param name="target"> The target to be added to list </param>
-        public void AddToTargetList(HealthComp target)
+        public static void AddToTargetList(HealthComp target)
         {
-            switch (type)
+            switch (target.myClass)
             {
-                case EnemyType.Mouse:
-                    if (!mouseTargets.Contains(target))
-                        mouseTargets.Add(target);
+                case CharacterClass.Player:
+                    AddToCatTargets(target);
+                    AddToDogTargets(target);
                     break;
-                case EnemyType.Cat:
-                    if (!catTargets.Contains(target))
-                        catTargets.Add(target);
-                    break;
-                case EnemyType.Dog:
-                    if (!dogTargets.Contains(target))
-                        dogTargets.Add(target);
+                case CharacterClass.Caravan:
+                    AddToMouseTargets(target);
+                    AddToCatTargets(target);
                     break;
             }
+        }
+
+        private static void AddToMouseTargets(HealthComp target)
+        {
+            if (!mouseTargets.Contains(target))
+                mouseTargets.Add(target);
+        }
+
+        private static void AddToCatTargets(HealthComp target)
+        {
+            if (!catTargets.Contains(target))
+                catTargets.Add(target);
+        }
+
+        private static void AddToDogTargets(HealthComp target)
+        {
+            if (!dogTargets.Contains(target))
+                dogTargets.Add(target);
         }
 
         /// <summary>
         /// Remove a target from target list
         /// </summary>
         /// <param name="target"> The target to be removed from list </param>
-        public void RemoveFromTargetList(HealthComp target)
+        //public void RemoveFromTargetList(HealthComp target)
+        //{
+        //    switch (type)
+        //    {
+        //        case EnemyType.Mouse:
+        //            RemoveFromMouseTargets(target);
+        //            break;
+        //        case EnemyType.Cat:
+        //            RemoveFromCatTargets(target);
+        //            break;
+        //        case EnemyType.Dog:
+        //            RemoveFromDogTargets(target);
+        //            break;
+        //    }
+        //}
+
+        /// <summary>
+        /// Remove a target from target list
+        /// </summary>
+        /// <param name="target"> The target to be removed from list </param>
+        public static void RemoveFromTargetList(HealthComp target)
         {
-            switch (type)
+            switch (target.myClass)
             {
-                case EnemyType.Mouse:
-                    if (mouseTargets.Contains(target))
-                        mouseTargets.Remove(target);
+                case CharacterClass.Player:
+                    RemoveFromCatTargets(target);
+                    RemoveFromDogTargets(target);
                     break;
-                case EnemyType.Cat:
-                    if (catTargets.Contains(target))
-                        catTargets.Remove(target);
-                    break;
-                case EnemyType.Dog:
-                    if (dogTargets.Contains(target))
-                        dogTargets.Remove(target);
+                case CharacterClass.Caravan:
+                    RemoveFromMouseTargets(target);
+                    RemoveFromCatTargets(target);
                     break;
             }
+        }
+
+        private static void RemoveFromMouseTargets(HealthComp target)
+        {
+            if (mouseTargets.Contains(target))
+                mouseTargets.Remove(target);
+        }
+
+        private static void RemoveFromCatTargets(HealthComp target)
+        {
+            if (catTargets.Contains(target))
+                catTargets.Remove(target);
+        }
+
+        private static void RemoveFromDogTargets(HealthComp target)
+        {
+            if (dogTargets.Contains(target))
+                dogTargets.Remove(target);
         }
 
         /// <summary>
