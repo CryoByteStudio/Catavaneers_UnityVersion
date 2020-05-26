@@ -28,6 +28,8 @@ public class Trap : MonoBehaviour
     [SerializeField] int TrapDamage = 5;
     [SerializeField] bool AreaEffect = false;
     private float AreaEffectRadius =5f;
+
+    [SerializeField] Animator TrapAnim;
     private void Start()
     {
         CurrentTime = ActivateTimer;
@@ -56,14 +58,18 @@ public class Trap : MonoBehaviour
 
         if (AreaEffect == false && other.tag == "Enemy")
         {
-            Debug.Log("trap Activate");
-            UsageLeft--;
-            Controller TempEnemyController = other.GetComponent<Controller>();
-            if (type == TrapType.Damage) other.GetComponent<HealthComp>().TakeDamage(TrapDamage);
-            if (type == TrapType.Reverse) TempEnemyController.ToggleFrenzyStateWithTimer(duration);
-            if (type == TrapType.Freeze) TempEnemyController.SetTemporaryMovementSpeed(TempEnemyController.ChaseSpeed * SpeedModifier, duration);
-            if (type == TrapType.Slow) TempEnemyController.SetTemporaryMovementSpeed(TempEnemyController.ChaseSpeed * SpeedModifier, duration);
-
+            if(CurrentTime <= 0)
+            {
+                TrapAnim.SetTrigger("Activate");
+                CurrentTime += 1f;
+                Debug.Log("trap Activate");
+                UsageLeft--;
+                Controller TempEnemyController = other.GetComponent<Controller>();
+                if (type == TrapType.Damage) other.GetComponent<HealthComp>().TakeDamage(TrapDamage);
+                if (type == TrapType.Reverse) TempEnemyController.ToggleFrenzyStateWithTimer(duration);
+                if (type == TrapType.Freeze) TempEnemyController.SetTemporaryMovementSpeed(TempEnemyController.ChaseSpeed * SpeedModifier, duration);
+                if (type == TrapType.Slow) TempEnemyController.SetTemporaryMovementSpeed(TempEnemyController.ChaseSpeed * SpeedModifier, duration);
+            }
         }
 
 
@@ -104,7 +110,7 @@ public class Trap : MonoBehaviour
 
         if(UsageLeft <= 0)
         {
-            Destroy(gameObject);
+            Destroy(gameObject,1f);
         }
     }
 
