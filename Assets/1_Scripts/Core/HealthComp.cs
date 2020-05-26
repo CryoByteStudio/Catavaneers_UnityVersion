@@ -178,6 +178,7 @@ public class HealthComp : MonoBehaviour
             case CharacterClass.Enemy:
                 dropController.DropItem();
                 ObjectPooler.SetInactive(this.gameObject);
+                SpawnManager.EnemiesAlive--;
                 break;
         }
     }
@@ -220,6 +221,14 @@ public class HealthComp : MonoBehaviour
     public int GetCurHealth()
     {
         return currentHealth;
+    }
+
+    /// <summary>
+    /// returns StartHealth amount
+    /// </summary>
+    public int GetStartHealth()
+    {
+        return startHealth;
     }
 
     /// <summary>
