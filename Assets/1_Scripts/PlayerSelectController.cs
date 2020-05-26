@@ -17,7 +17,6 @@ public class PlayerSelectController : MonoBehaviour
     public string inputacceptbutton;   //Submit/Interact
     public string inputbackbutton;
     public bool lockedin=false;
-    public int totalplayers;
     public GameManager gman;
     // Start is called before the first frame update
     void Start()
@@ -25,8 +24,6 @@ public class PlayerSelectController : MonoBehaviour
         gman = FindObjectOfType<GameManager>();
         charman = FindObjectOfType<CharacterManager>();
         SelectIndex = PlayerID;
-        totalplayers = charman.playercount;
-
     }
 
     // Update is called once per frame
@@ -42,8 +39,7 @@ public class PlayerSelectController : MonoBehaviour
 
             }
           //  StartCoroutine(gman.StartDelay());
-            
-            charman.StartGame();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
         }
 
@@ -127,13 +123,12 @@ public class PlayerSelectController : MonoBehaviour
             }
            
         }
-        
-        if (playerslocked >= totalplayers)
+        if (playerslocked >= 4)
         {
-            // StartCoroutine(gman.StartDelay());
+           // StartCoroutine(gman.StartDelay());
+            
 
-            charman.StartGame();
-           
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
         }
     }

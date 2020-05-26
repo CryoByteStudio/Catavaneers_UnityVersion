@@ -94,10 +94,4 @@ public class Weapon : ScriptableObject
     {
         return knockback_force;
     }
-
-    public void BoxColliderEnable(bool value)
-    {
-        EquippedPrefab.transform.GetChild(0).GetComponent<BoxCollider>().enabled = value;
-        Debug.Log(EquippedPrefab.transform.GetChild(0).GetComponent<BoxCollider>().enabled);
-    }
 }

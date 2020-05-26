@@ -93,7 +93,7 @@ namespace AI.States
         /// <param name="targetHealth"> The target to be handled </param>
         private void HandleTargetIsDead(HealthComp targetHealth)
         {
-            Controller.RemoveFromTargetList(targetHealth);
+            controller.RemoveFromTargetList(targetHealth);
             controller.SetCurrentTarget(null);
         }
     }
