@@ -36,8 +36,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   chaseSpeed: 2
-  attackDamage: 10
-  attackRange: 4
+  attackDamage: 5
+  attackRange: 3
   attackInterval: 2
   frenzyRadius: 5
   frenzySpeed: 20
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleDropItems: 0000000002000000
-  amountToDrop: 1
+  amountToDrop: 3
 --- !u!1001 &8519426048311399955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -287,7 +287,7 @@ PrefabInstance:
     - target: {fileID: 8808290445574331327, guid: 6d83d9f3421fe614f86a3cab4e5f0d56,
         type: 3}
       propertyPath: startHealth
-      value: 35
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d83d9f3421fe614f86a3cab4e5f0d56, type: 3}

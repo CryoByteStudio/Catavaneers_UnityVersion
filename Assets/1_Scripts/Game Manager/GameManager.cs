@@ -1,5 +1,4 @@
 ﻿using ObjectPooling;
-using SpawnSystem;
 using System;
 using System.Collections;
 using System.Timers;
@@ -12,6 +11,7 @@ public class GameManager : MonoBehaviour
     public float quitDelay = 0;
     private bool doneOnce = false;
 
+    public SpawnManager sman;
     [SerializeField] HealthComp caravan_HC;
 
     // Make this the one instance managing pooled objects throughout levels
@@ -87,9 +87,10 @@ public class GameManager : MonoBehaviour
 
     public  IEnumerator StartDelay()
     {
-        SpawnManager.CanSpawn = false;
+        
+        sman.CanSpawn = false;
         yield return new WaitForSeconds(startDelay);
-        SpawnManager.CanSpawn = true;
+        sman.CanSpawn = true;
     }
 
     private IEnumerator QuitDelay()
@@ -114,7 +115,7 @@ public class GameManager : MonoBehaviour
         doneOnce = true;
         if (caravan_HC != null) caravan_HC.SetIsDead(false);
         ObjectPooler.DisableAllActiveObjects();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Menu_Main");
     }
 
     public void ToPlayerSelectionScene()

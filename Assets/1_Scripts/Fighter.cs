@@ -7,11 +7,12 @@ public class Fighter : MonoBehaviour
     [SerializeField] float CharacterAttackSpeed = 0.0f;
     [SerializeField] int CharacterAttackDamage = 0;
     [SerializeField] Weapon defaultWeapon = null;
-    [SerializeField] GameObject[] weaponColliders;
     [SerializeField] Transform rightHandTransform = null;
     [SerializeField] Transform leftHandTransform = null;
     [SerializeField] Weapon currentWeapon;
-    [SerializeField] BoxCollider currentWeaponCollider;
+    [SerializeField] Transform attackRayOrigin = null;
+    [SerializeField] Transform rayStart = null;
+    [SerializeField] Transform rayEnd = null;
 
     HealthComp target;
     float timeSinceLastAttack = Mathf.Infinity;
@@ -36,6 +37,7 @@ public class Fighter : MonoBehaviour
     void Update()
     {
         timeSinceLastAttack += Time.deltaTime;
+        UpdateRaycastOrientation();
         if (player.GetMoveState() == PlayerController.MoveStates.Freeze ) return;
         if(Input.GetAxis(attackAxis) >0 && timeSinceLastAttack > GetCurrentAttackSpeed())
         {
@@ -47,58 +49,46 @@ public class Fighter : MonoBehaviour
             GetComponent<Animator>().SetTrigger("Roll");
         }
     }
+
     public void EquipWeapon(Weapon weapon)
     {
         currentWeapon = weapon;
-        if(currentWeaponCollider != null) currentWeaponCollider.gameObject.SetActive(false);
         GetComponent<PlayerController>().SetWeaponWeight(currentWeapon.GetWeaponWeight());
         Animator animator = GetComponent<Animator>();
         weapon.Spawn(rightHandTransform, leftHandTransform, animator);
-        Debug.Log(currentWeapon.name);
-        foreach(GameObject weaponCollider in weaponColliders)
+    }
+    //Animation Event (RPG-Character@Unarmed-Attack-L1)
+    void Hit()
+    {
+        Debug.Log("attack called");
+        float halfRaycastLength = currentWeapon.GetWeaponRange();
+        //rayStart.position = attackRayOrigin.position - new Vector3(halfRaycastLength, 0, 0);
+        //rayEnd.position = attackRayOrigin.position + new Vector3(halfRaycastLength, 0, 0);
+        Vector3 raycastDirection = rayEnd.transform.position - rayStart.transform.position;
+        float rayDistance = Vector3.Distance(rayStart.position, rayEnd.position);
+        RaycastHit[] hits = Physics.RaycastAll(rayStart.position, raycastDirection, rayDistance);
+        Debug.DrawRay(rayStart.position, raycastDirection, Color.red, 2f);
+
+        foreach (RaycastHit hit in hits)
         {
-            if (weaponCollider.name == currentWeapon.name)
+            Debug.Log("hit = " + hit.transform.name);
+            target = hit.transform.GetComponent<HealthComp>();
+            if (target != null)
             {
-                Debug.Log(weaponCollider.name);
-                weaponCollider.SetActive(true);
-                currentWeaponCollider = weaponCollider.GetComponent<BoxCollider>();
+                target.TakeDamage(GetCurrentAttackDamage());
+                Debug.Log("object name: " + hit.transform.name + " takes damage");
+            }
+            else
+            {
+                Debug.Log("object name: " + hit.transform.name + "is not targetable");
             }
         }
     }
-    //old attack system from animation event
-    //void Hit()
-    //{
-    //    Debug.Log("attack called");
-    //    float halfRaycastLength = currentWeapon.GetWeaponRange();
-    //    //rayStart.position = attackRayOrigin.position - new Vector3(halfRaycastLength, 0, 0);
-    //    //rayEnd.position = attackRayOrigin.position + new Vector3(halfRaycastLength, 0, 0);
-    //    Vector3 raycastDirection = rayEnd.transform.position - rayStart.transform.position;
-    //    float rayDistance = Vector3.Distance(rayStart.position, rayEnd.position);
-    //    RaycastHit[] hits = Physics.RaycastAll(rayStart.position, raycastDirection, rayDistance);
-    //    Debug.DrawRay(rayStart.position, raycastDirection, Color.red, 2f);
-
-    //    foreach (RaycastHit hit in hits)
-    //    {
-    //        Debug.Log("hit = " + hit.transform.name);
-    //        target = hit.transform.GetComponent<HealthComp>();
-    //        if (target != null)
-    //        {
-    //            target.TakeDamage(GetCurrentAttackDamage());
-    //            Debug.Log("object name: " + hit.transform.name + " takes damage");
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("object name: " + hit.transform.name + "is not targetable");
-    //        }
-    //    }
-    //}
-    //public void UpdateRaycastOrientation()
-    //{
-    //    rayStart.transform.localPosition = new Vector3(currentWeapon.GetWeaponRange(),0,0);
-    //    rayEnd.transform.localPosition = new Vector3(-currentWeapon.GetWeaponRange(),0,0);
-    //}
-
-    //end of old attack system from animation event
+    public void UpdateRaycastOrientation()
+    {
+        rayStart.transform.localPosition = new Vector3(currentWeapon.GetWeaponRange(),0,0);
+        rayEnd.transform.localPosition = new Vector3(-currentWeapon.GetWeaponRange(),0,0);
+    }
     float GetCurrentAttackSpeed()
     {
         Debug.Log("character attack speed: " + CharacterAttackSpeed);
@@ -113,23 +103,5 @@ public class Fighter : MonoBehaviour
     public float GetWeaponWeight()
     {
         return currentWeapon.GetWeaponWeight();
-    }
-    void StartHit()
-    {
-        Debug.Log("its on");
-        currentWeaponCollider.enabled = true;
-    }
-    void EndHit()
-    {
-        Debug.Log("its off");
-        currentWeaponCollider.enabled = false;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Enemy")
-        {
-            other.GetComponent<HealthComp>().TakeDamage(currentWeapon.GetDamage());
-        }
     }
 }

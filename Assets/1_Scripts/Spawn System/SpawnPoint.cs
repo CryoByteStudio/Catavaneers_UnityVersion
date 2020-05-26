@@ -2,123 +2,103 @@
 using UnityEngine;
 using ObjectPooling;
 using CustomMathLibrary;
-//using SpawnSystem.Standard;
 
-namespace SpawnSystem
+public class SpawnPoint : MonoBehaviour
 {
-    public class SpawnPoint : MonoBehaviour
+    [Header("Spawn Settings")]
+    public float spawnRadius = 0;
+
+    private Queue<string> spawnQueue = new Queue<string>();
+    private int enemyLeftToSpawn = 0;
+    private float spawnInterval = 0;
+    private List<string> enemyNames;
+    private float timeElapsed = 0;
+    private float nextSpawnTime = 0;
+    private Vector3 randomPosition;
+
+    private static ObjectPooler objectPooler;
+
+    public SpawnManager sman;
+
+    // for debugging
+    private HealthComp healthComp;
+
+    private void Start()
     {
-        [Header("Spawn Settings")]
-        public float spawnRadius = 0;
+        sman = FindObjectOfType <SpawnManager>();
+        if (!objectPooler)
+            objectPooler = FindObjectOfType<ObjectPooler>();
+    }
 
-        private Queue<string> spawnQueue = new Queue<string>();
-        private int enemyLeftToSpawn = 0;
-        private float spawnInterval = 0;
-        private List<string> enemyNames;
-        private float timeElapsed = 0;
-        private float nextSpawnTime = 0;
-        private Vector3 randomPosition;
+    private void Update()
+    {
+        // if cannot spawn, do nothing
+        if (!sman.CanSpawn) return;
 
-        private static ObjectPooler objectPooler;
+        // if still has enemy to spawn
+        if (enemyLeftToSpawn > 0)
+        {
+            // ... and is time to spawn
+            if (timeElapsed > nextSpawnTime)
+            {
+                Spawn(spawnQueue.Dequeue());
+                nextSpawnTime = timeElapsed + spawnInterval;
+                enemyLeftToSpawn--;
+            }
+
+            if (enemyLeftToSpawn <= 0)
+                spawnQueue.Clear();
+
+            timeElapsed += Time.deltaTime;
+        }
+    }
+
+    /// <summary>
+    /// Spawn a specific enemy from pool at a random position within spawn radius
+    /// </summary>
+    /// <param name="name"> Name of the enemy to pull from pool </param>
+    private void Spawn(string name)
+    {
+        randomPosition = CustomMathf.RandomPointInCirclePerpendicularToAxis(spawnRadius, CustomMathf.Axis.Y) + transform.position;
+        healthComp = objectPooler.SpawnFromPool(name, randomPosition, Quaternion.identity).GetComponent<HealthComp>();
+        SpawnManager.EnemiesAlive++;
+        SpawnManager.EnemyLeftToSpawn--;
 
         // for debugging
-        private HealthComp healthComp;
+        GameQuitDebugging();
+    }
 
-        private void Start()
+    /// <summary>
+    /// Set health component to debug mode to test game quitting function
+    /// </summary>
+    private void GameQuitDebugging()
+    {
+        if (healthComp)
+            healthComp.debug = SpawnManager.m_Debug;
+    }
+
+    /// <summary>
+    /// Set parameters neccessary to spawn enemies
+    /// </summary>
+    /// <param name="enemiesToSpawn"> List of spawn settings that contains information such as name, count, etc. </param>
+    /// <param name="spawnInterval"> The interval which enemy should spawn back to back with </param>
+    public void SetSpawnParams(List<EnemyToSpawn> enemiesToSpawn, float spawnInterval)
+    {
+        for (int i = 0; i < enemiesToSpawn.Count; i++)
         {
-            if (!objectPooler)
-                objectPooler = FindObjectOfType<ObjectPooler>();
-        }
-
-        private void Update()
-        {
-            // if cannot spawn, do nothing
-            if (!SpawnManager.CanSpawn) return;
-
-            // if still has enemy to spawn
-            if (enemyLeftToSpawn > 0)
+            for (int j = 0; j < enemiesToSpawn[i].count; j++)
             {
-                // ... and is time to spawn
-                if (timeElapsed > nextSpawnTime)
-                {
-                    Spawn(spawnQueue.Dequeue());
-                    nextSpawnTime = timeElapsed + spawnInterval;
-                    enemyLeftToSpawn--;
-                }
-
-                if (enemyLeftToSpawn <= 0)
-                    spawnQueue.Clear();
-
-                timeElapsed += Time.deltaTime;
+                if (enemiesToSpawn[i].spawnPoint == this)
+                    spawnQueue.Enqueue(enemiesToSpawn[i].name);
             }
         }
+        
+        enemyLeftToSpawn = spawnQueue.Count;
+        this.spawnInterval = spawnInterval;
+    }
 
-        /// <summary>
-        /// Spawn a specific enemy from pool at a random position within spawn radius
-        /// </summary>
-        /// <param name="name"> Name of the enemy to pull from pool </param>
-        private void Spawn(string name)
-        {
-            randomPosition = CustomMathf.RandomPointInCirclePerpendicularToAxis(spawnRadius, CustomMathf.Axis.Y) + transform.position;
-            healthComp = objectPooler.SpawnFromPool(name, randomPosition, Quaternion.identity).GetComponent<HealthComp>();
-            SpawnManager.EnemiesAlive++;
-            SpawnManager.EnemyLeftToSpawn--;
-
-            // for debugging
-            GameQuitDebugging();
-        }
-
-        /// <summary>
-        /// Set health component to debug mode to test game quitting function
-        /// </summary>
-        private void GameQuitDebugging()
-        {
-            if (healthComp)
-                healthComp.debug = SpawnManager.m_Debug;
-        }
-
-        /// <summary>
-        /// Set parameters neccessary to spawn enemies
-        /// </summary>
-        /// <param name="enemiesToSpawn"> List of spawn settings that contains information such as name, count, etc. </param>
-        /// <param name="spawnInterval"> The interval which enemy should spawn back to back with </param>
-        public void SetSpawnParams(List<Standard.EnemyToSpawn> enemiesToSpawn, float spawnInterval)
-        {
-            for (int i = 0; i < enemiesToSpawn.Count; i++)
-            {
-                for (int j = 0; j < enemiesToSpawn[i].count; j++)
-                {
-                    if (enemiesToSpawn[i].spawnPoint == this)
-                        spawnQueue.Enqueue(enemiesToSpawn[i].name);
-                }
-            }
-
-            enemyLeftToSpawn = spawnQueue.Count;
-            this.spawnInterval = spawnInterval;
-        }
-
-        /// <summary>
-        /// Set parameters neccessary to spawn enemies
-        /// </summary>
-        /// <param name="enemiesToSpawn"> List of spawn settings that contains information such as name, count, etc. </param>
-        /// <param name="spawnInterval"> The interval which enemy should spawn back to back with </param>
-        public void SetSpawnParams(List<ScriptableObj.EnemyToSpawn> enemiesToSpawn, float spawnInterval)
-        {
-            for (int i = 0; i < enemiesToSpawn.Count; i++)
-            {
-                for (int j = 0; j < enemiesToSpawn[i].count; j++)
-                {
-                        spawnQueue.Enqueue(enemiesToSpawn[i].name);
-                }
-            }
-
-            enemyLeftToSpawn = spawnQueue.Count;
-            this.spawnInterval = spawnInterval;
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.DrawWireSphere(transform.position, spawnRadius);
-        }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, spawnRadius);
     }
 }
