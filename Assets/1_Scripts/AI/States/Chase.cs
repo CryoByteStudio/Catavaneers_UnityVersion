@@ -124,7 +124,7 @@ namespace AI.States
             }
             else
             {
-                controller.RemoveFromTargetList(targetHealth);
+                Controller.RemoveFromTargetList(targetHealth);
                 controller.SetCurrentTarget(null);
             }
         }

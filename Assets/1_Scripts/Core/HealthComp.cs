@@ -3,6 +3,7 @@ using ObjectPooling;
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using AI;
 
 public enum CharacterClass { Player, Enemy, Caravan, Obj };
 public enum DifficultyLevel { Normal = 4, IronCat = 10, Catapocalypse = 25};
@@ -26,7 +27,7 @@ public class HealthComp : MonoBehaviour
     [SerializeField]
     Transform playerSpawnPos;
     [SerializeField]
-    GameObject playerMeshRenderer;
+    SkinnedMeshRenderer playerMeshRenderer;
 
     private float nextDamageTime = 0;
     private float timeElapsed = 0;
@@ -192,14 +193,31 @@ public class HealthComp : MonoBehaviour
     private IEnumerator Respawn()
     {
         yield return new WaitForSeconds(4);
-        playerMeshRenderer.SetActive(false);
-        GetComponent<CapsuleCollider>().enabled = false;
-        transform.position = playerSpawnPos.position;
+        playerMeshRenderer.enabled = false;
+        
+        //GetComponent<CapsuleCollider>().enabled = false;
+        this.transform.position = playerSpawnPos.position;
+        GetComponent<PlayerInventory>().gold = Mathf.RoundToInt((float)GetComponent<PlayerInventory>().gold / 100 * 75);
+        health_slider.gameObject.SetActive(false);
+        StartCoroutine(Spawn());
+    }
+
+    private IEnumerator Spawn()
+    {
         yield return new WaitForSeconds(6);
         is_Dead = false;
+        animator.SetTrigger("Spawn");
         currentHealth = startHealth;
-        playerMeshRenderer.SetActive(true);
+        health_slider.value = currentHealth;
+        playerMeshRenderer.enabled = true;
         GetComponent<CapsuleCollider>().enabled = true;
+        Controller.AddToTargetList(this);
+        Debug.Log("Respawn");
+
+
+       
+        health_slider.gameObject.SetActive(true);
+
 
     }
 

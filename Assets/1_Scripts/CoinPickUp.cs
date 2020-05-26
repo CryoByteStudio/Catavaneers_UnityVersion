@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum CoinType { Gold, Silver, Copper}
+enum CoinType { Gold = 100, Silver = 50, Copper = 10}
 public class CoinPickUp : MonoBehaviour
 {
     [SerializeField] CoinType Coin;
@@ -11,10 +11,8 @@ public class CoinPickUp : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-           
-            if (Coin == CoinType.Gold) other.gameObject.GetComponent<PlayerInventory>().gold += 100;
-            else if (Coin == CoinType.Silver) other.gameObject.GetComponent<PlayerInventory>().gold += 50;
-            else if (Coin == CoinType.Copper) other.gameObject.GetComponent<PlayerInventory>().gold += 10;
+           if (other.gameObject.GetComponent<PlayerInventory>() != null)
+            other.gameObject.GetComponent<PlayerInventory>().gold += (int)Coin;
 
             MusicManager.Instance.PlaySoundTrack(soundCue);
             Destroy(gameObject);
@@ -22,3 +20,4 @@ public class CoinPickUp : MonoBehaviour
     }
 
 }
+

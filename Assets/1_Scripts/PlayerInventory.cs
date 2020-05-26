@@ -26,6 +26,7 @@ public class PlayerInventory : MonoBehaviour //Sasha
     public Text GoldUI;
     public Text HealthUI;
     public Text KillsUI;
+    public Weapon startingWeapon;
 
     public string buyButton;
     public string useItemButton;
@@ -37,9 +38,22 @@ public class PlayerInventory : MonoBehaviour //Sasha
     {
         health = GetComponent<HealthComp>();
         rb = GetComponent<Rigidbody>();
+        if (startingWeapon)
+        {
+            EquipStartingWeapon();
+        }
+        else
+        {
+            Debug.LogWarning("No starting weapon equipped to: "+name);
+        }
     }
 
-   
+   public void EquipStartingWeapon()
+    {
+        GetComponent<Fighter>().EquipWeapon(startingWeapon);
+        WeaponUI.sprite = WeaponItem.Item_Display;
+        WeaponItem = null;
+    }
     private void Update()
     {
         RefreshUI();
