@@ -6,7 +6,7 @@ using System.Collections;
 using AI;
 
 public enum CharacterClass { Player, Enemy, Caravan, Obj };
-public enum DifficultyLevel { Normal = 4, IronCat = 10, Catapocalypse = 25};
+public enum DifficultyLevel { Normal, IronCat, Catapocalypse};
 
 public class HealthComp : MonoBehaviour
 {
@@ -15,8 +15,10 @@ public class HealthComp : MonoBehaviour
     public int startHealth = 100;
     public bool debug;
     public int damageTakenPerSecond;
-
+    public GameManager gman;
+   
     public SoundClipsInts soundCue = SoundClipsInts.Death;
+    public float percentageOfGoldToKeep = 75f;
 
     [SerializeField]
     private int currentHealth = 0;
@@ -46,7 +48,9 @@ public class HealthComp : MonoBehaviour
         dropController = GetComponent<DropController>();
         objectPooler = FindObjectOfType<ObjectPooler>();
         animator = GetComponent<Animator>();
+        gman = FindObjectOfType<GameManager>();
 
+        gameDifficulty = FindObjectOfType<GameDifficultyManager>().dif;
         if (myClass == CharacterClass.Enemy)
         {
             //dropController = GetComponent<DropController>();
@@ -65,6 +69,45 @@ public class HealthComp : MonoBehaviour
         }
         currentHealth = startHealth;
         DisplayHealth();
+
+        if (GetComponent<PlayerInventory>())
+        {
+            //set % of gold to lose based on difficulty
+            if (gameDifficulty == DifficultyLevel.Normal)
+            {
+                percentageOfGoldToKeep = 75f;
+            }
+            else if (gameDifficulty == DifficultyLevel.IronCat)
+            {
+                percentageOfGoldToKeep = 50f;
+            }
+            else if (gameDifficulty == DifficultyLevel.Catapocalypse)
+            {
+                percentageOfGoldToKeep = 25f;
+            }
+        }
+        else
+        {
+            //set % of gold to lose based on difficulty
+            if (gameDifficulty == DifficultyLevel.Normal)
+            {
+                
+            }
+            else if (gameDifficulty == DifficultyLevel.IronCat)
+            {
+                currentHealth *= 2;
+                startHealth *= 2;
+                health_slider.maxValue = currentHealth;
+                health_slider.value = currentHealth;
+            }
+            else if (gameDifficulty == DifficultyLevel.Catapocalypse)
+            {
+                currentHealth *= 3;
+                startHealth *= 3;
+                health_slider.maxValue = currentHealth;
+                health_slider.value = currentHealth;
+            }
+        }
         
     }
 
@@ -190,14 +233,36 @@ public class HealthComp : MonoBehaviour
         StartCoroutine(Respawn());
     }
 
+    void RemoveGoldFromInventory()
+    {
+        //get the inventory to remove gold based on percentage
+        GetComponent<PlayerInventory>().gold = Mathf.RoundToInt((float)GetComponent<PlayerInventory>().gold / 100 * percentageOfGoldToKeep);
+    }
     private IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(4);
+        if (gameDifficulty == DifficultyLevel.Normal)
+        {
+            yield return new WaitForSeconds(4);
+        }
+        else if (gameDifficulty == DifficultyLevel.IronCat)
+        {
+            yield return new WaitForSeconds(8);
+        }
+        else
+        {
+            yield return new WaitForSeconds(12);
+        }
+        
         playerMeshRenderer.enabled = false;
         
         //GetComponent<CapsuleCollider>().enabled = false;
         this.transform.position = playerSpawnPos.position;
-        GetComponent<PlayerInventory>().gold = Mathf.RoundToInt((float)GetComponent<PlayerInventory>().gold / 100 * 75);
+
+        //make sure its a player first
+        if (GetComponent<PlayerInventory>())
+        {
+            RemoveGoldFromInventory();
+        }
         health_slider.gameObject.SetActive(false);
         StartCoroutine(Spawn());
     }

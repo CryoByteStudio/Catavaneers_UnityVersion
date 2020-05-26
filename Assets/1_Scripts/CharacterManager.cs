@@ -20,7 +20,7 @@ public class CharacterManager : MonoBehaviour
         charnames.Add(default);
         charnames.Add(default);
         charnames.Add(default);
-
+        Debug.Log("Start");
 
     }
 
@@ -31,10 +31,14 @@ public class CharacterManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             isstarted = true;
 
+           
 
         }
     }
+
+ 
 }
+
 
    
 
