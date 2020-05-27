@@ -28,6 +28,8 @@ public class Trap : MonoBehaviour
     [SerializeField] int TrapDamage = 5;
     [SerializeField] bool AreaEffect = false;
     private float AreaEffectRadius =5f;
+
+    [SerializeField] Animator TrapAnim;
     private void Start()
     {
         CurrentTime = ActivateTimer;
@@ -43,6 +45,7 @@ public class Trap : MonoBehaviour
     {
         if (AreaEffect == false & other.tag == "Player" & CurrentTime <= 0f)
         {
+            TrapAnim.SetTrigger("Activate");
             Debug.Log("trap Activate");
             CurrentTime += 3;
             UsageLeft--;
@@ -51,19 +54,24 @@ public class Trap : MonoBehaviour
             if (type == TrapType.Freeze) FreezeTrap();
             if (type == TrapType.Reverse) ReverseTrap(aflictionValue);
             if (type == TrapType.Slow) SlowTrap(aflictionValue);
-            if (type == TrapType.Damage) other.GetComponent<HealthComp>().TakeDamage(TrapDamage);         
+            if (type == TrapType.Damage) other.GetComponent<HealthComp>().TakeDamage(TrapDamage);
+            CurrentTime++;
         }
 
         if (AreaEffect == false && other.tag == "Enemy")
         {
-            Debug.Log("trap Activate");
-            UsageLeft--;
-            Controller TempEnemyController = other.GetComponent<Controller>();
-            if (type == TrapType.Damage) other.GetComponent<HealthComp>().TakeDamage(TrapDamage);
-            if (type == TrapType.Reverse) TempEnemyController.ToggleFrenzyStateWithTimer(duration);
-            if (type == TrapType.Freeze) TempEnemyController.SetTemporaryMovementSpeed(TempEnemyController.ChaseSpeed * SpeedModifier, duration);
-            if (type == TrapType.Slow) TempEnemyController.SetTemporaryMovementSpeed(TempEnemyController.ChaseSpeed * SpeedModifier, duration);
-
+            if(CurrentTime<= 0)
+            {
+                TrapAnim.SetTrigger("Activate");
+                Debug.Log("trap Activate");
+                UsageLeft--;
+                Controller TempEnemyController = other.GetComponent<Controller>();
+                if (type == TrapType.Damage) other.GetComponent<HealthComp>().TakeDamage(TrapDamage);
+                if (type == TrapType.Reverse) TempEnemyController.ToggleFrenzyStateWithTimer(duration);
+                if (type == TrapType.Freeze) TempEnemyController.SetTemporaryMovementSpeed(TempEnemyController.ChaseSpeed * SpeedModifier, duration);
+                if (type == TrapType.Slow) TempEnemyController.SetTemporaryMovementSpeed(TempEnemyController.ChaseSpeed * SpeedModifier, duration);
+                CurrentTime++;
+            }
         }
 
 
@@ -80,6 +88,8 @@ public class Trap : MonoBehaviour
                 {
                     if(colliders[i].GetComponent<PlayerController>() != null)
                     {
+                        TrapAnim.SetTrigger("Activate");
+                        CurrentTime++;
                         target = colliders[i].GetComponent<PlayerController>();
                         if (type == TrapType.Freeze) FreezeTrap();
                         if (type == TrapType.Reverse) ReverseTrap(aflictionValue);
@@ -92,6 +102,8 @@ public class Trap : MonoBehaviour
                 {
                     if(colliders[i].gameObject.GetComponent<Controller>() != null)
                     {
+                        TrapAnim.SetTrigger("Activate");
+                        CurrentTime++;
                         Controller EnemyController = colliders[i].gameObject.GetComponent<Controller>();
                         if (type == TrapType.Reverse) EnemyController.ToggleFrenzyStateWithTimer(duration);
                         if (type == TrapType.Freeze) EnemyController.SetTemporaryMovementSpeed(EnemyController.ChaseSpeed * SpeedModifier, duration);
@@ -104,7 +116,7 @@ public class Trap : MonoBehaviour
 
         if(UsageLeft <= 0)
         {
-            Destroy(gameObject);
+            Destroy(gameObject,1.2f);
         }
     }
 
