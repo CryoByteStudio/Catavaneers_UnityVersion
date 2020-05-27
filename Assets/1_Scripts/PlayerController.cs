@@ -38,19 +38,65 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float reverseValue = 1;
     [SerializeField] float slowValue = 1;
 
-
+    public Rigidbody rb;
     public string inputHorizontalLeftThumb;
     public string inputVerticalLeftThumb;
     public string inputHorizontalRightThumb;
     public string inputVerticalRightThumb;
-
+    public float xmin= -35f;
+    public float xmax= 49f;
+    public float zmin= -10f;
+    public float zmax= 41f;
+    public float ymin = -2f;
+    public float ymax = 30f;
+    public float constraintbuffer=2f;
     private void Start()
     {
         health = GetComponent<HealthComp>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
+
+        
+        //constraints for the player
+        if (transform.position.y < ymin)
+        {
+           
+            transform.position = new Vector3(transform.position.x, ymin + constraintbuffer, transform.position.z);
+           // rb.velocity = Vector3.zero;
+        }
+        if (transform.position.y > ymax)
+        {
+            
+            transform.position = new Vector3(transform.position.x, ymax - constraintbuffer, transform.position.z);
+           // rb.velocity = Vector3.zero;
+        }
+        if (transform.position.x < xmin)
+        {
+           
+            transform.position = new Vector3(xmin + constraintbuffer, transform.position.y, transform.position.z);
+           // rb.velocity = Vector3.zero;
+        }
+        if (transform.position.x >xmax)
+        {
+            
+            transform.position = new Vector3(xmax - constraintbuffer, transform.position.y, transform.position.z);
+           // rb.velocity = Vector3.zero;
+        }
+        if (transform.position.z <zmin )
+        {
+          
+            transform.position = new Vector3(transform.position.x, transform.position.y, zmin + constraintbuffer);
+          //  rb.velocity = Vector3.zero;
+        }
+        if (transform.position.z > zmax)
+        {
+            
+            transform.position = new Vector3(transform.position.x, transform.position.y, zmax- constraintbuffer);
+            //rb.velocity = Vector3.zero;
+        }
+
 
         if (!health.IsDead())
         {
@@ -86,7 +132,8 @@ public class PlayerController : MonoBehaviour
         leftInputMagnitud = LTumbInput.magnitude;
         float movementFraction = (speed * reverse* leftInputMagnitud)/weight;
         movementFraction = movementFraction / slow;
-        GetComponent<Animator>().SetFloat("Walk", leftInputMagnitud);
+        GetComponent<Animator>().SetFloat("Y input", Input.GetAxis(inputVerticalLeftThumb));
+        GetComponent<Animator>().SetFloat("X input", Input.GetAxis(inputHorizontalLeftThumb));
         transform.position += LTumbInput * Time.deltaTime * movementFraction;
     }
     void Dodge()
