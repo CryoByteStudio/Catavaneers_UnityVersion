@@ -152,6 +152,13 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<GameDifficultyManager>().dif = DifficultyLevel.IronCat;
 
     }
+    public void StartCatfightButton()
+    {
+
+        SceneManager.LoadScene("Catfight_01");
+        Debug.Log("Catfight");
+
+    }
     public void StartCatpocalypseButton()
     {
    

@@ -50,7 +50,10 @@ public class HealthComp : MonoBehaviour
         animator = GetComponent<Animator>();
         gman = FindObjectOfType<GameManager>();
 
-        gameDifficulty = FindObjectOfType<GameDifficultyManager>().dif;
+        if (FindObjectOfType<GameDifficultyManager>())
+        {
+            gameDifficulty = FindObjectOfType<GameDifficultyManager>().dif;
+        }
         if (myClass == CharacterClass.Enemy)
         {
             //dropController = GetComponent<DropController>();

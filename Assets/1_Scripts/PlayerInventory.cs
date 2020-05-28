@@ -37,14 +37,17 @@ public class PlayerInventory : MonoBehaviour //Sasha
     private void Start()
     {
         cman= FindObjectOfType<CharacterManager>();
-        if (cman.charnames.Contains(name))
+        if (cman)
         {
-            this.playername = name;
-            //cman.charnames.Remove(name);
-        }
-        else
-        {
-            this.gameObject.SetActive(false);
+            if (cman.charnames.Contains(name))
+            {
+                this.playername = name;
+                //cman.charnames.Remove(name);
+            }
+            else
+            {
+                this.gameObject.SetActive(false);
+            }
         }
         health = GetComponent<HealthComp>();
         rb = GetComponent<Rigidbody>();
@@ -61,7 +64,10 @@ public class PlayerInventory : MonoBehaviour //Sasha
    public void EquipStartingWeapon()
     {
         GetComponent<Fighter>().EquipWeapon(startingWeapon);
-        WeaponUI.sprite = WeaponItem.Item_Display;
+        if (WeaponItem)
+        {
+            WeaponUI.sprite = WeaponItem.Item_Display;
+        }
         WeaponItem = null;
     }
     private void Update()
