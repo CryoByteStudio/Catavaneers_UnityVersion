@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.JoystickButton6))
         {
-            ScreenShotHandler.ScreenShot_Static(Screen.width, Screen.height);
+            ScreenCapture.CaptureScreenshot("ScreenShot_" + System.DateTime.Now.ToString("yyyy-MM-dd-HH_mm_ss") + ".JPG");
         }
     }
 
