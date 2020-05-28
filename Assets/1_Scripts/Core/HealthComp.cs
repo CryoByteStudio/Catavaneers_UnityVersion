@@ -6,7 +6,7 @@ using System.Collections;
 using AI;
 
 public enum CharacterClass { Player, Enemy, Caravan, Obj };
-public enum DifficultyLevel { Normal, IronCat, Catapocalypse};
+public enum DifficultyLevel { Normal, IronCat, Catapocalypse, Catfight};
 
 public class HealthComp : MonoBehaviour
 {
@@ -214,6 +214,13 @@ public class HealthComp : MonoBehaviour
                 //break;
             case CharacterClass.Player:
                 Debug.Log("Player Dead");
+                if (gameDifficulty == DifficultyLevel.Catfight)
+                {
+                    if (GetComponent<PlayerInventory>() == FindObjectOfType<Goldbag>().holdersInventory)
+                    {
+                        FindObjectOfType<Goldbag>().DropBag();
+                    }
+                }
                 break;
             case CharacterClass.Caravan:
                 Debug.Log("Caravan Dead");

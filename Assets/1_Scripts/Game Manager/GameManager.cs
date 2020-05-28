@@ -157,6 +157,7 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene("Catfight_01");
         Debug.Log("Catfight");
+        FindObjectOfType<GameDifficultyManager>().dif = DifficultyLevel.Catfight;
 
     }
     public void StartCatpocalypseButton()

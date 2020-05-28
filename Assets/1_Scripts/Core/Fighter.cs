@@ -127,7 +127,10 @@ public class Fighter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy")
+        if (other.tag == "Enemy")
+        {
+            other.GetComponent<HealthComp>().TakeDamage(currentWeapon.GetDamage());
+        } else if (other.tag == "Player" && FindObjectOfType<GameDifficultyManager>().dif == DifficultyLevel.Catfight)
         {
             other.GetComponent<HealthComp>().TakeDamage(currentWeapon.GetDamage());
         }
