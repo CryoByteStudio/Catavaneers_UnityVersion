@@ -68,6 +68,11 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("Menu_Main");
         }
+
+        if(Input.GetKeyDown(KeyCode.JoystickButton6))
+        {
+            ScreenShotHandler.ScreenShot_Static(Screen.width, Screen.height);
+        }
     }
 
     private IEnumerator RestartLevel()
