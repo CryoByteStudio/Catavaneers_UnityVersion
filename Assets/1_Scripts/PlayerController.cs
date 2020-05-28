@@ -130,10 +130,10 @@ public class PlayerController : MonoBehaviour
     private void CharacterMove(float weight, float reverse, float slow)
     {
         leftInputMagnitud = LTumbInput.magnitude;
+        Debug.Log("l input magnitud: " + leftInputMagnitud);
         float movementFraction = (speed * reverse* leftInputMagnitud)/weight;
         movementFraction = movementFraction / slow;
-        GetComponent<Animator>().SetFloat("Y input", Input.GetAxis(inputVerticalLeftThumb));
-        GetComponent<Animator>().SetFloat("X input", Input.GetAxis(inputHorizontalLeftThumb));
+        GetComponent<Animator>().SetFloat("Walk", leftInputMagnitud);
         transform.position += LTumbInput * Time.deltaTime * movementFraction;
     }
     void Dodge()
