@@ -27,7 +27,7 @@ public class PlayerInventory : MonoBehaviour //Sasha
     public Text HealthUI;
     public Text KillsUI;
     public Weapon startingWeapon;
-
+    public CharacterManager cman;
     public string buyButton;
     public string useItemButton;
     public string cancelButton;
@@ -36,6 +36,19 @@ public class PlayerInventory : MonoBehaviour //Sasha
 
     private void Start()
     {
+        cman= FindObjectOfType<CharacterManager>();
+        if (cman)
+        {
+            if (cman.charnames.Contains(name))
+            {
+                this.playername = name;
+                //cman.charnames.Remove(name);
+            }
+            else
+            {
+                this.gameObject.SetActive(false);
+            }
+        }
         health = GetComponent<HealthComp>();
         rb = GetComponent<Rigidbody>();
         if (startingWeapon)
@@ -51,7 +64,10 @@ public class PlayerInventory : MonoBehaviour //Sasha
    public void EquipStartingWeapon()
     {
         GetComponent<Fighter>().EquipWeapon(startingWeapon);
-        WeaponUI.sprite = WeaponItem.Item_Display;
+        if (WeaponItem)
+        {
+            WeaponUI.sprite = WeaponItem.Item_Display;
+        }
         WeaponItem = null;
     }
     private void Update()

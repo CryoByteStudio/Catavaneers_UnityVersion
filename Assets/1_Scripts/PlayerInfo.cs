@@ -18,23 +18,27 @@ public class PlayerInfo : MonoBehaviour
     void Start()
     {
         charman=FindObjectOfType<CharacterManager>();
-        if (charman.charnames[PlayerID] == "Russell")
+        if (charman)
         {
-            rendref.material = Russellskin;
+            if (charman.charnames[PlayerID] == "Russell")
+            {
+                rendref.material = Russellskin;
 
-        }else if (charman.charnames[PlayerID] == "Momo") 
-        {
-            rendref.material = Momoskin;
+            }
+            else if (charman.charnames[PlayerID] == "Momo")
+            {
+                rendref.material = Momoskin;
 
-        }
-        if (charman.charnames[PlayerID] == "Kiki")
-        {
-            rendref.material = Kikiskin;
+            }
+            if (charman.charnames[PlayerID] == "Kiki")
+            {
+                rendref.material = Kikiskin;
 
-        }
-        if (charman.charnames[PlayerID] == "Jojo")
-        {
-            rendref.material = Jojoskin;
+            }
+            if (charman.charnames[PlayerID] == "Jojo")
+            {
+                rendref.material = Jojoskin;
+            }
         }
     }
 

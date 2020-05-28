@@ -8,8 +8,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    
+    public DifficultyLevel diff;
     public float startDelay = 1;
     public float quitDelay = 0;
+    //public GameDifficultyManager difman;
     private bool doneOnce = false;
 
     [SerializeField] HealthComp caravan_HC;
@@ -36,6 +39,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+      //  if (Input.GetKeyDown(KeyCode.C)) { difficulty = DifficultyLevel.IronCat; } 
+    
         if (!caravan_HC)
         {
             HealthComp[] healthComps = FindObjectsOfType<HealthComp>();
@@ -138,7 +143,34 @@ public class GameManager : MonoBehaviour
 
     public void StartSceneButton()
     {
+       
+     
         SceneManager.LoadScene("Menu_CharacterSelect");
+        Debug.Log("normal");
+        FindObjectOfType<GameDifficultyManager>().dif = DifficultyLevel.Normal;
+    }
+    public void StartIroncatButton()
+    {
+   
+        SceneManager.LoadScene("Menu_CharacterSelect");
+        Debug.Log("ironcat");
+        FindObjectOfType<GameDifficultyManager>().dif = DifficultyLevel.IronCat;
+
+    }
+    public void StartCatfightButton()
+    {
+
+        SceneManager.LoadScene("Catfight_01");
+        Debug.Log("Catfight");
+        FindObjectOfType<GameDifficultyManager>().dif = DifficultyLevel.Catfight;
+
+    }
+    public void StartCatpocalypseButton()
+    {
+   
+        SceneManager.LoadScene("Menu_CharacterSelect");
+        Debug.Log("catpoc");
+        FindObjectOfType<GameDifficultyManager>().dif=DifficultyLevel.Catapocalypse;
     }
 
     public void CreditsSceneButton()
