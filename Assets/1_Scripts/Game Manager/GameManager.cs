@@ -125,6 +125,10 @@ public class GameManager : MonoBehaviour
         if (caravan_HC != null) caravan_HC.SetIsDead(false);
         ObjectPooler.DisableAllActiveObjects();
         SceneManager.LoadScene(0);
+       if(FindObjectOfType<CharacterManager>())
+        {
+            Destroy(FindObjectOfType<CharacterManager>());
+        }
     }
 
     public void ToPlayerSelectionScene()

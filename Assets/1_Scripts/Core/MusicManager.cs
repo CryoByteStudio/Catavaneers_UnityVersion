@@ -32,7 +32,14 @@ public class MusicManager : MonoBehaviour
     void Start()
     {
         //Add the audio source
-        A_Source = gameObject.AddComponent<AudioSource>();
+        if (!GetComponent<AudioSource>())
+        {
+            A_Source = gameObject.AddComponent<AudioSource>();
+        }
+        else
+        {
+            A_Source = GetComponent<AudioSource>();
+        }
     }
 
 

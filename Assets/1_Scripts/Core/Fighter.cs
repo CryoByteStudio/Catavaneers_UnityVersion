@@ -42,9 +42,14 @@ public class Fighter : MonoBehaviour
         {
             timeSinceLastAttack = 0;
             GetComponent<Animator>().SetTrigger("Attack");
-
             ShootProjectile();
         }
+
+        //if(Input.GetButtonDown("Attack"))
+        //{
+        //    ShootProjectile();
+        //}
+
         if (Input.GetButtonDown(dodgeButton))
         {
             GetComponent<Animator>().SetTrigger("Roll");
