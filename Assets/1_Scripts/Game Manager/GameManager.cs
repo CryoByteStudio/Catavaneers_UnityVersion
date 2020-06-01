@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
        if(FindObjectOfType<CharacterManager>())
         {
-            Destroy(FindObjectOfType<CharacterManager>());
+            Destroy(FindObjectOfType<CharacterManager>().gameObject);
         }
     }
 

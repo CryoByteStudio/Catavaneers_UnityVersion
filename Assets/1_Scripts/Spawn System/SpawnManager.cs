@@ -114,7 +114,7 @@ namespace SpawnSystem
             if (!CanSpawn) return;
 
             Wave.number++;
-            print("Wave Number: " + Wave.number);
+           // print("Wave Number: " + Wave.number);
             currentWave = waves[Wave.number - 1];
             currentWave.Init();
 

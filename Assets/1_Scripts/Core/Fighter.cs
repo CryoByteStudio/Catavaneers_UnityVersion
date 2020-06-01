@@ -57,12 +57,13 @@ public class Fighter : MonoBehaviour
         GetComponent<PlayerController>().SetWeaponWeight(currentWeapon.GetWeaponWeight());
         Animator animator = GetComponent<Animator>();
         weapon.Spawn(rightHandTransform, leftHandTransform, animator);
-        Debug.Log(currentWeapon.name);
+        //Debug.Log(currentWeapon.name);
         foreach(GameObject weaponCollider in weaponColliders)
         {
             if (weaponCollider.name == currentWeapon.name)
             {
                 Debug.Log(weaponCollider.name);
+                weaponCollider.gameObject.SetActive(true);
                 weaponCollider.SetActive(true);
                 currentWeaponCollider = weaponCollider.GetComponent<BoxCollider>();
             }
