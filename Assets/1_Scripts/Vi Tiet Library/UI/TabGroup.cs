@@ -22,13 +22,13 @@ public class TabGroup : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Joystick1Button4))
         {
             currentTabIndex = ((currentTabIndex - 1) % tabButtons.Count + tabButtons.Count) % tabButtons.Count;
             OnTabSelected(tabButtons[currentTabIndex]);
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Joystick1Button5))
         {
             currentTabIndex = ((currentTabIndex + 1) % tabButtons.Count + tabButtons.Count) % tabButtons.Count;
             OnTabSelected(tabButtons[currentTabIndex]);
