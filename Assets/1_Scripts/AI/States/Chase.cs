@@ -61,7 +61,7 @@ namespace AI.States
         /// <param name="radius"> The radius in which the random point will be picked from </param>
         private Vector3 FindPositionNearTarget(Vector3 targetPosition, float radius)
         {
-            Vector3 positionNearTarget = CustomMathf.RandomPointInCirclePerpendicularToAxis(radius, CustomMathf.Axis.Y) + targetPosition;
+            Vector3 positionNearTarget = CustomMathf.RandomPointInCirclePerpendicularToAxis(radius, Axis.Y) + targetPosition;
             positionNearTarget.y = targetPosition.y;
             return positionNearTarget;
         }

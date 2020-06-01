@@ -24,7 +24,7 @@ public class DropController : MonoBehaviour
 
         for (int i = 0; i < amountToDrop; i++)
         {
-            randomPosition = CustomMathf.RandomPointInCirclePerpendicularToAxis(2f, CustomMathf.Axis.Y) + transform.position;
+            randomPosition = CustomMathf.RandomPointInCirclePerpendicularToAxis(2f, Axis.Y) + transform.position;
             DropManager.DropItem(possibleDropItems[Random.Range(0, possibleDropItems.Count)], randomPosition);
         }
     }

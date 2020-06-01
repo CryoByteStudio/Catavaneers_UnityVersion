@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
                 doneOnce = true;
                 caravan_HC.SetIsDead(false);
 
-                StartCoroutine("RestartLevel");
+                StartCoroutine(RestartLevel());
 
                 transform.MyExtensionFunction();
             }
