@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
                 doneOnce = true;
                 caravan_HC.SetIsDead(false);
 
-                StartCoroutine("RestartLevel");
+                StartCoroutine(RestartLevel());
 
                 transform.MyExtensionFunction();
             }
@@ -72,6 +72,11 @@ public class GameManager : MonoBehaviour
         if (Input.anyKeyDown && SceneManager.GetActiveScene().name == "Menu_Credits")
         {
             SceneManager.LoadScene("Menu_Main");
+        }
+
+        if(Input.GetKeyDown(KeyCode.JoystickButton6))
+        {
+            ScreenCapture.CaptureScreenshot("ScreenShot_" + System.DateTime.Now.ToString("yyyy-MM-dd-HH_mm_ss") + ".JPG");
         }
     }
 
@@ -120,6 +125,10 @@ public class GameManager : MonoBehaviour
         if (caravan_HC != null) caravan_HC.SetIsDead(false);
         ObjectPooler.DisableAllActiveObjects();
         SceneManager.LoadScene(0);
+       if(FindObjectOfType<CharacterManager>())
+        {
+            Destroy(FindObjectOfType<CharacterManager>());
+        }
     }
 
     public void ToPlayerSelectionScene()
@@ -150,6 +159,14 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Menu_CharacterSelect");
         Debug.Log("ironcat");
         FindObjectOfType<GameDifficultyManager>().dif = DifficultyLevel.IronCat;
+
+    }
+    public void StartCatfightButton()
+    {
+
+        SceneManager.LoadScene("Catfight_01");
+        Debug.Log("Catfight");
+        FindObjectOfType<GameDifficultyManager>().dif = DifficultyLevel.Catfight;
 
     }
     public void StartCatpocalypseButton()

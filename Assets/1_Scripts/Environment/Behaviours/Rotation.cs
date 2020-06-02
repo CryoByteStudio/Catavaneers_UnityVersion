@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using CustomMathLibrary.Interpolation.Easing;
 using CustomMathLibrary;
-using LerpType = CustomMathLibrary.CustomMathf.LerpType;
 
 namespace Environment.Behaviours
 {
@@ -13,7 +12,7 @@ namespace Environment.Behaviours
         [Header("Settings")]
         [SerializeField] private bool rotate = true;
         [SerializeField] private bool easing = true;
-        [SerializeField] private LerpType type = LerpType.Linear;
+        [SerializeField] private Type type = Type.Linear;
         [SerializeField] private bool randomSpeed = true;
         [SerializeField] private float minSpeed = 5f;
         [SerializeField] private float maxSpeed = 10f;

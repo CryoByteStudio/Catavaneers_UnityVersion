@@ -55,6 +55,7 @@ public class PauseManager : MonoBehaviour
     public void BackToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Menu_Main");   
+        FindObjectOfType<GameManager>().ToMainMenu();
+        //SceneManager.LoadScene("Menu_Main");   
     }
 }

@@ -59,7 +59,7 @@ namespace SpawnSystem
         /// <param name="name"> Name of the enemy to pull from pool </param>
         private void Spawn(string name)
         {
-            randomPosition = CustomMathf.RandomPointInCirclePerpendicularToAxis(spawnRadius, CustomMathf.Axis.Y) + transform.position;
+            randomPosition = CustomMathf.RandomPointInCirclePerpendicularToAxis(spawnRadius, Axis.Y) + transform.position;
             healthComp = objectPooler.SpawnFromPool(name, randomPosition, Quaternion.identity).GetComponent<HealthComp>();
             SpawnManager.EnemiesAlive++;
             SpawnManager.EnemyLeftToSpawn--;

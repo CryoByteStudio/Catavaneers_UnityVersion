@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using CustomMathLibrary.Interpolation.Easing;
 using CustomMathLibrary;
-using LerpType = CustomMathLibrary.CustomMathf.LerpType;
 
 namespace Environment.Behaviours
 {
@@ -15,7 +14,7 @@ namespace Environment.Behaviours
         [Header("Settings")]
         [SerializeField] private bool move = true;
         [SerializeField] private bool easing = true;
-        [SerializeField] private LerpType type = LerpType.Linear;
+        [SerializeField] private Type type = Type.Linear;
         [Range(0f, 1f)]
         [SerializeField] private float speed = 1f;
 

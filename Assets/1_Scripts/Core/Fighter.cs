@@ -12,6 +12,7 @@ public class Fighter : MonoBehaviour
     [SerializeField] Transform leftHandTransform = null;
     [SerializeField] Weapon currentWeapon;
     [SerializeField] BoxCollider currentWeaponCollider;
+    [SerializeField] Transform projectileSpwanPoint;
 
     HealthComp target;
     float timeSinceLastAttack = Mathf.Infinity;
@@ -41,7 +42,14 @@ public class Fighter : MonoBehaviour
         {
             timeSinceLastAttack = 0;
             GetComponent<Animator>().SetTrigger("Attack");
+            ShootProjectile();
         }
+
+        //if(Input.GetButtonDown("Attack"))
+        //{
+        //    ShootProjectile();
+        //}
+
         if (Input.GetButtonDown(dodgeButton))
         {
             GetComponent<Animator>().SetTrigger("Roll");
@@ -127,9 +135,23 @@ public class Fighter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy")
+        if (other.tag == "Enemy")
+        {
+            other.GetComponent<HealthComp>().TakeDamage(currentWeapon.GetDamage());
+        } else if (other.tag == "Player" && FindObjectOfType<GameDifficultyManager>().dif == DifficultyLevel.Catfight)
         {
             other.GetComponent<HealthComp>().TakeDamage(currentWeapon.GetDamage());
         }
     }
+
+    public void ShootProjectile()
+    {
+        if (projectileSpwanPoint == null) { return; }
+
+        if (currentWeapon.HasProjectile())
+        {
+            currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, projectileSpwanPoint);
+        }
+    }
+
 }

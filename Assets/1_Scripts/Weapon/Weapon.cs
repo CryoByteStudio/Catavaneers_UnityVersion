@@ -14,6 +14,7 @@ public class Weapon : ScriptableObject
     [SerializeField] float Weight = 0;
     [SerializeField] float knockback_force = 0;
     [SerializeField] bool IsRightHanded = true;
+    [SerializeField] Projectile WeaponProjectile = null;
 
     const string weaponName = "Weapon";
 
@@ -59,16 +60,16 @@ public class Weapon : ScriptableObject
         return HandTransform;
     }
 
-    //public bool HasProjectile()
-    //{
-    //    return WeaponProjectile != null;
-    //}
+    public bool HasProjectile()
+    {
+        return WeaponProjectile != null;
+    }
 
-    //public void LaunchProjectile(Transform righthand, Transform leftHand, Transform target)
-    //{
-    //    Projectile projectileInstance = Instantiate(WeaponProjectile, GetHandTransform(righthand, leftHand).position, Quaternion.identity);
-    //    projectileInstance.SetTarget(target);
-    //}
+    public void LaunchProjectile(Transform righthand, Transform leftHand, Transform target)
+    {
+        Projectile projectileInstance = Instantiate(WeaponProjectile, GetHandTransform(righthand, leftHand).position, Quaternion.identity);
+        projectileInstance.SetTarget(target);
+    }
 
     public int GetDamage()
     {
