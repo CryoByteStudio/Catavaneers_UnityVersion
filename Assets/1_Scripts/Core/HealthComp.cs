@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using AI;
+using SpawnSystem;
 
 public enum CharacterClass { Player, Enemy, Caravan, Obj };
 public enum DifficultyLevel { Normal, IronCat, Catapocalypse, Catfight};
@@ -12,19 +13,13 @@ public enum DifficultyLevel { Normal, IronCat, Catapocalypse, Catfight};
 
 public class HealthComp : MonoBehaviour
 {
-    public ParticleSystem hitParticle;
     [SerializeField] private DifficultyLevel gameDifficulty = DifficultyLevel.Normal;
     public CharacterClass myClass;
     public int startHealth = 100;
     public bool debug;
     public int damageTakenPerSecond;
-    public GameManager gman;
-    public bool caravan = false;
-    public int damagethreshold;
-    public int thresholdamount;
-   
+
     public SoundClipsInts soundCue = SoundClipsInts.Death;
-    public float percentageOfGoldToKeep = 75f;
 
     [SerializeField]
     private int currentHealth = 0;
@@ -35,7 +30,7 @@ public class HealthComp : MonoBehaviour
     [SerializeField]
     Transform playerSpawnPos;
     [SerializeField]
-    SkinnedMeshRenderer playerMeshRenderer;
+    GameObject playerMeshRenderer;
 
     private float nextDamageTime = 0;
     private float timeElapsed = 0;
@@ -50,26 +45,21 @@ public class HealthComp : MonoBehaviour
 
     private void Start()
     {
-        
         rb = GetComponent<Rigidbody>();
         dropController = GetComponent<DropController>();
         objectPooler = FindObjectOfType<ObjectPooler>();
         animator = GetComponent<Animator>();
-        gman = FindObjectOfType<GameManager>();
 
-        if (FindObjectOfType<GameDifficultyManager>())
-        {
-            gameDifficulty = FindObjectOfType<GameDifficultyManager>().dif;
-        }
         if (myClass == CharacterClass.Enemy)
         {
             //dropController = GetComponent<DropController>();
             //objectPooler = FindObjectOfType<ObjectPooler>();
-        }else if(myClass == CharacterClass.Caravan)
+        }
+        else if (myClass == CharacterClass.Caravan)
         {
 
         }
-        else if(myClass == CharacterClass.Obj)
+        else if (myClass == CharacterClass.Obj)
         {
             //dropController = GetComponent<DropController>();
         }
@@ -80,45 +70,6 @@ public class HealthComp : MonoBehaviour
         currentHealth = startHealth;
         DisplayHealth();
 
-        if (GetComponent<PlayerInventory>())
-        {
-            //set % of gold to lose based on difficulty
-            if (gameDifficulty == DifficultyLevel.Normal)
-            {
-                percentageOfGoldToKeep = 75f;
-            }
-            else if (gameDifficulty == DifficultyLevel.IronCat)
-            {
-                percentageOfGoldToKeep = 50f;
-            }
-            else if (gameDifficulty == DifficultyLevel.Catapocalypse)
-            {
-                percentageOfGoldToKeep = 25f;
-            }
-        }
-        else
-        {
-            //set % of gold to lose based on difficulty
-            if (gameDifficulty == DifficultyLevel.Normal)
-            {
-                
-            }
-            else if (gameDifficulty == DifficultyLevel.IronCat)
-            {
-                currentHealth *= 2;
-                startHealth *= 2;
-                health_slider.maxValue = currentHealth;
-                health_slider.value = currentHealth;
-            }
-            else if (gameDifficulty == DifficultyLevel.Catapocalypse)
-            {
-                currentHealth *= 3;
-                startHealth *= 3;
-                health_slider.maxValue = currentHealth;
-                health_slider.value = currentHealth;
-            }
-        }
-        
     }
 
     private void Update()
@@ -127,7 +78,8 @@ public class HealthComp : MonoBehaviour
             TestTakeDamage();
 
         timeElapsed += Time.deltaTime;
-        if (myClass == CharacterClass.Caravan && is_Regenerating) {
+        if (myClass == CharacterClass.Caravan && is_Regenerating)
+        {
             dmg_percentage = currentHealth % (startHealth / (int)gameDifficulty);
             if (dmg_percentage == 0)
             {
@@ -135,7 +87,7 @@ public class HealthComp : MonoBehaviour
             }
             else { AddHealth(1); }
         }
-    
+
     }
 
     /// <summary>
@@ -177,16 +129,12 @@ public class HealthComp : MonoBehaviour
     /// <param name="weapon_force"> The amount of knockback_force from the weapon </param>"
     public void TakeDamage(Transform damageDealer, int amount, float weapon_force)
     {
-
         if (!is_Dead)
         {
             currentHealth -= amount;
             currentHealth = Mathf.Max(0, currentHealth);
             DisplayHealth();
 
-            
-           
-            
             KnockBack((damageDealer.position - transform.position) * 2f * weapon_force);
 
             if (currentHealth == 0)
@@ -221,17 +169,10 @@ public class HealthComp : MonoBehaviour
         switch (myClass)
         {
             //case CharacterClass.Player:
-                //MusicManager.Instance.PlaySoundTrack(soundCue);
-                //break;
+            //MusicManager.Instance.PlaySoundTrack(soundCue);
+            //break;
             case CharacterClass.Player:
                 Debug.Log("Player Dead");
-                if (gameDifficulty == DifficultyLevel.Catfight)
-                {
-                    if (GetComponent<PlayerInventory>() == FindObjectOfType<Goldbag>().holdersInventory)
-                    {
-                        FindObjectOfType<Goldbag>().DropBag();
-                    }
-                }
                 break;
             case CharacterClass.Caravan:
                 Debug.Log("Caravan Dead");
@@ -243,6 +184,7 @@ public class HealthComp : MonoBehaviour
             case CharacterClass.Enemy:
                 dropController.DropItem();
                 ObjectPooler.SetInactive(this.gameObject);
+                SpawnManager.EnemiesAlive--;
                 break;
         }
     }
@@ -254,57 +196,20 @@ public class HealthComp : MonoBehaviour
         StartCoroutine(Respawn());
     }
 
-    void RemoveGoldFromInventory()
-    {
-        //get the inventory to remove gold based on percentage
-        GetComponent<PlayerInventory>().gold = Mathf.RoundToInt((float)GetComponent<PlayerInventory>().gold / 100 * percentageOfGoldToKeep);
-    }
     private IEnumerator Respawn()
     {
-        if (gameDifficulty == DifficultyLevel.Normal)
-        {
-            yield return new WaitForSeconds(4);
-        }
-        else if (gameDifficulty == DifficultyLevel.IronCat)
-        {
-            yield return new WaitForSeconds(8);
-        }
-        else
-        {
-            yield return new WaitForSeconds(12);
-        }
-        
-        playerMeshRenderer.enabled = false;
-        
-        //GetComponent<CapsuleCollider>().enabled = false;
-        this.transform.position = playerSpawnPos.position;
-
-        //make sure its a player first
-        if (GetComponent<PlayerInventory>())
-        {
-            RemoveGoldFromInventory();
-        }
-        health_slider.gameObject.SetActive(false);
-        StartCoroutine(Spawn());
-    }
-
-    private IEnumerator Spawn()
-    {
+        yield return new WaitForSeconds(4);
+        playerMeshRenderer.SetActive(false);
+        GetComponent<CapsuleCollider>().enabled = false;
+        transform.position = playerSpawnPos.position;
         yield return new WaitForSeconds(6);
         is_Dead = false;
-        animator.SetTrigger("Spawn");
         currentHealth = startHealth;
-        health_slider.value = currentHealth;
-        playerMeshRenderer.enabled = true;
+        playerMeshRenderer.SetActive(true);
         GetComponent<CapsuleCollider>().enabled = true;
-        Controller.AddToTargetList(this);
-        Debug.Log("Respawn");
-
-
-       
-        health_slider.gameObject.SetActive(true);
-
-
+        animator.SetTrigger("Spawn");
+        animator.ResetTrigger("Die");
+        animator.ResetTrigger("Spawn");
     }
 
     /// <summary>
@@ -324,6 +229,14 @@ public class HealthComp : MonoBehaviour
     public int GetCurHealth()
     {
         return currentHealth;
+    }
+
+    /// <summary>
+    /// returns StartHealth amount
+    /// </summary>
+    public int GetStartHealth()
+    {
+        return startHealth;
     }
 
     /// <summary>
@@ -352,30 +265,8 @@ public class HealthComp : MonoBehaviour
     /// </summary>
     private void DisplayHealth()
     {
-
-        if (hitParticle)
-        {
-            GameObject temp = Instantiate(hitParticle.gameObject);
-            temp.transform.parent = null;
-            temp.transform.position = this.transform.position;
-           
-            temp.GetComponent<ParticleSystem>().Play();
-            Destroy(temp.gameObject, 1f);
-        }
-
-        if(health_slider)
-        health_slider.value = currentHealth;
-        if (caravan)
-        {
-            if (currentHealth <= 0)
-            {
-                GetComponent<CaravanDamage>().TriggerFinalDamageStageParticle();
-            }
-            else if (currentHealth <= damagethreshold) {
-                damagethreshold -= thresholdamount;
-            GetComponent<CaravanDamage>().TriggerDamageStageParticles(); 
-            }
-        }
+        if (health_slider)
+            health_slider.value = currentHealth;
     }
 }
 
