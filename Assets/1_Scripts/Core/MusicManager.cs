@@ -6,11 +6,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 using UnityEngine.Audio;
+using SpawnSystem;
 
 public enum SoundClipsInts { Default, GoldPickUp, Attack, Hit, Death, Buying };
 
 public class MusicManager : MonoBehaviour
 {
+    [FMODUnity.EventRef]
+    public string caravanStateEvent = "";
+    FMOD.Studio.EventInstance caravanState;
+    [SerializeField] HealthComp caravanHealth;
+    float curCaravanIntensity = 0.0f;
+    float curEnemieIntensity = 0.0f;
+
 
     //The AudioSource to which we play any clips
     private AudioSource A_Source;
@@ -31,14 +39,23 @@ public class MusicManager : MonoBehaviour
 
     void Start()
     {
+        caravanState = FMODUnity.RuntimeManager.CreateInstance(caravanStateEvent);
+        caravanState.start();
+
+
         //Add the audio source
-        if (!GetComponent<AudioSource>())
+        A_Source = gameObject.AddComponent<AudioSource>();
+        if (!caravanHealth)
         {
-            A_Source = gameObject.AddComponent<AudioSource>();
-        }
-        else
-        {
-            A_Source = GetComponent<AudioSource>();
+            HealthComp[] healthComps = FindObjectsOfType<HealthComp>();
+            for (int i = 0; i < healthComps.Length; i++)
+            {
+                if (healthComps[i].myClass == CharacterClass.Caravan)
+                {
+                    caravanHealth = healthComps[i];
+                    break;
+                }
+            }
         }
     }
 
@@ -50,6 +67,33 @@ public class MusicManager : MonoBehaviour
         {
             Instance.PlaySoundTrack(SoundClipsInts.Default);
             Debug.Log("soundtrack default");
+        }
+        if (SceneManager.GetActiveScene().name == "Encounter_01")
+        {
+            if (caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 4)
+            {
+                caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 3f, 1.0f), true);
+            }
+            else if (caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 2)
+            {
+                caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 1.5f, 1.0f), true);
+            }
+            if (SpawnManager.EnemiesAlive < 10)
+            {
+                caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 0f, 1.0f));
+            }
+            else if (SpawnManager.EnemiesAlive >= 10 && caravanHealth.GetCurHealth() > caravanHealth.GetStartHealth() / 4)
+            {
+                caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 1.0f, 1.0f), true);
+            }
+            else if (SpawnManager.EnemiesAlive >= 10 && caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 4)
+            {
+                caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 2.0f, 1.0f), true);
+            }
+        }
+        else
+        {
+            caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
     }
 

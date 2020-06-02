@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using AI;
+using SpawnSystem;
 using UnityEditor;
 using Catavaneer.Utils;
 using Catavaneer;
@@ -15,17 +16,17 @@ public enum DifficultyLevel { Normal, IronCat, Catapocalypse, Catfight};
 
 public class HealthComp : MonoBehaviour
 {
-    public ParticleSystem hitParticle;
     [SerializeField] private DifficultyLevel gameDifficulty = DifficultyLevel.Normal;
     public CharacterClass myClass;
     public int startHealth = 100;
+    public bool debug;
+    public int damageTakenPerSecond;
     public GameManager gman;
     public bool caravan = false;
     public int damagethreshold;
     public int thresholdamount;
 
     public SoundClipsInts soundCue = SoundClipsInts.Death;
-    public float percentageOfGoldToKeep = 75f;
 
     [SerializeField]
     private int currentHealth = 0;
@@ -36,7 +37,7 @@ public class HealthComp : MonoBehaviour
     [SerializeField]
     Transform playerSpawnPos;
     [SerializeField]
-    SkinnedMeshRenderer playerMeshRenderer;
+    GameObject playerMeshRenderer;
 
     private float nextDamageTime = 0;
     private float timeElapsed = 0;
@@ -54,12 +55,10 @@ public class HealthComp : MonoBehaviour
 
     private void Start()
     {
-
         rb = GetComponent<Rigidbody>();
         dropController = GetComponent<DropController>();
         objectPooler = FindObjectOfType<ObjectPooler>();
         animator = GetComponent<Animator>();
-        gman = FindObjectOfType<GameManager>();
 
         //if (FindObjectOfType<GameDifficultyManager>())
         //{
@@ -70,11 +69,12 @@ public class HealthComp : MonoBehaviour
         {
             //dropController = GetComponent<DropController>();
             //objectPooler = FindObjectOfType<ObjectPooler>();
-        }else if(myClass == CharacterClass.Caravan)
+        }
+        else if (myClass == CharacterClass.Caravan)
         {
 
         }
-        else if(myClass == CharacterClass.Obj)
+        else if (myClass == CharacterClass.Obj)
         {
             //dropController = GetComponent<DropController>();
         }
@@ -275,8 +275,8 @@ public class HealthComp : MonoBehaviour
         switch (myClass)
         {
             //case CharacterClass.Player:
-                //MusicManager.Instance.PlaySoundTrack(soundCue);
-                //break;
+            //MusicManager.Instance.PlaySoundTrack(soundCue);
+            //break;
             case CharacterClass.Player:
                 Debug.Log("Player Dead");
                 //if (gameDifficulty == DifficultyLevel.Catfight)
@@ -298,6 +298,7 @@ public class HealthComp : MonoBehaviour
             case CharacterClass.Enemy:
                 dropController.DropItem();
                 ObjectPooler.SetInactive(this.gameObject);
+                SpawnManager.EnemiesAlive--;
                 break;
         }
     }
@@ -309,11 +310,6 @@ public class HealthComp : MonoBehaviour
         StartCoroutine(Respawn());
     }
 
-    void RemoveGoldFromInventory()
-    {
-        //get the inventory to remove gold based on percentage
-        GetComponent<PlayerInventory>().gold = Mathf.RoundToInt((float)GetComponent<PlayerInventory>().gold / 100 * percentageOfGoldToKeep);
-    }
     private IEnumerator Respawn()
     {
         switch (GameManager.DifficultyLevel)
@@ -387,6 +383,14 @@ public class HealthComp : MonoBehaviour
     public int GetCurHealth()
     {
         return currentHealth;
+    }
+
+    /// <summary>
+    /// returns StartHealth amount
+    /// </summary>
+    public int GetStartHealth()
+    {
+        return startHealth;
     }
 
     /// <summary>
