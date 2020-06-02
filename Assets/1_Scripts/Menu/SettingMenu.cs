@@ -15,10 +15,10 @@ public class SettingMenu : MonoBehaviour
     public Slider VolumeSlider;
 
     //public Dropdown QualityDropDown;
-    public TMP_Dropdown QualityDropDown;
+    public Dropdown QualityDropDown;
 
     //public Dropdown ResolutionDropDown;
-    public TMP_Dropdown ResolutionDropDown;
+    public Dropdown ResolutionDropDown;
 
     public Toggle FullScreenToggle;
 
