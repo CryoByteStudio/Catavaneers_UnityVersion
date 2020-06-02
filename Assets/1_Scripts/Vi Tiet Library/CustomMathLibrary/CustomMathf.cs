@@ -5,63 +5,41 @@ namespace CustomMathLibrary
 {
     public static class CustomMathf
     {
-        public enum LerpType
-        {
-            Linear,
-            Quadratic,
-            Cubic,
-            Quartic,
-            Quintic,
-            Sinusoidal,
-            Exponential,
-            Circular,
-            Elastic,
-            Back,
-            Bounce
-        }
-
-        public enum Axis
-        {
-            X,
-            Y,
-            Z
-        }
-
-        public static float CalculateLerpValue(float lerpValue, LerpType easingType, bool isZeroToOne)
+        public static float CalculateLerpValue(float lerpValue, Type easingType, bool isZeroToOne)
         {
             switch (easingType)
             {
-                case LerpType.Linear:
+                case Type.Linear:
                     lerpValue = Linear.InOut(lerpValue);
                     break;
-                case LerpType.Quadratic:
+                case Type.Quadratic:
                     lerpValue = Quadratic.InOut(lerpValue);
                     break;
-                case LerpType.Cubic:
+                case Type.Cubic:
                     lerpValue = Cubic.InOut(lerpValue);
                     break;
-                case LerpType.Quartic:
+                case Type.Quartic:
                     lerpValue = Quartic.InOut(lerpValue);
                     break;
-                case LerpType.Quintic:
+                case Type.Quintic:
                     lerpValue = Quintic.InOut(lerpValue);
                     break;
-                case LerpType.Sinusoidal:
+                case Type.Sinusoidal:
                     lerpValue = Sinusoidal.InOut(lerpValue);
                     break;
-                case LerpType.Exponential:
+                case Type.Exponential:
                     lerpValue = Exponential.InOut(lerpValue);
                     break;
-                case LerpType.Circular:
+                case Type.Circular:
                     lerpValue = Circular.InOut(lerpValue);
                     break;
-                case LerpType.Elastic:
+                case Type.Elastic:
                     lerpValue = Elastic.InOut(lerpValue);
                     break;
-                case LerpType.Back:
+                case Type.Back:
                     lerpValue = Back.InOut(lerpValue);
                     break;
-                case LerpType.Bounce:
+                case Type.Bounce:
                     lerpValue = Bounce.InOut(lerpValue);
                     break;
                 default:
@@ -71,41 +49,41 @@ namespace CustomMathLibrary
             return lerpValue;
         }
 
-        public static float CalculateLerpValueClamp01(float lerpValue, LerpType easingType, bool isZeroToOne)
+        public static float CalculateLerpValueClamp01(float lerpValue, Type easingType, bool isZeroToOne)
         {
             switch (easingType)
             {
-                case LerpType.Linear:
+                case Type.Linear:
                     lerpValue = Linear.InOut(lerpValue);
                     break;
-                case LerpType.Quadratic:
+                case Type.Quadratic:
                     lerpValue = Quadratic.InOut(lerpValue);
                     break;
-                case LerpType.Cubic:
+                case Type.Cubic:
                     lerpValue = Cubic.InOut(lerpValue);
                     break;
-                case LerpType.Quartic:
+                case Type.Quartic:
                     lerpValue = Quartic.InOut(lerpValue);
                     break;
-                case LerpType.Quintic:
+                case Type.Quintic:
                     lerpValue = Quintic.InOut(lerpValue);
                     break;
-                case LerpType.Sinusoidal:
+                case Type.Sinusoidal:
                     lerpValue = Sinusoidal.InOut(lerpValue);
                     break;
-                case LerpType.Exponential:
+                case Type.Exponential:
                     lerpValue = Exponential.InOut(lerpValue);
                     break;
-                case LerpType.Circular:
+                case Type.Circular:
                     lerpValue = Circular.InOut(lerpValue);
                     break;
-                case LerpType.Elastic:
+                case Type.Elastic:
                     lerpValue = Elastic.InOut(lerpValue);
                     break;
-                case LerpType.Back:
+                case Type.Back:
                     lerpValue = Back.InOut(lerpValue);
                     break;
-                case LerpType.Bounce:
+                case Type.Bounce:
                     lerpValue = Bounce.InOut(lerpValue);
                     break;
                 default:
@@ -173,6 +151,28 @@ namespace CustomMathLibrary
             }
 
             return position;
+        }
+        
+        public static int GetNextLoopIndex(int currentIndex, int maxIndex)
+        {
+            return ((currentIndex + 1) % maxIndex + maxIndex) % maxIndex;
+        }
+
+        public static int GetPreviousLoopIndex(int currentIndex, int maxIndex)
+        {
+            return ((currentIndex - 1) % maxIndex + maxIndex) % maxIndex;
+        }
+
+        public static int GetLoopIndex(int currentIndex, int maxIndex)
+        {
+            return (currentIndex % maxIndex + maxIndex) % maxIndex;
+        }
+
+        public static int GetClampedLoopIndex(int currentIndex, int minIndex, int maxIndex)
+        {
+            int index = (currentIndex % maxIndex + maxIndex) % maxIndex;
+            index = index >= minIndex ? index : minIndex;
+            return index;
         }
     }
 }

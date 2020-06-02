@@ -42,7 +42,7 @@ public class Region : MonoBehaviour
             go.transform.parent = regionData.parent;
 
             go.transform.position = 
-                CustomMathf.GetEvenlySpacingPositionAroundAxis(regionData.numberOfPoints, i, CustomMathf.Axis.Y)
+                CustomMathf.GetEvenlySpacingPositionAroundAxis(regionData.numberOfPoints, i, Axis.Y)
                 * regionData.radius + transform.position;
 
             regionData.pointsList.Add(go.AddComponent<Point>());

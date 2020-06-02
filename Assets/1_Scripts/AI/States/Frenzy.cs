@@ -64,7 +64,7 @@ namespace AI.States
         /// </summary>
         private void GetNewRandomPosition()
         {
-            randomPosition = CustomMathf.RandomPointInCirclePerpendicularToAxis(radius, CustomMathf.Axis.Y) + controller.transform.position;
+            randomPosition = CustomMathf.RandomPointInCirclePerpendicularToAxis(radius, Axis.Y) + controller.transform.position;
         }
     }
 }

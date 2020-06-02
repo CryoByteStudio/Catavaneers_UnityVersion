@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using TMPro;
 
 public class SettingMenu : MonoBehaviour
 {
@@ -13,9 +14,11 @@ public class SettingMenu : MonoBehaviour
 
     public Slider VolumeSlider;
 
-    public Dropdown QualityDropDown;
+    //public Dropdown QualityDropDown;
+    public TMP_Dropdown QualityDropDown;
 
-    public Dropdown ResolutionDropDown;
+    //public Dropdown ResolutionDropDown;
+    public TMP_Dropdown ResolutionDropDown;
 
     public Toggle FullScreenToggle;
 

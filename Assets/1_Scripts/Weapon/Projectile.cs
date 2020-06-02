@@ -28,6 +28,7 @@ public class Projectile : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             other.gameObject.GetComponent<HealthComp>().TakeDamage(WeaponDamage);
+            Destroy(gameObject);
         }
     }
 }
