@@ -1,97 +1,105 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public class TabGroup : MonoBehaviour
+namespace Catavaneer.MenuSystem
 {
-    [SerializeField] private List<TabButton> tabButtons;
-    [SerializeField] private Color tabIdle;
-    [SerializeField] private Color tabHover;
-    [SerializeField] private Color tabActive;
-
-    private TabButton selectedTab;
-    private EventSystem eventSystem;
-    private int currentTabIndex = 0;
-
-    private void Start()
+    public class TabGroup : MonoBehaviour
     {
-        eventSystem = FindObjectOfType<EventSystem>();
-    }
+        [SerializeField] private List<TabButton> tabButtons;
+        [SerializeField] private Color tabIdle;
+        [SerializeField] private Color tabHover;
+        [SerializeField] private Color tabActive;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Joystick1Button4))
+        private TabButton selectedTab;
+        private EventSystem eventSystem;
+        private int currentTabIndex = 0;
+
+        private void OnEnable()
         {
-            currentTabIndex = ((currentTabIndex - 1) % tabButtons.Count + tabButtons.Count) % tabButtons.Count;
-            OnTabSelected(tabButtons[currentTabIndex]);
+            eventSystem = FindObjectOfType<EventSystem>();
         }
 
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Joystick1Button5))
+        private void Update()
         {
-            currentTabIndex = ((currentTabIndex + 1) % tabButtons.Count + tabButtons.Count) % tabButtons.Count;
-            OnTabSelected(tabButtons[currentTabIndex]);
-        }
-    }
-
-    public void Subscribe(TabButton button)
-    {
-        if (tabButtons == null) tabButtons = new List<TabButton>();
-
-        if (!tabButtons.Contains(button))
-            tabButtons.Add(button);
-
-        if (tabButtons.Count > 0 && !selectedTab)
-        {
-            if (tabButtons[0])
+            if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Joystick1Button4))
             {
-                currentTabIndex = 0;
-                selectedTab = tabButtons[0];
-                OnTabSelected(selectedTab);
+                currentTabIndex = ((currentTabIndex - 1) % tabButtons.Count + tabButtons.Count) % tabButtons.Count;
+                OnTabSelected(tabButtons[currentTabIndex]);
+            }
+
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Joystick1Button5))
+            {
+                currentTabIndex = ((currentTabIndex + 1) % tabButtons.Count + tabButtons.Count) % tabButtons.Count;
+                OnTabSelected(tabButtons[currentTabIndex]);
             }
         }
-    }
 
-    public void OnTabEnter(TabButton button)
-    {
-        ResetTabs();
-
-        if (selectedTab && selectedTab != button)
+        public void Subscribe(TabButton button)
         {
-            button.background.color = tabHover;
-        }
-    }
+            if (tabButtons == null) tabButtons = new List<TabButton>();
 
-    public void OnTabExit(TabButton button)
-    {
-        ResetTabs();
-    }
+            if (!tabButtons.Contains(button))
+                tabButtons.Add(button);
 
-    public void OnTabSelected(TabButton button)
-    {
-        if (selectedTab != button)
-        {
-            currentTabIndex = tabButtons.IndexOf(button);
-            selectedTab.tabPage.SetActive(false);
-            selectedTab = button;
+            if (tabButtons.Count > 0 && !selectedTab)
+            {
+                if (tabButtons[0])
+                {
+                    currentTabIndex = 0;
+                    selectedTab = tabButtons[0];
+                    OnTabSelected(selectedTab);
+                }
+            }
         }
 
-        selectedTab.tabPage.SetActive(true);
-        eventSystem.SetSelectedGameObject(button.firstSelected);
-
-        ResetTabs();
-        button.tabLabel.color = tabIdle;
-        button.background.color = tabActive;
-    }
-
-    public void ResetTabs()
-    {
-        foreach (TabButton button in tabButtons)
+        public void OnTabEnter(TabButton button)
         {
-            if (selectedTab && selectedTab == button) continue;
-            button.tabLabel.color = tabActive;
-            button.background.color = tabIdle;
+            ResetTabs();
+
+            if (selectedTab && selectedTab != button)
+            {
+                button.tabLabel.color = tabIdle;
+                button.background.color = tabHover;
+            }
+        }
+
+        public void OnTabExit(TabButton button)
+        {
+            ResetTabs();
+        }
+
+        public void OnTabSelected(TabButton button)
+        {
+            if (selectedTab != button)
+            {
+                currentTabIndex = tabButtons.IndexOf(button);
+                selectedTab.tabPage.SetActive(false);
+                selectedTab = button;
+            }
+
+            selectedTab.tabPage.SetActive(true);
+
+            if (!eventSystem) throw new ArgumentNullException("evetSystem");
+            if (!button) throw new ArgumentNullException("button");
+            if (!button.firstSelected) throw new ArgumentNullException("button.firstSelected");
+
+            eventSystem.SetSelectedGameObject(button.firstSelected);
+
+            ResetTabs();
+            button.tabLabel.color = tabIdle;
+            button.background.color = tabActive;
+        }
+
+        public void ResetTabs()
+        {
+            foreach (TabButton button in tabButtons)
+            {
+                if (selectedTab && selectedTab == button) continue;
+                button.tabLabel.color = tabActive;
+                button.background.color = tabIdle;
+            }
         }
     }
 }

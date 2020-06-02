@@ -10,6 +10,7 @@ namespace Learning.UI
     {
         [SerializeField] private TMP_Text textField;
         [SerializeField] private bool blink;
+        [SerializeField] private bool glow;
         [SerializeField] private Type mode;
         [SerializeField] private float blinkSpeed;
         [SerializeField] private List<Color> blinkColors;
@@ -55,6 +56,9 @@ namespace Learning.UI
             color = LerpColorLoop(index, blinkColors.Count, step, isZeroToOne);
             color.a = 1;
             textField.faceColor = color;
+
+            if (glow)
+                textField.fontSharedMaterial.SetColor(ShaderUtilities.ID_GlowColor, color);
         }
 
         private Color LerpColorLoop(int currentIndex, int maxIndex, float step, bool isZeroToOne)

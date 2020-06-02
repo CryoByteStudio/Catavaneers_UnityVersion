@@ -154,7 +154,24 @@ namespace Learning.MenuSystem
         #endregion
 
         #region PRIVATE STATIC METHODS
-        
+
+        private static void Pause()
+        {
+            Time.timeScale = 0;
+            isPaused = true;
+        }
+
+        private static void UnPaused()
+        {
+            Time.timeScale = 1;
+            isPaused = false;
+        }
+
+        private static void LogNoGameManagerError()
+        {
+            EditorHelper.LogError(null, "[MenuManager]: GameManager instance is null!");
+        }
+
         private static void PlayTransition(out TransitionFader fader, TransitionFaderType type)
         {
             UnPaused();
@@ -444,27 +461,6 @@ namespace Learning.MenuSystem
             }
 
             EditorHelper.LogError(null, "[MenuManager]: Instance is null!");
-        }
-
-        #endregion
-
-        #region PRIVATE STATIC METHODS
-
-        private static void Pause()
-        {
-            Time.timeScale = 0;
-            isPaused = true;
-        }
-
-        private static void UnPaused()
-        {
-            Time.timeScale = 1;
-            isPaused = false;
-        }
-
-        private static void LogNoGameManagerError()
-        {
-            EditorHelper.LogError(null, "[MenuManager]: GameManager instance is null!");
         }
 
         #endregion

@@ -23,20 +23,18 @@ namespace Learning.Extensions
 
         public static List<T> GetAllComponentsOfTypeInHierachy<T> (this Transform root, List<T> list = null, bool addRoot = true) where T : MonoBehaviour
         {
-            T item;
-
-            if (list == null)
+            if (list == null || list.Count <= 0)
             {
                 list = new List<T>();
             }
 
             if (addRoot)
             {
-                item = root.GetComponent<T>();
+                T rootComponent = root.GetComponent<T>();
 
-                if (item)
+                if (rootComponent)
                 {
-                    list.Add(item);
+                    list.Add(rootComponent);
                 }
             }
 
@@ -44,11 +42,11 @@ namespace Learning.Extensions
             {
                 GetAllComponentsOfTypeInHierachy(child, list, false);
 
-                item = child.GetComponent<T>();
+                T childComponent = child.GetComponent<T>();
 
-                if (item)
+                if (childComponent)
                 {
-                    list.Add(item);
+                    list.Add(childComponent);
                 }
             }
 
