@@ -19,8 +19,6 @@ public class HealthComp : MonoBehaviour
     [SerializeField] private DifficultyLevel gameDifficulty = DifficultyLevel.Normal;
     public CharacterClass myClass;
     public int startHealth = 100;
-    public bool debug;
-    public int damageTakenPerSecond;
     public GameManager gman;
     public bool caravan = false;
     public int damagethreshold;
@@ -37,15 +35,18 @@ public class HealthComp : MonoBehaviour
     [SerializeField]
     Transform playerSpawnPos;
     [SerializeField]
-    GameObject playerMeshRenderer;
+    MeshRenderer playerMeshRenderer;
+
+    GameObject hitParticle = null;
 
     private float nextDamageTime = 0;
     private float timeElapsed = 0;
+    float percentageOfGoldToKeep = 100f;
     private bool isDead = false;
     private Rigidbody rb;
     private DropController dropController;
 
-    public Slider healthSlider = null;
+    public Slider health_slider = null;
 
     private static ObjectPooler objectPooler;
     Animator animator;
@@ -78,9 +79,9 @@ public class HealthComp : MonoBehaviour
         {
             //dropController = GetComponent<DropController>();
         }
-        if (healthSlider)
+        if (health_slider)
         {
-            healthSlider.maxValue = startHealth;
+            health_slider.maxValue = startHealth;
         }
         currentHealth = startHealth;
         DisplayHealth();
@@ -91,13 +92,13 @@ public class HealthComp : MonoBehaviour
             switch (GameManager.DifficultyLevel)
             {
                 case DifficultyLevel.Normal:
-                    percentageOfGoldToKeep = 75f;
+                    percentageOfGoldToKeep = 0.75f;
                     break;
                 case DifficultyLevel.IronCat:
-                    percentageOfGoldToKeep = 50f;
+                    percentageOfGoldToKeep = 0.50f;
                     break;
                 case DifficultyLevel.Catapocalypse:
-                    percentageOfGoldToKeep = 25f;
+                    percentageOfGoldToKeep = 0.25f;
                     break;
                 case DifficultyLevel.Catfight:
                     EditorHelper.NotSupportedException("DifficultyLevel.Catfight");
@@ -130,14 +131,14 @@ public class HealthComp : MonoBehaviour
                 case DifficultyLevel.IronCat:
                     currentHealth *= 2;
                     startHealth *= 2;
-                    healthSlider.maxValue = currentHealth;
-                    healthSlider.value = currentHealth;
+                    health_slider.maxValue = currentHealth;
+                    health_slider.value = currentHealth;
                     break;
                 case DifficultyLevel.Catapocalypse:
                     currentHealth *= 3;
                     startHealth *= 3;
-                    healthSlider.maxValue = currentHealth;
-                    healthSlider.value = currentHealth;
+                    health_slider.maxValue = currentHealth;
+                    health_slider.value = currentHealth;
                     break;
                 case DifficultyLevel.Catfight:
                     EditorHelper.NotSupportedException("DifficultyLevel.Catfight");
@@ -190,10 +191,10 @@ public class HealthComp : MonoBehaviour
     {
         isDead = false;
         currentHealth = startHealth;
-        healthSlider.value = currentHealth;
+        health_slider.value = currentHealth;
         playerMeshRenderer.enabled = true;
         GetComponent<CapsuleCollider>().enabled = true;
-        healthSlider.gameObject.SetActive(true);
+        health_slider.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -349,11 +350,11 @@ public class HealthComp : MonoBehaviour
         transform.position = playerSpawnPos.position;
 
         //make sure its a player first
-        if (GetComponent<PlayerInventory>())
+        if (myClass == CharacterClass.Player)
         {
-            RemoveGoldFromInventory();
+            GetComponent<PlayerInventory>().RemoveGoldFromInventory(percentageOfGoldToKeep);
         }
-        healthSlider.gameObject.SetActive(false);
+        health_slider.gameObject.SetActive(false);
         StartCoroutine(Spawn());
     }
 
