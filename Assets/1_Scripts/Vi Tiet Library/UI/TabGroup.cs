@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,7 +14,7 @@ namespace Catavaneer.MenuSystem
         [SerializeField] private Color tabActive;
 
         private TabButton selectedTab;
-        private EventSystem eventSystem;
+        private static EventSystem eventSystem;
         private int currentTabIndex = 0;
 
         private void OnEnable()
@@ -21,8 +22,23 @@ namespace Catavaneer.MenuSystem
             eventSystem = FindObjectOfType<EventSystem>();
         }
 
+        private void OnDisable()
+        {
+            eventSystem = null;
+        }
+
+        private IEnumerator GetEventSystem()
+        {
+            if (eventSystem) yield return null;
+
+            eventSystem = FindObjectOfType<EventSystem>();
+            yield return null;
+        }
+
         private void Update()
         {
+            StartCoroutine(GetEventSystem());
+
             if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Joystick1Button4))
             {
                 currentTabIndex = ((currentTabIndex - 1) % tabButtons.Count + tabButtons.Count) % tabButtons.Count;
