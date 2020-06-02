@@ -2,32 +2,54 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class ExtensionMethods
+namespace Catavaneer.Extensions
 {
-    public static List<T> GetAllComponentsOfType<T>(this Transform root, List<T> list = null, bool addRoot = true) where T : MonoBehaviour
+    public static class ExtensionMethods
     {
-        if (list == null || list.Count <= 0)
-            list = new List<T>();
-
-
-        if (addRoot)
+        #region PUBLIC STATIC METHODS
+        public static List<Transform> GetAllTransformInHierachy(this Transform root, List<Transform> transformList = null, bool addRoot = true)
         {
-            T rootTComponent = root.GetComponent<T>();
+            if (transformList == null)
+                transformList = new List<Transform>();
 
-            if (rootTComponent)
-                list.Add(rootTComponent);
+
+            if (addRoot)
+                transformList.Add(root);
+
+            foreach (Transform branch in root)
+            {
+                GetAllTransformInHierachy(branch, transformList, false);
+                transformList.Add(branch);
+            }
+
+            return transformList;
         }
 
-        foreach (Transform child in root)
+        public static List<T> GetAllComponentsOfTypeInHierachy<T>(this Transform root, List<T> genericList = null, bool addRoot = true) where T : MonoBehaviour
         {
-            T item = child.GetComponent<T>();
+            if (genericList == null || genericList.Count <= 0)
+                genericList = new List<T>();
 
-            if (item)
-                list.Add(item);
+            if (addRoot)
+            {
+                T rootComponent = root.GetComponent<T>();
 
-            GetAllComponentsOfType(child, list, false);
+                if (rootComponent)
+                    genericList.Add(rootComponent);
+            }
+
+            foreach (Transform child in root)
+            {
+                GetAllComponentsOfTypeInHierachy(child, genericList, false);
+
+                T childComponent = child.GetComponent<T>();
+
+                if (childComponent)
+                    genericList.Add(childComponent);
+            }
+
+            return genericList;
         }
-
-        return list;
+        #endregion
     }
 }
