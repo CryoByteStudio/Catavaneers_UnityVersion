@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float dodgeSpeed = 3.15f;
     [SerializeField] float dodgeTime = 0.0f;
     [SerializeField] float straffSensitiviy = 30.0f;
+    [SerializeField] Animator animator = null;
 
     Vector3 LTumbInput = new Vector3(0,0,0);
     Vector3 RTumbInput = new Vector3(0, 0, 0);
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         health = GetComponent<HealthComp>();
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -111,7 +113,7 @@ public class PlayerController : MonoBehaviour
                     LTumbInput = Vector3.zero;
                     RTumbInput = Vector3.zero;
                     leftInputMagnitud = 0;
-                    GetComponent<Animator>().SetFloat("Walk", leftInputMagnitud);
+                    animator.SetFloat("Walk", leftInputMagnitud);
                     break;
                 default:
                     AxisInput();
@@ -130,10 +132,9 @@ public class PlayerController : MonoBehaviour
     private void CharacterMove(float weight, float reverse, float slow)
     {
         leftInputMagnitud = LTumbInput.magnitude;
-     //   Debug.Log("l input magnitud: " + leftInputMagnitud);
         float movementFraction = (speed * reverse* leftInputMagnitud)/weight;
         movementFraction = movementFraction / slow;
-        GetComponent<Animator>().SetFloat("Walk", leftInputMagnitud);
+        animator.SetFloat("Walk", Input.GetAxis(inputVerticalLeftThumb));
         transform.position += LTumbInput * Time.deltaTime * movementFraction;
     }
     void Dodge()
@@ -168,19 +169,19 @@ public class PlayerController : MonoBehaviour
         float clockwise = angleDir(transform.forward, LTumbInput.normalized, Vector3.up);
         if (curAngle < straffSensitiviy)
         {
-            GetComponent<Animator>().SetInteger("Strafe", 0);
+            animator.SetInteger("Strafe", 0);
         }
         if ((curAngle > straffSensitiviy && curAngle < 180 - straffSensitiviy && clockwise < 0))
         {
-            GetComponent<Animator>().SetInteger("Strafe", -1);
+            animator.SetInteger("Strafe", -1);
         }
         if ((curAngle > straffSensitiviy && curAngle < 180- straffSensitiviy && clockwise > 0))
         {
-            GetComponent<Animator>().SetInteger("Strafe", 1);
+            animator.SetInteger("Strafe", 1);
         }
         if ((curAngle > 180 - straffSensitiviy))
         {
-            GetComponent<Animator>().SetInteger("Strafe", 0);
+            animator.SetInteger("Strafe", 0);
         }
     }
     public void SetWeaponWeight(float currentWeapon)
