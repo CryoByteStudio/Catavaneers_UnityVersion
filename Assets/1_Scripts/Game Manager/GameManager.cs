@@ -128,6 +128,7 @@ public class GameManager : MonoBehaviour
        if(FindObjectOfType<CharacterManager>())
         {
             Destroy(FindObjectOfType<CharacterManager>().gameObject);
+            
         }
     }
 
