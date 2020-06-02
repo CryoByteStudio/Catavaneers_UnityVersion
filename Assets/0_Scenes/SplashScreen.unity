@@ -141,21 +141,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &114653946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1251150779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
 --- !u!224 &150803141
 RectTransform:
   m_ObjectHideFlags: 0
@@ -295,8 +280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VolMixer: {fileID: 24100000, guid: 0100b211c049d924493f05ab8052885b, type: 2}
   VolumeSlider: {fileID: 2945759446818804829}
-  QualityDropDown: {fileID: 1485138687}
-  ResolutionDropDown: {fileID: 1318803299}
+  QualityDropDown: {fileID: 0}
+  ResolutionDropDown: {fileID: 0}
   FullScreenToggle: {fileID: 2945759447114560840}
   MuteToggle: {fileID: 2475219636889054344}
 --- !u!1 &179779504
@@ -4979,7 +4964,6 @@ GameObject:
   - component: {fileID: 1251150782}
   - component: {fileID: 1251150781}
   - component: {fileID: 1251150780}
-  - component: {fileID: 114653946}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
