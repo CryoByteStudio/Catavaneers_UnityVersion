@@ -115,7 +115,7 @@ namespace SpawnSystem
             if (!CanSpawn) return;
 
             Wave.number++;
-            print("Wave Number: " + Wave.number);
+           // print("Wave Number: " + Wave.number);
             currentWave = waves[Wave.number - 1];
             currentWave.Init();
 
@@ -131,7 +131,7 @@ namespace SpawnSystem
 
             nextWaveTime = timeElapsed + currentWave.EnemyCount * currentWave.spawnInterval + timeBetweenWaves;
             EnemyLeftToSpawn = currentWave.EnemyCount;
-            print("Enemy Left To Spawn: " + EnemyLeftToSpawn);
+            //print("Enemy Left To Spawn: " + EnemyLeftToSpawn);
         }
 
         /// <summary>

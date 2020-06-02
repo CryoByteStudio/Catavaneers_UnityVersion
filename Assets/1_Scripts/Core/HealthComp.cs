@@ -11,13 +11,19 @@ using Catavaneer;
 public enum CharacterClass { Player, Enemy, Caravan, Obj };
 public enum DifficultyLevel { Normal, IronCat, Catapocalypse, Catfight};
 
+
+
 public class HealthComp : MonoBehaviour
 {
-    //[SerializeField] private DifficultyLevel gameDifficulty = DifficultyLevel.Normal;
+    public ParticleSystem hitParticle;
+    [SerializeField] private DifficultyLevel gameDifficulty = DifficultyLevel.Normal;
     public CharacterClass myClass;
     public int startHealth = 100;
     public GameManager gman;
-   
+    public bool caravan = false;
+    public int damagethreshold;
+    public int thresholdamount;
+
     public SoundClipsInts soundCue = SoundClipsInts.Death;
     public float percentageOfGoldToKeep = 75f;
 
@@ -48,6 +54,7 @@ public class HealthComp : MonoBehaviour
 
     private void Start()
     {
+
         rb = GetComponent<Rigidbody>();
         dropController = GetComponent<DropController>();
         objectPooler = FindObjectOfType<ObjectPooler>();
@@ -141,7 +148,7 @@ public class HealthComp : MonoBehaviour
             }
             //if (gameDifficulty == DifficultyLevel.Normal)
             //{
-                
+
             //}
             //else if (gameDifficulty == DifficultyLevel.IronCat)
             //{
@@ -158,7 +165,7 @@ public class HealthComp : MonoBehaviour
             //    health_slider.value = currentHealth;
             //}
         }
-        
+
     }
 
     private void Update()
@@ -176,7 +183,7 @@ public class HealthComp : MonoBehaviour
             }
             else { AddHealth(1); }
         }
-    
+
     }
 
     private void Reset()
@@ -341,7 +348,7 @@ public class HealthComp : MonoBehaviour
         //}
 
         playerMeshRenderer.enabled = false;
-        
+
         //GetComponent<CapsuleCollider>().enabled = false;
         transform.position = playerSpawnPos.position;
 
@@ -408,8 +415,30 @@ public class HealthComp : MonoBehaviour
     /// </summary>
     private void DisplayHealth()
     {
-        if(healthSlider)
-        healthSlider.value = currentHealth;
+
+        if (hitParticle)
+        {
+            GameObject temp = Instantiate(hitParticle.gameObject);
+            temp.transform.parent = null;
+            temp.transform.position = this.transform.position;
+
+            temp.GetComponent<ParticleSystem>().Play();
+            Destroy(temp.gameObject, 1f);
+        }
+
+        if(health_slider)
+        health_slider.value = currentHealth;
+        if (caravan)
+        {
+            if (currentHealth <= 0)
+            {
+                GetComponent<CaravanDamage>().TriggerFinalDamageStageParticle();
+            }
+            else if (currentHealth <= damagethreshold) {
+                damagethreshold -= thresholdamount;
+            GetComponent<CaravanDamage>().TriggerDamageStageParticles();
+            }
+        }
     }
 }
 
@@ -422,7 +451,7 @@ public class MyScriptEditor : Editor
         base.OnInspectorGUI();
 
         HealthComp healthComp = target as HealthComp;
-        
+
         healthComp.debug = GUILayout.Toggle(healthComp.debug, "Debug");
 
         if (healthComp.debug)

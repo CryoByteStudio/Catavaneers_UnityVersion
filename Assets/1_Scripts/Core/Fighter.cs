@@ -43,6 +43,7 @@ public class Fighter : MonoBehaviour
             timeSinceLastAttack = 0;
             GetComponent<Animator>().SetTrigger("Attack");
             ShootProjectile();
+            
         }
 
         //if(Input.GetButtonDown("Attack"))
@@ -62,13 +63,14 @@ public class Fighter : MonoBehaviour
         GetComponent<PlayerController>().SetWeaponWeight(currentWeapon.GetWeaponWeight());
         Animator animator = GetComponent<Animator>();
         weapon.Spawn(rightHandTransform, leftHandTransform, animator);
-        Debug.Log(currentWeapon.name);
+        //Debug.Log(currentWeapon.name);
         foreach(GameObject weaponCollider in weaponColliders)
         {
             if (weaponCollider.name == currentWeapon.name)
             {
                 Debug.Log(weaponCollider.name);
-                weaponCollider.SetActive(true);
+                weaponCollider.gameObject.SetActive(true);
+                //weaponCollider.GetComponent<BoxCollider>().enabled = true;
                 currentWeaponCollider = weaponCollider.GetComponent<BoxCollider>();
             }
         }
@@ -109,9 +111,9 @@ public class Fighter : MonoBehaviour
     //end of old attack system from animation event
     float GetCurrentAttackSpeed()
     {
-        Debug.Log("character attack speed: " + CharacterAttackSpeed);
-        Debug.Log("weapon attack speed: " + currentWeapon.GetWeaponAttackSpeed());
-        Debug.Log("final attack speed: " + CharacterAttackSpeed * currentWeapon.GetWeaponAttackSpeed());
+       // Debug.Log("character attack speed: " + CharacterAttackSpeed);
+       // Debug.Log("weapon attack speed: " + currentWeapon.GetWeaponAttackSpeed());
+       // Debug.Log("final attack speed: " + CharacterAttackSpeed * currentWeapon.GetWeaponAttackSpeed());
         return CharacterAttackSpeed * currentWeapon.GetWeaponAttackSpeed();
     }
     int GetCurrentAttackDamage()
@@ -125,12 +127,16 @@ public class Fighter : MonoBehaviour
     void StartHit()
     {
         Debug.Log("its on");
-        currentWeaponCollider.enabled = true;
+        Debug.Log(currentWeaponCollider);
+        currentWeaponCollider.GetComponent<BoxCollider>().enabled = true;
+        //currentWeaponCollider.enabled = true;
     }
     void EndHit()
     {
         Debug.Log("its off");
-        currentWeaponCollider.enabled = false;
+        Debug.Log(currentWeaponCollider);
+        // currentWeaponCollider.enabled = false;
+        currentWeaponCollider.GetComponent<BoxCollider>().enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
