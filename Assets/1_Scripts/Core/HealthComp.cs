@@ -8,14 +8,20 @@ using AI;
 public enum CharacterClass { Player, Enemy, Caravan, Obj };
 public enum DifficultyLevel { Normal, IronCat, Catapocalypse, Catfight};
 
+
+
 public class HealthComp : MonoBehaviour
 {
+    public ParticleSystem hitParticle;
     [SerializeField] private DifficultyLevel gameDifficulty = DifficultyLevel.Normal;
     public CharacterClass myClass;
     public int startHealth = 100;
     public bool debug;
     public int damageTakenPerSecond;
     public GameManager gman;
+    public bool caravan = false;
+    public int damagethreshold;
+    public int thresholdamount;
    
     public SoundClipsInts soundCue = SoundClipsInts.Death;
     public float percentageOfGoldToKeep = 75f;
@@ -44,6 +50,7 @@ public class HealthComp : MonoBehaviour
 
     private void Start()
     {
+        
         rb = GetComponent<Rigidbody>();
         dropController = GetComponent<DropController>();
         objectPooler = FindObjectOfType<ObjectPooler>();
@@ -170,12 +177,16 @@ public class HealthComp : MonoBehaviour
     /// <param name="weapon_force"> The amount of knockback_force from the weapon </param>"
     public void TakeDamage(Transform damageDealer, int amount, float weapon_force)
     {
+
         if (!is_Dead)
         {
             currentHealth -= amount;
             currentHealth = Mathf.Max(0, currentHealth);
             DisplayHealth();
 
+            
+           
+            
             KnockBack((damageDealer.position - transform.position) * 2f * weapon_force);
 
             if (currentHealth == 0)
@@ -341,8 +352,30 @@ public class HealthComp : MonoBehaviour
     /// </summary>
     private void DisplayHealth()
     {
+
+        if (hitParticle)
+        {
+            GameObject temp = Instantiate(hitParticle.gameObject);
+            temp.transform.parent = null;
+            temp.transform.position = this.transform.position;
+           
+            temp.GetComponent<ParticleSystem>().Play();
+            Destroy(temp.gameObject, 1f);
+        }
+
         if(health_slider)
         health_slider.value = currentHealth;
+        if (caravan)
+        {
+            if (currentHealth <= 0)
+            {
+                GetComponent<CaravanDamage>().TriggerFinalDamageStageParticle();
+            }
+            else if (currentHealth <= damagethreshold) {
+                damagethreshold -= thresholdamount;
+            GetComponent<CaravanDamage>().TriggerDamageStageParticles(); 
+            }
+        }
     }
 }
 
