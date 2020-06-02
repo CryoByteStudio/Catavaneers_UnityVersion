@@ -431,8 +431,9 @@ public class HealthComp : MonoBehaviour
             Destroy(temp.gameObject, 1f);
         }
 
-        if(health_slider)
-        health_slider.value = currentHealth;
+        if (healthSlider)
+            healthSlider.value = currentHealth;
+
         if (caravan)
         {
             if (currentHealth <= 0)
