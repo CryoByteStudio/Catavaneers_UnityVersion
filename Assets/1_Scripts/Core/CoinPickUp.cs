@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum CoinType { Gold = 100, Silver = 50, Copper = 10}
+enum CoinType { Gold = 30, Silver = 20, Copper = 10}
 public class CoinPickUp : MonoBehaviour
 {
     [SerializeField] CoinType Coin;

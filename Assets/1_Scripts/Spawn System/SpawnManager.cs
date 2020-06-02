@@ -130,7 +130,7 @@ namespace SpawnSystem
 
             nextWaveTime = timeElapsed + currentWave.EnemyCount * currentWave.spawnInterval + timeBetweenWaves;
             EnemyLeftToSpawn = currentWave.EnemyCount;
-            print("Enemy Left To Spawn: " + EnemyLeftToSpawn);
+            //print("Enemy Left To Spawn: " + EnemyLeftToSpawn);
         }
 
         /// <summary>
