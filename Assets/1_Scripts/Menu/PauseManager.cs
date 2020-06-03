@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Catavaneer.MenuSystem;
 
 public class PauseManager : MonoBehaviour
 {
@@ -56,13 +57,15 @@ public class PauseManager : MonoBehaviour
     public void BackToMainMenu()
     {
         Time.timeScale = 1f;
-        if (FindObjectOfType<GameManager>())
-        {
-            FindObjectOfType<GameManager>().ToMainMenu();
-        }
-        else
-        {
-            SceneManager.LoadScene("Menu_Main");
-        }
+        //if (FindObjectOfType<GameManager>())
+        //{
+        //    FindObjectOfType<GameManager>().ToMainMenu();
+        //}
+        //else
+        //{
+        //    MenuManager.LoadMainMenuLevel(false);
+        //}
+
+        MenuManager.LoadMainMenuLevel(false);
     }
 }
