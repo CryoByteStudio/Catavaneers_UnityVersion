@@ -33,7 +33,7 @@ namespace Catavaneer.Singleton
 
         protected virtual void OnEnable()
         {
-            LevelLoader.SceneLoaded += SceneLoadedHandler;
+            LevelLoader.OnSceneLoaded += SceneLoadedHandler;
         }
 
         protected virtual void SceneLoadedHandler(Scene scene, LoadSceneMode mode)
@@ -43,7 +43,7 @@ namespace Catavaneer.Singleton
 
         protected virtual void OnDisable()
         {
-            LevelLoader.SceneLoaded -= SceneLoadedHandler;
+            LevelLoader.OnSceneLoaded -= SceneLoadedHandler;
         }
 
         #endregion

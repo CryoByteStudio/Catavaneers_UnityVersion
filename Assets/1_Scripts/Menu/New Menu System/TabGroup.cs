@@ -14,30 +14,42 @@ namespace Catavaneer.MenuSystem
         [SerializeField] private Color tabActive;
 
         private TabButton selectedTab;
-        private static EventSystem eventSystem;
+        private EventSystem eventSystem;
         private int currentTabIndex = 0;
+
+        private void Awake()
+        {
+            Reset();
+        }
 
         private void OnEnable()
         {
-            eventSystem = FindObjectOfType<EventSystem>();
+            LevelManagement.LevelLoader.OnSceneLoaded += OnSceneLoadedHandler;
+        }
+
+        private void OnSceneLoadedHandler(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+        {
+            Reset();
         }
 
         private void OnDisable()
         {
+            LevelManagement.LevelLoader.OnSceneLoaded -= OnSceneLoadedHandler;
             eventSystem = null;
         }
 
         private IEnumerator GetEventSystem()
         {
-            if (eventSystem) yield return null;
-
             eventSystem = FindObjectOfType<EventSystem>();
             yield return null;
         }
 
         private void Update()
         {
-            StartCoroutine(GetEventSystem());
+            if (!eventSystem)
+            {
+                StartCoroutine(GetEventSystem());
+            }
 
             if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Joystick1Button4))
             {
@@ -50,6 +62,12 @@ namespace Catavaneer.MenuSystem
                 currentTabIndex = ((currentTabIndex + 1) % tabButtons.Count + tabButtons.Count) % tabButtons.Count;
                 OnTabSelected(tabButtons[currentTabIndex]);
             }
+        }
+
+        private void Reset()
+        {
+            eventSystem = FindObjectOfType<EventSystem>();
+            OnTabSelected(tabButtons[0]);
         }
 
         public void Subscribe(TabButton button)
@@ -91,7 +109,10 @@ namespace Catavaneer.MenuSystem
             if (selectedTab != button)
             {
                 currentTabIndex = tabButtons.IndexOf(button);
-                selectedTab.tabPage.SetActive(false);
+
+                if (selectedTab)
+                    selectedTab.tabPage.SetActive(false);
+
                 selectedTab = button;
             }
 

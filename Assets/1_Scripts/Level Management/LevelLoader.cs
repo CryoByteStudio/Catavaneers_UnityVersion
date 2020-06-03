@@ -22,7 +22,7 @@ namespace Catavaneer.LevelManagement
         #region PROPERTIES
 
         private static object objectLock = new object();
-        public static event UnityAction<Scene, LoadSceneMode> SceneLoaded
+        public static event UnityAction<Scene, LoadSceneMode> OnSceneLoaded
         {
             add
             {
