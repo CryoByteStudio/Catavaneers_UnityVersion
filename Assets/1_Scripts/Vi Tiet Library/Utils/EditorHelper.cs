@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 
-namespace Learning.Utils
+namespace ViTiet.Utils
 {
     public static class EditorHelper
     {
@@ -52,6 +53,30 @@ namespace Learning.Utils
             }
 
             return false;
+        }
+
+        public static void NotImplementedException(string message = null)
+        {
+            if (!string.IsNullOrEmpty(message))
+                throw new NotImplementedException(message);
+            else
+                throw new NotImplementedException();
+        }
+
+        public static void ArgumentNullException(string paramName = null)
+        {
+            if (!string.IsNullOrEmpty(paramName))
+                throw new ArgumentNullException(paramName);
+            else
+                throw new ArgumentNullException();
+        }
+
+        public static void NotSupportedException(string message = null)
+        {
+            if (!string.IsNullOrEmpty(message))
+                throw new NotSupportedException(message);
+            else
+                throw new NotSupportedException();
         }
 
         #endregion

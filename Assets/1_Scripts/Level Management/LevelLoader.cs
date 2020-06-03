@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using CustomMathLibrary;
 using Catavaneer.MenuSystem;
-using Catavaneer.Utils;
+using ViTiet.Utils;
 
 namespace Catavaneer.LevelManagement
 {

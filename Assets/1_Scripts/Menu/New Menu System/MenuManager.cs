@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Catavaneer.Singleton;
-using Catavaneer.Utils;
+using ViTiet.Utils;
 using Catavaneer.LevelManagement;
 using UnityEngine.SceneManagement;
 

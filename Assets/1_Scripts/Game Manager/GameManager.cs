@@ -1,6 +1,6 @@
 ﻿using Catavaneer.LevelManagement;
 using Catavaneer.Singleton;
-using Catavaneer.Utils;
+using ViTiet.Utils;
 using ObjectPooling;
 using SpawnSystem;
 using System.Collections;

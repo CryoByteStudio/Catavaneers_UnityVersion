@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Catavaneer.LevelManagement;
-using Catavaneer.Utils;
+using ViTiet.Utils;
 
 namespace Catavaneer.MenuSystem
 {
@@ -11,6 +11,7 @@ namespace Catavaneer.MenuSystem
     {
         [SerializeField] protected float delay = 0f;
         [SerializeField] protected Slider loadingBar;
+        [SerializeField] protected GameObject textObject;
 
         protected ScreenFader screenFader;
         protected CanvasGroup canvasGroup;
@@ -56,10 +57,12 @@ namespace Catavaneer.MenuSystem
 
         private IEnumerator FadeOnRoutine()
         {
+            textObject?.SetActive(false);
             canvasGroup.interactable = false;
             screenFader.FadeOn();
             yield return new WaitForSeconds(screenFader.FadeOnDuration);
             canvasGroup.interactable = true;
+            textObject?.SetActive(true);
         }
 
         #endregion

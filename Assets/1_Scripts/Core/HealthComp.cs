@@ -6,7 +6,7 @@ using System.Collections;
 using AI;
 using SpawnSystem;
 using UnityEditor;
-using Catavaneer.Utils;
+using ViTiet.Utils;
 using Catavaneer;
 
 public enum CharacterClass { Player, Enemy, Caravan, Obj };

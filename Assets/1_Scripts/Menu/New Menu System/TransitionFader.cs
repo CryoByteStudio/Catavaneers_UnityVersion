@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Catavaneer.LevelManagement;
-using Catavaneer.Utils;
+using ViTiet.Utils;
 
 namespace Catavaneer.MenuSystem
 {
