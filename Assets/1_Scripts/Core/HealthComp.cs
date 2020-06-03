@@ -4,6 +4,10 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using AI;
+using SpawnSystem;
+using UnityEditor;
+using ViTiet.Utils;
+using Catavaneer;
 
 public enum CharacterClass { Player, Enemy, Caravan, Obj };
 public enum DifficultyLevel { Normal, IronCat, Catapocalypse, Catfight};
@@ -12,19 +16,15 @@ public enum DifficultyLevel { Normal, IronCat, Catapocalypse, Catfight};
 
 public class HealthComp : MonoBehaviour
 {
-    public ParticleSystem hitParticle;
     [SerializeField] private DifficultyLevel gameDifficulty = DifficultyLevel.Normal;
     public CharacterClass myClass;
     public int startHealth = 100;
-    public bool debug;
-    public int damageTakenPerSecond;
     public GameManager gman;
     public bool caravan = false;
     public int damagethreshold;
     public int thresholdamount;
-   
+
     public SoundClipsInts soundCue = SoundClipsInts.Death;
-    public float percentageOfGoldToKeep = 75f;
 
     [SerializeField]
     private int currentHealth = 0;
@@ -35,11 +35,14 @@ public class HealthComp : MonoBehaviour
     [SerializeField]
     Transform playerSpawnPos;
     [SerializeField]
-    SkinnedMeshRenderer playerMeshRenderer;
+    MeshRenderer playerMeshRenderer;
+
+    GameObject hitParticle = null;
 
     private float nextDamageTime = 0;
     private float timeElapsed = 0;
-    private bool is_Dead = false;
+    float percentageOfGoldToKeep = 100f;
+    private bool isDead = false;
     private Rigidbody rb;
     private DropController dropController;
 
@@ -48,28 +51,31 @@ public class HealthComp : MonoBehaviour
     private static ObjectPooler objectPooler;
     Animator animator;
 
+    [HideInInspector] public bool debug;
+    [HideInInspector] public int damageTakenPerSecond;
+
     private void Start()
     {
-        
         rb = GetComponent<Rigidbody>();
         dropController = GetComponent<DropController>();
         objectPooler = FindObjectOfType<ObjectPooler>();
         animator = GetComponent<Animator>();
-        gman = FindObjectOfType<GameManager>();
 
-        if (FindObjectOfType<GameDifficultyManager>())
-        {
-            gameDifficulty = FindObjectOfType<GameDifficultyManager>().dif;
-        }
+        //if (FindObjectOfType<GameDifficultyManager>())
+        //{
+        //    gameDifficulty = FindObjectOfType<GameDifficultyManager>().dif;
+        //}
+
         if (myClass == CharacterClass.Enemy)
         {
             //dropController = GetComponent<DropController>();
             //objectPooler = FindObjectOfType<ObjectPooler>();
-        }else if(myClass == CharacterClass.Caravan)
+        }
+        else if (myClass == CharacterClass.Caravan)
         {
 
         }
-        else if(myClass == CharacterClass.Obj)
+        else if (myClass == CharacterClass.Obj)
         {
             //dropController = GetComponent<DropController>();
         }
@@ -83,42 +89,84 @@ public class HealthComp : MonoBehaviour
         if (GetComponent<PlayerInventory>())
         {
             //set % of gold to lose based on difficulty
-            if (gameDifficulty == DifficultyLevel.Normal)
+            switch (GameManager.DifficultyLevel)
             {
-                percentageOfGoldToKeep = 75f;
+                case DifficultyLevel.Normal:
+                    percentageOfGoldToKeep = 0.75f;
+                    break;
+                case DifficultyLevel.IronCat:
+                    percentageOfGoldToKeep = 0.50f;
+                    break;
+                case DifficultyLevel.Catapocalypse:
+                    percentageOfGoldToKeep = 0.25f;
+                    break;
+                case DifficultyLevel.Catfight:
+                    EditorHelper.NotSupportedException("DifficultyLevel.Catfight");
+                    break;
+                default:
+                    EditorHelper.NotSupportedException("default");
+                    break;
             }
-            else if (gameDifficulty == DifficultyLevel.IronCat)
-            {
-                percentageOfGoldToKeep = 50f;
-            }
-            else if (gameDifficulty == DifficultyLevel.Catapocalypse)
-            {
-                percentageOfGoldToKeep = 25f;
-            }
+            //if (gameDifficulty == DifficultyLevel.Normal)
+            //{
+            //    percentageOfGoldToKeep = 75f;
+            //}
+            //else if (gameDifficulty == DifficultyLevel.IronCat)
+            //{
+            //    percentageOfGoldToKeep = 50f;
+            //}
+            //else if (gameDifficulty == DifficultyLevel.Catapocalypse)
+            //{
+            //    percentageOfGoldToKeep = 25f;
+            //}
         }
         else
         {
             //set % of gold to lose based on difficulty
-            if (gameDifficulty == DifficultyLevel.Normal)
+            switch (GameManager.DifficultyLevel)
             {
-                
+                case DifficultyLevel.Normal:
+                    EditorHelper.NotSupportedException("DifficultyLevel.Normal");
+                    break;
+                case DifficultyLevel.IronCat:
+                    currentHealth *= 2;
+                    startHealth *= 2;
+                    health_slider.maxValue = currentHealth;
+                    health_slider.value = currentHealth;
+                    break;
+                case DifficultyLevel.Catapocalypse:
+                    currentHealth *= 3;
+                    startHealth *= 3;
+                    health_slider.maxValue = currentHealth;
+                    health_slider.value = currentHealth;
+                    break;
+                case DifficultyLevel.Catfight:
+                    EditorHelper.NotSupportedException("DifficultyLevel.Catfight");
+                    break;
+                default:
+                    EditorHelper.NotSupportedException("default");
+                    break;
             }
-            else if (gameDifficulty == DifficultyLevel.IronCat)
-            {
-                currentHealth *= 2;
-                startHealth *= 2;
-                health_slider.maxValue = currentHealth;
-                health_slider.value = currentHealth;
-            }
-            else if (gameDifficulty == DifficultyLevel.Catapocalypse)
-            {
-                currentHealth *= 3;
-                startHealth *= 3;
-                health_slider.maxValue = currentHealth;
-                health_slider.value = currentHealth;
-            }
+            //if (gameDifficulty == DifficultyLevel.Normal)
+            //{
+
+            //}
+            //else if (gameDifficulty == DifficultyLevel.IronCat)
+            //{
+            //    currentHealth *= 2;
+            //    startHealth *= 2;
+            //    health_slider.maxValue = currentHealth;
+            //    health_slider.value = currentHealth;
+            //}
+            //else if (gameDifficulty == DifficultyLevel.Catapocalypse)
+            //{
+            //    currentHealth *= 3;
+            //    startHealth *= 3;
+            //    health_slider.maxValue = currentHealth;
+            //    health_slider.value = currentHealth;
+            //}
         }
-        
+
     }
 
     private void Update()
@@ -128,14 +176,25 @@ public class HealthComp : MonoBehaviour
 
         timeElapsed += Time.deltaTime;
         if (myClass == CharacterClass.Caravan && is_Regenerating) {
-            dmg_percentage = currentHealth % (startHealth / (int)gameDifficulty);
+            //dmg_percentage = currentHealth % (startHealth / (int)gameDifficulty);
+            dmg_percentage = currentHealth % (startHealth / (int)GameManager.DifficultyLevel);
             if (dmg_percentage == 0)
             {
                 is_Regenerating = false;
             }
             else { AddHealth(1); }
         }
-    
+
+    }
+
+    private void Reset()
+    {
+        isDead = false;
+        currentHealth = startHealth;
+        health_slider.value = currentHealth;
+        playerMeshRenderer.enabled = true;
+        GetComponent<CapsuleCollider>().enabled = true;
+        health_slider.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -156,7 +215,7 @@ public class HealthComp : MonoBehaviour
     /// <param name="amount"> The amount that will be subtracted from health </param>
     public void TakeDamage(int amount)
     {
-        if (!is_Dead)
+        if (!isDead)
         {
             currentHealth -= amount;
             currentHealth = Mathf.Max(0, currentHealth);
@@ -174,20 +233,16 @@ public class HealthComp : MonoBehaviour
     /// </summary>
     /// <param name="damageDealer"> The transform of the damage dealer </param>
     /// <param name="amount"> The amount that will be subtracted from health </param>
-    /// <param name="weapon_force"> The amount of knockback_force from the weapon </param>"
-    public void TakeDamage(Transform damageDealer, int amount, float weapon_force)
+    /// <param name="weaponForce"> The amount of knockback_force from the weapon </param>"
+    public void TakeDamage(Transform damageDealer, int amount, float weaponForce)
     {
-
-        if (!is_Dead)
+        if (!isDead)
         {
             currentHealth -= amount;
             currentHealth = Mathf.Max(0, currentHealth);
             DisplayHealth();
 
-            
-           
-            
-            KnockBack((damageDealer.position - transform.position) * 2f * weapon_force);
+            KnockBack((damageDealer.position - transform.position) * 2f * weaponForce);
 
             if (currentHealth == 0)
             {
@@ -212,7 +267,7 @@ public class HealthComp : MonoBehaviour
     /// </summary>
     private void Dead()
     {
-        is_Dead = true;
+        isDead = true;
         if (animator != null)
         {
             animator.SetTrigger("Die");
@@ -221,11 +276,12 @@ public class HealthComp : MonoBehaviour
         switch (myClass)
         {
             //case CharacterClass.Player:
-                //MusicManager.Instance.PlaySoundTrack(soundCue);
-                //break;
+            //MusicManager.Instance.PlaySoundTrack(soundCue);
+            //break;
             case CharacterClass.Player:
                 Debug.Log("Player Dead");
-                if (gameDifficulty == DifficultyLevel.Catfight)
+                //if (gameDifficulty == DifficultyLevel.Catfight)
+                if (GameManager.DifficultyLevel == DifficultyLevel.Catfight)
                 {
                     if (GetComponent<PlayerInventory>() == FindObjectOfType<Goldbag>().holdersInventory)
                     {
@@ -243,6 +299,7 @@ public class HealthComp : MonoBehaviour
             case CharacterClass.Enemy:
                 dropController.DropItem();
                 ObjectPooler.SetInactive(this.gameObject);
+                SpawnManager.EnemiesAlive--;
                 break;
         }
     }
@@ -254,35 +311,48 @@ public class HealthComp : MonoBehaviour
         StartCoroutine(Respawn());
     }
 
-    void RemoveGoldFromInventory()
-    {
-        //get the inventory to remove gold based on percentage
-        GetComponent<PlayerInventory>().gold = Mathf.RoundToInt((float)GetComponent<PlayerInventory>().gold / 100 * percentageOfGoldToKeep);
-    }
     private IEnumerator Respawn()
     {
-        if (gameDifficulty == DifficultyLevel.Normal)
+        switch (GameManager.DifficultyLevel)
         {
-            yield return new WaitForSeconds(4);
+            case DifficultyLevel.Normal:
+                yield return new WaitForSeconds(4);
+                break;
+            case DifficultyLevel.IronCat:
+                yield return new WaitForSeconds(8);
+                break;
+            case DifficultyLevel.Catapocalypse:
+                yield return new WaitForSeconds(12);
+                break;
+            case DifficultyLevel.Catfight:
+                EditorHelper.NotSupportedException("DifficultyLevel.Catfight");
+                break;
+            default:
+                EditorHelper.NotSupportedException("default");
+                break;
         }
-        else if (gameDifficulty == DifficultyLevel.IronCat)
-        {
-            yield return new WaitForSeconds(8);
-        }
-        else
-        {
-            yield return new WaitForSeconds(12);
-        }
-        
+        //if (gameDifficulty == DifficultyLevel.Normal)
+        //{
+        //    yield return new WaitForSeconds(4);
+        //}
+        //else if (gameDifficulty == DifficultyLevel.IronCat)
+        //{
+        //    yield return new WaitForSeconds(8);
+        //}
+        //else
+        //{
+        //    yield return new WaitForSeconds(12);
+        //}
+
         playerMeshRenderer.enabled = false;
-        
+
         //GetComponent<CapsuleCollider>().enabled = false;
-        this.transform.position = playerSpawnPos.position;
+        transform.position = playerSpawnPos.position;
 
         //make sure its a player first
-        if (GetComponent<PlayerInventory>())
+        if (myClass == CharacterClass.Player)
         {
-            RemoveGoldFromInventory();
+            GetComponent<PlayerInventory>().RemoveGoldFromInventory(percentageOfGoldToKeep);
         }
         health_slider.gameObject.SetActive(false);
         StartCoroutine(Spawn());
@@ -291,20 +361,10 @@ public class HealthComp : MonoBehaviour
     private IEnumerator Spawn()
     {
         yield return new WaitForSeconds(6);
-        is_Dead = false;
-        animator.SetTrigger("Spawn");
-        currentHealth = startHealth;
-        health_slider.value = currentHealth;
-        playerMeshRenderer.enabled = true;
-        GetComponent<CapsuleCollider>().enabled = true;
+        Reset();
         Controller.AddToTargetList(this);
+        animator.SetTrigger("Spawn");
         Debug.Log("Respawn");
-
-
-       
-        health_slider.gameObject.SetActive(true);
-
-
     }
 
     /// <summary>
@@ -327,16 +387,24 @@ public class HealthComp : MonoBehaviour
     }
 
     /// <summary>
+    /// returns StartHealth amount
+    /// </summary>
+    public int GetStartHealth()
+    {
+        return startHealth;
+    }
+
+    /// <summary>
     /// Returns if character is dead
     /// </summary>
     public bool IsDead()
     {
-        return is_Dead;
+        return isDead;
     }
 
     public void SetIsDead(bool isDead)
     {
-        is_Dead = isDead;
+        this.isDead = isDead;
     }
 
     /// <summary>
@@ -358,13 +426,14 @@ public class HealthComp : MonoBehaviour
             GameObject temp = Instantiate(hitParticle.gameObject);
             temp.transform.parent = null;
             temp.transform.position = this.transform.position;
-           
+
             temp.GetComponent<ParticleSystem>().Play();
             Destroy(temp.gameObject, 1f);
         }
 
-        if(health_slider)
-        health_slider.value = currentHealth;
+        if (health_slider)
+            health_slider.value = currentHealth;
+
         if (caravan)
         {
             if (currentHealth <= 0)
@@ -373,28 +442,27 @@ public class HealthComp : MonoBehaviour
             }
             else if (currentHealth <= damagethreshold) {
                 damagethreshold -= thresholdamount;
-            GetComponent<CaravanDamage>().TriggerDamageStageParticles(); 
+            GetComponent<CaravanDamage>().TriggerDamageStageParticles();
             }
         }
     }
 }
 
-//#if UNITY_EDITOR
-//[CustomEditor(typeof(HealthComp))]
-//public class MyScriptEditor : Editor
-//{
-//    override public void OnInspectorGUI()
-//    {
-//        var myScript = target as HealthComp;
+#if UNITY_EDITOR
+[CustomEditor(typeof(HealthComp))]
+public class MyScriptEditor : Editor
+{
+    override public void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
 
-//        myScript.startHealth = EditorGUILayout.FloatField("Start Health", myScript.startHealth);
-//        myScript.debug = GUILayout.Toggle(myScript.debug, "Debug");
+        HealthComp healthComp = target as HealthComp;
 
-//        if (myScript.debug)
-//            myScript.damageTakenPerSecond = EditorGUILayout.FloatField("Damage Taken Per Second", myScript.damageTakenPerSecond);
+        healthComp.debug = GUILayout.Toggle(healthComp.debug, "Debug");
 
-//        myScript.myClass = (CharacterClass)EditorGUILayout.EnumFlagsField(myScript.myClass);
+        if (healthComp.debug)
+            healthComp.damageTakenPerSecond = EditorGUILayout.IntField("Damage Taken Per Second", healthComp.damageTakenPerSecond);
 
-//    }
-//}
-//#endif
+    }
+}
+#endif

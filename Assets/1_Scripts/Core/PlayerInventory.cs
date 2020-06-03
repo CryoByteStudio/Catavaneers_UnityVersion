@@ -8,6 +8,7 @@ public class PlayerInventory : MonoBehaviour //Sasha
 {
     public SoundClipsInts soundCue = SoundClipsInts.Buying;
     public string playername;
+    public int playerindex;
     public int kills=0;
     public int gold=1000;
     public Item WeaponItem;
@@ -39,7 +40,15 @@ public class PlayerInventory : MonoBehaviour //Sasha
         cman= FindObjectOfType<CharacterManager>();
         if (cman)
         {
-            if (cman.charnames.Contains(name))
+            if (cman.playercount < playerindex)
+            {
+                this.gameObject.SetActive(false);
+            }
+            else
+            {
+
+            }
+            /*if (cman.charnames.Contains(name))
             {
                 this.playername = name;
                 //cman.charnames.Remove(name);
@@ -47,7 +56,7 @@ public class PlayerInventory : MonoBehaviour //Sasha
             else
             {
                 this.gameObject.SetActive(false);
-            }
+            }*/
         }
         health = GetComponent<HealthComp>();
         rb = GetComponent<Rigidbody>();
@@ -204,5 +213,9 @@ public class PlayerInventory : MonoBehaviour //Sasha
         NameUI.text = playername;
     }
 
+    public void RemoveGoldFromInventory(float percentageGoldToKeep)
+    {
+        gold = Mathf.RoundToInt(gold * percentageGoldToKeep);
+    }
 
 }
