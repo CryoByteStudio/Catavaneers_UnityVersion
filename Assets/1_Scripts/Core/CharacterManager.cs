@@ -15,7 +15,6 @@ public class CharacterManager : MonoBehaviour
     {
         playercount = Input.GetJoystickNames().Length;
         Debug.Log(playercount + " Players connected)");
-        DontDestroyOnLoad(this);
         charnames.Add(default);
         charnames.Add(default);
         charnames.Add(default);
