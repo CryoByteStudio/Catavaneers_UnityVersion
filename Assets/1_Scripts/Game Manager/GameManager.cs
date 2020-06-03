@@ -31,7 +31,7 @@ namespace Catavaneer
         protected override void Awake()
         {
             base.Awake();
-            //Reset();
+            Reset();
         }
 
         private void Update()
