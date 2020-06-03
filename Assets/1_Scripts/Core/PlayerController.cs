@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float dodgeSpeed = 3.15f;
     [SerializeField] float dodgeTime = 0.0f;
     [SerializeField] float straffSensitiviy = 30.0f;
-    [SerializeField] Animator animator = null;
+    public Animator animator = null;
 
     Vector3 LTumbInput = new Vector3(0,0,0);
     Vector3 RTumbInput = new Vector3(0, 0, 0);
