@@ -41,7 +41,7 @@ public class Fighter : MonoBehaviour
         if(Input.GetAxis(attackAxis) >0 && timeSinceLastAttack > GetCurrentAttackSpeed())
         {
             timeSinceLastAttack = 0;
-            GetComponent<Animator>().SetTrigger("Attack");
+            player.animator.SetTrigger("Attack");
             ShootProjectile();
             
         }
@@ -53,7 +53,7 @@ public class Fighter : MonoBehaviour
 
         if (Input.GetButtonDown(dodgeButton))
         {
-            GetComponent<Animator>().SetTrigger("Roll");
+            player.animator.SetTrigger("Roll");
         }
     }
     public void EquipWeapon(Weapon weapon)

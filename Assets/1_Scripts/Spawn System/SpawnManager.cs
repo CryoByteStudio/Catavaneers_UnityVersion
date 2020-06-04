@@ -4,6 +4,7 @@ using ObjectPooling;
 using SpawnSystem.Standard;
 //using SpawnSystem.ScriptableObj;
 using System;
+using Catavaneer.Extensions;
 
 namespace SpawnSystem
 {
@@ -207,7 +208,7 @@ namespace SpawnSystem
         private void Reset()
         {
             if (spawnPoints.Count <= 0)
-                spawnPoints = transform.GetAllComponentsOfType<SpawnPoint>();
+                spawnPoints = transform.GetAllComponentsOfTypeInHierachy<SpawnPoint>();
 
             Wave.number = 0;
             objectPooler = FindObjectOfType<ObjectPooler>();

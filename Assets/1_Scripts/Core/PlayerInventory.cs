@@ -213,5 +213,9 @@ public class PlayerInventory : MonoBehaviour //Sasha
         NameUI.text = playername;
     }
 
+    public void RemoveGoldFromInventory(float percentageGoldToKeep)
+    {
+        gold = Mathf.RoundToInt(gold * percentageGoldToKeep);
+    }
 
 }
