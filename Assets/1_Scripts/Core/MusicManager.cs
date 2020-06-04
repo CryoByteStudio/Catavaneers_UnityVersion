@@ -101,7 +101,8 @@ public class MusicManager : MonoBehaviour
     {
 
         //Stop any playing music
-        A_Source.Stop();
+        if(A_Source != null)
+            A_Source.Stop();
 
         switch (TrackID)
         {

@@ -1560,11 +1560,6 @@ PrefabInstance:
       propertyPath: playerSpawnPos
       value: 
       objectReference: {fileID: 764185794}
-    - target: {fileID: 1498829843221359526, guid: c43540161d8cfbe4eace3f7d3aef34dd,
-        type: 3}
-      propertyPath: playerMeshRenderer
-      value: 
-      objectReference: {fileID: 96629444}
     - target: {fileID: 1683948071321911496, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: NameUI
@@ -2210,11 +2205,6 @@ PrefabInstance:
       propertyPath: playerSpawnPos
       value: 
       objectReference: {fileID: 764185794}
-    - target: {fileID: 4086591878485711519, guid: c43540161d8cfbe4eace3f7d3aef34dd,
-        type: 3}
-      propertyPath: playerMeshRenderer
-      value: 
-      objectReference: {fileID: 96629441}
     - target: {fileID: 4261533059323359729, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: NameUI
@@ -2275,11 +2265,6 @@ PrefabInstance:
       propertyPath: playerSpawnPos
       value: 
       objectReference: {fileID: 764185794}
-    - target: {fileID: 5015692338151097091, guid: c43540161d8cfbe4eace3f7d3aef34dd,
-        type: 3}
-      propertyPath: playerMeshRenderer
-      value: 
-      objectReference: {fileID: 96629443}
     - target: {fileID: 5046614950631139437, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: NameUI
@@ -2532,9 +2517,14 @@ PrefabInstance:
       objectReference: {fileID: 764185794}
     - target: {fileID: 7909597113760727519, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
-      propertyPath: playerMeshRenderer
-      value: 
-      objectReference: {fileID: 96629442}
+      propertyPath: debug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909597113760727519, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: damageTakenPerSecond
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7950811294528416433, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: NameUI
@@ -2688,30 +2678,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c43540161d8cfbe4eace3f7d3aef34dd, type: 3}
---- !u!1 &96629441 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4342049686617006713, guid: c43540161d8cfbe4eace3f7d3aef34dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 96629440}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &96629442 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7579833244832364857, guid: c43540161d8cfbe4eace3f7d3aef34dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 96629440}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &96629443 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4715025943731715045, guid: c43540161d8cfbe4eace3f7d3aef34dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 96629440}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &96629444 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1168854850720666432, guid: c43540161d8cfbe4eace3f7d3aef34dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 96629440}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &99484574
 GameObject:
   m_ObjectHideFlags: 0
