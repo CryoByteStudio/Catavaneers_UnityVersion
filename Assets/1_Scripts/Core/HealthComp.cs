@@ -35,7 +35,7 @@ public class HealthComp : MonoBehaviour
     [SerializeField]
     Transform playerSpawnPos;
     [SerializeField]
-    MeshRenderer playerMeshRenderer;
+    SkinnedMeshRenderer playerMeshRenderer;
 
     GameObject hitParticle = null;
 
