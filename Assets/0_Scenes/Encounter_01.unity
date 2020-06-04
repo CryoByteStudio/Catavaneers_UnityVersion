@@ -1620,11 +1620,41 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2204930797684062788, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2206662180474049504, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: objectPools.Array.data[0].name
       value: Mouse
       objectReference: {fileID: 0}
+    - target: {fileID: 2211204227092526328, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: P1Skin
+      value: 
+      objectReference: {fileID: 2100000, guid: 3bc0594d65f773d408598d3d2dae9ecd, type: 2}
+    - target: {fileID: 2211204227092526328, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: P2Skin
+      value: 
+      objectReference: {fileID: 2100000, guid: b12464abee066524daf8fe046d3bb11a, type: 2}
+    - target: {fileID: 2211204227092526328, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: P3Skin
+      value: 
+      objectReference: {fileID: 2100000, guid: 31aca09668d4f5d479aea371e436d070, type: 2}
+    - target: {fileID: 2211204227092526328, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: P4Skin
+      value: 
+      objectReference: {fileID: 2100000, guid: c92c64f351f96d341a7aa62d2eb4813e, type: 2}
+    - target: {fileID: 2211204227092526328, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: rendref
+      value: 
+      objectReference: {fileID: 96629441}
     - target: {fileID: 2507852264341350933, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -2200,6 +2230,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3958698943528695332, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: P1Skin
+      value: 
+      objectReference: {fileID: 2100000, guid: 3bc0594d65f773d408598d3d2dae9ecd, type: 2}
+    - target: {fileID: 3958698943528695332, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: P2Skin
+      value: 
+      objectReference: {fileID: 2100000, guid: b12464abee066524daf8fe046d3bb11a, type: 2}
+    - target: {fileID: 3958698943528695332, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: P3Skin
+      value: 
+      objectReference: {fileID: 2100000, guid: 31aca09668d4f5d479aea371e436d070, type: 2}
+    - target: {fileID: 3958698943528695332, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: P4Skin
+      value: 
+      objectReference: {fileID: 2100000, guid: c92c64f351f96d341a7aa62d2eb4813e, type: 2}
     - target: {fileID: 4086591878485711519, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: playerSpawnPos
@@ -2250,10 +2300,40 @@ PrefabInstance:
       propertyPath: playerindex
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4261533059323359729, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: buyButton
+      value: P4Buy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261533059323359729, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: useItemButton
+      value: P4Use Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261533059323359729, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: cancelButton
+      value: P4Cancel/Shop3
+      objectReference: {fileID: 0}
     - target: {fileID: 4342049686952124457, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: speed
       value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342049686952124457, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: inputVerticalLeftThumb
+      value: P4Vertical Left Thumbstick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342049686952124457, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: inputHorizontalRightThumb
+      value: P4Horizontal Right Thumbstick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342049686952124457, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: inputVerticalRightThumb
+      value: P4Vertical Right Thumbstick
       objectReference: {fileID: 0}
     - target: {fileID: 4715025944470272437, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
@@ -2320,6 +2400,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5466582169302069176, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: P1Skin
+      value: 
+      objectReference: {fileID: 2100000, guid: 3bc0594d65f773d408598d3d2dae9ecd, type: 2}
+    - target: {fileID: 5466582169302069176, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: P2Skin
+      value: 
+      objectReference: {fileID: 2100000, guid: b12464abee066524daf8fe046d3bb11a, type: 2}
+    - target: {fileID: 5466582169302069176, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: P3Skin
+      value: 
+      objectReference: {fileID: 2100000, guid: 31aca09668d4f5d479aea371e436d070, type: 2}
+    - target: {fileID: 5466582169302069176, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: P4Skin
+      value: 
+      objectReference: {fileID: 2100000, guid: c92c64f351f96d341a7aa62d2eb4813e, type: 2}
     - target: {fileID: 5617214560762277066, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: m_IsActive
@@ -2415,6 +2515,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6630190880108482479, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6825187439271727229, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: m_IsActive
@@ -2505,6 +2610,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7469123093511691905, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: P1Skin
+      value: 
+      objectReference: {fileID: 2100000, guid: 3bc0594d65f773d408598d3d2dae9ecd, type: 2}
+    - target: {fileID: 7469123093511691905, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: P2Skin
+      value: 
+      objectReference: {fileID: 2100000, guid: b12464abee066524daf8fe046d3bb11a, type: 2}
+    - target: {fileID: 7469123093511691905, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: P3Skin
+      value: 
+      objectReference: {fileID: 2100000, guid: 31aca09668d4f5d479aea371e436d070, type: 2}
+    - target: {fileID: 7469123093511691905, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: P4Skin
+      value: 
+      objectReference: {fileID: 2100000, guid: c92c64f351f96d341a7aa62d2eb4813e, type: 2}
     - target: {fileID: 7579833244093938537, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: speed
@@ -2678,6 +2803,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c43540161d8cfbe4eace3f7d3aef34dd, type: 3}
+--- !u!137 &96629441 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2204930797684062788, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 96629440}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &99484574
 GameObject:
   m_ObjectHideFlags: 0
