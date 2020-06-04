@@ -120,7 +120,7 @@ namespace Catavaneer.MenuSystem
 
             if (!eventSystem) throw new ArgumentNullException("evetSystem");
             if (!button) throw new ArgumentNullException("button");
-            if (!button.firstSelected) throw new ArgumentNullException("button.firstSelected");
+            //if (!button.firstSelected) throw new ArgumentNullException("button.firstSelected");
 
             eventSystem.SetSelectedGameObject(button.firstSelected);
 

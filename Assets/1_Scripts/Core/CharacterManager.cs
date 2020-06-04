@@ -10,14 +10,13 @@ public class CharacterManager : SingletonEntity<CharacterManager>
     public int playercount;
 
     public List<string> charnames = new List<string>();
-
-    // Start is called before the first frame update
-
+    
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
     }
+    
     void Start()
     {
         playercount = Input.GetJoystickNames().Length;
@@ -27,7 +26,6 @@ public class CharacterManager : SingletonEntity<CharacterManager>
         charnames.Add(default);
         charnames.Add(default);
         Debug.Log("Start");
-
     }
 
     protected override void OnEnable()
@@ -51,20 +49,6 @@ public class CharacterManager : SingletonEntity<CharacterManager>
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             isstarted = true;
-
-           
-
         }
     }
-
- 
 }
-
-
-   
-
-  
-
-
-
-
