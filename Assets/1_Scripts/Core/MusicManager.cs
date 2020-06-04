@@ -24,7 +24,7 @@ public class MusicManager : MonoBehaviour
     private AudioSource A_Source;
 
     //The audioclips which you should assign through inspector
-    public AudioClip Clip_default_;
+    public AudioClip Clip_default;
     public AudioClip Clip_GoldPickUp;
     public AudioClip Clip_Attack;
     public AudioClip Clip_Hit;
@@ -107,7 +107,7 @@ public class MusicManager : MonoBehaviour
         switch (TrackID)
         {
             case SoundClipsInts.GoldPickUp:
-                A_Source.PlayOneShot(Clip_GoldPickUp);
+                A_Source.PlayOneShot(Clip_GoldPickUp, 1);
                 break;
 
             case SoundClipsInts.Attack:
@@ -123,11 +123,11 @@ public class MusicManager : MonoBehaviour
                 break;
 
             case SoundClipsInts.Buying:
-                A_Source.PlayOneShot(Clip_Buying);
+                A_Source.PlayOneShot(Clip_Buying,1);
                 break;
 
             default:
-                A_Source.PlayOneShot(Clip_default_);
+                A_Source.PlayOneShot(Clip_default);
                 break;
         }
 

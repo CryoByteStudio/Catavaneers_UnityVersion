@@ -14,7 +14,7 @@ public class CoinPickUp : MonoBehaviour
            if (other.gameObject.GetComponent<PlayerInventory>() != null)
             other.gameObject.GetComponent<PlayerInventory>().gold += (int)Coin;
 
-            //MusicManager.Instance.PlaySoundTrack(soundCue);
+            MusicManager.Instance.PlaySoundTrack(soundCue);
             Destroy(gameObject);
         }
     }
