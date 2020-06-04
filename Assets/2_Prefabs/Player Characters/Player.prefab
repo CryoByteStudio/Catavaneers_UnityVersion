@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 533129627958114986}
   - component: {fileID: 700459885}
   - component: {fileID: 621645804363221072}
-  - component: {fileID: 257404555756453891}
+  - component: {fileID: 4076283972491240098}
   - component: {fileID: 533129627958114997}
   - component: {fileID: 533129627958114987}
   - component: {fileID: 533129627958114984}
@@ -111,7 +111,7 @@ MonoBehaviour:
   projectileSpwanPoint: {fileID: 6131084122126567600}
   attackAxis: Attack
   dodgeButton: Dodge
---- !u!114 &257404555756453891
+--- !u!114 &4076283972491240098
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7784c49aa9ec001478701ddc8f0f581e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameDifficulty: 4
+  gameDifficulty: 5
   myClass: 0
   startHealth: 100
   gman: {fileID: 0}
@@ -131,12 +131,12 @@ MonoBehaviour:
   damagethreshold: 0
   thresholdamount: 0
   soundCue: 4
-  currentHealth: 0
+  currentHealth: 100
   is_Regenerating: 0
   dmg_percentage: 0
   playerSpawnPos: {fileID: 0}
   playerMeshRenderer: {fileID: 8128865797134187416}
-  health_slider: {fileID: 8299741812162191547}
+  health_slider: {fileID: 0}
   debug: 0
   damageTakenPerSecond: 0
 --- !u!114 &533129627958114997
@@ -233,10 +233,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerID: 0
   rendref: {fileID: 533129627216455895}
-  Jojoskin: {fileID: 2100000, guid: 2d91c446e3fe97843b743dc4e748397e, type: 2}
-  Momoskin: {fileID: 2100000, guid: a8e20e46883aa944ea9f9b8955680ba3, type: 2}
-  Kikiskin: {fileID: 2100000, guid: 2d4cc94dc89817d488d7d378ba3d3e95, type: 2}
-  Russellskin: {fileID: 2100000, guid: 7418a88c2be8d5c43bb34fd047190078, type: 2}
+  P1Skin: {fileID: 0}
+  P2Skin: {fileID: 0}
+  P3Skin: {fileID: 0}
+  P4Skin: {fileID: 0}
   charman: {fileID: 0}
 --- !u!114 &5824462135385233196
 MonoBehaviour:
@@ -458,18 +458,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f688a9e804ded4146b9864c742c364ae, type: 3}
---- !u!1 &7319455975434798518 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7643634123438819798, guid: f688a9e804ded4146b9864c742c364ae,
-    type: 3}
-  m_PrefabInstance: {fileID: 1116974969705122912}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7319455974244803048 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7643634122249612680, guid: f688a9e804ded4146b9864c742c364ae,
-    type: 3}
-  m_PrefabInstance: {fileID: 1116974969705122912}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7319455973564910305 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7643634122643228289, guid: f688a9e804ded4146b9864c742c364ae,
@@ -497,6 +485,18 @@ GameObject:
 --- !u!1 &8561443345399707222 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8741506176487307830, guid: f688a9e804ded4146b9864c742c364ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1116974969705122912}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7319455974244803048 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7643634122249612680, guid: f688a9e804ded4146b9864c742c364ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1116974969705122912}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7319455975434798518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7643634123438819798, guid: f688a9e804ded4146b9864c742c364ae,
     type: 3}
   m_PrefabInstance: {fileID: 1116974969705122912}
   m_PrefabAsset: {fileID: 0}
@@ -881,15 +881,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5296525564145174047}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8299741812162191547 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4228759947577681572, guid: 2d1feb05bea632143ba2903bc3f4001a,
-    type: 3}
-  m_PrefabInstance: {fileID: 5296525564145174047}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

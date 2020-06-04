@@ -10,7 +10,7 @@ using ViTiet.Utils;
 using Catavaneer;
 
 public enum CharacterClass { Player, Enemy, Caravan, Obj };
-public enum DifficultyLevel { Normal, IronCat, Catapocalypse, Catfight};
+public enum DifficultyLevel { Normal = 5, IronCat = 10, Catapocalypse = 25, Catfight = 1};
 
 
 
@@ -173,7 +173,14 @@ public class HealthComp : MonoBehaviour
     {
         if (debug)
             TestTakeDamage();
-
+        if(SpawnManager.EnemiesAlive == 0)
+        {
+            SetIsWaveComplete(true);
+        }
+        else
+        {
+            SetIsWaveComplete(false);
+        }
         timeElapsed += Time.deltaTime;
         if (myClass == CharacterClass.Caravan && is_Regenerating) {
             //dmg_percentage = currentHealth % (startHealth / (int)gameDifficulty);
