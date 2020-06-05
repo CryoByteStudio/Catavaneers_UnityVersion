@@ -12,6 +12,7 @@ namespace Catavaneer.MenuSystem
             {
                 EventSystem.current.SetSelectedGameObject(selectedGameObject);
                 selectedGameObject.GetComponent<Selectable>().OnSelect(new BaseEventData(EventSystem.current));
+                SetSelectedGameObject(null);
             }
         }
         #endregion
@@ -25,34 +26,40 @@ namespace Catavaneer.MenuSystem
 
         public void OnQuitPressed()
         {
+            SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
             MenuManager.QuitGame();
         }
 
         public void OnNormalPressed()
         {
+            SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
             GameManager.SetDifficultyLevel(DifficultyLevel.Normal);
             MenuManager.LoadCharacterSelectScene();
         }
 
         public void OnIronCatPressed()
         {
+            SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
             GameManager.SetDifficultyLevel(DifficultyLevel.IronCat);
             MenuManager.LoadCharacterSelectScene();
         }
 
         public void OnCatpocalypsePressed()
         {
+            SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
             GameManager.SetDifficultyLevel(DifficultyLevel.Catapocalypse);
             MenuManager.LoadCharacterSelectScene();
         }
 
         public void OnCatFightPressed()
         {
+            SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
             GameManager.SetDifficultyLevel(DifficultyLevel.Catfight);
         }
 
         public void OnApplyPressed()
         {
+            SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
             // TODO save settings
         }
         #endregion
