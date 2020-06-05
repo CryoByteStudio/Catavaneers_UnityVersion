@@ -65,7 +65,8 @@ namespace SpawnSystem
 
         private void Update()
         {
-            CanSpawn = EnemiesAlive <= 0;
+            if (EnemyLeftToSpawn <= 0)
+                CanSpawn = EnemiesAlive <= 0;
 
             // if cannot spawn, do nothing
             if (!CanSpawn) return;
