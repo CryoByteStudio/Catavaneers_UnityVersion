@@ -14,6 +14,7 @@
         MainMenuTransition,
         StartLevelTransition,
         WinScreenTransition,
+        LoseScreenTransition,
         EndGameTransition
     }
 }
