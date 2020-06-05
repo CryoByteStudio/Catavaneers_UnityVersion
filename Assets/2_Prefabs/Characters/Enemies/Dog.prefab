@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 186cced388083f549a8e35d0896fadc7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -115,8 +115,10 @@ MonoBehaviour:
   gameDifficulty: 4
   myClass: 1
   startHealth: 50
-  debug: 0
-  damageTakenPerSecond: 50
+  gman: {fileID: 0}
+  caravan: 0
+  damagethreshold: 0
+  thresholdamount: 0
   soundCue: 4
   currentHealth: 0
   is_Regenerating: 0
@@ -124,6 +126,8 @@ MonoBehaviour:
   playerSpawnPos: {fileID: 0}
   playerMeshRenderer: {fileID: 0}
   health_slider: {fileID: 8319951787413887798}
+  debug: 0
+  damageTakenPerSecond: 50
 --- !u!54 &1034904835980318866
 Rigidbody:
   m_ObjectHideFlags: 0

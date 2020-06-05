@@ -10,6 +10,7 @@ using SpawnSystem;
 
 public enum SoundClipsInts { Default, GoldPickUp, Attack, Hit, Death, Buying };
 
+[RequireComponent(typeof(AudioSource))]
 public class MusicManager : MonoBehaviour
 {
     [FMODUnity.EventRef]
@@ -24,7 +25,7 @@ public class MusicManager : MonoBehaviour
     private AudioSource A_Source;
 
     //The audioclips which you should assign through inspector
-    public AudioClip Clip_default_;
+    public AudioClip Clip_default;
     public AudioClip Clip_GoldPickUp;
     public AudioClip Clip_Attack;
     public AudioClip Clip_Hit;
@@ -101,13 +102,17 @@ public class MusicManager : MonoBehaviour
     {
 
         //Stop any playing music
-        if(A_Source != null)
-            A_Source.Stop();
+        if (A_Source == null) return;
+
+        A_Source.Stop();
 
         switch (TrackID)
         {
-            case SoundClipsInts.GoldPickUp:
-                A_Source.PlayOneShot(Clip_GoldPickUp);
+            case SoundClipsInts.GoldPickUp:   
+                Debug.Log("A SOURCE!!!!!!!!!!!!!!!!!!!! " + A_Source);
+                Debug.Log("CLIP GOLD!!!!!!!!!!!!!!!!!!! " + Clip_GoldPickUp);
+                A_Source.PlayOneShot(Clip_GoldPickUp, 1);
+
                 break;
 
             case SoundClipsInts.Attack:
@@ -123,11 +128,11 @@ public class MusicManager : MonoBehaviour
                 break;
 
             case SoundClipsInts.Buying:
-                A_Source.PlayOneShot(Clip_Buying);
+                A_Source.PlayOneShot(Clip_Buying,1);
                 break;
 
             default:
-                A_Source.PlayOneShot(Clip_default_);
+                A_Source.PlayOneShot(Clip_default);
                 break;
         }
 

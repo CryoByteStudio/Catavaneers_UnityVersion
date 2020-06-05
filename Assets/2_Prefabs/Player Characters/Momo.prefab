@@ -120,7 +120,12 @@ PrefabInstance:
     - target: {fileID: 533129627958114997, guid: dec8e7a87509abf45bf300fc5aab79ab,
         type: 3}
       propertyPath: inputVerticalRightThumb
-      value: P4Vertical Right Thumbstick
+      value: P3Vertical Right Thumbstick
+      objectReference: {fileID: 0}
+    - target: {fileID: 533129627958114997, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: speed
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 621645804363221072, guid: dec8e7a87509abf45bf300fc5aab79ab,
         type: 3}
@@ -152,7 +157,8 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3719177208376133355, guid: dec8e7a87509abf45bf300fc5aab79ab, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dec8e7a87509abf45bf300fc5aab79ab, type: 3}
 --- !u!1 &7187095325055511655 stripped
 GameObject:
