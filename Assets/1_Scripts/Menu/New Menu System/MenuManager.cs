@@ -5,6 +5,8 @@ using Catavaneer.Singleton;
 using ViTiet.Utils;
 using Catavaneer.LevelManagement;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Catavaneer.MenuSystem
 {
@@ -270,9 +272,15 @@ namespace Catavaneer.MenuSystem
                     m.gameObject.SetActive(false);
                 }
             }
-
+            
             menu.gameObject.SetActive(true);
             menuStack.Push(menu);
+
+            if (menu.selectedGameObject)
+            {
+                EventSystem.current.SetSelectedGameObject(menu.selectedGameObject);
+                menu.selectedGameObject.GetComponent<Selectable>().OnSelect(new BaseEventData(EventSystem.current));
+            }
         }
 
         public static void CloseMenu()
@@ -286,7 +294,8 @@ namespace Catavaneer.MenuSystem
                 }
             }
 
-            menuStack.Pop().gameObject.SetActive(false);
+            Menu menu = menuStack.Pop();
+            menu.gameObject.SetActive(false);
 
             if (menuStack.Count > 0)
             {
@@ -337,6 +346,11 @@ namespace Catavaneer.MenuSystem
             //EnablePlayerControl();
             UnPaused();
             CloseAllMenus();
+            OpenMenu(GameMenu);
+        }
+
+        public static void OpenGameMenu()
+        {
             OpenMenu(GameMenu);
         }
 
