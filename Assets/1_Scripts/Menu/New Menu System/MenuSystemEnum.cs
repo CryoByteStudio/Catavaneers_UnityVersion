@@ -6,7 +6,8 @@
         CreditsMenu,
         PauseMenu,
         GameMenu,
-        WinMenu
+        WinMenu,
+        LoseMenu
     }
 
     public enum TransitionFaderType

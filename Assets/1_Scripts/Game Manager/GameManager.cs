@@ -123,8 +123,8 @@ namespace Catavaneer
         private IEnumerator LoseDelay()
         {
             yield return new WaitForSeconds(quitDelay);
-            //MenuManager.OpenLoseMenu();
-            MenuManager.OpenWinMenu();
+            MenuManager.OpenLoseMenu();
+            //MenuManager.OpenWinMenu();
         }
 
         public IEnumerator StartDelay()
