@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 namespace Catavaneer.MenuSystem
 {
-    public class PauseMenu : Menu<PauseMenu>
+    public class LoseMenu : Menu<LoseMenu>
     {
         [SerializeField] private GameObject firstSelected;
 
@@ -16,11 +16,6 @@ namespace Catavaneer.MenuSystem
         #endregion
 
         #region PUBLIC METHODS
-        public void OnResumePressed()
-        {
-            MenuManager.ResumeGame();
-        }
-
         public void OnRestartPressed()
         {
             MenuManager.RestartLevel();
@@ -28,7 +23,7 @@ namespace Catavaneer.MenuSystem
 
         public void OnMainMenuPressed()
         {
-            MenuManager.LoadMainMenuLevel(false);
+            MenuManager.LoadMainMenuLevel();
         }
         #endregion
     }

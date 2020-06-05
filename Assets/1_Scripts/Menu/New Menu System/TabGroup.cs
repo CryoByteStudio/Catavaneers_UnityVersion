@@ -14,7 +14,6 @@ namespace Catavaneer.MenuSystem
         [SerializeField] private Color tabActive;
 
         private TabButton selectedTab;
-        private EventSystem eventSystem;
         private int currentTabIndex = 0;
 
         private void Awake()
@@ -35,22 +34,10 @@ namespace Catavaneer.MenuSystem
         private void OnDisable()
         {
             LevelManagement.LevelLoader.OnSceneLoaded -= OnSceneLoadedHandler;
-            eventSystem = null;
-        }
-
-        private IEnumerator GetEventSystem()
-        {
-            eventSystem = FindObjectOfType<EventSystem>();
-            yield return null;
         }
 
         private void Update()
         {
-            if (!eventSystem)
-            {
-                StartCoroutine(GetEventSystem());
-            }
-
             if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Joystick1Button4))
             {
                 currentTabIndex = ((currentTabIndex - 1) % tabButtons.Count + tabButtons.Count) % tabButtons.Count;
@@ -66,7 +53,6 @@ namespace Catavaneer.MenuSystem
 
         private void Reset()
         {
-            eventSystem = FindObjectOfType<EventSystem>();
             OnTabSelected(tabButtons[0]);
         }
 
@@ -118,11 +104,7 @@ namespace Catavaneer.MenuSystem
 
             selectedTab.tabPage.SetActive(true);
 
-            if (!eventSystem) throw new ArgumentNullException("evetSystem");
-            if (!button) throw new ArgumentNullException("button");
-            //if (!button.firstSelected) throw new ArgumentNullException("button.firstSelected");
-
-            eventSystem.SetSelectedGameObject(button.firstSelected);
+            EventSystem.current.SetSelectedGameObject(button.firstSelected);
 
             ResetTabs();
             button.tabLabel.color = tabIdle;

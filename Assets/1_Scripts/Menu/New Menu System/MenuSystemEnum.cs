@@ -6,7 +6,8 @@
         CreditsMenu,
         PauseMenu,
         GameMenu,
-        WinMenu
+        WinMenu,
+        LoseMenu
     }
 
     public enum TransitionFaderType
@@ -14,6 +15,7 @@
         MainMenuTransition,
         StartLevelTransition,
         WinScreenTransition,
+        LoseScreenTransition,
         EndGameTransition
     }
 }
