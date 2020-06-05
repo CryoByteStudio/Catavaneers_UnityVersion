@@ -6,6 +6,7 @@ using SpawnSystem;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Catavaneer.MenuSystem;
 
 namespace Catavaneer
 {
@@ -34,37 +35,44 @@ namespace Catavaneer
             Reset();
         }
 
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+
+            HealthComp.OnCaravanDestroyed -= OnCaravanDestroyedHandler;
+        }
+
         private void Update()
         {
             //if (Input.GetKeyDown(KeyCode.C)) { difficulty = DifficultyLevel.IronCat; }
 
-            if (!caravan_HC)
-            {
-                HealthComp[] healthComps = FindObjectsOfType<HealthComp>();
-                foreach (HealthComp hc in healthComps)
-                {
-                    if (hc.myClass == CharacterClass.Caravan)
-                    {
-                        caravan_HC = hc;
-                        break;
-                    }
-                }
-                //Debug.Log("NO Caravan attached to game manager");
-            }
+            //if (!caravan_HC)
+            //{
+            //    HealthComp[] healthComps = FindObjectsOfType<HealthComp>();
+            //    foreach (HealthComp hc in healthComps)
+            //    {
+            //        if (hc.myClass == CharacterClass.Caravan)
+            //        {
+            //            caravan_HC = hc;
+            //            break;
+            //        }
+            //    }
+            //    //Debug.Log("NO Caravan attached to game manager");
+            //}
 
-            if (caravan_HC)
-            {
-                // always start coroutine once in update
-                if (caravan_HC.IsDead() && !doneOnce)
-                {
-                    doneOnce = true;
-                    caravan_HC.SetIsDead(false);
+            //if (caravan_HC)
+            //{
+            //    // always start coroutine once in update
+            //    if (caravan_HC.IsDead() && !doneOnce)
+            //    {
+            //        doneOnce = true;
+            //        caravan_HC.SetIsDead(false);
 
-                    StartCoroutine(RestartLevel());
+            //        StartCoroutine(RestartLevel());
 
-                    transform.MyExtensionFunction();
-                }
-            }
+            //        transform.MyExtensionFunction();
+            //    }
+            //}
 
             if (Input.anyKeyDown && SceneManager.GetActiveScene().name == "Menu_Credits")
             {
@@ -99,11 +107,24 @@ namespace Catavaneer
 
         private void Reset()
         {
+            HealthComp.OnCaravanDestroyed += OnCaravanDestroyedHandler;
             LevelLoader.SetMainMenuSceneIndex(mainMenuSceneIndex);
             LevelLoader.SetCharacterSelectSceneIndex(characterSelectSceneIndex);
             LevelLoader.SetFirstGameSceneIndex(firstGameSceneIndex);
             isGameOver = false;
             doneOnce = false;
+        }
+
+        private void OnCaravanDestroyedHandler()
+        {
+            StartCoroutine(LoseDelay());
+        }
+
+        private IEnumerator LoseDelay()
+        {
+            yield return new WaitForSeconds(quitDelay);
+            //MenuManager.OpenLoseMenu();
+            MenuManager.OpenWinMenu();
         }
 
         public IEnumerator StartDelay()

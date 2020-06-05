@@ -27,6 +27,7 @@ namespace Catavaneer.MenuSystem
         public static Menu PauseMenu { get { return MenuSystem.PauseMenu.Instance; } }
         public static Menu GameMenu { get { return MenuSystem.GameMenu.Instance; } }
         public static Menu WinMenu { get { return MenuSystem.WinMenu.Instance; } }
+        public static Menu LoseMenu { get { return MenuSystem.LoseMenu.Instance; } }
 
         // private
         private static Dictionary<TransitionFaderType, TransitionFader> transitionFaderDictionary = new Dictionary<TransitionFaderType, TransitionFader>();
@@ -124,6 +125,9 @@ namespace Catavaneer.MenuSystem
                     break;
                 case TransitionFaderType.WinScreenTransition:
                     transitionFader.SetTransitionText("YOU WIN");
+                    break;
+                case TransitionFaderType.LoseScreenTransition:
+                    transitionFader.SetTransitionText("YOU LOSE");
                     break;
                 case TransitionFaderType.EndGameTransition:
                     transitionFader.SetTransitionText("GAME OVER");
@@ -238,6 +242,16 @@ namespace Catavaneer.MenuSystem
             yield return new WaitForSeconds(fader.FadeOffDuration);
             Pause();
         }
+
+        private static IEnumerator OpenLoseMenuRoutine()
+        {
+            TransitionFader fader = transitionFaderDictionary[TransitionFaderType.LoseScreenTransition];
+            TransitionFader.PlayTransition(fader);
+            yield return new WaitForSeconds(fader.FadeOnDuration + fader.DisplayDuration);
+            OpenMenuPostTransition(LoseMenu);
+            yield return new WaitForSeconds(fader.FadeOffDuration);
+            Pause();
+        }
         #endregion
 
         #region PUBLIC STATIC METHODS
@@ -336,6 +350,18 @@ namespace Catavaneer.MenuSystem
 
             isInBetweenScene = true;
             instance.StartCoroutine(OpenWinMenuRoutine());
+        }
+
+        public static void OpenLoseMenu()
+        {
+            if (!instance)
+            {
+                EditorHelper.ArgumentNullException("instance");
+                return;
+            }
+
+            isInBetweenScene = true;
+            instance.StartCoroutine(OpenLoseMenuRoutine());
         }
 
         public static void QuitGame()
