@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Catavaneer.Singleton;
+using Catavaneer.MenuSystem;
 
 public class CharacterManager : SingletonEntity<CharacterManager>
 {
@@ -48,6 +49,7 @@ public class CharacterManager : SingletonEntity<CharacterManager>
         if (!isstarted)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            MenuManager.OpenGameMenu();
             isstarted = true;
         }
     }

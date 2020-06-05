@@ -242,9 +242,9 @@ GameObject:
   - component: {fileID: 676872557608671355}
   - component: {fileID: 676872557608671332}
   - component: {fileID: 676872557608671333}
-  - component: {fileID: 3079716325835428059}
+  - component: {fileID: 4830269361851164938}
   m_Layer: 5
-  m_Name: WinMenu
+  m_Name: LoseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332,7 +332,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3079716325835428059
+--- !u!114 &4830269361851164938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 676872557608671334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52ad23aa63f9e0b4b8b8b52d7796e369, type: 3}
+  m_Script: {fileID: 11500000, guid: 114e83f49ae309f4b9d07404fa79d254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   firstSelected: {fileID: 7423869700140422815}
@@ -724,7 +724,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level Completed
+  m_text: Level Failed
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -793,7 +793,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 676872558307797946}
-    characterCount: 15
+    characterCount: 12
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -1084,7 +1084,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3079716325835428059}
+      - m_Target: {fileID: 4830269361851164938}
         m_MethodName: OnMainMenuPressed
         m_Mode: 1
         m_Arguments:
@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3079716325835428059}
+      - m_Target: {fileID: 4830269361851164938}
         m_MethodName: OnRestartPressed
         m_Mode: 1
         m_Arguments:

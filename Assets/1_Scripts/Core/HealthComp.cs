@@ -5,14 +5,13 @@ using System;
 using System.Collections;
 using AI;
 using SpawnSystem;
+using System;
 using UnityEditor;
 using ViTiet.Utils;
 using Catavaneer;
 
 public enum CharacterClass { Player, Enemy, Caravan, Obj };
 public enum DifficultyLevel { Normal = 5, IronCat = 10, Catapocalypse = 25, Catfight = 1};
-
-
 
 public class HealthComp : MonoBehaviour
 {
@@ -24,6 +23,7 @@ public class HealthComp : MonoBehaviour
     public int damagethreshold;
     public int thresholdamount;
 
+    public static event Action OnCaravanDestroyed;
     public SoundClipsInts soundCue = SoundClipsInts.Death;
 
     [SerializeField]
@@ -107,18 +107,6 @@ public class HealthComp : MonoBehaviour
                     EditorHelper.NotSupportedException("default");
                     break;
             }
-            //if (gameDifficulty == DifficultyLevel.Normal)
-            //{
-            //    percentageOfGoldToKeep = 75f;
-            //}
-            //else if (gameDifficulty == DifficultyLevel.IronCat)
-            //{
-            //    percentageOfGoldToKeep = 50f;
-            //}
-            //else if (gameDifficulty == DifficultyLevel.Catapocalypse)
-            //{
-            //    percentageOfGoldToKeep = 25f;
-            //}
         }
         else
         {
@@ -147,24 +135,6 @@ public class HealthComp : MonoBehaviour
                     EditorHelper.NotSupportedException("default");
                     break;
             }
-            //if (gameDifficulty == DifficultyLevel.Normal)
-            //{
-
-            //}
-            //else if (gameDifficulty == DifficultyLevel.IronCat)
-            //{
-            //    currentHealth *= 2;
-            //    startHealth *= 2;
-            //    health_slider.maxValue = currentHealth;
-            //    health_slider.value = currentHealth;
-            //}
-            //else if (gameDifficulty == DifficultyLevel.Catapocalypse)
-            //{
-            //    currentHealth *= 3;
-            //    startHealth *= 3;
-            //    health_slider.maxValue = currentHealth;
-            //    health_slider.value = currentHealth;
-            //}
         }
 
     }
@@ -282,12 +252,9 @@ public class HealthComp : MonoBehaviour
         }
         switch (myClass)
         {
-            //case CharacterClass.Player:
-            //MusicManager.Instance.PlaySoundTrack(soundCue);
-            //break;
             case CharacterClass.Player:
                 Debug.Log("Player Dead");
-                //if (gameDifficulty == DifficultyLevel.Catfight)
+
                 if (GameManager.DifficultyLevel == DifficultyLevel.Catfight)
                 {
                     if (GetComponent<PlayerInventory>() == FindObjectOfType<Goldbag>().holdersInventory)
@@ -297,6 +264,8 @@ public class HealthComp : MonoBehaviour
                 }
                 break;
             case CharacterClass.Caravan:
+                if (OnCaravanDestroyed != null)
+                    OnCaravanDestroyed.Invoke();
                 Debug.Log("Caravan Dead");
                 break;
             case CharacterClass.Obj:
@@ -338,18 +307,6 @@ public class HealthComp : MonoBehaviour
                 EditorHelper.NotSupportedException("default");
                 break;
         }
-        //if (gameDifficulty == DifficultyLevel.Normal)
-        //{
-        //    yield return new WaitForSeconds(4);
-        //}
-        //else if (gameDifficulty == DifficultyLevel.IronCat)
-        //{
-        //    yield return new WaitForSeconds(8);
-        //}
-        //else
-        //{
-        //    yield return new WaitForSeconds(12);
-        //}
 
         playerMeshRenderer.enabled = false;
 

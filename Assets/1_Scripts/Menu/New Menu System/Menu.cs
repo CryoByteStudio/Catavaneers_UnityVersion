@@ -10,7 +10,7 @@ namespace Catavaneer.MenuSystem
         private static T instance;
         public static T Instance { get { return instance; } }
 
-        #region UNITY ENGINE FUNCTION
+        #region UNITY ENGINE FUNCTIONS
 
         virtual protected void Awake()
         {
@@ -47,9 +47,10 @@ namespace Catavaneer.MenuSystem
     [RequireComponent(typeof(Canvas))]
     public abstract class Menu : MonoBehaviour
     {
-        #region PUBLIC METHODS
+        public GameObject selectedGameObject { get; private set; }
 
-        virtual public void OnBackPressed()
+        #region PUBLIC METHODS
+        public virtual void OnBackPressed()
         {
             if (MenuManager.Instance)
             {
@@ -57,6 +58,10 @@ namespace Catavaneer.MenuSystem
             }
         }
 
+        public virtual void SetSelectedGameObject(GameObject selectedGameObject)
+        {
+            this.selectedGameObject = selectedGameObject;
+        }
         #endregion
     }
 }

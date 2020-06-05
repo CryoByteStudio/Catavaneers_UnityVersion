@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 533129627958114984}
   - component: {fileID: 1982268532124465002}
   - component: {fileID: 8140593018067924260}
-  - component: {fileID: 5824462135385233196}
   - component: {fileID: 3719177208376133355}
   m_Layer: 0
   m_Name: Player
@@ -238,24 +237,6 @@ MonoBehaviour:
   P3Skin: {fileID: 0}
   P4Skin: {fileID: 0}
   charman: {fileID: 0}
---- !u!114 &5824462135385233196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 533129627958114996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55261c89ee79be348b35e37baac9bc06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentTrap: {fileID: 0}
-  Trap1: {fileID: 0}
-  Trap2: {fileID: 0}
-  TrapSpawnLocation: {fileID: 0}
-  trapButton: P4UseTrap
-  dpadAxis: P4DPad X
 --- !u!114 &3719177208376133355
 MonoBehaviour:
   m_ObjectHideFlags: 0
