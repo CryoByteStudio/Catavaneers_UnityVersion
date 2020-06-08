@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &4709909744247275369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724117480711882216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55261c89ee79be348b35e37baac9bc06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentTrap: {fileID: 0}
+  Trap1: {fileID: 0}
+  Trap2: {fileID: 0}
+  TrapSpawnLocation: {fileID: 0}
+  trapButton: P4UseTrap
+  dpadAxis: P4DPad X
 --- !u!1001 &5194383299732209500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72,6 +90,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jojo
       objectReference: {fileID: 0}
+    - target: {fileID: 533129627958114997, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: inputVerticalLeftThumb
+      value: P4Vertical Left Thumbstick
+      objectReference: {fileID: 0}
+    - target: {fileID: 533129627958114997, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: inputHorizontalRightThumb
+      value: P4Horizontal Right Thumbstick
+      objectReference: {fileID: 0}
+    - target: {fileID: 533129627958114997, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: inputVerticalRightThumb
+      value: P4Vertical Right Thumbstick
+      objectReference: {fileID: 0}
+    - target: {fileID: 621645804363221072, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: attackAxis
+      value: P4Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 621645804363221072, guid: dec8e7a87509abf45bf300fc5aab79ab,
+        type: 3}
+      propertyPath: dodgeButton
+      value: P4Dodge
+      objectReference: {fileID: 0}
     - target: {fileID: 6658274876665363702, guid: dec8e7a87509abf45bf300fc5aab79ab,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -92,5 +135,12 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3719177208376133355, guid: dec8e7a87509abf45bf300fc5aab79ab, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dec8e7a87509abf45bf300fc5aab79ab, type: 3}
+--- !u!1 &5724117480711882216 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 533129627958114996, guid: dec8e7a87509abf45bf300fc5aab79ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 5194383299732209500}
+  m_PrefabAsset: {fileID: 0}

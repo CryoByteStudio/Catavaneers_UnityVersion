@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Catavaneer.Singleton;
+using Catavaneer.MenuSystem;
 
 public class CharacterManager : SingletonEntity<CharacterManager>
 {
@@ -10,14 +11,13 @@ public class CharacterManager : SingletonEntity<CharacterManager>
     public int playercount;
 
     public List<string> charnames = new List<string>();
-
-    // Start is called before the first frame update
-
+    
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
     }
+    
     void Start()
     {
         playercount = Input.GetJoystickNames().Length;
@@ -27,7 +27,6 @@ public class CharacterManager : SingletonEntity<CharacterManager>
         charnames.Add(default);
         charnames.Add(default);
         Debug.Log("Start");
-
     }
 
     protected override void OnEnable()
@@ -50,21 +49,8 @@ public class CharacterManager : SingletonEntity<CharacterManager>
         if (!isstarted)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            MenuManager.OpenGameMenu();
             isstarted = true;
-
-           
-
         }
     }
-
- 
 }
-
-
-   
-
-  
-
-
-
-

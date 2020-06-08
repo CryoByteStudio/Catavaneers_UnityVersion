@@ -121,6 +121,31 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &380578016 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6948538761418870559, guid: ace7a61e234fad44d860b5c43f2e46b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 6948538760952896541}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &380578021
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380578016}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fdeaba83512c7a14f8c278e4d946faa2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &506743681
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,6 +472,80 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!1001 &2011324758
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4864545754153482364, guid: 9f213cfa0de5c984a94518ce0d05017b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 25.867031
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864545754153482364, guid: 9f213cfa0de5c984a94518ce0d05017b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -25.54977
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864545754153482364, guid: 9f213cfa0de5c984a94518ce0d05017b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.210377
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864545754153482364, guid: 9f213cfa0de5c984a94518ce0d05017b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864545754153482364, guid: 9f213cfa0de5c984a94518ce0d05017b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864545754153482364, guid: 9f213cfa0de5c984a94518ce0d05017b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864545754153482364, guid: 9f213cfa0de5c984a94518ce0d05017b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864545754153482364, guid: 9f213cfa0de5c984a94518ce0d05017b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864545754153482364, guid: 9f213cfa0de5c984a94518ce0d05017b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864545754153482364, guid: 9f213cfa0de5c984a94518ce0d05017b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864545754153482364, guid: 9f213cfa0de5c984a94518ce0d05017b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864545754153482365, guid: 9f213cfa0de5c984a94518ce0d05017b,
+        type: 3}
+      propertyPath: menuStateEvent
+      value: event:/Menu_Music
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864545754153482366, guid: 9f213cfa0de5c984a94518ce0d05017b,
+        type: 3}
+      propertyPath: m_Name
+      value: musicman
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9f213cfa0de5c984a94518ce0d05017b, type: 3}
 --- !u!1001 &6948538760952896541
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,9 +8,14 @@ namespace Catavaneer.MenuSystem
     {
         [SerializeField]
         private GameObject firstSelected;
-        //private EventSystem eventSystem;
 
-        #region UNITY METHODS
+        #region UNITY ENGINE FUNCTIONS
+        protected override void Awake()
+        {
+            base.Awake();
+            SetSelectedGameObject(firstSelected);
+        }
+
         private void Update()
         {
             if (Input.anyKeyDown)
@@ -18,26 +23,6 @@ namespace Catavaneer.MenuSystem
                 OnBackPressed();
             }
         }
-
-        //private void OnEnable()
-        //{
-        //    if (!eventSystem)
-        //        eventSystem = FindObjectOfType<EventSystem>();
-
-        //    if (!eventSystem)
-        //    {
-        //        EditorHelper.ArgumentNullException("eventSystem");
-        //        return;
-        //    }
-
-        //    eventSystem.firstSelectedGameObject = firstSelected;
-        //}
-
-        //private void OnDisable()
-        //{
-        //    eventSystem.firstSelectedGameObject = null;
-        //    eventSystem = null;
-        //}
         #endregion
 
         #region PUBLIC METHODS

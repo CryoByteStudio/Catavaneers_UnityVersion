@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 using UnityEngine.Audio;
 using SpawnSystem;
+using Catavaneer.MenuSystem;
 
 public enum SoundClipsInts { Default, GoldPickUp, Attack, Hit, Death, Buying };
 
+[RequireComponent(typeof(AudioSource))]
 public class MusicManager : MonoBehaviour
 {
     [FMODUnity.EventRef]
@@ -18,13 +20,15 @@ public class MusicManager : MonoBehaviour
     [SerializeField] HealthComp caravanHealth;
     float curCaravanIntensity = 0.0f;
     float curEnemieIntensity = 0.0f;
-
+    [FMODUnity.EventRef]
+    public string menuStateEvent = "";
+    FMOD.Studio.EventInstance menuState;
 
     //The AudioSource to which we play any clips
     private AudioSource A_Source;
 
     //The audioclips which you should assign through inspector
-    public AudioClip Clip_default_;
+    public AudioClip Clip_default;
     public AudioClip Clip_GoldPickUp;
     public AudioClip Clip_Attack;
     public AudioClip Clip_Hit;
@@ -41,7 +45,8 @@ public class MusicManager : MonoBehaviour
     {
         caravanState = FMODUnity.RuntimeManager.CreateInstance(caravanStateEvent);
         caravanState.start();
-
+        menuState = FMODUnity.RuntimeManager.CreateInstance(menuStateEvent);
+        menuState.start();
 
         //Add the audio source
         A_Source = gameObject.AddComponent<AudioSource>();
@@ -63,20 +68,19 @@ public class MusicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Menu_Main")
+        if (SceneManager.GetActiveScene().name != "Menu_Main" && SceneManager.GetActiveScene().name != "Menu_CharacterSelect" && SceneManager.GetActiveScene().name != "SplashScreen")
         {
-            Instance.PlaySoundTrack(SoundClipsInts.Default);
-            Debug.Log("soundtrack default");
+            menuState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
         if (SceneManager.GetActiveScene().name == "Encounter_01")
         {
             if (caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 4)
             {
-                caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 3f, 1.0f), true);
+                caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 3f, 1.0f));
             }
             else if (caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 2)
             {
-                caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 1.5f, 1.0f), true);
+                caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 1.5f, 1.0f));
             }
             if (SpawnManager.EnemiesAlive < 10)
             {
@@ -84,14 +88,14 @@ public class MusicManager : MonoBehaviour
             }
             else if (SpawnManager.EnemiesAlive >= 10 && caravanHealth.GetCurHealth() > caravanHealth.GetStartHealth() / 4)
             {
-                caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 1.0f, 1.0f), true);
+                caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 1.0f, 1.0f));
             }
             else if (SpawnManager.EnemiesAlive >= 10 && caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 4)
             {
-                caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 2.0f, 1.0f), true);
+                caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 2.0f, 1.0f));
             }
         }
-        else
+        else if (SceneManager.GetActiveScene().name != "Encounter_01")
         {
             caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
@@ -101,12 +105,16 @@ public class MusicManager : MonoBehaviour
     {
 
         //Stop any playing music
+        if (A_Source == null) return;
         A_Source.Stop();
 
         switch (TrackID)
         {
-            case SoundClipsInts.GoldPickUp:
-                A_Source.PlayOneShot(Clip_GoldPickUp);
+            case SoundClipsInts.GoldPickUp:   
+                Debug.Log("A SOURCE!!!!!!!!!!!!!!!!!!!! " + A_Source);
+                Debug.Log("CLIP GOLD!!!!!!!!!!!!!!!!!!! " + Clip_GoldPickUp);
+                A_Source.PlayOneShot(Clip_GoldPickUp, 1);
+
                 break;
 
             case SoundClipsInts.Attack:
@@ -122,11 +130,11 @@ public class MusicManager : MonoBehaviour
                 break;
 
             case SoundClipsInts.Buying:
-                A_Source.PlayOneShot(Clip_Buying);
+                A_Source.PlayOneShot(Clip_Buying,1);
                 break;
 
             default:
-                A_Source.PlayOneShot(Clip_default_);
+                A_Source.PlayOneShot(Clip_default);
                 break;
         }
 

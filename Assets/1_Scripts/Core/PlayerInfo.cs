@@ -9,35 +9,38 @@ public class PlayerInfo : MonoBehaviour
     public SkinnedMeshRenderer rendref;
 
 
-    public Material Jojoskin;
-    public Material Momoskin;
-    public Material Kikiskin;
-    public Material Russellskin;
+    public Material P1Skin;
+    public Material P2Skin;
+    public Material P3Skin;
+    public Material P4Skin;
     public CharacterManager charman;
     // Start is called before the first frame update
     void Start()
     {
         charman=FindObjectOfType<CharacterManager>();
+        Debug.Log("startingitup");
         if (charman)
         {
-            if (charman.charnames[PlayerID] == "Russell")
+            Debug.Log("charactermans");
+            if (charman.charnames[PlayerID] == "Russel")
             {
-                rendref.material = Russellskin;
+                Debug.Log("Setting rusel skin");
+                rendref.material = P1Skin;
 
             }
             else if (charman.charnames[PlayerID] == "Momo")
             {
-                rendref.material = Momoskin;
+                rendref.material = P2Skin;
 
             }
             if (charman.charnames[PlayerID] == "Kiki")
             {
-                rendref.material = Kikiskin;
+                rendref.material = P3Skin;
 
             }
             if (charman.charnames[PlayerID] == "Jojo")
             {
-                rendref.material = Jojoskin;
+                rendref.material = P4Skin;
             }
         }
     }

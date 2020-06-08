@@ -98,7 +98,6 @@ public class PlayerController : MonoBehaviour
             //rb.velocity = Vector3.zero;
         }
 
-
         if (!health.IsDead())
         {
             switch(states)

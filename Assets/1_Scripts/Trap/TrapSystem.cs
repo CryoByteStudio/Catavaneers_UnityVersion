@@ -7,11 +7,22 @@ public class TrapSystem : MonoBehaviour
     [SerializeField] TrapScriptable CurrentTrap;
     [SerializeField] TrapScriptable Trap1;
     [SerializeField] TrapScriptable Trap2;
-    [SerializeField] Transform TrapSpawnLocation;
+    //[SerializeField] Transform TrapSpawnLocation;
+
+    [SerializeField]private Material MatFlash;
+    private Material MatDefault;
+    [SerializeField]private SkinnedMeshRenderer sr;
 
     private float DPadX;
     public string trapButton;
     public string dpadAxis;
+
+    private void Start()
+    {
+        MatDefault = sr.material;
+        //MatFlash = Resources.Load("FlashMaterial", typeof(Material)) as Material;
+    }
+
     private void Update()
     {
         if(Trap1 != null) CurrentTrap = Trap1;
@@ -65,6 +76,32 @@ public class TrapSystem : MonoBehaviour
         {
             Trap2 = Trap1;
             Trap1 = TrapInShop;
+        }
+    }
+
+    public void Flash()
+    {
+        StartCoroutine(BlinkEffect());
+    }
+
+    private void ResetMaterial()
+    {
+        sr.material = MatDefault;
+    }
+
+    private void SetFlash()
+    {
+        sr.material = MatFlash;
+    }
+
+    IEnumerator BlinkEffect()
+    {
+        for(int i = 5; i >=0; i--)
+        {
+            yield return new WaitForSeconds(0.1f);
+            SetFlash();
+            yield return new WaitForSeconds(0.1f);
+            ResetMaterial();
         }
     }
 }
