@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Goldbag : MonoBehaviour
 {
@@ -79,7 +80,8 @@ public class Goldbag : MonoBehaviour
         {
             if (Input.anyKeyDown)
             {
-                FindObjectOfType<GameManager>().ToMainMenu();
+               //FindObjectOfType<GameManager>().ToMainMenu();
+                SceneManager.LoadScene("SplashScreen");
             }
         }
         }

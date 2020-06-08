@@ -44,6 +44,11 @@ namespace Catavaneer
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                SceneManager.LoadScene("Campaign");
+            }
+
             //if (Input.GetKeyDown(KeyCode.C)) { difficulty = DifficultyLevel.IronCat; }
 
             //if (!caravan_HC)
@@ -125,6 +130,12 @@ namespace Catavaneer
             yield return new WaitForSeconds(quitDelay);
             MenuManager.OpenLoseMenu();
             //MenuManager.OpenWinMenu();
+        }
+        private IEnumerator WinDelay()
+        {
+            yield return new WaitForSeconds(quitDelay);
+            //MenuManager.OpenLoseMenu();
+            MenuManager.OpenWinMenu();
         }
 
         public IEnumerator StartDelay()
@@ -224,5 +235,8 @@ namespace Catavaneer
 
             instance.difficultyLevel = difficultyLevel;
         }
+
+
+        
     }
 }
