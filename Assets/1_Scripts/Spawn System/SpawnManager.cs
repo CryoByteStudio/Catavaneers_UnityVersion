@@ -105,6 +105,7 @@ namespace SpawnSystem
             if (HasSpawnedAllEnemies())
             {
                 CanSpawn = false;
+                
                 SceneManager.LoadScene("Campaign");
             }
             // otherwise update time elapsed
