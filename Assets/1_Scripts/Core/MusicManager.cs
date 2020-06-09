@@ -155,7 +155,7 @@ public class MusicManager : MonoBehaviour
                 break;
 
             case SoundClipsInts.Hit:
-                A_Source.PlayOneShot(Clip_Hit);
+                A_Source.PlayOneShot(Clip_Hit,0.8f);
                 break;
 
             case SoundClipsInts.Death:

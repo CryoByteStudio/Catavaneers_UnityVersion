@@ -197,7 +197,10 @@ public class HealthComp : MonoBehaviour
             currentHealth -= amount;
             currentHealth = Mathf.Max(0, currentHealth);
             DisplayHealth();
-
+            if(myClass == CharacterClass.Player)
+            {
+                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
+            }
             if (currentHealth <= 0)
             {
                 Dead();
@@ -218,7 +221,10 @@ public class HealthComp : MonoBehaviour
             currentHealth -= amount;
             currentHealth = Mathf.Max(0, currentHealth);
             DisplayHealth();
-
+            if (myClass == CharacterClass.Player)
+            {
+                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
+            }
             KnockBack((damageDealer.position - transform.position) * 2f * weaponForce);
 
             if (currentHealth == 0)
