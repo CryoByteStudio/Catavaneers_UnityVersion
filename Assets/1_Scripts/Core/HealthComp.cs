@@ -343,9 +343,12 @@ public class HealthComp : MonoBehaviour
     /// <param name="amount"> The amount that will be added to health </param>
     public void AddHealth(int amount)
     {
-        currentHealth += amount;
-        currentHealth = Mathf.Min(currentHealth, startHealth);
-        DisplayHealth();
+        if (!isDead)
+        {
+            currentHealth += amount;
+            currentHealth = Mathf.Min(currentHealth, startHealth);
+            DisplayHealth();
+        }
     }
 
     /// <summary>
