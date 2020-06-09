@@ -200,6 +200,9 @@ public class HealthComp : MonoBehaviour
             if(myClass == CharacterClass.Player)
             {
                 MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
+            }else if(myClass == CharacterClass.Enemy)
+            {
+                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Attack);
             }
             if (currentHealth <= 0)
             {
@@ -224,6 +227,10 @@ public class HealthComp : MonoBehaviour
             if (myClass == CharacterClass.Player)
             {
                 MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
+            }
+            else if (myClass == CharacterClass.Enemy)
+            {
+                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Attack);
             }
             KnockBack((damageDealer.position - transform.position) * 2f * weaponForce);
 
@@ -348,6 +355,10 @@ public class HealthComp : MonoBehaviour
             currentHealth += amount;
             currentHealth = Mathf.Min(currentHealth, startHealth);
             DisplayHealth();
+            if(myClass == CharacterClass.Player && currentHealth < startHealth)
+            {
+                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Bandage);
+            }
         }
     }
 

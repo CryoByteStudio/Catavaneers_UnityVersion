@@ -9,7 +9,7 @@ using UnityEngine.Audio;
 using SpawnSystem;
 using Catavaneer.MenuSystem;
 
-public enum SoundClipsInts { Default, GoldPickUp, Attack, Hit, Death, Buying };
+public enum SoundClipsInts { Default, GoldPickUp, Attack, Hit, Death, Buying, Bandage, TrapTrigger };
 
 [RequireComponent(typeof(AudioSource))]
 public class MusicManager : MonoBehaviour
@@ -35,6 +35,8 @@ public class MusicManager : MonoBehaviour
     public AudioClip Clip_Hit;
     public AudioClip Clip_Death;
     public AudioClip Clip_Buying;
+    public AudioClip Clip_Bandage;
+    public AudioClip Clip_TrapTrigger;
 
     //Singleton accessor
     public static MusicManager Instance;
@@ -151,7 +153,7 @@ public class MusicManager : MonoBehaviour
                 break;
 
             case SoundClipsInts.Attack:
-                A_Source.PlayOneShot(Clip_Attack);
+                A_Source.PlayOneShot(Clip_Attack,0.8f);
                 break;
 
             case SoundClipsInts.Hit:
@@ -164,6 +166,14 @@ public class MusicManager : MonoBehaviour
 
             case SoundClipsInts.Buying:
                 A_Source.PlayOneShot(Clip_Buying,1);
+                break;
+
+            case SoundClipsInts.Bandage:
+                A_Source.PlayOneShot(Clip_Bandage, 1);
+                break;
+
+            case SoundClipsInts.TrapTrigger:
+                A_Source.PlayOneShot(Clip_TrapTrigger, 1);
                 break;
 
             default:
