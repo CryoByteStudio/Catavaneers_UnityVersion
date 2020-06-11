@@ -145,9 +145,7 @@ public class MusicManager : MonoBehaviour
 
         switch (TrackID)
         {
-            case SoundClipsInts.GoldPickUp:   
-                Debug.Log("A SOURCE!!!!!!!!!!!!!!!!!!!! " + A_Source);
-                Debug.Log("CLIP GOLD!!!!!!!!!!!!!!!!!!! " + Clip_GoldPickUp);
+            case SoundClipsInts.GoldPickUp:
                 A_Source.PlayOneShot(Clip_GoldPickUp, 1);
 
                 break;
