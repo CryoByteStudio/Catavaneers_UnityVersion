@@ -7,6 +7,12 @@ using Catavaneer.MenuSystem;
 
 public class CharacterManager : SingletonEntity<CharacterManager>
 {
+    public int LastEncounterIndex=0;
+    public int CurrentDay = 0;
+
+
+
+
     bool isstarted = false;
     public int playercount;
 
