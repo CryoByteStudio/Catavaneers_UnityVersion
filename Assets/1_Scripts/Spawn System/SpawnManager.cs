@@ -83,16 +83,12 @@ namespace SpawnSystem
                     SpawnNextWave();
                 }
             }
-            else
-            {
-                
-            }
 
             UpdateSpawnParams();
         }
 
         /// <summary>
-        /// Check if has spawned all enemies
+        /// Check if has spawned all enemies and all waves
         /// </summary>
         private bool HasSpawnedAllEnemies()
         {

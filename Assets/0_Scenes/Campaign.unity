@@ -468,6 +468,34 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 265732623}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &265732625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265732624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7784c49aa9ec001478701ddc8f0f581e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameDifficulty: 5
+  myClass: 2
+  startHealth: 100
+  gman: {fileID: 0}
+  caravan: 0
+  damagethreshold: 0
+  thresholdamount: 0
+  soundCue: 4
+  currentHealth: 100
+  is_Regenerating: 0
+  dmg_percentage: 0
+  playerSpawnPos: {fileID: 0}
+  playerMeshRenderer: {fileID: 0}
+  health_slider: {fileID: 0}
+  debug: 0
+  damageTakenPerSecond: 0
 --- !u!1 &395496703
 GameObject:
   m_ObjectHideFlags: 0

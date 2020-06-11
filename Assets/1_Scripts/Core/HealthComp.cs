@@ -197,7 +197,13 @@ public class HealthComp : MonoBehaviour
             currentHealth -= amount;
             currentHealth = Mathf.Max(0, currentHealth);
             DisplayHealth();
-
+            if(myClass == CharacterClass.Player)
+            {
+                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
+            }else if(myClass == CharacterClass.Enemy)
+            {
+                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Attack);
+            }
             if (currentHealth <= 0)
             {
                 Dead();
@@ -218,7 +224,14 @@ public class HealthComp : MonoBehaviour
             currentHealth -= amount;
             currentHealth = Mathf.Max(0, currentHealth);
             DisplayHealth();
-
+            if (myClass == CharacterClass.Player)
+            {
+                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
+            }
+            else if (myClass == CharacterClass.Enemy)
+            {
+                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Attack);
+            }
             KnockBack((damageDealer.position - transform.position) * 2f * weaponForce);
 
             if (currentHealth == 0)
@@ -337,9 +350,16 @@ public class HealthComp : MonoBehaviour
     /// <param name="amount"> The amount that will be added to health </param>
     public void AddHealth(int amount)
     {
-        currentHealth += amount;
-        currentHealth = Mathf.Min(currentHealth, startHealth);
-        DisplayHealth();
+        if (!isDead)
+        {
+            currentHealth += amount;
+            currentHealth = Mathf.Min(currentHealth, startHealth);
+            DisplayHealth();
+            if(myClass == CharacterClass.Player && currentHealth < startHealth)
+            {
+                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Bandage);
+            }
+        }
     }
 
     /// <summary>
