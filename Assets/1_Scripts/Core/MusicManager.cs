@@ -24,18 +24,11 @@ public class MusicManager : SingletonEntity<MusicManager>
     float curEnemieIntensity = 0.0f;
     [FMODUnity.EventRef]
     public string menuStateEvent = "";
-<<<<<<< HEAD
     public FMOD.Studio.EventInstance menuState;
     public float sfxVolume;
     private bool doneOnce = false;
-=======
-    FMOD.Studio.EventInstance menuState;
-    bool isPLayingEvent = false;
-<<<<<<< HEAD
->>>>>>> a3e16226b2f3ac81c8361cf9fa27d6f8ae1b5855
-=======
->>>>>>> a3e16226b2f3ac81c8361cf9fa27d6f8ae1b5855
 
+    bool isPLayingEvent = false;
     //The AudioSource to which we play any clips
     private AudioSource A_Source;
     public bool isMuted;
@@ -52,12 +45,6 @@ public class MusicManager : SingletonEntity<MusicManager>
 
     //Singleton accessor
     //public static MusicManager Instance;
-
-<<<<<<< HEAD
-    //void  Awake()
-    //{
-    //    Instance = this;
-    //}
 
     protected override void Awake()
     {
@@ -84,7 +71,7 @@ public class MusicManager : SingletonEntity<MusicManager>
 
     private void PlayMusic(Scene scene)
     {
-        if(scene.name == "Menu_Main")
+        if (scene.name == "Menu_Main")
         {
             menuState.start();
         }
@@ -103,33 +90,14 @@ public class MusicManager : SingletonEntity<MusicManager>
             caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             caravanState.start();
         }
-
-=======
-    void Awake()
-    { 
-        // Check if 'GameManager' instance exists
-        if (Instance)
-            // 'GameManager' already exists, delete copy
-            Destroy(gameObject);
-        else
-        {
-            // 'GameManager' does not exist so assign a reference to it
-            Instance = this;
-        }
-<<<<<<< HEAD
->>>>>>> a3e16226b2f3ac81c8361cf9fa27d6f8ae1b5855
-=======
->>>>>>> a3e16226b2f3ac81c8361cf9fa27d6f8ae1b5855
     }
-
     void Start()
     {
         caravanState = FMODUnity.RuntimeManager.CreateInstance(caravanStateEvent);
-        
+
         menuState = FMODUnity.RuntimeManager.CreateInstance(menuStateEvent);
         menuState.start();
         isPLayingEvent = true;
-<<<<<<< HEAD
 
         int MuteInt = PlayerPrefs.GetInt("Mutetogglestate");
 
@@ -142,8 +110,6 @@ public class MusicManager : SingletonEntity<MusicManager>
         caravanState.setVolume(PlayerPrefs.GetFloat("MVolume"));
         menuState.setVolume(PlayerPrefs.GetFloat("MVolume"));
 
-        //Add the audio source
-<<<<<<< HEAD
         A_Source = gameObject.GetComponent<AudioSource>();
         if (!caravanHealth)
         {
@@ -158,144 +124,69 @@ public class MusicManager : SingletonEntity<MusicManager>
                 }
             }
         }
-=======
-        A_Source = gameObject.AddComponent<AudioSource>();
-
->>>>>>> a3e16226b2f3ac81c8361cf9fa27d6f8ae1b5855
-=======
-
-        //Add the audio source
-        A_Source = gameObject.AddComponent<AudioSource>();
-
->>>>>>> a3e16226b2f3ac81c8361cf9fa27d6f8ae1b5855
     }
-
-
     // Update is called once per frame
     void Update()
-    {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        
-        if (SceneManager.GetActiveScene().name != "Menu_Main" && SceneManager.GetActiveScene().name != "Menu_CharacterSelect" && SceneManager.GetActiveScene().name != "SplashScreen")
-=======
-=======
->>>>>>> a3e16226b2f3ac81c8361cf9fa27d6f8ae1b5855
-        if ((SceneManager.GetActiveScene().name == "Menu_Main" || SceneManager.GetActiveScene().name == "Menu_CharacterSelect" || SceneManager.GetActiveScene().name == "SplashScreen") && !isPLayingEvent)
         {
-            menuState.start();
-            isPLayingEvent = true;
-        }
-        else if (SceneManager.GetActiveScene().name != "Menu_Main" && SceneManager.GetActiveScene().name != "Menu_CharacterSelect" && SceneManager.GetActiveScene().name != "SplashScreen")
-<<<<<<< HEAD
->>>>>>> a3e16226b2f3ac81c8361cf9fa27d6f8ae1b5855
-=======
->>>>>>> a3e16226b2f3ac81c8361cf9fa27d6f8ae1b5855
-        {
-            menuState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            isPLayingEvent = false;
-        }
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if (LevelLoader.IsGameLevel())
-        {
-            
-            if(caravanHealth != null)
-=======
-=======
->>>>>>> a3e16226b2f3ac81c8361cf9fa27d6f8ae1b5855
-        if (SceneManager.GetActiveScene().name == "Encounter_01" || SceneManager.GetActiveScene().name == "Encounter_02")
-        {
-            if (!caravanHealth)
+            if ((SceneManager.GetActiveScene().name == "Menu_Main" || SceneManager.GetActiveScene().name == "Menu_CharacterSelect" || SceneManager.GetActiveScene().name == "SplashScreen") && !isPLayingEvent)
             {
-                HealthComp[] healthComps = FindObjectsOfType<HealthComp>();
-                for (int i = 0; i < healthComps.Length; i++)
+                menuState.start();
+                isPLayingEvent = true;
+            }
+            else if (SceneManager.GetActiveScene().name != "Menu_Main" && SceneManager.GetActiveScene().name != "Menu_CharacterSelect" && SceneManager.GetActiveScene().name != "SplashScreen")
+            {
+                menuState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                isPLayingEvent = false;
+            }
+
+            if (LevelLoader.IsGameLevel())
+            {
+
+                if (caravanHealth != null)
                 {
-                    if (healthComps[i].myClass == CharacterClass.Caravan)
+                    //if(!doneOnce)
+                    //{
+                    //    caravanState.start();
+                    //    doneOnce = true;
+                    //}
+
+                    if (caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 4)
                     {
-                        caravanHealth = healthComps[i];
-                        break;
+                        caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 3f, 1.0f));
+                    }
+                    else if (caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 2)
+                    {
+                        caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 1.5f, 1.0f));
+                    }
+                    if (SpawnManager.EnemiesAlive < 10)
+                    {
+                        caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 0f, 1.0f));
+                    }
+                    else if (SpawnManager.EnemiesAlive >= 10 && caravanHealth.GetCurHealth() > caravanHealth.GetStartHealth() / 4)
+                    {
+                        caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 1.0f, 1.0f));
+                    }
+                    else if (SpawnManager.EnemiesAlive >= 10 && caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 4)
+                    {
+                        caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 2.0f, 1.0f));
                     }
                 }
-                caravanState.start();
+                if (caravanHealth.GetCurHealth() <= 0)
+                {
+                    caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                }
             }
-            if (caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 4)
-            {
-                caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 3f, 1.0f));
-            }
-            else if (caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 2)
-            {
-                caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 1.5f, 1.0f));
-            }
+            //else if (SceneManager.GetActiveScene().name != "Encounter_01" && SceneManager.GetActiveScene().name != "Encounter_02")
+            //{
+            //    caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            //    isPLayingEvent = false;
+            //}
             else
             {
-                caravanState.setParameterByName("Caravan Health", 0.0f);
-            }
-            if (SpawnManager.EnemiesAlive < 10)
-            {
-                caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 0f, 1.0f));
-            }
-            else if (SpawnManager.EnemiesAlive >= 10 && caravanHealth.GetCurHealth() > caravanHealth.GetStartHealth() / 4)
-            {
-                caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 1.0f, 1.0f));
-            }
-            else if (SpawnManager.EnemiesAlive >= 10 && caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 4)
->>>>>>> a3e16226b2f3ac81c8361cf9fa27d6f8ae1b5855
-            {
-                //if(!doneOnce)
-                //{
-                //    caravanState.start();
-                //    doneOnce = true;
-                //}
-
-                if (caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 4)
-                {
-                    caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 3f, 1.0f));
-                }
-                else if (caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 2)
-                {
-                    caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 1.5f, 1.0f));
-                }
-                if (SpawnManager.EnemiesAlive < 10)
-                {
-                    caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 0f, 1.0f));
-                }
-                else if (SpawnManager.EnemiesAlive >= 10 && caravanHealth.GetCurHealth() > caravanHealth.GetStartHealth() / 4)
-                {
-                    caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 1.0f, 1.0f));
-                }
-                else if (SpawnManager.EnemiesAlive >= 10 && caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 4)
-                {
-                    caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 2.0f, 1.0f));
-                }
-            }
-<<<<<<< HEAD
-
-=======
-            if(caravanHealth.GetCurHealth() <= 0)
-            {
                 caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             }
-<<<<<<< HEAD
->>>>>>> a3e16226b2f3ac81c8361cf9fa27d6f8ae1b5855
-=======
-            if(caravanHealth.GetCurHealth() <= 0)
-            {
-                caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            }
->>>>>>> a3e16226b2f3ac81c8361cf9fa27d6f8ae1b5855
         }
-        //else if (SceneManager.GetActiveScene().name != "Encounter_01" && SceneManager.GetActiveScene().name != "Encounter_02")
-        //{
-        //    caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        //    isPLayingEvent = false;
-        //}
-        else
-        {
-            caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        }
-    }
-
+    
     public void PlaySoundTrack(SoundClipsInts TrackID)
     {
 
@@ -305,32 +196,18 @@ public class MusicManager : SingletonEntity<MusicManager>
 
         switch (TrackID)
         {
-            case SoundClipsInts.GoldPickUp:   
+            case SoundClipsInts.GoldPickUp:
                 A_Source.PlayOneShot(Clip_GoldPickUp, sfxVolume);
                 break;
 
             case SoundClipsInts.Attack:
-<<<<<<< HEAD
-<<<<<<< HEAD
+
                 A_Source.PlayOneShot(Clip_Attack, sfxVolume);
                 break;
 
             case SoundClipsInts.Hit:
                 A_Source.PlayOneShot(Clip_Hit, sfxVolume);
-=======
-=======
->>>>>>> a3e16226b2f3ac81c8361cf9fa27d6f8ae1b5855
-                A_Source.PlayOneShot(Clip_Attack,0.8f);
                 break;
-
-            case SoundClipsInts.Hit:
-                A_Source.PlayOneShot(Clip_Hit,0.8f);
-<<<<<<< HEAD
->>>>>>> a3e16226b2f3ac81c8361cf9fa27d6f8ae1b5855
-=======
->>>>>>> a3e16226b2f3ac81c8361cf9fa27d6f8ae1b5855
-                break;
-
             case SoundClipsInts.Death:
                 A_Source.PlayOneShot(Clip_Death, sfxVolume);
                 break;
@@ -340,19 +217,11 @@ public class MusicManager : SingletonEntity<MusicManager>
                 break;
 
             case SoundClipsInts.Bandage:
-                A_Source.PlayOneShot(Clip_Bandage, 1);
+                A_Source.PlayOneShot(Clip_Bandage, sfxVolume);
                 break;
 
             case SoundClipsInts.TrapTrigger:
-                A_Source.PlayOneShot(Clip_TrapTrigger, 1);
-                break;
-
-            case SoundClipsInts.Bandage:
-                A_Source.PlayOneShot(Clip_Bandage, 1);
-                break;
-
-            case SoundClipsInts.TrapTrigger:
-                A_Source.PlayOneShot(Clip_TrapTrigger, 1);
+                A_Source.PlayOneShot(Clip_TrapTrigger, sfxVolume);
                 break;
 
             default:
@@ -361,6 +230,4 @@ public class MusicManager : SingletonEntity<MusicManager>
         }
 
     }
-
-
 }
