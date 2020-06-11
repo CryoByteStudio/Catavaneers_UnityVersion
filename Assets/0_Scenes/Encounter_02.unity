@@ -122,7 +122,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 38755ea135c63ee4eb5540f4095b229a, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: d8eb86f972615b143b99a52841043fac, type: 2}
 --- !u!1 &9987671
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,9 +160,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1521849054605376, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_Name
       value: aloe_m (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4129686743165072, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -244,6 +252,14 @@ PrefabInstance:
     - target: {fileID: 1732816042761342, guid: a1f403feb3451c14c8d72d495a993cb1, type: 3}
       propertyPath: m_Name
       value: rock03_m (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732816042761342, guid: a1f403feb3451c14c8d72d495a993cb1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955101311580160, guid: a1f403feb3451c14c8d72d495a993cb1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4506419760738798, guid: a1f403feb3451c14c8d72d495a993cb1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1004,12 +1020,12 @@ PrefabInstance:
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.size
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[5].enemiesToSpawn.Array.size
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
@@ -1034,37 +1050,47 @@ PrefabInstance:
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[2].enemiesToSpawn.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[4].enemiesToSpawn.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
-        type: 3}
-      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[0].enemyToSpawnType
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
+      propertyPath: waves.Array.data[0].enemiesToSpawn.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemiesToSpawn.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[0].enemyToSpawnType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
       propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[0].count
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[0].spawnPoint
       value: 
-      objectReference: {fileID: 1663575751}
+      objectReference: {fileID: 2094107228}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[1].enemyToSpawnType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[1].count
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
@@ -1074,18 +1100,18 @@ PrefabInstance:
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[2].enemyToSpawnType
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[2].count
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[2].spawnPoint
       value: 
-      objectReference: {fileID: 1067840090}
+      objectReference: {fileID: 1663575751}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[5].spawnInterval
@@ -1309,7 +1335,7 @@ PrefabInstance:
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[0].count
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
@@ -1319,7 +1345,7 @@ PrefabInstance:
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[1].enemiesToSpawn.Array.data[0].count
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
@@ -1329,22 +1355,22 @@ PrefabInstance:
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[2].enemiesToSpawn.Array.data[0].enemyToSpawnType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[2].enemiesToSpawn.Array.data[0].count
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[2].enemiesToSpawn.Array.data[1].enemyToSpawnType
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[2].enemiesToSpawn.Array.data[1].count
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
@@ -1359,18 +1385,18 @@ PrefabInstance:
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[4].enemiesToSpawn.Array.data[3].enemyToSpawnType
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[4].enemiesToSpawn.Array.data[3].count
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[4].enemiesToSpawn.Array.data[3].spawnPoint
       value: 
-      objectReference: {fileID: 1067840090}
+      objectReference: {fileID: 2094107228}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[4].enemiesToSpawn.Array.data[4].enemyToSpawnType
@@ -1399,18 +1425,18 @@ PrefabInstance:
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[4].enemiesToSpawn.Array.data[0].count
-      value: 9
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[4].enemiesToSpawn.Array.data[1].count
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[4].enemiesToSpawn.Array.data[1].spawnPoint
       value: 
-      objectReference: {fileID: 2094107228}
+      objectReference: {fileID: 1162671132}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[4].spawnInterval
@@ -1425,12 +1451,277 @@ PrefabInstance:
         type: 3}
       propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[0].spawnPoint
       value: 
-      objectReference: {fileID: 2094107228}
+      objectReference: {fileID: 1663575751}
     - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: waves.Array.data[3].enemiesToSpawn.Array.data[0].spawnPoint
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[1].enemyToSpawnType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[1].count
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[1].spawnPoint
+      value: 
+      objectReference: {fileID: 2094107228}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[1].name
+      value: Mouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[2].enemyToSpawnType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[2].count
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[2].spawnPoint
+      value: 
+      objectReference: {fileID: 1162671132}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[2].name
+      value: Mouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[0].enemyToSpawnType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[3].enemyToSpawnType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[3].count
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[3].spawnPoint
+      value: 
+      objectReference: {fileID: 1067840090}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[3].name
+      value: Mouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemiesToSpawn.Array.data[1].enemyToSpawnType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemiesToSpawn.Array.data[1].count
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemiesToSpawn.Array.data[1].spawnPoint
+      value: 
+      objectReference: {fileID: 1162671132}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemiesToSpawn.Array.data[2].enemyToSpawnType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemiesToSpawn.Array.data[2].count
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemiesToSpawn.Array.data[2].spawnPoint
+      value: 
+      objectReference: {fileID: 1162671132}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemiesToSpawn.Array.data[3].enemyToSpawnType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemiesToSpawn.Array.data[3].count
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemiesToSpawn.Array.data[3].spawnPoint
+      value: 
+      objectReference: {fileID: 2094107228}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemiesToSpawn.Array.data[4].enemyToSpawnType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemiesToSpawn.Array.data[4].count
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemiesToSpawn.Array.data[4].spawnPoint
+      value: 
+      objectReference: {fileID: 1663575751}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[2].enemiesToSpawn.Array.data[2].enemyToSpawnType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[2].enemiesToSpawn.Array.data[2].count
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[2].enemiesToSpawn.Array.data[2].spawnPoint
+      value: 
+      objectReference: {fileID: 1663575751}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[2].enemiesToSpawn.Array.data[0].spawnPoint
+      value: 
+      objectReference: {fileID: 1162671132}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[2].enemiesToSpawn.Array.data[3].enemyToSpawnType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[2].enemiesToSpawn.Array.data[3].count
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[2].enemiesToSpawn.Array.data[3].spawnPoint
+      value: 
+      objectReference: {fileID: 2094107228}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[4].enemiesToSpawn.Array.data[2].enemyToSpawnType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[4].enemiesToSpawn.Array.data[2].count
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[4].enemiesToSpawn.Array.data[2].spawnPoint
+      value: 
+      objectReference: {fileID: 1067840090}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[3].enemyToSpawnType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[3].count
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[3].spawnPoint
+      value: 
+      objectReference: {fileID: 2094107228}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[4].enemyToSpawnType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[4].count
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[4].spawnPoint
+      value: 
+      objectReference: {fileID: 1162671132}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[5].enemyToSpawnType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[5].count
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[5].spawnPoint
+      value: 
+      objectReference: {fileID: 1663575751}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[6].enemyToSpawnType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[6].count
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[6].spawnPoint
+      value: 
+      objectReference: {fileID: 1067840090}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[7].enemyToSpawnType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[7].count
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[7].spawnPoint
+      value: 
+      objectReference: {fileID: 1162671132}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[8].enemyToSpawnType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[8].count
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275304119499808838, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: waves.Array.data[5].enemiesToSpawn.Array.data[8].spawnPoint
+      value: 
+      objectReference: {fileID: 1067840090}
     - target: {fileID: 3275304119570502372, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2229,9 +2520,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1521849054605376, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_Name
       value: aloe_m (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4129686743165072, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2313,6 +2612,14 @@ PrefabInstance:
     - target: {fileID: 1268516079989756, guid: 5c243d3591422814a81656730b54873b, type: 3}
       propertyPath: m_Name
       value: cactus02_m (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268516079989756, guid: 5c243d3591422814a81656730b54873b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513827508978728, guid: 5c243d3591422814a81656730b54873b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4427979448961148, guid: 5c243d3591422814a81656730b54873b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2674,9 +2981,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1521849054605376, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_Name
       value: aloe_m (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4129686743165072, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3518,12 +3833,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caravanStateEvent: event:/Combat_VO
   caravanHealth: {fileID: 837807007}
+  menuStateEvent: 
   Clip_default: {fileID: 0}
   Clip_GoldPickUp: {fileID: 8300000, guid: 38b542b856a71454992afbe924686f55, type: 3}
   Clip_Attack: {fileID: 8300000, guid: 576fd5f33f41849408ccdd651a566868, type: 3}
   Clip_Hit: {fileID: 8300000, guid: 576fd5f33f41849408ccdd651a566868, type: 3}
   Clip_Death: {fileID: 8300000, guid: 576fd5f33f41849408ccdd651a566868, type: 3}
   Clip_Buying: {fileID: 8300000, guid: 38b542b856a71454992afbe924686f55, type: 3}
+  Clip_Bandage: {fileID: 0}
+  Clip_TrapTrigger: {fileID: 0}
 --- !u!4 &206556027
 Transform:
   m_ObjectHideFlags: 0
@@ -8484,9 +8802,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1434523090610590, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1577972444696848, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
       propertyPath: m_Name
       value: rock07_m (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577972444696848, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4170338360746998, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8557,6 +8883,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Bone_Skull_01
       objectReference: {fileID: 0}
+    - target: {fileID: 151284, guid: ddc413674fbd6094fb373197897aadbf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 495616, guid: ddc413674fbd6094fb373197897aadbf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.811775
@@ -8610,9 +8940,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1521849054605376, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_Name
       value: aloe_m (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4129686743165072, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13553,6 +13891,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock05_m (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1455819010161008, guid: 86ca6560575669f47bb9427d4e937af0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769472032279376, guid: 86ca6560575669f47bb9427d4e937af0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4179240027576528, guid: 86ca6560575669f47bb9427d4e937af0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -25.86
@@ -13694,6 +14040,14 @@ PrefabInstance:
     - target: {fileID: 1455819010161008, guid: 86ca6560575669f47bb9427d4e937af0, type: 3}
       propertyPath: m_Name
       value: rock05_m
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455819010161008, guid: 86ca6560575669f47bb9427d4e937af0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769472032279376, guid: 86ca6560575669f47bb9427d4e937af0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4179240027576528, guid: 86ca6560575669f47bb9427d4e937af0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13920,9 +14274,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1521849054605376, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_Name
       value: aloe_m (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4129686743165072, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14195,9 +14557,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1434523090610590, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1577972444696848, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
       propertyPath: m_Name
       value: rock07_m (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577972444696848, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4170338360746998, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14267,6 +14637,14 @@ PrefabInstance:
     - target: {fileID: 1732816042761342, guid: a1f403feb3451c14c8d72d495a993cb1, type: 3}
       propertyPath: m_Name
       value: rock03_m (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732816042761342, guid: a1f403feb3451c14c8d72d495a993cb1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955101311580160, guid: a1f403feb3451c14c8d72d495a993cb1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4506419760738798, guid: a1f403feb3451c14c8d72d495a993cb1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14521,9 +14899,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1434523090610590, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1577972444696848, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
       propertyPath: m_Name
       value: rock07_m
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577972444696848, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4170338360746998, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14990,6 +15376,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: cactus03_m
       objectReference: {fileID: 0}
+    - target: {fileID: 1753111941425576, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949044754145288, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4747018190753414, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.02
@@ -15082,6 +15476,14 @@ PrefabInstance:
     - target: {fileID: 1471897887361602, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
       propertyPath: m_Name
       value: rock02_m (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471897887361602, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793151680460980, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4909627193785698, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15239,9 +15641,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1434523090610590, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1577972444696848, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
       propertyPath: m_Name
       value: rock07_m (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577972444696848, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4170338360746998, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15725,6 +16135,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock02_m (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1471897887361602, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793151680460980, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4179985072043980, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.6935208
@@ -15915,9 +16333,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1521849054605376, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_Name
       value: aloe_m
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4129686743165072, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16331,6 +16757,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: cactus02_m
       objectReference: {fileID: 0}
+    - target: {fileID: 1268516079989756, guid: 5c243d3591422814a81656730b54873b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513827508978728, guid: 5c243d3591422814a81656730b54873b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4006570820949346, guid: 5c243d3591422814a81656730b54873b, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.38
@@ -16495,9 +16929,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1100401560106132, guid: b4b140ef271131646b1b285ea1904282, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1132381713674046, guid: b4b140ef271131646b1b285ea1904282, type: 3}
       propertyPath: m_Name
       value: rock06_m
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132381713674046, guid: b4b140ef271131646b1b285ea1904282, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4925135389410846, guid: b4b140ef271131646b1b285ea1904282, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16647,6 +17089,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock05_m (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1455819010161008, guid: 86ca6560575669f47bb9427d4e937af0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769472032279376, guid: 86ca6560575669f47bb9427d4e937af0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4179240027576528, guid: 86ca6560575669f47bb9427d4e937af0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.41
@@ -16712,9 +17162,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1521849054605376, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_Name
       value: aloe_m (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4129686743165072, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17050,6 +17508,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock02_m (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1471897887361602, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793151680460980, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4909627193785698, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.58
@@ -17118,6 +17584,14 @@ PrefabInstance:
     - target: {fileID: 114448, guid: 50294217694c1a145a9a3b86f853c022, type: 3}
       propertyPath: m_Name
       value: Cactus3 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 118890, guid: 50294217694c1a145a9a3b86f853c022, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 197264, guid: 50294217694c1a145a9a3b86f853c022, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 413554, guid: 50294217694c1a145a9a3b86f853c022, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17232,9 +17706,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1434523090610590, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1577972444696848, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
       propertyPath: m_Name
       value: rock07_m (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577972444696848, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4170338360746998, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17623,6 +18105,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock02_m
       objectReference: {fileID: 0}
+    - target: {fileID: 1471897887361602, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793151680460980, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4179985072043980, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.43061885
@@ -17955,9 +18445,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1521849054605376, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_Name
       value: aloe_m (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4129686743165072, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18259,6 +18757,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock02_m (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1471897887361602, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793151680460980, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4179985072043980, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.38
@@ -18359,6 +18865,14 @@ PrefabInstance:
     - target: {fileID: 1753111941425576, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
       propertyPath: m_Name
       value: cactus03_m (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753111941425576, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949044754145288, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4747018190753414, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18477,6 +18991,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock05_m (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1455819010161008, guid: 86ca6560575669f47bb9427d4e937af0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769472032279376, guid: 86ca6560575669f47bb9427d4e937af0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4179240027576528, guid: 86ca6560575669f47bb9427d4e937af0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.615
@@ -18575,6 +19097,14 @@ PrefabInstance:
     - target: {fileID: 1732816042761342, guid: a1f403feb3451c14c8d72d495a993cb1, type: 3}
       propertyPath: m_Name
       value: rock03_m (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732816042761342, guid: a1f403feb3451c14c8d72d495a993cb1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955101311580160, guid: a1f403feb3451c14c8d72d495a993cb1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4506419760738798, guid: a1f403feb3451c14c8d72d495a993cb1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18910,6 +19440,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: cactus03_m (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1753111941425576, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949044754145288, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4747018190753414, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.17
@@ -19003,6 +19541,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock04_m
       objectReference: {fileID: 0}
+    - target: {fileID: 1362401044711578, guid: 91b67e25ff24e274980ffcba036fd290, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1600853911621230, guid: 91b67e25ff24e274980ffcba036fd290, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4474038833683700, guid: 91b67e25ff24e274980ffcba036fd290, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.26
@@ -19084,6 +19630,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock02_m (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1471897887361602, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793151680460980, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4909627193785698, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -33.987297
@@ -19158,6 +19712,14 @@ PrefabInstance:
     - target: {fileID: 1224429732935182, guid: caaa7ae63a9ddff43a592237cf4c65fc, type: 3}
       propertyPath: m_Name
       value: rock08_m
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224429732935182, guid: caaa7ae63a9ddff43a592237cf4c65fc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1451048658005728, guid: caaa7ae63a9ddff43a592237cf4c65fc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4452881278709086, guid: caaa7ae63a9ddff43a592237cf4c65fc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19941,6 +20503,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: cactus02_m (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1268516079989756, guid: 5c243d3591422814a81656730b54873b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513827508978728, guid: 5c243d3591422814a81656730b54873b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4427979448961148, guid: 5c243d3591422814a81656730b54873b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.35
@@ -20060,6 +20630,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: cactus03_m (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1753111941425576, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949044754145288, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4747018190753414, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.04
@@ -20152,6 +20730,14 @@ PrefabInstance:
     - target: {fileID: 114448, guid: 50294217694c1a145a9a3b86f853c022, type: 3}
       propertyPath: m_Name
       value: Cactus3
+      objectReference: {fileID: 0}
+    - target: {fileID: 118890, guid: 50294217694c1a145a9a3b86f853c022, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 197264, guid: 50294217694c1a145a9a3b86f853c022, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 413554, guid: 50294217694c1a145a9a3b86f853c022, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20269,6 +20855,14 @@ PrefabInstance:
     - target: {fileID: 1753111941425576, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
       propertyPath: m_Name
       value: cactus03_m (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753111941425576, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949044754145288, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4747018190753414, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20682,6 +21276,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock01_m
       objectReference: {fileID: 0}
+    - target: {fileID: 1058360439551292, guid: 285b9972cdfec2a41a57161bddbe78ef, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180465814104308, guid: 285b9972cdfec2a41a57161bddbe78ef, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4851111132458228, guid: 285b9972cdfec2a41a57161bddbe78ef, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.00609
@@ -20757,6 +21359,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Wep_Bone_01
       objectReference: {fileID: 0}
+    - target: {fileID: 125836, guid: e243cdbf40ae09049834a4fdf1876343, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 466574, guid: e243cdbf40ae09049834a4fdf1876343, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.18
@@ -20822,9 +21428,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1521849054605376, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_Name
       value: aloe_m (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4129686743165072, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21518,6 +22132,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: cactus03_m (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1753111941425576, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949044754145288, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4747018190753414, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.27
@@ -21610,6 +22232,14 @@ PrefabInstance:
     - target: {fileID: 1471897887361602, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
       propertyPath: m_Name
       value: rock02_m (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471897887361602, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793151680460980, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4909627193785698, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21830,6 +22460,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: cactus03_m (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1753111941425576, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949044754145288, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4747018190753414, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.29
@@ -21923,6 +22561,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock02_m (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1471897887361602, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793151680460980, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4909627193785698, guid: 8f281d16e094c6a4896e37696e49dea9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.21
@@ -21991,6 +22637,14 @@ PrefabInstance:
     - target: {fileID: 1753111941425576, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
       propertyPath: m_Name
       value: cactus03_m (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753111941425576, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949044754145288, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4747018190753414, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22122,9 +22776,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1521849054605376, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_Name
       value: aloe_m (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4129686743165072, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22203,9 +22865,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1521849054605376, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_Name
       value: aloe_m (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4129686743165072, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22357,9 +23027,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1521849054605376, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_Name
       value: aloe_m (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4129686743165072, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22567,6 +23245,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock03_m
       objectReference: {fileID: 0}
+    - target: {fileID: 1732816042761342, guid: a1f403feb3451c14c8d72d495a993cb1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955101311580160, guid: a1f403feb3451c14c8d72d495a993cb1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4506419760738798, guid: a1f403feb3451c14c8d72d495a993cb1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 28.99868
@@ -22745,6 +23431,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Bone_Rigcage_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 153826, guid: 8c3c19c34c678744485079676334c608, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 468028, guid: 8c3c19c34c678744485079676334c608, type: 3}
       propertyPath: m_LocalPosition.x
       value: -27.634
@@ -22834,9 +23524,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1434523090610590, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1577972444696848, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
       propertyPath: m_Name
       value: rock07_m (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577972444696848, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4170338360746998, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22950,9 +23648,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1521849054605376, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_Name
       value: aloe_m (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920272553093660, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4129686743165072, guid: ce4192f2b3cb01b4ea33251fa9ea76ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23043,9 +23749,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722586701}
     m_Modifications:
+    - target: {fileID: 1434523090610590, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1577972444696848, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
       propertyPath: m_Name
       value: rock07_m (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577972444696848, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4170338360746998, guid: e7bddad50f1e07247a818242d1afcf74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23121,7 +23835,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &2100093696
 MeshRenderer:
@@ -23591,6 +24305,14 @@ PrefabInstance:
     - target: {fileID: 1058360439551292, guid: 285b9972cdfec2a41a57161bddbe78ef, type: 3}
       propertyPath: m_Name
       value: rock01_m (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058360439551292, guid: 285b9972cdfec2a41a57161bddbe78ef, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180465814104308, guid: 285b9972cdfec2a41a57161bddbe78ef, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4851111132458228, guid: 285b9972cdfec2a41a57161bddbe78ef, type: 3}
       propertyPath: m_LocalPosition.x
