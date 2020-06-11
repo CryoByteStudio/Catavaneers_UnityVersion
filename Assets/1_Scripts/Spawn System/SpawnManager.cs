@@ -33,6 +33,7 @@ namespace SpawnSystem
         Dog
     }
 
+
     public class SpawnManager : MonoBehaviour
     {
         [Header("Wave Settings")]
@@ -57,8 +58,24 @@ namespace SpawnSystem
         public static bool CanSpawn = false;
         public static bool m_Debug = false;
 
+        public CharacterManager cman;
+        //how many players
+        int playerCount;
+
         private void Start()
         {
+            //find howmany players
+            if (FindObjectOfType<CharacterManager>())
+            {
+                cman = FindObjectOfType<CharacterManager>();
+                playerCount=cman.playercount;
+            }
+            else
+            {
+                playerCount = 1;
+            }
+
+
             Reset();
             CanSpawn = true;
 
