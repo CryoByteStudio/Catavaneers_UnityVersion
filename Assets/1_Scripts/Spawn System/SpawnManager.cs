@@ -83,16 +83,12 @@ namespace SpawnSystem
                     SpawnNextWave();
                 }
             }
-            else
-            {
-                
-            }
 
             UpdateSpawnParams();
         }
 
         /// <summary>
-        /// Check if has spawned all enemies
+        /// Check if has spawned all enemies and all waves
         /// </summary>
         private bool HasSpawnedAllEnemies()
         {
@@ -109,6 +105,7 @@ namespace SpawnSystem
             if (HasSpawnedAllEnemies())
             {
                 CanSpawn = false;
+                
                 SceneManager.LoadScene("Campaign");
             }
             // otherwise update time elapsed

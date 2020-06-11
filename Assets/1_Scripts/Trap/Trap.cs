@@ -55,6 +55,7 @@ public class Trap : MonoBehaviour
             if (type == TrapType.Reverse) ReverseTrap(aflictionValue);
             if (type == TrapType.Slow) SlowTrap(aflictionValue);
             if (type == TrapType.Damage) other.GetComponent<HealthComp>().TakeDamage(TrapDamage);
+            other.GetComponent<TrapSystem>().Flash();
             CurrentTime++;
         }
 
@@ -95,6 +96,7 @@ public class Trap : MonoBehaviour
                         if (type == TrapType.Reverse) ReverseTrap(aflictionValue);
                         if (type == TrapType.Slow) SlowTrap(aflictionValue);
                         if (type == TrapType.Damage) colliders[i].GetComponent<HealthComp>().TakeDamage(TrapDamage);
+                        target.GetComponent<TrapSystem>().Flash();
                     }
                 }
 

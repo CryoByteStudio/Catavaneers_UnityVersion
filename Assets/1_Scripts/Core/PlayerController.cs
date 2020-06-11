@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,9 +59,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
-
-        
+    {        
         //constraints for the player
         if (transform.position.y < ymin)
         {
@@ -118,9 +117,16 @@ public class PlayerController : MonoBehaviour
                     AxisInput();
                     break;
             }
+            DodgeInput();
             CharacterMove(weaponWeight, reverseValue, slowValue);
         }
     }
+
+    private void DodgeInput()
+    {
+
+    }
+
     private void AxisInput()
     {
             LTumbInput = new Vector3(Input.GetAxis(inputHorizontalLeftThumb), 0, Input.GetAxis(inputVerticalLeftThumb));
@@ -168,19 +174,19 @@ public class PlayerController : MonoBehaviour
         float clockwise = angleDir(transform.forward, LTumbInput.normalized, Vector3.up);
         if (curAngle < straffSensitiviy)
         {
-            animator.SetInteger("Strafe", 0);
+            animator.SetFloat("Strafe", 0);
         }
         if ((curAngle > straffSensitiviy && curAngle < 180 - straffSensitiviy && clockwise < 0))
         {
-            animator.SetInteger("Strafe", -1);
+            animator.SetFloat("Strafe", -1);
         }
         if ((curAngle > straffSensitiviy && curAngle < 180- straffSensitiviy && clockwise > 0))
         {
-            animator.SetInteger("Strafe", 1);
+            animator.SetFloat("Strafe", 1);
         }
         if ((curAngle > 180 - straffSensitiviy))
         {
-            animator.SetInteger("Strafe", 0);
+            animator.SetFloat("Strafe", 0);
         }
     }
     public void SetWeaponWeight(float currentWeapon)
@@ -244,35 +250,41 @@ public class PlayerController : MonoBehaviour
         Debug.Log("enter dodge");
         states = MoveStates.Dodge;
         dodgeDirection = DodgeDirection.Backward;
+        animator.SetInteger("Roll", 1);
     }
     void ExitRollBackwards()
     {
         Debug.Log("exit dodge");
         states = MoveStates.Movement;
         dodgeDirection = DodgeDirection.none;
+        animator.SetInteger("Roll", 0);
     }
     void EnterRollLeft()
     {
         Debug.Log("enter dodge");
         states = MoveStates.Dodge;
         dodgeDirection = DodgeDirection.Left;
+        animator.SetInteger("Roll", 3);
     }
     void ExitRollLeft()
     {
         Debug.Log("exit dodge");
         states = MoveStates.Movement;
         dodgeDirection = DodgeDirection.none;
+        animator.SetInteger("Roll", 0);
     }
     void EnterRollRight()
     {
         Debug.Log("enter dodge");
         states = MoveStates.Dodge;
         dodgeDirection = DodgeDirection.Right;
+        animator.SetInteger("Roll", 4);
     }
     void ExitRollRight()
     {
         Debug.Log("exit dodge");
         states = MoveStates.Movement;
         dodgeDirection = DodgeDirection.none;
+        animator.SetInteger("Roll", 0);
     }
 }
