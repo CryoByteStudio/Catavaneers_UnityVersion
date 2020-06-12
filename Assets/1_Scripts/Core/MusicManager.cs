@@ -186,7 +186,7 @@ public class MusicManager : SingletonEntity<MusicManager>
                 caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             }
         }
-    
+
     public void PlaySoundTrack(SoundClipsInts TrackID)
     {
 
