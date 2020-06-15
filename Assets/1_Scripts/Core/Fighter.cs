@@ -19,7 +19,6 @@ public class Fighter : MonoBehaviour
     PlayerController player;
 
     public string attackAxis;
-    public string dodgeButton;
     void Start()
     {
         if (currentWeapon == null)
@@ -45,16 +44,10 @@ public class Fighter : MonoBehaviour
             ShootProjectile();
             
         }
-
         //if(Input.GetButtonDown("Attack"))
         //{
         //    ShootProjectile();
         //}
-
-        if (Input.GetButtonDown(dodgeButton))
-        {
-            player.animator.SetTrigger("Roll");
-        }
     }
     public void EquipWeapon(Weapon weapon)
     {
@@ -63,7 +56,6 @@ public class Fighter : MonoBehaviour
         GetComponent<PlayerController>().SetWeaponWeight(currentWeapon.GetWeaponWeight());
         Animator animator = GetComponent<Animator>();
         weapon.Spawn(rightHandTransform, leftHandTransform, animator);
-        //Debug.Log(currentWeapon.name);
         foreach(GameObject weaponCollider in weaponColliders)
         {
             if (weaponCollider.name == currentWeapon.name)
@@ -76,6 +68,7 @@ public class Fighter : MonoBehaviour
         }
     }
     //old attack system from animation event
+    #region
     //void Hit()
     //{
     //    Debug.Log("attack called");
@@ -107,8 +100,7 @@ public class Fighter : MonoBehaviour
     //    rayStart.transform.localPosition = new Vector3(currentWeapon.GetWeaponRange(),0,0);
     //    rayEnd.transform.localPosition = new Vector3(-currentWeapon.GetWeaponRange(),0,0);
     //}
-
-    //end of old attack system from animation event
+    #endregion
     float GetCurrentAttackSpeed()
     {
        // Debug.Log("character attack speed: " + CharacterAttackSpeed);
