@@ -4,14 +4,18 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
+using FMODUnity;
+
 
 public class SettingMenu : MonoBehaviour
 {
-    Resolution[] Resolutions; 
+    Resolution[] Resolutions;
 
     public AudioMixer VolMixer;
 
     public Slider VolumeSlider;
+
+    public Slider SFXVolumeSlider;
 
     //public Dropdown QualityDropDown;
     public TMP_Dropdown QualityDropDown;
@@ -34,12 +38,22 @@ public class SettingMenu : MonoBehaviour
     const string prefName = "optionvalue";
     const string resName = "resolutionoption";
 
+    private MusicManager MM;
+
     private void Awake()
     {
+        LoadSetting();
+    }
+
+    public void LoadSetting()
+    {
+
+        MM = FindObjectOfType<MusicManager>();
+
         ScreenInt = PlayerPrefs.GetInt("Screentogglestate");
         MuteInt = PlayerPrefs.GetInt("Mutetogglestate");
 
-        if(ScreenInt == 1)
+        if (ScreenInt == 1)
         {
             isFullScreen = true;
             FullScreenToggle.isOn = true;
@@ -49,13 +63,19 @@ public class SettingMenu : MonoBehaviour
             FullScreenToggle.isOn = false;
         }
 
-        if(MuteInt == 1)
+        if (MuteInt == 1)
         {
+
             isMuted = true;
+            MM.menuState.setPaused(true);
+            MM.caravanState.setPaused(true);
             MuteToggle.isOn = true;
         }
         else
         {
+            isMuted = false;
+            MM.menuState.setPaused(false);
+            MM.caravanState.setPaused(false);
             MuteToggle.isOn = false;
         }
 
@@ -70,12 +90,18 @@ public class SettingMenu : MonoBehaviour
             PlayerPrefs.SetInt(prefName, QualityDropDown.value);
             PlayerPrefs.Save();
         }));
+
     }
 
     void Start()
     {
+        MM.menuState.setVolume(PlayerPrefs.GetFloat("MVolume"));
+        MM.caravanState.setVolume(PlayerPrefs.GetFloat("MVolume"));
+
         VolumeSlider.value = PlayerPrefs.GetFloat("MVolume", 1f);
-        VolMixer.SetFloat("Volume", PlayerPrefs.GetFloat("MVolume"));
+        //VolMixer.SetFloat("Volume", PlayerPrefs.GetFloat("MVolume"));
+
+        SFXVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1);
 
         QualityDropDown.value = PlayerPrefs.GetInt(prefName, 3);
 
@@ -87,7 +113,7 @@ public class SettingMenu : MonoBehaviour
 
         int CurrentResolutionIndex = 0;
 
-        for(int i = 0; i < Resolutions.Length; i++)
+        for (int i = 0; i < Resolutions.Length; i++)
         {
             string option = Resolutions[i].width + " x " + Resolutions[i].height;
             Options.Add(option);
@@ -99,14 +125,24 @@ public class SettingMenu : MonoBehaviour
         }
 
         ResolutionDropDown.AddOptions(Options);
-        ResolutionDropDown.value = PlayerPrefs.GetInt(resName,CurrentResolutionIndex);
+        ResolutionDropDown.value = PlayerPrefs.GetInt(resName, CurrentResolutionIndex);
         ResolutionDropDown.RefreshShownValue();
     }
 
     public void SetVolume(float volume)
     {
         PlayerPrefs.SetFloat("MVolume", volume);
-        VolMixer.SetFloat("Volume", PlayerPrefs.GetFloat("MVolume"));
+        //VolMixer.SetFloat("Volume", PlayerPrefs.GetFloat("MVolume"));
+        MM.menuState.setVolume(PlayerPrefs.GetFloat("MVolume"));
+        MM.caravanState.setVolume(PlayerPrefs.GetFloat("MVolume"));
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        if (isMuted == false)
+            MM.sfxVolume = volume;
+        PlayerPrefs.SetFloat("SFXVolume", volume);
+        //VolMixer.SetFloat("Volume", PlayerPrefs.GetFloat("MVolume"));
     }
 
     public void SetResolution(int resolutionIndex)
@@ -118,14 +154,14 @@ public class SettingMenu : MonoBehaviour
 
     public void SetQuality(int qualityIndex)
     {
-        QualitySettings.SetQualityLevel(qualityIndex,true);
+        QualitySettings.SetQualityLevel(qualityIndex, true);
     }
 
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
 
-        if(isFullScreen == false)
+        if (isFullScreen == false)
         {
             PlayerPrefs.SetInt("Screentogglestate", 0);
         }
@@ -138,18 +174,27 @@ public class SettingMenu : MonoBehaviour
 
     public void MutePressed(bool isMute)
     {
-        AudioListener.pause = isMute;
+        MM.menuState.setPaused(isMute);
+        MM.caravanState.setPaused(isMute);
+
 
         Debug.Log(AudioListener.pause);
 
-        if(isMute == false)
+        if (isMute == false)
         {
+            MM.sfxVolume = PlayerPrefs.GetFloat("SFXVolume");
             PlayerPrefs.SetInt("Mutetogglestate", 0);
         }
         else
         {
             isMute = true;
+            MM.sfxVolume = 0;
             PlayerPrefs.SetInt("Mutetogglestate", 1);
         }
     }
+
+    //public void SetVoluem(float volume)
+    //{
+    //    menuState.setVolume(volume)
+    //}
 }
