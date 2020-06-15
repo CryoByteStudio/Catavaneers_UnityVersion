@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1749295217}
-  m_IndirectSpecularColor: {r: 0.000017033932, g: 0.000000025772884, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.00013986819, g: 0.000000040717822, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -73,7 +73,7 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
-    m_BakeBackend: 0
+    m_BakeBackend: 1
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 512
@@ -580,6 +580,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1020864555561863101, guid: 6d825b778ac383148a495432e2c5d228,
+        type: 3}
+      propertyPath: SunBaseIntensity
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020864555561863102, guid: 6d825b778ac383148a495432e2c5d228,
+        type: 3}
+      propertyPath: BaseIntensity
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d825b778ac383148a495432e2c5d228, type: 3}
 --- !u!4 &1168854850045699023 stripped
@@ -993,6 +1003,11 @@ PrefabInstance:
       propertyPath: playerSpawnPos
       value: 
       objectReference: {fileID: 8402177928655919009}
+    - target: {fileID: 667077449615690698, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1270065715446071417, guid: 46356ab37d5caa94ebd7507e1d8b8907,
         type: 3}
       propertyPath: NameUI
@@ -1353,6 +1368,11 @@ PrefabInstance:
       propertyPath: KillsUI
       value: 
       objectReference: {fileID: 769731615}
+    - target: {fileID: 8356335712180993657, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8675701933265527059, guid: 46356ab37d5caa94ebd7507e1d8b8907,
         type: 3}
       propertyPath: playerSpawnPos
@@ -1398,8 +1418,24 @@ PrefabInstance:
       propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[0].count
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 9216198469812190344, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+        type: 3}
+      propertyPath: sr
+      value: 
+      objectReference: {fileID: 6316583823167052501}
+    - target: {fileID: 9216198469812190344, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+        type: 3}
+      propertyPath: MatFlash
+      value: 
+      objectReference: {fileID: 2100000, guid: 110508575c0709f4dae256c19fc40ef8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46356ab37d5caa94ebd7507e1d8b8907, type: 3}
+--- !u!137 &6316583823167052501 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5273855239418368592, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+    type: 3}
+  m_PrefabInstance: {fileID: 6316583823167052500}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6722355591517085287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1996,6 +2032,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Directional Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534038035237002179, guid: 4bdfab19172221940a208dd5f70f0c81,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 8.55e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534038035237002179, guid: 4bdfab19172221940a208dd5f70f0c81,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534038035237002179, guid: 4bdfab19172221940a208dd5f70f0c81,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 8.55e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534038035237002179, guid: 4bdfab19172221940a208dd5f70f0c81,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 2.8455317e-24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bdfab19172221940a208dd5f70f0c81, type: 3}

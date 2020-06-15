@@ -43,7 +43,7 @@ public class Trap : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (AreaEffect == false & other.tag == "Player" & CurrentTime <= 0f)
+        if (AreaEffect == false && other.tag == "Player" && CurrentTime <= 0f)
         {
             TrapAnim.SetTrigger("Activate");
             Debug.Log("trap Activate");
@@ -76,8 +76,9 @@ public class Trap : MonoBehaviour
         }
 
 
-        if (AreaEffect == true && ( other.tag == "Player" || other.tag == "Enemy"))
+        if (AreaEffect == true && ( other.tag == "Player" || other.tag == "Enemy") && CurrentTime <= 0f)
         {
+            TrapAnim.SetTrigger("Activate");
             Debug.Log("trap Activate");
             UsageLeft--;
             CurrentTime += 1;
@@ -85,11 +86,11 @@ public class Trap : MonoBehaviour
 
             for (int i = 0; i < colliders.Length; i++)
             {
-                if( colliders[i].gameObject.tag == "Player" && CurrentTime <= 0f)
+                if( colliders[i].gameObject.tag == "Player")
                 {
-                    if(colliders[i].GetComponent<PlayerController>() != null)
+                    if(colliders[i].GetComponent<PlayerController>() != null )
                     {
-                        TrapAnim.SetTrigger("Activate");
+
                         CurrentTime++;
                         target = colliders[i].GetComponent<PlayerController>();
                         if (type == TrapType.Freeze) FreezeTrap();
@@ -104,7 +105,6 @@ public class Trap : MonoBehaviour
                 {
                     if(colliders[i].gameObject.GetComponent<Controller>() != null)
                     {
-                        TrapAnim.SetTrigger("Activate");
                         CurrentTime++;
                         Controller EnemyController = colliders[i].gameObject.GetComponent<Controller>();
                         if (type == TrapType.Reverse) EnemyController.ToggleFrenzyStateWithTimer(duration);
