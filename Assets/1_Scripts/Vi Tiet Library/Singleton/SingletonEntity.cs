@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using Catavaneer.LevelManagement;
+using UnityEngine.EventSystems;
 
 namespace Catavaneer.Singleton
 {
@@ -38,7 +39,10 @@ namespace Catavaneer.Singleton
 
         protected virtual void SceneLoadedHandler(Scene scene, LoadSceneMode mode)
         {
-            LevelLoader.ResetLoadingParams();
+            //LevelLoader.ResetLoadingParams();
+            BaseInputModule inputModule = FindObjectOfType<BaseInputModule>();
+            if (!inputModule.IsActive())
+                inputModule.ActivateModule();
         }
 
         protected virtual void OnDisable()
