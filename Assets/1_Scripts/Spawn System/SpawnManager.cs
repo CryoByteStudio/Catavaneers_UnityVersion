@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using ObjectPooling;
+
 using SpawnSystem.Standard;
 //using SpawnSystem.ScriptableObj;
 using System;
+using UnityEngine.SceneManagement;
 using Catavaneer.Extensions;
 
 namespace SpawnSystem
@@ -44,6 +46,7 @@ namespace SpawnSystem
         private float timeElapsed = 0;
         private float nextWaveTime = 0;
         private Wave currentWave;
+       
 
         private static ObjectPooler objectPooler;
         private List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
@@ -85,7 +88,7 @@ namespace SpawnSystem
         }
 
         /// <summary>
-        /// Check if has spawned all enemies
+        /// Check if has spawned all enemies and all waves
         /// </summary>
         private bool HasSpawnedAllEnemies()
         {
@@ -102,6 +105,8 @@ namespace SpawnSystem
             if (HasSpawnedAllEnemies())
             {
                 CanSpawn = false;
+                
+                SceneManager.LoadScene("Campaign");
             }
             // otherwise update time elapsed
             else
