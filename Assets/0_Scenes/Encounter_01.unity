@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1749295217}
-  m_IndirectSpecularColor: {r: 0.00035993563, g: 0.000013009343, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.000017033932, g: 0.000000025772884, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2515,6 +2515,11 @@ PrefabInstance:
       propertyPath: dodgeTime
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7579833244093938537, guid: c43540161d8cfbe4eace3f7d3aef34dd,
+        type: 3}
+      propertyPath: dodgeButton
+      value: Dodge
+      objectReference: {fileID: 0}
     - target: {fileID: 7579833244093938551, guid: c43540161d8cfbe4eace3f7d3aef34dd,
         type: 3}
       propertyPath: m_Controller
@@ -4442,7 +4447,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caravanStateEvent: event:/Combat_VO
   caravanHealth: {fileID: 837807007}
-  Clip_default_: {fileID: 8300000, guid: 38b542b856a71454992afbe924686f55, type: 3}
+  menuStateEvent: 
+  Clip_default: {fileID: 0}
   Clip_GoldPickUp: {fileID: 8300000, guid: 38b542b856a71454992afbe924686f55, type: 3}
   Clip_Attack: {fileID: 8300000, guid: 576fd5f33f41849408ccdd651a566868, type: 3}
   Clip_Hit: {fileID: 8300000, guid: 576fd5f33f41849408ccdd651a566868, type: 3}
