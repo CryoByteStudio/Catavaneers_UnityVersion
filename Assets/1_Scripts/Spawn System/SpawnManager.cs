@@ -57,34 +57,48 @@ namespace SpawnSystem
         public static bool CanSpawn = false;
         public static bool m_Debug = false;
 
+        public float startdelay = 5f;
+        bool hasstarted=false;
         private void Start()
         {
             Reset();
             CanSpawn = true;
 
+
             // update params to start spawning
-            SpawnNextWave();
+            startdelay = Time.time + startdelay;
+            //SpawnNextWave();
         }
 
         private void Update()
         {
-            if (EnemyLeftToSpawn <= 0)
-                CanSpawn = EnemiesAlive <= 0;
-
-            // if cannot spawn, do nothing
-            if (!CanSpawn) return;
-
-            // if still has wave left to spawn
-            if (Wave.number < waves.Count)
+            if (hasstarted)
             {
-                // ... and is time for next wave
-                if (timeElapsed > nextWaveTime)
+                if (EnemyLeftToSpawn <= 0)
+                    CanSpawn = EnemiesAlive <= 0;
+
+                // if cannot spawn, do nothing
+                if (!CanSpawn) return;
+
+                // if still has wave left to spawn
+                if (Wave.number < waves.Count)
                 {
-                    SpawnNextWave();
+                    // ... and is time for next wave
+                    if (timeElapsed > nextWaveTime)
+                    {
+                        SpawnNextWave();
+                    }
+                }
+
+                UpdateSpawnParams();
+            }
+            else
+            {
+                if (Time.time > startdelay)
+                {
+                    hasstarted = true;
                 }
             }
-
-            UpdateSpawnParams();
         }
 
         /// <summary>
