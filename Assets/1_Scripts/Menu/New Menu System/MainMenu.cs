@@ -32,6 +32,7 @@ namespace Catavaneer.MenuSystem
 
         public void OnNormalPressed()
         {
+            FindObjectOfType<BaseInputModule>().DeactivateModule();
             SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
             GameManager.SetDifficultyLevel(DifficultyLevel.Normal);
             MenuManager.LoadCharacterSelectScene();
@@ -39,6 +40,7 @@ namespace Catavaneer.MenuSystem
 
         public void OnIronCatPressed()
         {
+            FindObjectOfType<BaseInputModule>().DeactivateModule();
             SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
             GameManager.SetDifficultyLevel(DifficultyLevel.IronCat);
             MenuManager.LoadCharacterSelectScene();
@@ -46,6 +48,7 @@ namespace Catavaneer.MenuSystem
 
         public void OnCatpocalypsePressed()
         {
+            FindObjectOfType<BaseInputModule>().DeactivateModule();
             SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
             GameManager.SetDifficultyLevel(DifficultyLevel.Catapocalypse);
             MenuManager.LoadCharacterSelectScene();
@@ -53,6 +56,7 @@ namespace Catavaneer.MenuSystem
 
         public void OnCatFightPressed()
         {
+            FindObjectOfType<BaseInputModule>().DeactivateModule();
             SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
             GameManager.SetDifficultyLevel(DifficultyLevel.Catfight);
         }

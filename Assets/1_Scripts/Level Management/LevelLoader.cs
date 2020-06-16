@@ -14,7 +14,7 @@ namespace Catavaneer.LevelManagement
         private static int characterSelectSceneIndex;
         private static int firstGameSceneIndex;
         private static float loadingProgress;
-        private static bool isLoading;
+        private static bool isLoading = false;
 
         public static float LoadingProgress { get { return loadingProgress; } }
         public static bool IsLoading { get { return isLoading; } }
@@ -47,7 +47,6 @@ namespace Catavaneer.LevelManagement
         private static IEnumerator LoadLevelAsyncRoutine(string sceneName)
         {
             loadingProgress = 0;
-            isLoading = true;
 
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
 
@@ -56,12 +55,13 @@ namespace Catavaneer.LevelManagement
                 loadingProgress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
                 yield return null;
             }
+            
+            isLoading = false;
         }
 
         private static IEnumerator LoadLevelAsyncRoutine(int sceneIndex)
         {
             loadingProgress = 0;
-            isLoading = true;
 
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIndex);
 
@@ -70,6 +70,8 @@ namespace Catavaneer.LevelManagement
                 loadingProgress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
                 yield return null;
             }
+            
+            isLoading = false;
         }
 
         private static int GetNextLevelIndex()
@@ -94,11 +96,6 @@ namespace Catavaneer.LevelManagement
         public static void SetFirstGameSceneIndex(int index)
         {
             firstGameSceneIndex = index;
-        }
-
-        public static void ResetLoadingParams()
-        {
-            isLoading = false;
         }
 
         public static void LoadLevel(string sceneName)
@@ -161,8 +158,11 @@ namespace Catavaneer.LevelManagement
 
         public static void LoadLevelAsync(MonoBehaviour instance, string sceneName)
         {
+            if (isLoading) return;
+
             if (instance)
             {
+                isLoading = true;
                 instance.StartCoroutine(LoadLevelAsyncRoutine(sceneName));
             }
             else
@@ -173,8 +173,11 @@ namespace Catavaneer.LevelManagement
 
         public static void LoadLevelAsync(MonoBehaviour instance, int sceneIndex)
         {
+            if (isLoading) return;
+
             if (instance)
             {
+                isLoading = true;
                 instance.StartCoroutine(LoadLevelAsyncRoutine(sceneIndex));
             }
             else

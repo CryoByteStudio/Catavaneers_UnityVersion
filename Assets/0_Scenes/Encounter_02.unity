@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 1
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: c8b019976c034be4ca98f436c39553a0
-  m_OcclusionCullingData: {fileID: 36300000, guid: 458afd58e0745c3499d7a404cab13b38,
+  m_SceneGUID: 86fe40d86b7eafd49a1c685d61da4d81
+  m_OcclusionCullingData: {fileID: 36300000, guid: ff7a50da8e7c4b5489946eb7bc257d26,
     type: 2}
 --- !u!104 &2
 RenderSettings:
@@ -6528,12 +6528,27 @@ PrefabInstance:
     - target: {fileID: 1020864555561863101, guid: 6d825b778ac383148a495432e2c5d228,
         type: 3}
       propertyPath: _TargetDayLength
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1020864555561863101, guid: 6d825b778ac383148a495432e2c5d228,
         type: 3}
       propertyPath: _TimeOfDay
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020864555561863101, guid: 6d825b778ac383148a495432e2c5d228,
+        type: 3}
+      propertyPath: SunBaseIntensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020864555561863102, guid: 6d825b778ac383148a495432e2c5d228,
+        type: 3}
+      propertyPath: BaseIntensity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020864556061091505, guid: 6d825b778ac383148a495432e2c5d228,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d825b778ac383148a495432e2c5d228, type: 3}

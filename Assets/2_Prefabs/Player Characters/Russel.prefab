@@ -1,23 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &5190478029119456285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682069125915487209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55261c89ee79be348b35e37baac9bc06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentTrap: {fileID: 0}
-  Trap1: {fileID: 0}
-  Trap2: {fileID: 0}
-  TrapSpawnLocation: {fileID: 0}
-  trapButton: UseTrap
-  dpadAxis: DPad X
 --- !u!1001 &1013658272229085533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85,11 +67,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Russel
       objectReference: {fileID: 0}
-    - target: {fileID: 533129627958114997, guid: dec8e7a87509abf45bf300fc5aab79ab,
-        type: 3}
-      propertyPath: speed
-      value: 4.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6658274876665363702, guid: dec8e7a87509abf45bf300fc5aab79ab,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -100,12 +77,5 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3719177208376133355, guid: dec8e7a87509abf45bf300fc5aab79ab, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dec8e7a87509abf45bf300fc5aab79ab, type: 3}
---- !u!1 &682069125915487209 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 533129627958114996, guid: dec8e7a87509abf45bf300fc5aab79ab,
-    type: 3}
-  m_PrefabInstance: {fileID: 1013658272229085533}
-  m_PrefabAsset: {fileID: 0}

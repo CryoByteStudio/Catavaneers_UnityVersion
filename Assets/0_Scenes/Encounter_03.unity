@@ -5,11 +5,12 @@ OcclusionCullingSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_OcclusionBakeSettings:
-    smallestOccluder: 5
+    smallestOccluder: 1
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 9bc410ec19245534d9b19babd654359d
+  m_OcclusionCullingData: {fileID: 36300000, guid: f98e1b5971c7ddb42a0ff09566330fab,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -38,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.14984244, g: 0.21373071, b: 0.33456427, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +98,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 5164010501c44b74fbae0983934df5f5,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -15925,7 +15927,7 @@ PrefabInstance:
     - target: {fileID: 1020864555561863101, guid: 6d825b778ac383148a495432e2c5d228,
         type: 3}
       propertyPath: SunBaseIntensity
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1020864555561863101, guid: 6d825b778ac383148a495432e2c5d228,
         type: 3}
@@ -15935,7 +15937,12 @@ PrefabInstance:
     - target: {fileID: 1020864555561863101, guid: 6d825b778ac383148a495432e2c5d228,
         type: 3}
       propertyPath: _TargetDayLength
-      value: 10
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020864555561863101, guid: 6d825b778ac383148a495432e2c5d228,
+        type: 3}
+      propertyPath: SunVariation
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1020864555561863102, guid: 6d825b778ac383148a495432e2c5d228,
         type: 3}
@@ -16492,6 +16499,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 512135526723328124, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1641034952621232574, guid: 46356ab37d5caa94ebd7507e1d8b8907,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -16511,6 +16523,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315582974738066952, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+        type: 3}
+      propertyPath: m_Range
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3456628451320256370, guid: 46356ab37d5caa94ebd7507e1d8b8907,
         type: 3}
@@ -16797,6 +16814,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7347947913620423911, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7776323107412445218, guid: 46356ab37d5caa94ebd7507e1d8b8907,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -16846,6 +16868,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 3.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 9213204987663654463, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+        type: 3}
+      propertyPath: m_Range
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9213204987663654463, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46356ab37d5caa94ebd7507e1d8b8907, type: 3}
@@ -17945,6 +17977,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CloudsProjector
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465056591331489354, guid: 7432c6fc0d549ae4bb0f7c5cbad3365c,
+        type: 3}
+      propertyPath: m_OrthographicSize
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7432c6fc0d549ae4bb0f7c5cbad3365c, type: 3}

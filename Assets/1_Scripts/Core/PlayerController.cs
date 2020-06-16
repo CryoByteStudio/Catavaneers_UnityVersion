@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     }
     [SerializeField] float speed = 0.0f;
     [SerializeField] float dodgeSpeed = 3.15f;
-    [SerializeField] float dodgeTime = 0.0f;
+    [SerializeField] float dodgeCoolDown = 2.0f;
     [SerializeField] float straffSensitiviy = 30.0f;
     public Animator animator = null;
 
@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] DodgeDirection dodgeDirection = DodgeDirection.none;
     HealthComp health;
     float weaponWeight = 1;
+    float timeSinceLastDodge = -Mathf.Infinity;
 
     bool freeze = false;
     [SerializeField] float reverseValue = 1;
@@ -60,7 +61,8 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate()
-    {        
+    {
+        animator.SetInteger("Roll", 0);
         //constraints for the player
         if (transform.position.y < ymin)
         {
@@ -118,8 +120,9 @@ public class PlayerController : MonoBehaviour
                     break;
             }
             CharacterMove(weaponWeight, reverseValue, slowValue);
-            if (Input.GetButtonDown(dodgeButton))
+            if (Input.GetAxis(dodgeButton) != 0 && timeSinceLastDodge > Time.time)
             {
+                timeSinceLastDodge = Time.time + dodgeCoolDown;
                 Dodge();
             }
         }
@@ -145,19 +148,19 @@ public class PlayerController : MonoBehaviour
             switch(dodgeDirection)
             {
                 case DodgeDirection.Forward:
-                    transform.localPosition += Vector3.forward * 3.15f * Time.deltaTime;
+                    transform.localPosition += Vector3.forward * dodgeSpeed * Time.deltaTime;
                     animator.SetInteger("Roll",2);
                     break;
                 case DodgeDirection.Backward:
-                    transform.localPosition += Vector3.back * 3.15f * Time.deltaTime;
+                    transform.localPosition += Vector3.back * dodgeSpeed * Time.deltaTime;
                     animator.SetInteger("Roll", 1);
                     break;
                 case DodgeDirection.Left:
-                    transform.localPosition += Vector3.left * 3.15f * Time.deltaTime;
+                    transform.localPosition += Vector3.left * dodgeSpeed * Time.deltaTime;
                     animator.SetInteger("Roll", 3);
                     break;
                 case DodgeDirection.Right:
-                    transform.localPosition += Vector3.right * 3.15f * Time.deltaTime;
+                    transform.localPosition += Vector3.right * dodgeSpeed * Time.deltaTime;
                     animator.SetInteger("Roll", 4);
                     break;
                 default:

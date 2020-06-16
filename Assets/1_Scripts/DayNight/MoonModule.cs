@@ -11,7 +11,7 @@ public class MoonModule : DNMouduleBase
     public override void UpdateModule(float intensity)
     {
         Moon.color = MoonColor.Evaluate(1 - intensity);
-        Moon.intensity = (1 - intensity * BaseIntensity + 0.05f);
+        Moon.intensity = (1 - intensity * BaseIntensity);
     }
 
     // Start is called before the first frame update
