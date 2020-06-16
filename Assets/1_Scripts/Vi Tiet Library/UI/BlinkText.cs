@@ -52,19 +52,19 @@ namespace ViTiet.UI
         {
             nextIndex = CustomMathf.GetNextLoopIndex(index, blinkColors.Count);
             index = (step == 0 || step == 1) ? index = nextIndex : index;
-            color = LerpColorLoop(index, blinkColors.Count, step, isZeroToOne);
+            color = LerpColorLoop(index, blinkColors.Count, lerpValue, isZeroToOne);
             color.a = 1;
             textField.faceColor = color;
         }
-
-        private Color LerpColorLoop(int currentIndex, int maxIndex, float step, bool isZeroToOne)
+        
+        private Color LerpColorLoop(int currentIndex, int maxIndex, float lerpValue, bool isZeroToOne)
         {
             int nextIndex = CustomMathf.GetNextLoopIndex(currentIndex, maxIndex);
 
             if (isZeroToOne)
-                return Color.Lerp(blinkColors[currentIndex], blinkColors[nextIndex], step);
+                return Color.Lerp(blinkColors[currentIndex], blinkColors[nextIndex], lerpValue);
             else
-                return Color.Lerp(blinkColors[nextIndex], blinkColors[currentIndex], step);
+                return Color.Lerp(blinkColors[nextIndex], blinkColors[currentIndex], lerpValue);
         }
 
         private void CalculateLerpValue()
@@ -84,7 +84,7 @@ namespace ViTiet.UI
 
         public void ChangeText(string text)
         {
-            this.textField.text = text;
+            textField.text = text;
         }
 
         #endregion
