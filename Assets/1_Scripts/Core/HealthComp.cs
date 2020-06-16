@@ -286,6 +286,10 @@ public class HealthComp : MonoBehaviour
                 gameObject.SetActive(false);
                 break;
             case CharacterClass.Enemy:
+                if (GetComponent<Animator>() != null)
+                {
+                    GetComponent<Animator>().SetTrigger("Die");
+                }
                 dropController.DropItem();
                 ObjectPooler.SetInactive(this.gameObject);
                 SpawnManager.EnemiesAlive--;

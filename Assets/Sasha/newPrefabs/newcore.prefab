@@ -183,7 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4.5
   dodgeSpeed: 20
-  dodgeTime: 0
+  dodgeCoolDown: 2
   straffSensitiviy: 30
   animator: {fileID: 0}
   dodgeDirection: 4
@@ -700,7 +700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4.5
   dodgeSpeed: 20
-  dodgeTime: 0
+  dodgeCoolDown: 2
   straffSensitiviy: 30
   animator: {fileID: 0}
   dodgeDirection: 4
@@ -711,7 +711,7 @@ MonoBehaviour:
   inputVerticalLeftThumb: Vertical Left Thumbstick
   inputHorizontalRightThumb: Horizontal Right Thumbstick
   inputVerticalRightThumb: Vertical Right Thumbstick
-  dodgeButton: 
+  dodgeButton: Dodge
   xmin: -25
   xmax: 30
   zmin: -18
@@ -729,7 +729,7 @@ Animator:
   m_GameObject: {fileID: 4510911002727011196}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 5220444330cdb6f44851e8135dd53447, type: 3}
-  m_Controller: {fileID: 9100000, guid: 23e564522c052d94d8b319176eea1cc5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 10123ef18a21b1345b608fa8fb373ced, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -959,7 +959,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4.5
   dodgeSpeed: 20
-  dodgeTime: 0
+  dodgeCoolDown: 2
   straffSensitiviy: 30
   animator: {fileID: 0}
   dodgeDirection: 4
@@ -1401,7 +1401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4.5
   dodgeSpeed: 20
-  dodgeTime: 0
+  dodgeCoolDown: 2
   straffSensitiviy: 30
   animator: {fileID: 0}
   dodgeDirection: 4
@@ -3321,7 +3321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4.5
   dodgeSpeed: 20
-  dodgeTime: 0
+  dodgeCoolDown: 2
   straffSensitiviy: 30
   animator: {fileID: 0}
   dodgeDirection: 4

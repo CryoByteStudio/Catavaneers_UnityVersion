@@ -403,6 +403,10 @@ namespace AI
             {
                 yield return null;
             }
+            if(GetComponent<Animator>() != null)
+            {
+                GetComponent<Animator>().SetFloat("Chase", agent.speed);
+            }
         }
 
         /// <summary>
