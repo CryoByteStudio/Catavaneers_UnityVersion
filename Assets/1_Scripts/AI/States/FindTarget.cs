@@ -11,6 +11,7 @@ namespace AI.States
         // reference from external variables
         private Controller controller = null;
         //private NavMeshAgent agent = null;
+        private Animator animatorController = null;
         private List<HealthComp> targets = new List<HealthComp>();
         private Transform target = null;
         private float distanceToTarget = Mathf.Infinity;
@@ -23,11 +24,20 @@ namespace AI.States
 
         override public void OnStateEnter()
         {
+            Init();
+
+            controller.currentState = AIState.FindTarget;
+        }
+
+        private void Init()
+        {
+            if (!animatorController)
+                animatorController = controller.AnimatorController;
+
             distanceToTarget = controller.DistanceToTarget;
             targets = controller.GetTargets();
             target = FindClosestTarget();
             controller.SetCurrentTarget(target);
-            controller.currentState = AIState.FindTarget;
         }
 
         override public void Update(float deltaTime)
@@ -46,6 +56,9 @@ namespace AI.States
         /// </summary>
         private void FindTargetBehaviour()
         {
+            if (animatorController)
+                animatorController.SetFloat("Chase", 0f);
+
             // find target
             target = FindClosestTarget();
 
