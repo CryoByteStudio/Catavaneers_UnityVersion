@@ -43,12 +43,14 @@ namespace AI
         private FSM finiteStateMachine = new FSM();
         private float distanceToTarget = Mathf.Infinity;
         private NavMeshAgent agent = null;
+        private Animator animatorController = null;
         private Transform targetPointTransform = null;
         private Transform currentTarget = null;
         [SerializeField] private bool isFrenzy = false;
 
         public float DistanceToTarget { get { return distanceToTarget; } }
         public NavMeshAgent Agent { get { return agent; } }
+        public Animator AnimatorController { get { return animatorController; } }
         public Transform CurrentTarget { get { return currentTarget; } }
         public float ChaseSpeed { get { return chaseSpeed; } }
         public int AttackDamage { get { return attackDamage; } }
@@ -82,6 +84,8 @@ namespace AI
         {
             Reset();
             PopulateTargetLists();
+
+            animatorController = GetComponent<Animator>();
 
             // override NavMeshAgent auto reposition when enabled
             startPosition = transform.position;

@@ -45,6 +45,14 @@ public class CharacterManager : SingletonEntity<CharacterManager>
         isstarted = false;
     }
 
+    private void OnLevelWasLoaded(int level)
+    {
+        if (level == 1)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     protected override void OnDisable()
     {
         Catavaneer.LevelManagement.LevelLoader.OnSceneLoaded -= OnSceneLoadedHandler;

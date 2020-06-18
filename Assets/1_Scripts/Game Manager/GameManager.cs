@@ -166,12 +166,11 @@ namespace Catavaneer
         {
             doneOnce = true;
             if (caravan_HC != null) caravan_HC.SetIsDead(false);
-            ObjectPooler.DisableAllActiveObjects();
+           
+            
             SceneManager.LoadScene(0);
-            if (FindObjectOfType<CharacterManager>())
-            {
-                Destroy(FindObjectOfType<CharacterManager>());
-            }
+            ObjectPooler.DisableAllActiveObjects();
+
         }
 
         public void ToPlayerSelectionScene()
@@ -179,6 +178,7 @@ namespace Catavaneer
             doneOnce = true;
             if (caravan_HC != null) caravan_HC.SetIsDead(false);
             ObjectPooler.DisableAllActiveObjects();
+         
             SceneManager.LoadScene("Menu_CharacterSelect");
         }
 
