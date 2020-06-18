@@ -242,7 +242,7 @@ namespace ObjectPooling
 
         private void OnValidate()
         {
-            UpdatePooledObjectInEditor();
+            //UpdatePooledObjectInEditor();
         }
     }
 }

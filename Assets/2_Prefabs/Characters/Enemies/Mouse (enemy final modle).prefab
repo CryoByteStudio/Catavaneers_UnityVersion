@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!136 &7514159262100891152
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868419869265402914}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.81
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!95 &1685243523079786380
 Animator:
   serializedVersion: 3
@@ -26,6 +40,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9208222523014591906, guid: 3c25fd5db41dd61448830ded774ccfd6,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.81
+      objectReference: {fileID: 0}
     - target: {fileID: 7401383938980954424, guid: 3c25fd5db41dd61448830ded774ccfd6,
         type: 3}
       propertyPath: m_Enabled
@@ -91,12 +110,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8376589158879952442, guid: 3c25fd5db41dd61448830ded774ccfd6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8376589158879952442, guid: 3c25fd5db41dd61448830ded774ccfd6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8376589158879952442, guid: 3c25fd5db41dd61448830ded774ccfd6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8451199616233464737, guid: 3c25fd5db41dd61448830ded774ccfd6,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8451199616233464737, guid: 3c25fd5db41dd61448830ded774ccfd6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3c25fd5db41dd61448830ded774ccfd6, type: 3}
 --- !u!1 &868419869265402914 stripped
 GameObject:
@@ -140,7 +175,7 @@ PrefabInstance:
     - target: {fileID: 2562551985196725927, guid: 6b398038d1b736049b008297a5b51702,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2562551985196725927, guid: 6b398038d1b736049b008297a5b51702,
         type: 3}
