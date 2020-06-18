@@ -23,26 +23,29 @@ public class ShopPlot : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider collision)
-        {
+    {
         // create reference to the player interacting with shop
+        if (collision.gameObject.tag == "Player")
+        {
             if (!isoccupied)
             {
 
 
                 if (collision.gameObject.GetComponent<PlayerInventory>())
                 {
-                InvRef = collision.gameObject.GetComponent<PlayerInventory>();
-                InvRef.plotref = this;
-                isoccupied = true;
-                ItemDisplay.gameObject.SetActive(true);
-                if (ispurchased)
-                {
-                    SoldOut.gameObject.SetActive(true);   
+                    InvRef = collision.gameObject.GetComponent<PlayerInventory>();
+                    InvRef.plotref = this;
+                    isoccupied = true;
+                    ItemDisplay.gameObject.SetActive(true);
+                    if (ispurchased)
+                    {
+                        SoldOut.gameObject.SetActive(true);
+                    }
                 }
-            }
-          
+
             }
         }
+    }
 
     private void OnTriggerExit(Collider collision)
     {
