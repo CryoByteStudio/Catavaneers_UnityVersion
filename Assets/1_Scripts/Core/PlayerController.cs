@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
                     break;
             }
             CharacterMove(weaponWeight, reverseValue, slowValue);
-            if (Input.GetAxis(Dodge) != 0 && timeSinceLastDodge < Time.time)
+            if (Input.GetAxis(dodgeButton) != 0 && timeSinceLastDodge < Time.time)
             {
                 states = MoveStates.Dodge;
                 timeSinceLastDodge = Time.time + dodgeCoolDown;                
