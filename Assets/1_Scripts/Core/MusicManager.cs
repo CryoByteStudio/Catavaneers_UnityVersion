@@ -55,11 +55,15 @@ public class MusicManager : SingletonEntity<MusicManager>
     {
         //LevelLoader.OnSceneLoaded += SceneLoadedHandler;
         base.OnEnable();
+
+
     }
 
     protected override void SceneLoadedHandler(Scene scene, LoadSceneMode mode)
     {
         PlayMusic(scene);
+        caravanState.setParameterByName("Caravan Health", 0);
+        caravanState.setParameterByName("Intensity", 0);
         //LevelLoader.ResetLoadingParams();
     }
 
@@ -124,68 +128,71 @@ public class MusicManager : SingletonEntity<MusicManager>
                 }
             }
         }
+
+
     }
-    // Update is called once per frame
+
     void Update()
+    {
+        if (!LevelLoader.IsGameLevel() && !isPLayingEvent)
         {
-            if ((SceneManager.GetActiveScene().name == "Menu_Main" || SceneManager.GetActiveScene().name == "Menu_CharacterSelect" || SceneManager.GetActiveScene().name == "SplashScreen") && !isPLayingEvent)
-            {
-                menuState.start();
-                isPLayingEvent = true;
-            }
-            else if (SceneManager.GetActiveScene().name != "Menu_Main" && SceneManager.GetActiveScene().name != "Menu_CharacterSelect" && SceneManager.GetActiveScene().name != "SplashScreen")
-            {
-                menuState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                isPLayingEvent = false;
-            }
+            menuState.start();
+            isPLayingEvent = true;
+        }
+        else if (LevelLoader.IsGameLevel())
+        {
+            menuState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            isPLayingEvent = false;
+        }
 
-            if (LevelLoader.IsGameLevel())
-            {
+        if (LevelLoader.IsGameLevel())
+        {
 
-                if (caravanHealth != null)
+            if (caravanHealth != null)
+            {
+                //if(!doneOnce)
+                //{
+                //    caravanState.start();
+                //    doneOnce = true;
+                //}
+
+                if (caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 4)
                 {
-                    //if(!doneOnce)
-                    //{
-                    //    caravanState.start();
-                    //    doneOnce = true;
-                    //}
-
-                    if (caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 4)
-                    {
-                        caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 3f, 1.0f));
-                    }
-                    else if (caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 2)
-                    {
-                        caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 1.5f, 1.0f));
-                    }
-                    if (SpawnManager.EnemiesAlive < 10)
-                    {
-                        caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 0f, 1.0f));
-                    }
-                    else if (SpawnManager.EnemiesAlive >= 10 && caravanHealth.GetCurHealth() > caravanHealth.GetStartHealth() / 4)
-                    {
-                        caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 1.0f, 1.0f));
-                    }
-                    else if (SpawnManager.EnemiesAlive >= 10 && caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 4)
-                    {
-                        caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 2.0f, 1.0f));
-                    }
+                    caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 3f, 1.0f));
                 }
-                if (caravanHealth.GetCurHealth() <= 0)
+                else if (caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 2)
                 {
-                    caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 1.5f, 1.0f));
+                }
+                if (SpawnManager.EnemiesAlive < 10)
+                {
+                    caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 0f, 1.0f));
+                }
+                else if (SpawnManager.EnemiesAlive >= 10 && caravanHealth.GetCurHealth() > caravanHealth.GetStartHealth() / 4)
+                {
+                    caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 1.0f, 1.0f));
+                }
+                else if (SpawnManager.EnemiesAlive >= 10 && caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 4)
+                {
+                    caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 2.0f, 1.0f));
                 }
             }
-            //else if (SceneManager.GetActiveScene().name != "Encounter_01" && SceneManager.GetActiveScene().name != "Encounter_02")
-            //{
-            //    caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            //    isPLayingEvent = false;
-            //}
-            else
+            if (caravanHealth.GetCurHealth() <= 0)
             {
                 caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             }
         }
+        //else if (SceneManager.GetActiveScene().name != "Encounter_01" && SceneManager.GetActiveScene().name != "Encounter_02")
+        //{
+        //    caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        //    isPLayingEvent = false;
+        //}
+        else
+        {
+            caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
+    }
+
 
     public void PlaySoundTrack(SoundClipsInts TrackID)
     {

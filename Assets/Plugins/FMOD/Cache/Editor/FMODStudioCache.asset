@@ -18,6 +18,23 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-8925308089930686440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Combat_VO/Intensity
+  m_EditorClassIdentifier: 
+  Name: Intensity
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &-8728488949722152996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,13 +88,13 @@ MonoBehaviour:
   Banks:
   - {fileID: -7515481510274972656}
   - {fileID: -8128679375915546744}
-  - {fileID: -7259169988227585770}
+  - {fileID: -428024777816765862}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 2436413662709503664}
-  - {fileID: 3814314713141944278}
+  - {fileID: -8925308089930686440}
+  - {fileID: -1600387956291334721}
   MinDistance: 0
   MaxDistance: 0
   Length: 28000
@@ -327,6 +344,23 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-1600387956291334721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Combat_VO/Caravan Health
+  m_EditorClassIdentifier: 
+  Name: Caravan Health
+  Min: 0
+  Max: 3
+  Default: 0
+  Exists: 1
 --- !u!114 &-1227588956717031822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,7 +446,7 @@ MonoBehaviour:
   Banks:
   - {fileID: -7515481510274972656}
   - {fileID: -8128679375915546744}
-  - {fileID: -7259169988227585770}
+  - {fileID: -428024777816765862}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -420,6 +454,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 41142
+--- !u!114 &-428024777816765862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Catavaneers_music/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637273042604637857
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,16 +486,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 268586450950570197}
-  - {fileID: -7259169988227585770}
+  - {fileID: -428024777816765862}
   EditorEvents:
   - {fileID: -7670377302773594510}
   - {fileID: -825925984764089036}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -7259169988227585770}
+  - {fileID: -428024777816765862}
   StringsBanks:
   - {fileID: 268586450950570197}
-  stringsBankWriteTime: 637272151450958990
+  stringsBankWriteTime: 637273042604647839
   cacheVersion: 3
 --- !u!114 &268586450950570197
 MonoBehaviour:
@@ -459,7 +511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Catavaneers_music/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637272151450958990
+  lastModified: 637273042604647839
   LoadResult: 0
   FileSizes:
   - Name: Desktop
