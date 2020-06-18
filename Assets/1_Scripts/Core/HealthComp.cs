@@ -114,7 +114,7 @@ public class HealthComp : MonoBehaviour
             switch (GameManager.DifficultyLevel)
             {
                 case DifficultyLevel.Normal:
-                    EditorHelper.NotSupportedException("DifficultyLevel.Normal");
+                    //EditorHelper.NotSupportedException("DifficultyLevel.Normal");
                     break;
                 case DifficultyLevel.IronCat:
                     currentHealth *= 2;
