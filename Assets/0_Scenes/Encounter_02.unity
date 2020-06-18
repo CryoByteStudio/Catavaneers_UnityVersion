@@ -21,11 +21,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.7688679, g: 0.845912, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientIntensity: 2.98
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -38,8 +38,8 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00015609521, g: 0.0000015667421, b: 0, a: 1}
+  m_Sun: {fileID: 1674975090}
+  m_IndirectSpecularColor: {r: 0.000017033932, g: 0.000000025772884, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6527,16 +6527,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1020864555561863101, guid: 6d825b778ac383148a495432e2c5d228,
         type: 3}
-      propertyPath: _TargetDayLength
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1020864555561863101, guid: 6d825b778ac383148a495432e2c5d228,
-        type: 3}
-      propertyPath: _TimeOfDay
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1020864555561863101, guid: 6d825b778ac383148a495432e2c5d228,
-        type: 3}
       propertyPath: SunBaseIntensity
       value: 0
       objectReference: {fileID: 0}
@@ -6552,6 +6542,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d825b778ac383148a495432e2c5d228, type: 3}
+--- !u!108 &1674975090 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 1020864557196213754, guid: 6d825b778ac383148a495432e2c5d228,
+    type: 3}
+  m_PrefabInstance: {fileID: 1674975089}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1686390933
 GameObject:
   m_ObjectHideFlags: 0
@@ -7436,6 +7432,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2315582974738066952, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661859302522263554, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2968418230213118390, guid: 46356ab37d5caa94ebd7507e1d8b8907,
         type: 3}
       propertyPath: playerSpawnPos
@@ -7460,6 +7466,11 @@ PrefabInstance:
         type: 3}
       propertyPath: zmax
       value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147850382964623341, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5157071059638204676, guid: 46356ab37d5caa94ebd7507e1d8b8907,
         type: 3}
@@ -7640,6 +7651,11 @@ PrefabInstance:
         type: 3}
       propertyPath: waves.Array.data[5].spawnInterval
       value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6316583822942637945, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemiesToSpawn.Array.data[0].count
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6316583823127719508, guid: 46356ab37d5caa94ebd7507e1d8b8907,
         type: 3}
@@ -7830,6 +7846,11 @@ PrefabInstance:
         type: 3}
       propertyPath: waves.Array.data[5].spawnInterval
       value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 9213204987663654463, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46356ab37d5caa94ebd7507e1d8b8907, type: 3}

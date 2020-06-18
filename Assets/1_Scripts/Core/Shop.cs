@@ -55,13 +55,16 @@ public class Shop : MonoBehaviour
             displayedItems.Add(availableItems[0]);
             availableItems.RemoveAt(0);
            
-            foreach(ShopPlot plot in FindObjectsOfType<ShopPlot>())
-            {
-               plot.ItemDisplay.sprite= availableItems[plot.plotid].Item_Display;
-                plot.CostDisplay.text = "-" + availableItems[plot.plotid].item_cost.ToString() + "GP";
-                plot.SoldOut.gameObject.SetActive(false);
-               plot.ispurchased = false;
-            }
+            
+        }
+
+        foreach (ShopPlot plot in FindObjectsOfType<ShopPlot>())
+        {
+            plot.issoldout = false;
+            plot.ItemDisplay.sprite = displayedItems[plot.plotid].Item_Display;
+            plot.CostDisplay.text = "-" + displayedItems    [plot.plotid].item_cost.ToString() + "GP";
+            plot.SoldOut.gameObject.SetActive(false);
+            plot.ispurchased = false;
         }
     }
 

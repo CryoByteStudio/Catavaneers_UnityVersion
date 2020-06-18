@@ -60,7 +60,7 @@ public class Fighter : MonoBehaviour
         {
             if (weaponCollider.name == currentWeapon.name)
             {
-                Debug.Log(weaponCollider.name);
+                Debug.Log("weapon collider found: " + weaponCollider.name);
                 weaponCollider.gameObject.SetActive(true);
                 //weaponCollider.GetComponent<BoxCollider>().enabled = true;
                 currentWeaponCollider = weaponCollider.GetComponent<BoxCollider>();
