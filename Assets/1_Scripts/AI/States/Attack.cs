@@ -51,6 +51,7 @@ namespace AI.States
         /// </summary>
         private void AttackBehaviour(float deltaTime)
         {
+            agent.GetComponent<Animator>().SetTrigger("Attack");
             if (TimeToAttack())
             {
                 timeSinceLastAttack = 0;
