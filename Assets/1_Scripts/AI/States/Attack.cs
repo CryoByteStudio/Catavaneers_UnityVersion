@@ -73,8 +73,6 @@ namespace AI.States
 
             if (TimeToAttack())
             {
-                if (agent.GetComponent<Animator>() != null)
-                    agent.GetComponent<Animator>().SetTrigger("Attack");
                 timeSinceLastAttack = 0;
                 DealDamage(attackDamage);
             }
