@@ -8,6 +8,7 @@ namespace AI.States
     public class Chase : State
     {
         private Controller controller = null;
+        private Animator animatorController = null;
         private Transform target = null;
         private HealthComp targetHealth = null;
         private NavMeshAgent agent = null;
@@ -41,6 +42,8 @@ namespace AI.States
                 Debug.LogWarning("Controller is not set in Patrol state");
             if (!agent)
                 agent = controller.Agent;
+            if (!animatorController)
+                animatorController = controller.AnimatorController;
 
             target = controller.CurrentTarget;
             targetHealth = target.GetComponent<HealthComp>();
@@ -107,6 +110,9 @@ namespace AI.States
 
             if (!targetHealth.IsDead())
             {
+                if (animatorController)
+                    animatorController.SetFloat("Chase", agent.velocity.magnitude);
+
                 if (targetHealth.myClass == CharacterClass.Caravan)
                 {
                     if (destination == Vector3.zero)

@@ -11,6 +11,7 @@ namespace AI.States
     {
         // reference from external variables
         private Controller controller = null;
+        private Animator animatorController = null;
         private NavMeshAgent agent = null;
         private float radius = 0;
         private Vector3 randomPosition;
@@ -23,14 +24,21 @@ namespace AI.States
 
         override public void OnStateEnter()
         {
+            Init();
+
+            controller.currentState = AIState.Frenzy;
+        }
+
+        private void Init()
+        {
             if (!agent)
                 agent = controller.Agent;
+            if (!animatorController)
+                animatorController = controller.AnimatorController;
 
             agent.isStopped = false;
             radius = controller.FrenzyRadius;
             GetNewRandomPosition();
-
-            controller.currentState = AIState.Frenzy;
         }
 
         override public void Update(float deltaTime)
@@ -48,6 +56,9 @@ namespace AI.States
         /// </summary>
         private void FrenzyBehaviour()
         {
+            if (animatorController)
+                animatorController.SetFloat("Chase", agent.velocity.magnitude);
+
             distanceToRandomPosition = Vector3.Distance(controller.transform.position, randomPosition);
 
             if (distanceToRandomPosition <= 0.2f)

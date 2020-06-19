@@ -50,55 +50,54 @@ namespace SpawnSystem
 
         private static ObjectPooler objectPooler;
         private List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
-
-        public static float EnemyLeftToSpawn = 0;
+        
+        public static int EnemyLeftToSpawn = 0;
         public static int EnemiesAlive = 0;
         public static bool HasFinishedSpawning = false;
-        public static bool CanSpawn = false;
+        public static bool CanSpawnEnemy = false;
         public static bool m_Debug = false;
 
-        public float startdelay = 5f;
-        bool hasstarted=false;
+        public float startDelay = 5f;
+        public float startTime = 0;
         private void Start()
         {
             Reset();
-            CanSpawn = true;
-
-
+            
             // update params to start spawning
-            startdelay = Time.time + startdelay;
-            //SpawnNextWave();
+            startTime = Time.time + startDelay;
         }
 
         private void Update()
         {
-            if (hasstarted)
+            if (Time.time < startTime) return;
+            
+            if (HasSpawnedAllEnemies())
             {
-                if (EnemyLeftToSpawn <= 0)
-                    CanSpawn = EnemiesAlive <= 0;
+                CanSpawnEnemy = false;
+            }
+            else if (EnemyLeftToSpawn <= 0 && EnemiesAlive <= 0)
+            {
+                CanSpawnEnemy = true;
+            }
 
-                // if cannot spawn, do nothing
-                if (!CanSpawn) return;
-
-                // if still has wave left to spawn
-                if (Wave.number < waves.Count)
+            // if still has wave left to spawn
+            if (Wave.number < waves.Count && EnemiesAlive <= 0)
+            {
+                // ... and is time for next wave
+                if (timeElapsed > nextWaveTime)
                 {
-                    // ... and is time for next wave
-                    if (timeElapsed > nextWaveTime)
-                    {
-                        SpawnNextWave();
-                    }
+                    SpawnNextWave();
                 }
 
-                UpdateSpawnParams();
+                // otherwise update time elapsed    
+                timeElapsed += Time.deltaTime;
             }
-            else
-            {
-                if (Time.time > startdelay)
-                {
-                    hasstarted = true;
-                }
-            }
+        }
+
+        public static void SetEnemyLeftToSpawn(int amount)
+        {
+            EnemyLeftToSpawn = 0;
+            EnemyLeftToSpawn += amount;
         }
 
         /// <summary>
@@ -111,31 +110,10 @@ namespace SpawnSystem
         }
 
         /// <summary>
-        /// Update time elapsed and can spawn switch
-        /// </summary>
-        private void UpdateSpawnParams()
-        {
-            // if has spawned all enemies, set can spawn to false
-            if (HasSpawnedAllEnemies())
-            {
-                CanSpawn = false;
-                
-                SceneManager.LoadScene("Campaign");
-            }
-            // otherwise update time elapsed
-            else
-            {
-                timeElapsed += Time.deltaTime;
-            }
-        }
-
-        /// <summary>
         /// Update params for next wave
         /// </summary>
         private void SpawnNextWave()
         {
-            if (!CanSpawn) return;
-
             Wave.number++;
            // print("Wave Number: " + Wave.number);
             currentWave = waves[Wave.number - 1];
@@ -152,7 +130,6 @@ namespace SpawnSystem
             //***************************//
 
             nextWaveTime = timeElapsed + currentWave.EnemyCount * currentWave.spawnInterval + timeBetweenWaves;
-            EnemyLeftToSpawn = currentWave.EnemyCount;
             //print("Enemy Left To Spawn: " + EnemyLeftToSpawn);
         }
 
@@ -238,7 +215,7 @@ namespace SpawnSystem
             EnemyLeftToSpawn = 0;
             EnemiesAlive = 0;
             HasFinishedSpawning = false;
-            CanSpawn = false;
+            CanSpawnEnemy = true;
         }
 
         private void OnValidate()

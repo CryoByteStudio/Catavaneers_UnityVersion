@@ -10,6 +10,7 @@ namespace AI.States
     {
         // reference from external variables
         private Controller controller = null;
+        private Animator animatorController = null;
         private NavMeshAgent agent = null;
         private int attackDamage = 0;
         private float attackRange = 0;
@@ -26,14 +27,22 @@ namespace AI.States
 
         override public void OnStateEnter()
         {
+            Init();
+
+            controller.currentState = AIState.Attack;
+        }
+
+        private void Init()
+        {
             if (!agent)
                 agent = controller.Agent;
+            if (!animatorController)
+                animatorController = controller.AnimatorController;
 
             target = controller.CurrentTarget;
             attackDamage = controller.AttackDamage;
             attackRange = controller.AttackRange;
             attackInterval = controller.AttackInterval;
-            controller.currentState = AIState.Attack;
         }
 
         override public void Update(float deltaTime)
@@ -45,19 +54,29 @@ namespace AI.States
         {
 
         }
-        
+
+        private void LookAtTarget()
+        {
+            if (!target) return;
+
+            Vector3 lookPoint = target.position;
+            lookPoint.y = controller.transform.position.y;
+            controller.transform.LookAt(lookPoint);
+        }
+
         /// <summary>
         /// The stuff that will be done in attack mode
         /// </summary>
         private void AttackBehaviour(float deltaTime)
         {
-            agent.GetComponent<Animator>().SetTrigger("Attack");
+            LookAtTarget();
+
             if (TimeToAttack())
             {
                 timeSinceLastAttack = 0;
                 DealDamage(attackDamage);
             }
-            
+
             timeSinceLastAttack += deltaTime;
         }
 
@@ -79,6 +98,12 @@ namespace AI.States
 
             if (!targetHealth.IsDead())
             {
+                if (animatorController)
+                {
+                    animatorController.SetTrigger("Attack");
+                    animatorController.SetFloat("Chase", 0f);
+                }
+
                 targetHealth.TakeDamage(damage);
                 //Debug.Log("[" + controller.name + "] dealt " + damage + " to [" + target.name + "]");
             }
