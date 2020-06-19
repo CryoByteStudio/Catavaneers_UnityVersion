@@ -61,28 +61,21 @@ public class HealthComp : MonoBehaviour
         objectPooler = FindObjectOfType<ObjectPooler>();
         animator = GetComponent<Animator>();
 
-        //if (FindObjectOfType<GameDifficultyManager>())
-        //{
-        //    gameDifficulty = FindObjectOfType<GameDifficultyManager>().dif;
-        //}
-
         if (myClass == CharacterClass.Enemy)
         {
-            //dropController = GetComponent<DropController>();
-            //objectPooler = FindObjectOfType<ObjectPooler>();
         }
         else if (myClass == CharacterClass.Caravan)
         {
-
         }
         else if (myClass == CharacterClass.Obj)
         {
-            //dropController = GetComponent<DropController>();
         }
+
         if (health_slider)
         {
             health_slider.maxValue = startHealth;
         }
+
         currentHealth = startHealth;
         DisplayHealth();
 
@@ -143,7 +136,8 @@ public class HealthComp : MonoBehaviour
     {
         if (debug)
             TestTakeDamage();
-        if(SpawnManager.EnemiesAlive == 0)
+
+        if (SpawnManager.EnemiesAlive == 0)
         {
             SetIsWaveComplete(true);
         }
@@ -151,10 +145,13 @@ public class HealthComp : MonoBehaviour
         {
             SetIsWaveComplete(false);
         }
+
         timeElapsed += Time.deltaTime;
-        if (myClass == CharacterClass.Caravan && is_Regenerating) {
-            //dmg_percentage = currentHealth % (startHealth / (int)gameDifficulty);
+
+        if (myClass == CharacterClass.Caravan && is_Regenerating)
+        {
             dmg_percentage = currentHealth % (startHealth / (int)GameManager.DifficultyLevel);
+
             if (dmg_percentage == 0)
             {
                 is_Regenerating = false;

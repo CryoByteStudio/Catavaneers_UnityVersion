@@ -54,8 +54,7 @@ namespace Catavaneer
         protected override void SceneLoadedHandler(Scene scene, LoadSceneMode mode)
         {
             base.SceneLoadedHandler(scene, mode);
-
-            HealthComp.OnCaravanDestroyed -= OnCaravanDestroyedHandler;
+            
             if (LevelLoader.IsGameLevel())
             {
                 Reset();
