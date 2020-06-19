@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Catavaneer.LevelManagement;
 
 public class Goldbag : MonoBehaviour
 {
@@ -80,8 +81,8 @@ public class Goldbag : MonoBehaviour
         {
             if (Input.anyKeyDown)
             {
-               //FindObjectOfType<GameManager>().ToMainMenu();
-                SceneManager.LoadScene("SplashScreen");
+                //FindObjectOfType<GameManager>().ToMainMenu();
+                LevelLoader.LoadMainMenuLevel();
             }
         }
         }
