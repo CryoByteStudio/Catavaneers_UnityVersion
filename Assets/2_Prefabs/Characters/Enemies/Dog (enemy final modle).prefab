@@ -19,6 +19,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &9202915988399414564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6907936865073788524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 569a318a25a29ab4786635ca285f6c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultWeapon: {fileID: 0}
+  currentWeapon: {fileID: 0}
+  rightHandTransform: {fileID: 1959194355351209545}
+  leftHandTransform: {fileID: 1959194355351190315}
 --- !u!1001 &3847670535274282915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -118,6 +134,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b956bce869f2a243b7d8c4bb2b8bc0b, type: 3}
+--- !u!4 &1959194355351190315 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3338819982324319368, guid: 4b956bce869f2a243b7d8c4bb2b8bc0b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3847670535274282915}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1959194355351209545 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3338819982324300266, guid: 4b956bce869f2a243b7d8c4bb2b8bc0b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3847670535274282915}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6853100750819677389
 PrefabInstance:
   m_ObjectHideFlags: 0
