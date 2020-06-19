@@ -44,49 +44,10 @@ namespace Catavaneer
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.H))
+            if (!doneOnce && SpawnManager.HasFinishedSpawning && SpawnManager.EnemiesAlive <= 0)
             {
-                SceneManager.LoadScene("Campaign");
-            }
-
-            //if (Input.GetKeyDown(KeyCode.C)) { difficulty = DifficultyLevel.IronCat; }
-
-            //if (!caravan_HC)
-            //{
-            //    HealthComp[] healthComps = FindObjectsOfType<HealthComp>();
-            //    foreach (HealthComp hc in healthComps)
-            //    {
-            //        if (hc.myClass == CharacterClass.Caravan)
-            //        {
-            //            caravan_HC = hc;
-            //            break;
-            //        }
-            //    }
-            //    //Debug.Log("NO Caravan attached to game manager");
-            //}
-
-            //if (caravan_HC)
-            //{
-            //    // always start coroutine once in update
-            //    if (caravan_HC.IsDead() && !doneOnce)
-            //    {
-            //        doneOnce = true;
-            //        caravan_HC.SetIsDead(false);
-
-            //        StartCoroutine(RestartLevel());
-
-            //        transform.MyExtensionFunction();
-            //    }
-            //}
-
-            if (Input.anyKeyDown && SceneManager.GetActiveScene().name == "Menu_Credits")
-            {
-                SceneManager.LoadScene("Menu_Main");
-            }
-
-            if (Input.GetKeyDown(KeyCode.JoystickButton6))
-            {
-                ScreenCapture.CaptureScreenshot("ScreenShot_" + System.DateTime.Now.ToString("yyyy-MM-dd-HH_mm_ss") + ".JPG");
+                StartCoroutine(WinDelay());
+                doneOnce = true;
             }
         }
 
@@ -94,20 +55,11 @@ namespace Catavaneer
         {
             base.SceneLoadedHandler(scene, mode);
 
+            HealthComp.OnCaravanDestroyed -= OnCaravanDestroyedHandler;
             if (LevelLoader.IsGameLevel())
             {
                 Reset();
             }
-        }
-
-        private IEnumerator RestartLevel()
-        {
-            ObjectPooler.DisableAllActiveObjects();
-            yield return new WaitForSeconds(quitDelay);
-            //string curScene = SceneManager.GetActiveScene().name;
-            Reset();
-            SceneManager.LoadScene("Menu_LoseScene");
-            //StartCoroutine(StartDelay());
         }
 
         private void Reset()
@@ -129,20 +81,19 @@ namespace Catavaneer
         {
             yield return new WaitForSeconds(quitDelay);
             MenuManager.OpenLoseMenu();
-            //MenuManager.OpenWinMenu();
         }
+
         private IEnumerator WinDelay()
         {
             yield return new WaitForSeconds(quitDelay);
-            //MenuManager.OpenLoseMenu();
             MenuManager.OpenWinMenu();
         }
 
         public IEnumerator StartDelay()
         {
-            SpawnManager.CanSpawn = false;
+            SpawnManager.CanSpawnEnemy = false;
             yield return new WaitForSeconds(startDelay);
-            SpawnManager.CanSpawn = true;
+            SpawnManager.CanSpawnEnemy = true;
         }
 
         private IEnumerator QuitDelay()
@@ -164,7 +115,7 @@ namespace Catavaneer
         //below section edit by Will
         public void ToMainMenu()
         {
-            doneOnce = true;
+            //doneOnce = true;
             if (caravan_HC != null) caravan_HC.SetIsDead(false);
            
             
@@ -175,7 +126,7 @@ namespace Catavaneer
 
         public void ToPlayerSelectionScene()
         {
-            doneOnce = true;
+            //doneOnce = true;
             if (caravan_HC != null) caravan_HC.SetIsDead(false);
             ObjectPooler.DisableAllActiveObjects();
          
@@ -235,8 +186,5 @@ namespace Catavaneer
 
             instance.difficultyLevel = difficultyLevel;
         }
-
-
-        
     }
 }

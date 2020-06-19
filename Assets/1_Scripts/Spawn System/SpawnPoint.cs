@@ -18,6 +18,7 @@ namespace SpawnSystem
         private float timeElapsed = 0;
         private float nextSpawnTime = 0;
         private Vector3 randomPosition;
+        private bool canSpawn = true;
 
         private static ObjectPooler objectPooler;
 
@@ -33,7 +34,7 @@ namespace SpawnSystem
         private void Update()
         {
             // if cannot spawn, do nothing
-            if (!SpawnManager.CanSpawn) return;
+            if (!SpawnManager.CanSpawnEnemy) return;
 
             // if still has enemy to spawn
             if (enemyLeftToSpawn > 0)
@@ -43,7 +44,6 @@ namespace SpawnSystem
                 {
                     Spawn(spawnQueue.Dequeue());
                     nextSpawnTime = timeElapsed + spawnInterval;
-                    enemyLeftToSpawn--;
                 }
 
                 if (enemyLeftToSpawn <= 0)
@@ -61,8 +61,9 @@ namespace SpawnSystem
         {
             randomPosition = CustomMathf.RandomPointInCirclePerpendicularToAxis(spawnRadius, Axis.Y) + transform.position;
             healthComp = objectPooler.SpawnFromPool(name, randomPosition, Quaternion.identity).GetComponent<HealthComp>();
+            enemyLeftToSpawn--;
+            SpawnManager.SetEnemyLeftToSpawn(enemyLeftToSpawn);
             SpawnManager.EnemiesAlive++;
-            SpawnManager.EnemyLeftToSpawn--;
 
             // for debugging
             GameQuitDebugging();

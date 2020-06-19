@@ -15,6 +15,11 @@ namespace Catavaneer.MenuSystem
         #endregion
 
         #region PUBLIC METHODS
+        public void OnCampaignPressed()
+        {
+            MenuManager.LoadCampaignLevel();
+        }
+
         public void OnRestartPressed()
         {
             MenuManager.RestartLevel();

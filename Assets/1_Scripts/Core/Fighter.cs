@@ -60,7 +60,7 @@ public class Fighter : MonoBehaviour
         {
             if (weaponCollider.name == currentWeapon.name)
             {
-                Debug.Log("weapon collider found: " + weaponCollider.name);
+                //Debug.Log("weapon collider found: " + weaponCollider.name);
                 weaponCollider.gameObject.SetActive(true);
                 //weaponCollider.GetComponent<BoxCollider>().enabled = true;
                 currentWeaponCollider = weaponCollider.GetComponent<BoxCollider>();
@@ -118,15 +118,15 @@ public class Fighter : MonoBehaviour
     }
     void StartHit()
     {
-        Debug.Log("its on");
-        Debug.Log(currentWeaponCollider);
+        //Debug.Log("its on");
+        //Debug.Log(currentWeaponCollider);
         currentWeaponCollider.GetComponent<BoxCollider>().enabled = true;
         //currentWeaponCollider.enabled = true;
     }
     void EndHit()
     {
-        Debug.Log("its off");
-        Debug.Log(currentWeaponCollider);
+        //Debug.Log("its off");
+        //Debug.Log(currentWeaponCollider);
         // currentWeaponCollider.enabled = false;
         currentWeaponCollider.GetComponent<BoxCollider>().enabled = false;
     }

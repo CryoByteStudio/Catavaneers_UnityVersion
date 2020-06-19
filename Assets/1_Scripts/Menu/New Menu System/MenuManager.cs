@@ -180,55 +180,57 @@ namespace Catavaneer.MenuSystem
             OpenMenu(menu);
         }
 
-        private static IEnumerator PlayGameTransitionRoutine()
+        private static IEnumerator PlayTransitionRoutine(TransitionFaderType transitionFaderType)
         {
             TransitionFader fader;
-            PlayTransition(out fader, TransitionFaderType.StartLevelTransition);
+            PlayTransition(out fader, transitionFaderType);
             yield return new WaitForSeconds(fader.FadeOnDuration + fader.DisplayDuration);
+        }
+
+        private static IEnumerator PlayGameTransitionRoutine()
+        {
+            yield return PlayTransitionRoutine(TransitionFaderType.StartLevelTransition);
             LevelLoader.LoadLevelAsync(instance, GameManager.Instance.FirstGameSceneIndex);
             OpenMenuPostTransition(GameMenu);
         }
 
         private static IEnumerator RestartLevelTransitionRoutine()
         {
-            TransitionFader fader;
-            PlayTransition(out fader, TransitionFaderType.StartLevelTransition);
-            yield return new WaitForSeconds(fader.FadeOnDuration + fader.DisplayDuration);
+            yield return PlayTransitionRoutine(TransitionFaderType.StartLevelTransition);
             LevelLoader.ReloadLevelAsync(instance);
+            OpenMenuPostTransition(GameMenu);
+        }
+
+        private static IEnumerator LoadCampaignLevelRoutine()
+        {
+            yield return PlayTransitionRoutine(TransitionFaderType.MainMenuTransition);
+            LevelLoader.LoadLevelAsync(instance, "Campaign");
             OpenMenuPostTransition(GameMenu);
         }
 
         private static IEnumerator LoadMainMenuLevelTransitionRoutine()
         {
-            TransitionFader fader;
-            PlayTransition(out fader, TransitionFaderType.MainMenuTransition);
-            yield return new WaitForSeconds(fader.FadeOnDuration + fader.DisplayDuration);
+            yield return PlayTransitionRoutine(TransitionFaderType.MainMenuTransition);
             LevelLoader.LoadMainMenuLevelAsync(instance);
             OpenMenuPostTransition(MainMenu);
         }
 
         private static IEnumerator LoadCharacterSelectLevelTransitionRoutine()
         {
-            TransitionFader fader;
-            PlayTransition(out fader, TransitionFaderType.MainMenuTransition);
-            yield return new WaitForSeconds(fader.FadeOnDuration + fader.DisplayDuration);
+            yield return PlayTransitionRoutine(TransitionFaderType.MainMenuTransition);
             LevelLoader.LoadCharacterSelectLevelAsync(instance);
             CloseAllMenus();
         }
 
         private static IEnumerator LoadMainMenuLevelTransitionRoutine(bool isTransitionFromLastLevel)
         {
-            TransitionFader fader;
-
             if (!isTransitionFromLastLevel)
             {
-                PlayTransition(out fader, TransitionFaderType.MainMenuTransition);
-                yield return new WaitForSeconds(fader.FadeOnDuration + fader.DisplayDuration);
+                yield return PlayTransitionRoutine(TransitionFaderType.MainMenuTransition);
             }
             else
             {
-                PlayTransition(out fader, TransitionFaderType.EndGameTransition);
-                yield return new WaitForSeconds(fader.FadeOnDuration + fader.DisplayDuration);
+                yield return PlayTransitionRoutine(TransitionFaderType.EndGameTransition);
             }
 
             LevelLoader.LoadMainMenuLevelAsync(instance);
@@ -237,8 +239,8 @@ namespace Catavaneer.MenuSystem
 
         private static IEnumerator OpenWinMenuRoutine()
         {
-            TransitionFader fader = transitionFaderDictionary[TransitionFaderType.WinScreenTransition];
-            TransitionFader.PlayTransition(fader);
+            TransitionFader fader;
+            PlayTransition(out fader, TransitionFaderType.WinScreenTransition);
             yield return new WaitForSeconds(fader.FadeOnDuration + fader.DisplayDuration);
             OpenMenuPostTransition(WinMenu);
             yield return new WaitForSeconds(fader.FadeOffDuration);
@@ -247,8 +249,8 @@ namespace Catavaneer.MenuSystem
 
         private static IEnumerator OpenLoseMenuRoutine()
         {
-            TransitionFader fader = transitionFaderDictionary[TransitionFaderType.LoseScreenTransition];
-            TransitionFader.PlayTransition(fader);
+            TransitionFader fader;
+            PlayTransition(out fader, TransitionFaderType.LoseScreenTransition);
             yield return new WaitForSeconds(fader.FadeOnDuration + fader.DisplayDuration);
             OpenMenuPostTransition(LoseMenu);
             yield return new WaitForSeconds(fader.FadeOffDuration);
@@ -420,6 +422,17 @@ namespace Catavaneer.MenuSystem
             }
 
             instance.StartCoroutine(LoadMainMenuLevelTransitionRoutine(isTransitionFromLastLevel));
+        }
+
+        public static void LoadCampaignLevel()
+        {
+            if (!instance)
+            {
+                EditorHelper.ArgumentNullException("instance");
+                return;
+            }
+
+            instance.StartCoroutine(LoadCampaignLevelRoutine());
         }
         #endregion
     }

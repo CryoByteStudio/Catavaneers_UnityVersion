@@ -18,10 +18,10 @@ public class PlayerInfo : MonoBehaviour
     void Start()
     {
         charman=FindObjectOfType<CharacterManager>();
-        Debug.Log("startingitup");
+        //Debug.Log("startingitup");
         if (charman)
         {
-            Debug.Log("charactermans");
+            //Debug.Log("charactermans");
             if (charman.charnames[PlayerID] == "Russel")
             {
                 Debug.Log("Setting rusel skin");
