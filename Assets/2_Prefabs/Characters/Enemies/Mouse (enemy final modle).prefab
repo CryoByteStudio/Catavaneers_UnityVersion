@@ -45,7 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 569a318a25a29ab4786635ca285f6c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultWeapon: {fileID: 0}
+  weapons:
+  - {fileID: 11400000, guid: d27bbc23302e83245b46e394da99a39d, type: 2}
+  - {fileID: 11400000, guid: 0bdf7a17625ce1047a0ba777366fd7f8, type: 2}
+  - {fileID: 11400000, guid: 50dc78c26ff5c13438328fd16a024f08, type: 2}
+  - {fileID: 11400000, guid: 529fc68242eadf9489f7ab11e5222dcd, type: 2}
+  spawnChance:
+  - 25
+  - 50
+  - 75
   currentWeapon: {fileID: 0}
   rightHandTransform: {fileID: 5571860774617784774}
   leftHandTransform: {fileID: 5571860774617795974}
