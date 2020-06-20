@@ -18,7 +18,7 @@ public class PlayerSelectController : MonoBehaviour
     public string inputacceptbutton;   //Submit/Interact
     public string inputbackbutton;
     public bool lockedin=false;
-    public int totalplayers;
+    public int totalplayers=0;
     public GameManager gman;
     // Start is called before the first frame update
     void Start()
@@ -26,7 +26,7 @@ public class PlayerSelectController : MonoBehaviour
         gman = FindObjectOfType<GameManager>();
         charman = FindObjectOfType<CharacterManager>();
         SelectIndex = PlayerID;
-        totalplayers = charman.playercount;
+       
 
     }
 
@@ -98,6 +98,8 @@ public class PlayerSelectController : MonoBehaviour
     void CheckForReady()
     {
         int playerslocked = 0;
+        totalplayers = charman.playercount;
+        Debug.Log(charman.playercount);
         foreach (PlayerSelectController player in FindObjectsOfType<PlayerSelectController>())
         {
            
@@ -132,8 +134,9 @@ public class PlayerSelectController : MonoBehaviour
         if (playerslocked >= totalplayers)
         {
             // StartCoroutine(gman.StartDelay());
-
-            charman.StartGame();
+            //Debug.Log(totalplayers);
+            //Debug.Log(playerslocked);
+           charman.StartGame();
            
 
         }
