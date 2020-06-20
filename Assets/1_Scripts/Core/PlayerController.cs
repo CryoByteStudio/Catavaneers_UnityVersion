@@ -22,11 +22,10 @@ public class PlayerController : MonoBehaviour
     }
     [SerializeField] float speed = 0.0f;
     [SerializeField] float dodgeSpeed = 3.15f;
-    [SerializeField] float dodgeCoolDown = 2.0f;
     [SerializeField] float straffSensitiviy = 30.0f;
     public Animator animator = null;
-
-    Vector3 LTumbInput = new Vector3(0,0,0);
+    public float dodgeCoolDown = 2;
+   Vector3 LTumbInput = new Vector3(0,0,0);
     Vector3 RTumbInput = new Vector3(0, 0, 0);
     float leftInputMagnitud = 0.0f;
     float rightinputMagnitud = 0.0f;
@@ -131,7 +130,8 @@ public class PlayerController : MonoBehaviour
     private void AxisInput()
     {
             LTumbInput = new Vector3(Input.GetAxis(inputHorizontalLeftThumb), 0, Input.GetAxis(inputVerticalLeftThumb));
-            RTumbInput = new Vector3(Input.GetAxis(inputHorizontalRightThumb), 0, Input.GetAxis(inputVerticalRightThumb));        
+            RTumbInput = new Vector3(Input.GetAxis(inputHorizontalRightThumb), 0, Input.GetAxis(inputVerticalRightThumb));
+        Debug.Log("right: " + Input.GetAxis(inputVerticalRightThumb));
         Rotation();
         Direction();
     }
@@ -179,7 +179,7 @@ public class PlayerController : MonoBehaviour
     {
         if (RTumbInput != Vector3.zero)
         {
-            characterRotation = Mathf.Atan2(Input.GetAxis(inputHorizontalRightThumb), Input.GetAxis("Vertical Right Thumbstick")) * Mathf.Rad2Deg;
+            characterRotation = Mathf.Atan2(Input.GetAxis(inputHorizontalRightThumb), Input.GetAxis(inputVerticalRightThumb)) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, characterRotation, 0));
             //GetComponent<Fighter>().UpdateRaycastOrientation(characterRotation);
         }
