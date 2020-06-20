@@ -32,7 +32,8 @@ public class PlayerInventory : MonoBehaviour //Sasha
     public string buyButton;
     public string useItemButton;
     public string cancelButton;
-  
+
+    public GameObject PlayerUIRef;
     // Start is called before the first frame update
 
     private void Start()
@@ -43,6 +44,7 @@ public class PlayerInventory : MonoBehaviour //Sasha
             if (cman.playercount < playerindex)
             {
                 this.gameObject.SetActive(false);
+                PlayerUIRef.gameObject.SetActive(false);
             }
             else
             {
