@@ -59,6 +59,10 @@ namespace SpawnSystem
 
         public float startDelay = 5f;
         public float startTime = 0;
+
+        public int TotalWaves => waves.Count;
+        public int CurrentWaveTotalEnemies => currentWave.EnemyCount;
+
         private void Start()
         {
             Reset();
