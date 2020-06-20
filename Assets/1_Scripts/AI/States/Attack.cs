@@ -12,9 +12,11 @@ namespace AI.States
         private Controller controller = null;
         private Animator animatorController = null;
         private NavMeshAgent agent = null;
+        private Weapon equippedWeapon = null;
         private int attackDamage = 0;
         private float attackRange = 0;
         private float attackInterval = 0;
+        private float speedOffset = 0;
 
         // internal variables
         private float timeSinceLastAttack = Mathf.Infinity;
@@ -34,15 +36,23 @@ namespace AI.States
 
         private void Init()
         {
+            if (!controller)
+                Debug.LogWarning("Controller is not set in Attack state");
             if (!agent)
                 agent = controller.Agent;
             if (!animatorController)
                 animatorController = controller.AnimatorController;
+            if (!equippedWeapon)
+                equippedWeapon = controller.EquippedWeapon;
+            if (speedOffset == 0)
+                speedOffset = Random.Range(-0.2f, 0.2f);
 
             target = controller.CurrentTarget;
-            attackDamage = controller.AttackDamage;
+            //attackDamage = controller.AttackDamage;
+            attackDamage = controller.BaseAttackDamage + equippedWeapon.GetDamage();
             attackRange = controller.AttackRange;
-            attackInterval = controller.AttackInterval;
+            //attackInterval = controller.AttackInterval;
+            attackInterval = equippedWeapon.GetWeaponAttackSpeed() + speedOffset;
         }
 
         override public void Update(float deltaTime)
@@ -73,8 +83,8 @@ namespace AI.States
 
             if (TimeToAttack())
             {
+                PlayAttackAnimation();
                 timeSinceLastAttack = 0;
-                DealDamage(attackDamage);
             }
 
             timeSinceLastAttack += deltaTime;
@@ -88,11 +98,7 @@ namespace AI.States
             return timeSinceLastAttack >= attackInterval;
         }
 
-        /// <summary>
-        /// Call TakeDamage method from HealthComp if target is not dead, otherwise handle dead target
-        /// </summary>
-        /// <param name="damage"> The amout of damage that will be dealt </param>
-        private void DealDamage(int damage)
+        private void PlayAttackAnimation()
         {
             HealthComp targetHealth = target.GetComponent<HealthComp>();
 
@@ -103,13 +109,30 @@ namespace AI.States
                     animatorController.SetTrigger("Attack");
                     animatorController.SetFloat("Chase", 0f);
                 }
-
-                targetHealth.TakeDamage(damage);
                 //Debug.Log("[" + controller.name + "] dealt " + damage + " to [" + target.name + "]");
             }
             else
             {
                 HandleTargetIsDead(targetHealth);
+            }
+        }
+
+        /// <summary>
+        /// Call TakeDamage method from HealthComp if target is not dead, otherwise handle dead target
+        /// </summary>
+        /// <param name="damage"> The amout of damage that will be dealt </param>
+        private void DealDamage(int damage)
+        {
+            HealthComp targetHealth = target.GetComponent<HealthComp>();
+
+            if (!targetHealth.IsDead())
+            {
+                targetHealth.TakeDamage(damage);
+                //Debug.Log("[" + controller.name + "] dealt " + damage + " to [" + target.name + "]");
+            }
+            else
+            {
+                //HandleTargetIsDead(targetHealth);
             }
         }
 

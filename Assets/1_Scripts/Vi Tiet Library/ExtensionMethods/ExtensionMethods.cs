@@ -25,7 +25,7 @@ namespace Catavaneer.Extensions
             return transformList;
         }
 
-        public static List<T> GetAllComponentsOfTypeInHierachy<T>(this Transform root, List<T> genericList = null, bool addRoot = true) where T : MonoBehaviour
+        public static List<T> GetAllComponentsOfTypeInHierachy<T>(this Transform root, List<T> genericList = null, bool addRoot = true) where T : Object
         {
             if (genericList == null || genericList.Count <= 0)
                 genericList = new List<T>();

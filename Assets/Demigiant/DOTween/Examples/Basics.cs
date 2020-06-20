@@ -25,6 +25,7 @@ public class Basics : MonoBehaviour
 		// To change its color, we'll have to use its material as a target (instead than its transform).
 		purpleCube.DOMove(new Vector3(6,0,0), 2).SetRelative();
 		// Also, let's set the color tween to loop infinitely forward and backwards
-		purpleCube.GetComponent<Renderer>().material.DOColor(Color.yellow, 2).SetLoops(-1, LoopType.Yoyo);
+		//purpleCube.GetComponent<Renderer>().material.DOColor(Color.yellow, 2).SetLoops(-1, LoopType.Yoyo);
+		purpleCube.GetComponent<Renderer>().material.DOFloat(1, "_Amount", 2).SetLoops(-1, LoopType.Yoyo);
 	}
 }

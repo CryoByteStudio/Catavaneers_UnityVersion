@@ -40,7 +40,7 @@ namespace AI.States
         private void Init()
         {
             if (!controller)
-                Debug.LogWarning("Controller is not set in Patrol state");
+                Debug.LogWarning("Controller is not set in PreAttack state");
             if (!agent)
                 agent = controller.Agent;
             if (!animatorController)

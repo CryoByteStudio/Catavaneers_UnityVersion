@@ -267,4 +267,16 @@ public class PlayerController : MonoBehaviour
         leftInputMagnitud = 0;
         StartCoroutine(UndoAfliction(lastingTime));
     }
+
+    // ANIMATION EVENTS
+    private void FootL()
+    {
+        //TODO Add Particle FX
+    }
+
+    private void FootR()
+    {
+        //TODO Add Particle FX
+    }
+    //
 }

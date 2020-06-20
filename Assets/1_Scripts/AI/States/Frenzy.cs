@@ -31,6 +31,8 @@ namespace AI.States
 
         private void Init()
         {
+            if (!controller)
+                Debug.LogWarning("Controller is not set in Frenzy state");
             if (!agent)
                 agent = controller.Agent;
             if (!animatorController)

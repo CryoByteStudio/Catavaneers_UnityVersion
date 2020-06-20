@@ -144,9 +144,10 @@ namespace Catavaneer.MenuSystem
                 InitializeTransitions();
             }
 
-            if (((GameManager.Instance && LevelLoader.IsMainMenuLevel()) || LevelLoader.IsDevelopmentLevel()) && !menuParent)
+            if (GameManager.Instance)
             {
-                InitializeMenus();
+                if ((LevelLoader.IsMainMenuLevel() || LevelLoader.IsDevelopmentLevel()) && !menuParent)
+                    InitializeMenus();
             }
 
             isPaused = false;

@@ -13,7 +13,8 @@ namespace AI
         Chase,
         PreAttack,
         Attack,
-        Frenzy
+        Frenzy,
+        Death
     }
 
     public enum EnemyType
@@ -40,25 +41,35 @@ namespace AI
         [SerializeField] private float frenzyRadius = 0;
         [SerializeField] private float frenzySpeed = 0;
 
+        [Header("Death Settings")]
+        [SerializeField] private float deathAnimationDuration = 3;
+        [SerializeField] private float fadeDuration = 5;
+
         private FSM finiteStateMachine = new FSM();
+        private HealthComp healthComponent = null;
         private float distanceToTarget = Mathf.Infinity;
         private NavMeshAgent agent = null;
         private Animator animatorController = null;
         private Transform targetPointTransform = null;
         private Transform currentTarget = null;
-        [SerializeField] private bool isFrenzy = false;
+        private Weapon equippedWeapon;
+        private bool isFrenzy = false;
 
+        public HealthComp HealthComponent { get { return healthComponent; } }
         public float DistanceToTarget { get { return distanceToTarget; } }
         public NavMeshAgent Agent { get { return agent; } }
         public Animator AnimatorController { get { return animatorController; } }
         public Transform CurrentTarget { get { return currentTarget; } }
         public float ChaseSpeed { get { return chaseSpeed; } }
-        public int AttackDamage { get { return attackDamage; } }
+        public int BaseAttackDamage { get { return attackDamage; } }
         public float AttackRange { get { return attackRange; } }
         public float AttackInterval { get { return attackInterval; } }
         public float FrenzyRadius { get { return frenzyRadius; } }
         public float FrenzySpeed { get { return frenzySpeed; } }
         public bool IsFrenzy { get { return isFrenzy; } }
+        public float DeathAnimationDuration { get { return deathAnimationDuration; } }
+        public float FadeDuration { get { return fadeDuration; } }
+        public Weapon EquippedWeapon { get { return equippedWeapon; } }
         public EnemyType Type { get { return type; } }
         public float Speed { get { return currentState == AIState.Chase ? ChaseSpeed : currentState == AIState.Frenzy ? frenzySpeed : 0; } }
 
@@ -66,7 +77,7 @@ namespace AI
         private static List<HealthComp> catTargets = new List<HealthComp>();
         private static List<HealthComp> dogTargets = new List<HealthComp>();
 
-        private static HealthComp[] healthComps;
+        private static HealthComp[] allHealthCompsInScene;
         private Vector3 startPosition;
 
         public AIState currentState = AIState.FindTarget;
@@ -86,18 +97,35 @@ namespace AI
             PopulateTargetLists();
 
             animatorController = GetComponent<Animator>();
+            healthComponent = GetComponent<HealthComp>();
 
             // override NavMeshAgent auto reposition when enabled
+            SetPosition();
+
+            GetWeaponReference();
+            InitFSM();
+        }
+
+        private void SetPosition()
+        {
             startPosition = transform.position;
             agent = GetComponent<NavMeshAgent>();
             agent.Warp(startPosition);
+        }
 
-            InitFSM();
+        private void GetWeaponReference()
+        {
+            EnemyWeapon enemyWeapon = GetComponent<EnemyWeapon>();
+            if (enemyWeapon)
+            {
+                enemyWeapon.Init();
+                equippedWeapon = enemyWeapon.CurrentWeapon;
+            }
         }
 
         private void Reset()
         {
-            healthComps = null;
+            allHealthCompsInScene = null;
             mouseTargets.Clear();
             catTargets.Clear();
             dogTargets.Clear();
@@ -108,8 +136,8 @@ namespace AI
         /// </summary>
         private void PopulateTargetLists()
         {
-            if (healthComps == null)
-                healthComps = FindObjectsOfType<HealthComp>();
+            if (allHealthCompsInScene == null)
+                allHealthCompsInScene = FindObjectsOfType<HealthComp>();
             if (mouseTargets.Count == 0)
                 mouseTargets = GetMouseTargets();
             if (catTargets.Count == 0)
@@ -139,6 +167,7 @@ namespace AI
             finiteStateMachine.AddState(AIState.Attack.ToString(), new Attack(this));
             finiteStateMachine.AddState(AIState.Frenzy.ToString(), new Frenzy(this));
             finiteStateMachine.AddState(AIState.PreAttack.ToString(), new PreAttack(this));
+            finiteStateMachine.AddState(AIState.Death.ToString(), new Death(this));
 
             // add transitions
             finiteStateMachine.AddTransition(AIState.FindTarget.ToString(), AIState.Frenzy.ToString(), BaseConditionToFrenzy);
@@ -150,6 +179,7 @@ namespace AI
             finiteStateMachine.AddAnyStateTransition(AIState.FindTarget.ToString(), BaseConditionToFindTarget);
             finiteStateMachine.AddAnyStateTransition(AIState.Chase.ToString(), BaseConditionToChase);
             finiteStateMachine.AddAnyStateTransition(AIState.Attack.ToString(), BaseConditionToAttack);
+            finiteStateMachine.AddAnyStateTransition(AIState.Death.ToString(), BaseConditionToDeath);
         }
 
         #region TRANSITIONS
@@ -158,7 +188,7 @@ namespace AI
         /// </summary>
         private bool BaseConditionToFindTarget()
         {
-            return !isFrenzy && !currentTarget;
+            return !healthComponent.IsDead() && !isFrenzy && !currentTarget;
         }
 
         /// <summary>
@@ -166,7 +196,7 @@ namespace AI
         /// </summary>
         private bool BaseConditionToChase()
         {
-            return !isFrenzy && currentTarget && distanceToTarget > attackRange;
+            return !healthComponent.IsDead() && !isFrenzy && currentTarget && distanceToTarget > attackRange;
         }
 
         /// <summary>
@@ -174,7 +204,7 @@ namespace AI
         /// </summary>
         private bool BaseConditionToAttack()
         {
-            return !isFrenzy && currentTarget && distanceToTarget <= attackRange;
+            return !healthComponent.IsDead() && !isFrenzy && currentTarget && distanceToTarget <= attackRange;
         }
 
         /// <summary>
@@ -188,6 +218,11 @@ namespace AI
         private bool BaseConditionToPreAttack()
         {
             return targetPointTransform && Vector3.Distance(transform.position, targetPointTransform.position) <= 0.5f;
+        }
+
+        private bool BaseConditionToDeath()
+        {
+            return healthComponent.IsDead();
         }
         #endregion
 
@@ -216,11 +251,11 @@ namespace AI
         {
             List<HealthComp> targets = new List<HealthComp>();
 
-            for (int i = 0; i < healthComps.Length; i++)
+            for (int i = 0; i < allHealthCompsInScene.Length; i++)
             {
-                if (healthComps[i].myClass == CharacterClass.Caravan)
+                if (allHealthCompsInScene[i].myClass == CharacterClass.Caravan)
                 {
-                    targets.Add(healthComps[i]);
+                    targets.Add(allHealthCompsInScene[i]);
                 }
             }
 
@@ -234,11 +269,11 @@ namespace AI
         {
             List<HealthComp> targets = new List<HealthComp>();
 
-            for (int i = 0; i < healthComps.Length; i++)
+            for (int i = 0; i < allHealthCompsInScene.Length; i++)
             {
-                if (healthComps[i].myClass == CharacterClass.Player || healthComps[i].myClass == CharacterClass.Caravan)
+                if (allHealthCompsInScene[i].myClass == CharacterClass.Player || allHealthCompsInScene[i].myClass == CharacterClass.Caravan)
                 {
-                    targets.Add(healthComps[i]);
+                    targets.Add(allHealthCompsInScene[i]);
                 }
             }
 
@@ -252,11 +287,11 @@ namespace AI
         {
             List<HealthComp> targets = new List<HealthComp>();
 
-            for (int i = 0; i < healthComps.Length; i++)
+            for (int i = 0; i < allHealthCompsInScene.Length; i++)
             {
-                if (healthComps[i].myClass == CharacterClass.Player)
+                if (allHealthCompsInScene[i].myClass == CharacterClass.Player)
                 {
-                    targets.Add(healthComps[i]);
+                    targets.Add(allHealthCompsInScene[i]);
                 }
             }
 
@@ -433,6 +468,42 @@ namespace AI
             isFrenzy = !isFrenzy;
         }
 
+        //----------------------------------------------------------------------------------------------
+        //-------------------------------------- ANIMATION EVENTS --------------------------------------
+        //----------------------------------------------------------------------------------------------
+        private void Hit()
+        {
+            //TODO particle FX
+
+            if (!healthComponent.IsDead())
+                DealDamage(equippedWeapon.GetDamage());
+        }
+
+        private void DealDamage(int damage)
+        {
+            HealthComp targetHealth = currentTarget.GetComponent<HealthComp>();
+            if (targetHealth && !targetHealth.IsDead())
+            {
+                targetHealth.TakeDamage(damage);
+                //Debug.Log("[" + name + "] dealt " + damage + " to [" + currentTarget.name + "]");
+            }
+        }
+
+        private void FootL()
+        {
+            //TODO particle FX
+        }
+
+        private void FootR()
+        {
+            //TODO particle FX
+        }
+
+        //----------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------
+
         public void SetTargetPoint(Transform pointTransform)
         {
             targetPointTransform = pointTransform;
@@ -440,7 +511,7 @@ namespace AI
 
         public static void ResetTargets()
         {
-            healthComps = null;
+            allHealthCompsInScene = null;
             mouseTargets.Clear();
             catTargets.Clear();
             dogTargets.Clear();

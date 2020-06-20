@@ -1,19 +1,18 @@
 ﻿using UnityEngine;
-using ViTiet.DataStructure;
 using ViTiet.DataStructure.Binary;
 
 public class TestBinaryTree : MonoBehaviour
 {
-    private BinaryTree<Data> myBTree = new BinaryTree<Data>();
+    private BinaryTree<ViTiet.DataStructure.Data> myBTree = new BinaryTree<ViTiet.DataStructure.Data>();
 
     // Start is called before the first frame update
     void Start()
     {
-        myBTree.Add(new Data(2.5f));
+        myBTree.Add(new ViTiet.DataStructure.Data(2.5f));
 
         for (int i = 0; i < 10; i++)
         {
-            Data data = new Data(Random.Range(0f, 5f));
+            ViTiet.DataStructure.Data data = new ViTiet.DataStructure.Data(Random.Range(0f, 5f));
             Debug.Log(data.Value + " i: " + i);
             myBTree.Add(data);
         }
