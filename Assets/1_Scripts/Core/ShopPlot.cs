@@ -51,7 +51,7 @@ public class ShopPlot : MonoBehaviour
     {
         //Removes reference when the shop is exited
            
-            if (InvRef == collision.gameObject.GetComponent<PlayerInventory>())
+            if (InvRef == collision.gameObject.GetComponent<PlayerInventory>() && collision.gameObject.tag == "Player")
             {
                 InvRef.plotref = null;
                 InvRef = null;

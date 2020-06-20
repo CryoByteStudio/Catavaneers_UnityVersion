@@ -31,6 +31,8 @@ namespace AI.States
 
         private void Init()
         {
+            if (!controller)
+                Debug.LogWarning("Controller is not set in FindTarget state");
             if (!animatorController)
                 animatorController = controller.AnimatorController;
 
@@ -95,7 +97,7 @@ namespace AI.States
             }
             else
             {
-                Debug.Log("No more target");
+                //Debug.Log("No more target");
             }
 
             return closestTarget;

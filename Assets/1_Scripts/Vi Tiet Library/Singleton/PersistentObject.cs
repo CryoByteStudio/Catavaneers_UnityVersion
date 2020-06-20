@@ -33,7 +33,7 @@ namespace Catavaneer.Singleton
                         thisIndex = i;
                     }
 
-                    if (persistentObjects[i].isSingleton)
+                    if (persistentObjects[i].isSingleton && persistentObjects[i] != this)
                     {
                         smallestIndex = smallestIndex < i ? smallestIndex : i;
                         singletonCount++;

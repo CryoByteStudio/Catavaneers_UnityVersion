@@ -63,7 +63,9 @@ namespace Catavaneer
 
         private void Reset()
         {
-            HealthComp.OnCaravanDestroyed += OnCaravanDestroyedHandler;
+            if (gameObject.activeSelf)
+                HealthComp.OnCaravanDestroyed += OnCaravanDestroyedHandler;
+
             LevelLoader.SetMainMenuSceneIndex(mainMenuSceneIndex);
             LevelLoader.SetCharacterSelectSceneIndex(characterSelectSceneIndex);
             LevelLoader.SetFirstGameSceneIndex(firstGameSceneIndex);

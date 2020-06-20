@@ -39,7 +39,7 @@ namespace AI.States
         private void Init()
         {
             if (!controller)
-                Debug.LogWarning("Controller is not set in Patrol state");
+                Debug.LogWarning("Controller is not set in Chase state");
             if (!agent)
                 agent = controller.Agent;
             if (!animatorController)

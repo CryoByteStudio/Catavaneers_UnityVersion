@@ -46,6 +46,8 @@ public class HealthComp : MonoBehaviour
     private Rigidbody rb;
     private DropController dropController;
 
+    private CharacterFader characterFader;
+
     public Slider health_slider = null;
 
     private static ObjectPooler objectPooler;
@@ -60,6 +62,7 @@ public class HealthComp : MonoBehaviour
         dropController = GetComponent<DropController>();
         objectPooler = FindObjectOfType<ObjectPooler>();
         animator = GetComponent<Animator>();
+        characterFader = GetComponent<CharacterFader>();
 
         if (myClass == CharacterClass.Enemy)
         {
@@ -166,9 +169,8 @@ public class HealthComp : MonoBehaviour
         isDead = false;
         currentHealth = startHealth;
         health_slider.value = currentHealth;
-        playerMeshRenderer.enabled = true;
         GetComponent<CapsuleCollider>().enabled = true;
-        health_slider.gameObject.SetActive(true);
+        playerMeshRenderer.enabled = true;
     }
 
     /// <summary>
@@ -255,11 +257,7 @@ public class HealthComp : MonoBehaviour
     private void Dead()
     {
         isDead = true;
-        if (animator != null)
-        {
-            animator.SetTrigger("Die");
-            RespawnMethod();
-        }
+
         switch (myClass)
         {
             case CharacterClass.Player:
@@ -272,6 +270,12 @@ public class HealthComp : MonoBehaviour
                         FindObjectOfType<Goldbag>().DropBag();
                     }
                 }
+
+                if (animator != null)
+                {
+                    DeathBehaviour();
+                }
+
                 break;
             case CharacterClass.Caravan:
                 if (OnCaravanDestroyed != null)
@@ -283,26 +287,42 @@ public class HealthComp : MonoBehaviour
                 gameObject.SetActive(false);
                 break;
             case CharacterClass.Enemy:
-                if (GetComponent<Animator>() != null)
-                {
-                    GetComponent<Animator>().SetTrigger("Die");
-                }
+                //if (GetComponent<Animator>() != null)
+                //{
+                //    GetComponent<Animator>().SetTrigger("Die");
+                //}
                 dropController.DropItem();
-                ObjectPooler.SetInactive(this.gameObject);
+                //ObjectPooler.SetInactive(this.gameObject);
                 SpawnManager.EnemiesAlive--;
                 break;
         }
     }
+
+    private void DeathBehaviour()
+    {
+        animator.SetTrigger("Die");
+        StartCoroutine(RespawnRoutine());
+    }
+
     /// <summary>
     /// Handles player respawn when dead
     /// </summary>
-    private void RespawnMethod()
+    private IEnumerator RespawnRoutine()
     {
-        StartCoroutine(Respawn());
-    }
+        int deathAnimationDuration = 3;
+        int fadeOutDuration = 5;
 
-    private IEnumerator Respawn()
-    {
+        yield return new WaitForSeconds(deathAnimationDuration);
+        if (characterFader)
+            characterFader.FadeOut(fadeOutDuration);
+
+        yield return new WaitForSeconds(fadeOutDuration);
+        playerMeshRenderer.enabled = false;
+
+        //make sure its a player first
+        if (myClass == CharacterClass.Player)
+            GetComponent<PlayerInventory>().RemoveGoldFromInventory(percentageOfGoldToKeep);
+
         switch (GameManager.DifficultyLevel)
         {
             case DifficultyLevel.Normal:
@@ -314,35 +334,19 @@ public class HealthComp : MonoBehaviour
             case DifficultyLevel.Catapocalypse:
                 yield return new WaitForSeconds(12);
                 break;
-            case DifficultyLevel.Catfight:
-                EditorHelper.NotSupportedException("DifficultyLevel.Catfight");
-                break;
-            default:
-                EditorHelper.NotSupportedException("default");
-                break;
         }
 
-        playerMeshRenderer.enabled = false;
-
-        //GetComponent<CapsuleCollider>().enabled = false;
         transform.position = playerSpawnPos.position;
-
-        //make sure its a player first
-        if (myClass == CharacterClass.Player)
-        {
-            GetComponent<PlayerInventory>().RemoveGoldFromInventory(percentageOfGoldToKeep);
-        }
-        health_slider.gameObject.SetActive(false);
-        StartCoroutine(Spawn());
-    }
-
-    private IEnumerator Spawn()
-    {
-        yield return new WaitForSeconds(6);
+        characterFader.ResetFade();
         Reset();
         Controller.AddToTargetList(this);
         animator.SetTrigger("Spawn");
-        Debug.Log("Respawn");
+        //TODO Play Particle FX
+    }
+
+    private IEnumerator Spawn(float timer)
+    {
+        yield return new WaitForSeconds(timer);
     }
 
     /// <summary>
