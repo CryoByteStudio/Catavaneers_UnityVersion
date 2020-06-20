@@ -54,11 +54,9 @@ namespace SpawnSystem
         public static int EnemyLeftToSpawn = 0;
         public static int EnemiesAlive = 0;
         public static bool HasFinishedSpawning = false;
+        public static bool CanSpawnWave = false;
         public static bool CanSpawnEnemy = false;
         public static bool m_Debug = false;
-
-        public float startDelay = 5f;
-        public float startTime = 0;
 
         public int TotalWaves => waves.Count;
         public int CurrentWaveTotalEnemies => currentWave.EnemyCount;
@@ -66,14 +64,11 @@ namespace SpawnSystem
         private void Start()
         {
             Reset();
-            
-            // update params to start spawning
-            startTime = Time.time + startDelay;
         }
 
         private void Update()
         {
-            if (Time.time < startTime) return;
+            if (!CanSpawnEnemy) return;
             
             if (HasSpawnedAllEnemies())
             {
@@ -219,7 +214,8 @@ namespace SpawnSystem
             EnemyLeftToSpawn = 0;
             EnemiesAlive = 0;
             HasFinishedSpawning = false;
-            CanSpawnEnemy = true;
+            CanSpawnEnemy = false;
+            //CanSpawnWave = false;
         }
 
         private void OnValidate()

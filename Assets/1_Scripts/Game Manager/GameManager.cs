@@ -20,6 +20,9 @@ namespace Catavaneer
         public static DifficultyLevel DifficultyLevel { get { return instance.difficultyLevel; } }
         public float startDelay = 1;
         public float quitDelay = 0;
+
+        private float startTime = 0;
+        private bool hasStarted = false;
         private bool doneOnce = false;
 
         private bool isGameOver;
@@ -44,6 +47,12 @@ namespace Catavaneer
 
         private void Update()
         {
+            if (!hasStarted)
+            {
+                SpawnManager.CanSpawnEnemy = Time.time > startDelay;
+                hasStarted = true;
+            }
+
             if (!doneOnce && SpawnManager.HasFinishedSpawning && SpawnManager.EnemiesAlive <= 0)
             {
                 StartCoroutine(WinDelay());
@@ -66,6 +75,8 @@ namespace Catavaneer
             if (gameObject.activeSelf)
                 HealthComp.OnCaravanDestroyed += OnCaravanDestroyedHandler;
 
+            hasStarted = false;
+            startTime = Time.time + startDelay;
             LevelLoader.SetMainMenuSceneIndex(mainMenuSceneIndex);
             LevelLoader.SetCharacterSelectSceneIndex(characterSelectSceneIndex);
             LevelLoader.SetFirstGameSceneIndex(firstGameSceneIndex);
