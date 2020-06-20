@@ -1,14 +1,16 @@
-﻿Shader "Custom/XRayWall"
+﻿Shader "Custom/XRay Wall HDR"
 {
     Properties
     {
         _MainTex("Albedo (RGB)", 2D) = "white" {}
-		_Color("Color", Color) = (1,1,1,1)
+		[HDR] _Color("Tint Color", Color) = (1,1,1,1)
 
 		_Glossiness("Smoothness", Range(0,1)) = 0.5
 		_Metallic("Metallic", Range(0,1)) = 0.0
 
 		_BumpMap("Normal Map", 2D) = "bump" {}
+
+		[HDR] _ColorXRay("XRay Color", Color) = (1,1,1,1)
 	}
 	SubShader
 	{
@@ -35,7 +37,7 @@
 
 			#pragma target 3.0
 
-			fixed4 _Color;
+			fixed4 _ColorXRay;
 
 			struct  appdata
 			{
@@ -56,7 +58,7 @@
 			
 			fixed4 frag(v2f i) : SV_Target
 			{
-				return float4(_Color);
+				return float4(_ColorXRay);
 			}
 			ENDCG
 		}
