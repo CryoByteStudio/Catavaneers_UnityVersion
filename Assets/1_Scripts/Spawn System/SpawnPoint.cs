@@ -21,6 +21,8 @@ namespace SpawnSystem
         private bool canSpawn = true;
 
         private static ObjectPooler objectPooler;
+        private static bool hasStartedSpawning = false;
+        public static bool HasStartedSpawning => hasStartedSpawning;
 
         // for debugging
         private HealthComp healthComp;
@@ -29,6 +31,8 @@ namespace SpawnSystem
         {
             if (!objectPooler)
                 objectPooler = FindObjectOfType<ObjectPooler>();
+
+            hasStartedSpawning = false;
         }
 
         private void Update()
@@ -43,6 +47,7 @@ namespace SpawnSystem
                 if (timeElapsed > nextSpawnTime)
                 {
                     Spawn(spawnQueue.Dequeue());
+                    hasStartedSpawning = true;
                     nextSpawnTime = timeElapsed + spawnInterval;
                 }
 

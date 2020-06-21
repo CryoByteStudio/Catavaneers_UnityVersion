@@ -99,16 +99,14 @@ public class PlayerSelectController : MonoBehaviour
     {
         int playerslocked = 0;
         totalplayers = charman.playercount;
-        Debug.Log(charman.playercount);
+        //Debug.Log(charman.playercount);
         foreach (PlayerSelectController player in FindObjectsOfType<PlayerSelectController>())
         {
-           
             if (player.lockedin)
             {
-
                 if (player.SelectIndex == 0)
                 {
-                    charman.charnames[player.PlayerID]="Russel";
+                    charman.charnames[player.PlayerID]= "Russel";
                 }
                 else if (player.SelectIndex == 1)
                 {
@@ -121,9 +119,7 @@ public class PlayerSelectController : MonoBehaviour
                 else if (player.SelectIndex == 3)
                 {
                     charman.charnames[player.PlayerID] = "Jojo";
-
                 }
-
                 
                 playerslocked++;
                
@@ -136,9 +132,7 @@ public class PlayerSelectController : MonoBehaviour
             // StartCoroutine(gman.StartDelay());
             //Debug.Log(totalplayers);
             //Debug.Log(playerslocked);
-           charman.StartGame();
-           
-
+            charman.StartGame();
         }
     }
 }

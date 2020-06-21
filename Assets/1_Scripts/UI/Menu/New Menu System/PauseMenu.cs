@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Catavaneer.MenuSystem
 {
@@ -22,6 +23,7 @@ namespace Catavaneer.MenuSystem
 
         public void OnRestartPressed()
         {
+            FindObjectOfType<BaseInputModule>().DeactivateModule();
             MenuManager.RestartLevel();
         }
 

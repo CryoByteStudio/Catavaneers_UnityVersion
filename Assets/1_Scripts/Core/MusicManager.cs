@@ -128,8 +128,6 @@ public class MusicManager : SingletonEntity<MusicManager>
                 }
             }
         }
-
-
     }
 
     void Update()
@@ -147,15 +145,8 @@ public class MusicManager : SingletonEntity<MusicManager>
 
         if (LevelLoader.IsGameLevel())
         {
-
             if (caravanHealth != null)
             {
-                //if(!doneOnce)
-                //{
-                //    caravanState.start();
-                //    doneOnce = true;
-                //}
-
                 if (caravanHealth.GetCurHealth() <= caravanHealth.GetStartHealth() / 4)
                 {
                     caravanState.setParameterByName("Caravan Health", Mathf.Lerp(curCaravanIntensity, 3f, 1.0f));
@@ -176,10 +167,11 @@ public class MusicManager : SingletonEntity<MusicManager>
                 {
                     caravanState.setParameterByName("Intensity", Mathf.Lerp(curEnemieIntensity, 2.0f, 1.0f));
                 }
-            }
-            if (caravanHealth.GetCurHealth() <= 0)
-            {
-                caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
+                if (caravanHealth.GetCurHealth() <= 0)
+                {
+                    caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                }
             }
         }
         //else if (SceneManager.GetActiveScene().name != "Encounter_01" && SceneManager.GetActiveScene().name != "Encounter_02")
@@ -189,7 +181,8 @@ public class MusicManager : SingletonEntity<MusicManager>
         //}
         else
         {
-            caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            //caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            menuState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
     }
 

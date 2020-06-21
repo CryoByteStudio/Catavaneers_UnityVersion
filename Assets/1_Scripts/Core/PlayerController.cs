@@ -129,9 +129,8 @@ public class PlayerController : MonoBehaviour
 
     private void AxisInput()
     {
-            LTumbInput = new Vector3(Input.GetAxis(inputHorizontalLeftThumb), 0, Input.GetAxis(inputVerticalLeftThumb));
-            RTumbInput = new Vector3(Input.GetAxis(inputHorizontalRightThumb), 0, Input.GetAxis(inputVerticalRightThumb));
-        Debug.Log("right: " + Input.GetAxis(inputVerticalRightThumb));
+        LTumbInput = new Vector3(Input.GetAxis(inputHorizontalLeftThumb), 0, Input.GetAxis(inputVerticalLeftThumb));
+        RTumbInput = new Vector3(Input.GetAxis(inputHorizontalRightThumb), 0, Input.GetAxis(inputVerticalRightThumb));
         Rotation();
         Direction();
     }

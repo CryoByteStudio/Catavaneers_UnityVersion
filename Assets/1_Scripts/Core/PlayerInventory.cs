@@ -50,15 +50,6 @@ public class PlayerInventory : MonoBehaviour //Sasha
             {
 
             }
-            /*if (cman.charnames.Contains(name))
-            {
-                this.playername = name;
-                //cman.charnames.Remove(name);
-            }
-            else
-            {
-                this.gameObject.SetActive(false);
-            }*/
         }
         health = GetComponent<HealthComp>();
         rb = GetComponent<Rigidbody>();

@@ -98,6 +98,16 @@ namespace Catavaneer.LevelManagement
             firstGameSceneIndex = index;
         }
 
+        public static string GetCurrentSceneName()
+        {
+            return SceneManager.GetActiveScene().name;
+        }
+
+        public static int GetCurrentSceneIndex()
+        {
+            return SceneManager.GetActiveScene().buildIndex;
+        }
+
         public static void LoadLevel(string sceneName)
         {
             if (Application.CanStreamedLevelBeLoaded(sceneName))

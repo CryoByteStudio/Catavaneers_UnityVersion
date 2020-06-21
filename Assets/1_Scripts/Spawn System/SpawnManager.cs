@@ -104,7 +104,7 @@ namespace SpawnSystem
         /// </summary>
         private bool HasSpawnedAllEnemies()
         {
-            HasFinishedSpawning = EnemyLeftToSpawn <= 0 && Wave.number >= waves.Count;
+            HasFinishedSpawning = EnemyLeftToSpawn <= 0 && Wave.number >= waves.Count && SpawnPoint.HasStartedSpawning;
             return HasFinishedSpawning;
         }
 
@@ -114,7 +114,6 @@ namespace SpawnSystem
         private void SpawnNextWave()
         {
             Wave.number++;
-           // print("Wave Number: " + Wave.number);
             currentWave = waves[Wave.number - 1];
             currentWave.Init();
 

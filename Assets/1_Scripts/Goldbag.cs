@@ -12,7 +12,7 @@ public class Goldbag : MonoBehaviour
     public PlayerInventory holdersInventory;
     public bool isHeld = false;
     public int goldpertick = 10;
-     float goldticktimer = 0;
+    float goldticktimer = 0;
     public int victorygold = 100;
     public float timebetweengoldtick = 0.5f;
     public float droptime;
@@ -20,17 +20,11 @@ public class Goldbag : MonoBehaviour
 
     public GameObject victoryui;
     public Text victorytext;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
+    private static bool hasWinner = false;
+    public static bool HasWinner => hasWinner;
 
     private void OnTriggerEnter(Collider collision)
     {
-        
         if (!isHeld)
         {
             if (Time.time > droptimer) {
@@ -45,16 +39,16 @@ public class Goldbag : MonoBehaviour
         
     }
 
-        public void DropBag()
-        {
-            transform.parent = null;
-            isHeld = false;
-            droptimer = Time.time + droptime;
-        }
-        // Update is called once per frame
-        void Update()
-        {
+    public void DropBag()
+    {
+        transform.parent = null;
+        isHeld = false;
+        droptimer = Time.time + droptime;
+    }
 
+    // Update is called once per frame
+    private void Update()
+    {
         if (victoryui.activeInHierarchy == false)
         {
             if (Input.GetKeyDown(KeyCode.C))
@@ -71,8 +65,9 @@ public class Goldbag : MonoBehaviour
 
                     if (holdersInventory.gold >= victorygold)
                     {
-                        victoryui.SetActive(true);
-                        victorytext.text = "Congratulations! " + holdersInventory.playername + " wins! press any key to return to the main menu.";
+                        //victoryui.SetActive(true);
+                        //victorytext.text = "Congratulations! " + holdersInventory.playername + " wins! press any key to return to the main menu.";
+                        hasWinner = true;
                     }
                 }
             }
@@ -81,9 +76,8 @@ public class Goldbag : MonoBehaviour
         {
             if (Input.anyKeyDown)
             {
-                //FindObjectOfType<GameManager>().ToMainMenu();
                 LevelLoader.LoadMainMenuLevel();
             }
         }
-        }
-    } 
+    }
+} 
