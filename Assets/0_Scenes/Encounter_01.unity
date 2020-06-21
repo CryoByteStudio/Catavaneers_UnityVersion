@@ -276,6 +276,11 @@ PrefabInstance:
       propertyPath: PlayerID
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 621215469083729958, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 621215469257398658, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -304,7 +309,12 @@ PrefabInstance:
     - target: {fileID: 621215470531494403, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.54
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 621215470531494404, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: orthographic
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 621215470560258187, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
@@ -379,27 +389,27 @@ PrefabInstance:
     - target: {fileID: 3086237990490554564, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 3086237990490554564, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3086237990490554564, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3086237990490554564, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3086237990490554564, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4228604260217819069, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
@@ -436,6 +446,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8b6fbdf4c70eb214a932beeb8e6e24bb, type: 2}
+    - target: {fileID: 6241194454235563169, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6712507690462026497, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -501,6 +516,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7122060829671115948, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7122060829671115948, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7122060829671115948, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7122060829671115948, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7122060829671115948, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7674166593136321948, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: rendref
@@ -524,7 +564,7 @@ PrefabInstance:
     - target: {fileID: 8128551938881523185, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_Name
-      value: Core (1)
+      value: Core
       objectReference: {fileID: 0}
     - target: {fileID: 8194402528946574035, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}

@@ -4,6 +4,7 @@ using UnityEngine.AI;
 using FiniteStateMachine.StatePolymorphism;
 using AI.States;
 using System.Collections;
+using System;
 
 namespace AI
 {
@@ -45,6 +46,8 @@ namespace AI
         [SerializeField] private float deathAnimationDuration = 3;
         [SerializeField] private float fadeDuration = 5;
 
+        public event Action OnHit;
+
         private FSM finiteStateMachine = new FSM();
         private HealthComp healthComponent = null;
         private float distanceToTarget = Mathf.Infinity;
@@ -72,7 +75,7 @@ namespace AI
         public Weapon EquippedWeapon { get { return equippedWeapon; } }
         public EnemyType Type { get { return type; } }
         public float Speed { get { return currentState == AIState.Chase ? ChaseSpeed : currentState == AIState.Frenzy ? frenzySpeed : 0; } }
-
+        
         private static List<HealthComp> mouseTargets = new List<HealthComp>();
         private static List<HealthComp> catTargets = new List<HealthComp>();
         private static List<HealthComp> dogTargets = new List<HealthComp>();
@@ -475,18 +478,8 @@ namespace AI
         {
             //TODO particle FX
 
-            if (!healthComponent.IsDead())
-                DealDamage(equippedWeapon.GetDamage());
-        }
-
-        private void DealDamage(int damage)
-        {
-            HealthComp targetHealth = currentTarget.GetComponent<HealthComp>();
-            if (targetHealth && !targetHealth.IsDead())
-            {
-                targetHealth.TakeDamage(damage);
-                //Debug.Log("[" + name + "] dealt " + damage + " to [" + currentTarget.name + "]");
-            }
+            if (OnHit != null)
+                OnHit.Invoke();
         }
 
         private void FootL()

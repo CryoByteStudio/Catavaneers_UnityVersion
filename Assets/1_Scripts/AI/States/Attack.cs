@@ -32,6 +32,7 @@ namespace AI.States
             Init();
 
             controller.currentState = AIState.Attack;
+            controller.OnHit += DealDamage;
         }
 
         private void Init()
@@ -62,13 +63,11 @@ namespace AI.States
 
         override public void OnStateExit()
         {
-
+            controller.OnHit -= DealDamage;
         }
 
         private void LookAtTarget()
         {
-            if (!target) return;
-
             Vector3 lookPoint = target.position;
             lookPoint.y = controller.transform.position.y;
             controller.transform.LookAt(lookPoint);
@@ -79,11 +78,14 @@ namespace AI.States
         /// </summary>
         private void AttackBehaviour(float deltaTime)
         {
+            if (!target) return;
+
             LookAtTarget();
 
             if (TimeToAttack())
             {
                 PlayAttackAnimation();
+
                 timeSinceLastAttack = 0;
             }
 
@@ -100,39 +102,26 @@ namespace AI.States
 
         private void PlayAttackAnimation()
         {
-            HealthComp targetHealth = target.GetComponent<HealthComp>();
-
-            if (!targetHealth.IsDead())
-            {
-                if (animatorController)
-                {
-                    animatorController.SetTrigger("Attack");
-                    animatorController.SetFloat("Chase", 0f);
-                }
-                //Debug.Log("[" + controller.name + "] dealt " + damage + " to [" + target.name + "]");
-            }
-            else
-            {
-                HandleTargetIsDead(targetHealth);
-            }
+            animatorController.SetTrigger("Attack");
+            animatorController.SetFloat("Chase", 0f);
         }
 
         /// <summary>
         /// Call TakeDamage method from HealthComp if target is not dead, otherwise handle dead target
         /// </summary>
         /// <param name="damage"> The amout of damage that will be dealt </param>
-        private void DealDamage(int damage)
+        private void DealDamage()
         {
             HealthComp targetHealth = target.GetComponent<HealthComp>();
 
-            if (!targetHealth.IsDead())
+            if (targetHealth && !targetHealth.IsDead())
             {
-                targetHealth.TakeDamage(damage);
+                targetHealth.TakeDamage(attackDamage);
                 //Debug.Log("[" + controller.name + "] dealt " + damage + " to [" + target.name + "]");
             }
             else
             {
-                //HandleTargetIsDead(targetHealth);
+                HandleTargetIsDead(targetHealth);
             }
         }
 

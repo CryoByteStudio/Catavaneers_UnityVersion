@@ -13,7 +13,6 @@ public class UIAlignToCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(2*transform.position-Camera.main.transform.position);
-       // 2 * transform.position - stareat.position
+        transform.LookAt(transform.position + Camera.main.transform.forward);
     }
 }
