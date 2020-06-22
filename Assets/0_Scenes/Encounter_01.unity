@@ -525,6 +525,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 443429764019461442, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: dodgeSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 584497868457087166, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: rendref
@@ -760,6 +765,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2098432720866912781, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: dodgeSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2631032609121425772, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -940,6 +950,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6917144408824384884, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: dodgeSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7122060829671115948, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -995,6 +1010,21 @@ PrefabInstance:
       propertyPath: PlayerID
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8224292578909251360, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: startHealth
+      value: 12000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8224292578909251360, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: damagethreshold
+      value: 9000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8224292578909251360, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: thresholdamount
+      value: 3000
+      objectReference: {fileID: 0}
     - target: {fileID: 8224292578909251361, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1025,6 +1055,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fe7451076292de54d96e63c1f5ff15ab, type: 2}
+    - target: {fileID: 9188382401234001711, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: dodgeSpeed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d8825ec77388f24c8163e269ab0991d, type: 3}
 --- !u!137 &209424952 stripped
@@ -1866,16 +1901,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3720051886491135889}
     m_Modifications:
-    - target: {fileID: 3456628451320256370, guid: 46356ab37d5caa94ebd7507e1d8b8907,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525178869241679486, guid: 46356ab37d5caa94ebd7507e1d8b8907,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 147436, guid: c7a5c2b51e6ab424fb46547daf81a610, type: 3}
       propertyPath: m_Name
       value: SM_Env_GlowingOrb_02
@@ -1918,6 +1943,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 411698, guid: c7a5c2b51e6ab424fb46547daf81a610, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456628451320256370, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525178869241679486, guid: 46356ab37d5caa94ebd7507e1d8b8907,
+        type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2471,7 +2506,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: a84458737e9c0ba41b6604c5ea50b32a, type: 2}
 --- !u!1001 &1527782606
