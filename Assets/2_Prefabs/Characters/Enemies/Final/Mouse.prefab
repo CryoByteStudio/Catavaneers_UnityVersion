@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9208222523014591906, guid: 3c25fd5db41dd61448830ded774ccfd6,
+        type: 3}
+      propertyPath: m_Speed
+      value: 3.8
+      objectReference: {fileID: 0}
     - target: {fileID: -6288847392109122927, guid: 3c25fd5db41dd61448830ded774ccfd6,
         type: 3}
       propertyPath: m_UseGravity
@@ -25,7 +30,7 @@ PrefabInstance:
     - target: {fileID: -702698004481008335, guid: 3c25fd5db41dd61448830ded774ccfd6,
         type: 3}
       propertyPath: frenzySpeed
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -702698004481008335, guid: 3c25fd5db41dd61448830ded774ccfd6,
         type: 3}
@@ -48,6 +53,11 @@ PrefabInstance:
         type: 3}
       propertyPath: transitionDistanceTolerant
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -702698004481008335, guid: 3c25fd5db41dd61448830ded774ccfd6,
+        type: 3}
+      propertyPath: chaseSpeed
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 3651670455622653992, guid: 3c25fd5db41dd61448830ded774ccfd6,
         type: 3}
@@ -137,7 +147,7 @@ PrefabInstance:
     - target: {fileID: 8685438335390361364, guid: 3c25fd5db41dd61448830ded774ccfd6,
         type: 3}
       propertyPath: startHealth
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c25fd5db41dd61448830ded774ccfd6, type: 3}

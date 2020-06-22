@@ -107,7 +107,7 @@ MonoBehaviour:
       count: 3
       spawnPoint: {fileID: 621215470560258186}
       name: Mouse
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: Wave 2
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -126,7 +126,7 @@ MonoBehaviour:
       count: 5
       spawnPoint: {fileID: 621215469257398657}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: Wave 3
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -149,7 +149,7 @@ MonoBehaviour:
       count: 3
       spawnPoint: {fileID: 621215469695043206}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: Wave 4
     enemiesToSpawn:
     - enemyToSpawnType: 2
@@ -172,7 +172,7 @@ MonoBehaviour:
       count: 4
       spawnPoint: {fileID: 621215469257398657}
       name: Cat
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
     - enemyToSpawnType: 2
@@ -207,7 +207,7 @@ MonoBehaviour:
       count: 4
       spawnPoint: {fileID: 621215469257398657}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -246,7 +246,7 @@ MonoBehaviour:
       count: 6
       spawnPoint: {fileID: 621215469704735466}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -285,7 +285,30 @@ MonoBehaviour:
       count: 6
       spawnPoint: {fileID: 621215469704735466}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
+  - name: 
+    enemiesToSpawn:
+    - enemyToSpawnType: 3
+      count: 7
+      spawnPoint: {fileID: 621215469257398657}
+      name: 
+    - enemyToSpawnType: 3
+      count: 4
+      spawnPoint: {fileID: 621215469704735466}
+      name: 
+    - enemyToSpawnType: 3
+      count: 7
+      spawnPoint: {fileID: 621215470560258186}
+      name: 
+    - enemyToSpawnType: 3
+      count: 4
+      spawnPoint: {fileID: 621215471164787623}
+      name: 
+    - enemyToSpawnType: 3
+      count: 3
+      spawnPoint: {fileID: 621215470209417885}
+      name: 
+    spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -324,46 +347,23 @@ MonoBehaviour:
       count: 6
       spawnPoint: {fileID: 621215469704735466}
       name: 
-    spawnInterval: 1
-  - name: 
-    enemiesToSpawn:
-    - enemyToSpawnType: 1
-      count: 8
+    - enemyToSpawnType: 3
+      count: 6
+      spawnPoint: {fileID: 621215470560258186}
+      name: 
+    - enemyToSpawnType: 3
+      count: 4
+      spawnPoint: {fileID: 621215469704735466}
+      name: 
+    - enemyToSpawnType: 3
+      count: 6
       spawnPoint: {fileID: 621215469257398657}
       name: 
-    - enemyToSpawnType: 1
-      count: 7
-      spawnPoint: {fileID: 621215469704735466}
-      name: 
-    - enemyToSpawnType: 1
-      count: 6
-      spawnPoint: {fileID: 621215470560258186}
-      name: 
-    - enemyToSpawnType: 1
+    - enemyToSpawnType: 3
       count: 4
-      spawnPoint: {fileID: 621215471164787623}
-      name: 
-    - enemyToSpawnType: 1
-      count: 1
       spawnPoint: {fileID: 621215470209417885}
       name: 
-    - enemyToSpawnType: 2
-      count: 7
-      spawnPoint: {fileID: 621215470209417885}
-      name: 
-    - enemyToSpawnType: 2
-      count: 5
-      spawnPoint: {fileID: 621215471164787623}
-      name: 
-    - enemyToSpawnType: 2
-      count: 5
-      spawnPoint: {fileID: 621215470560258186}
-      name: 
-    - enemyToSpawnType: 2
-      count: 6
-      spawnPoint: {fileID: 621215469704735466}
-      name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   timeBetweenWaves: 7.5
   debug: 0
 --- !u!1 &621215469257398659
@@ -869,7 +869,7 @@ MonoBehaviour:
       count: 4
       spawnPoint: {fileID: 621215470280926200}
       name: Mouse
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: Wave 2
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -888,7 +888,7 @@ MonoBehaviour:
       count: 3
       spawnPoint: {fileID: 621215470861350103}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: Wave 3
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -911,7 +911,7 @@ MonoBehaviour:
       count: 3
       spawnPoint: {fileID: 621215469695043206}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: Wave 4
     enemiesToSpawn:
     - enemyToSpawnType: 2
@@ -934,7 +934,7 @@ MonoBehaviour:
       count: 3
       spawnPoint: {fileID: 621215470861350103}
       name: Cat
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
     - enemyToSpawnType: 2
@@ -965,46 +965,7 @@ MonoBehaviour:
       count: 2
       spawnPoint: {fileID: 621215470280926200}
       name: 
-    spawnInterval: 1
-  - name: 
-    enemiesToSpawn:
-    - enemyToSpawnType: 1
-      count: 6
-      spawnPoint: {fileID: 621215470861350103}
-      name: 
-    - enemyToSpawnType: 1
-      count: 6
-      spawnPoint: {fileID: 621215469215289817}
-      name: 
-    - enemyToSpawnType: 1
-      count: 4
-      spawnPoint: {fileID: 621215469695043206}
-      name: 
-    - enemyToSpawnType: 1
-      count: 5
-      spawnPoint: {fileID: 621215470280926200}
-      name: 
-    - enemyToSpawnType: 1
-      count: 2
-      spawnPoint: {fileID: 621215471133518130}
-      name: 
-    - enemyToSpawnType: 2
-      count: 4
-      spawnPoint: {fileID: 621215471133518130}
-      name: 
-    - enemyToSpawnType: 2
-      count: 4
-      spawnPoint: {fileID: 621215470280926200}
-      name: 
-    - enemyToSpawnType: 2
-      count: 5
-      spawnPoint: {fileID: 621215469695043206}
-      name: 
-    - enemyToSpawnType: 2
-      count: 3
-      spawnPoint: {fileID: 621215469215289817}
-      name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -1043,7 +1004,7 @@ MonoBehaviour:
       count: 3
       spawnPoint: {fileID: 621215469215289817}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -1082,7 +1043,30 @@ MonoBehaviour:
       count: 3
       spawnPoint: {fileID: 621215469215289817}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
+  - name: 
+    enemiesToSpawn:
+    - enemyToSpawnType: 3
+      count: 4
+      spawnPoint: {fileID: 621215470861350103}
+      name: 
+    - enemyToSpawnType: 3
+      count: 6
+      spawnPoint: {fileID: 621215469215289817}
+      name: 
+    - enemyToSpawnType: 3
+      count: 5
+      spawnPoint: {fileID: 621215469695043206}
+      name: 
+    - enemyToSpawnType: 3
+      count: 6
+      spawnPoint: {fileID: 621215470280926200}
+      name: 
+    - enemyToSpawnType: 3
+      count: 5
+      spawnPoint: {fileID: 621215471133518130}
+      name: 
+    spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -1121,7 +1105,19 @@ MonoBehaviour:
       count: 3
       spawnPoint: {fileID: 621215469215289817}
       name: 
-    spawnInterval: 1
+    - enemyToSpawnType: 3
+      count: 6
+      spawnPoint: {fileID: 621215469215289817}
+      name: 
+    - enemyToSpawnType: 3
+      count: 5
+      spawnPoint: {fileID: 621215470280926200}
+      name: 
+    - enemyToSpawnType: 3
+      count: 4
+      spawnPoint: {fileID: 621215469695043206}
+      name: 
+    spawnInterval: 1.5
   timeBetweenWaves: 7.5
   debug: 0
 --- !u!1 &621215470560258188
@@ -1319,7 +1315,7 @@ MonoBehaviour:
       count: 5
       spawnPoint: {fileID: 621215470632304749}
       name: Mouse
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: Wave 2
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -1330,7 +1326,7 @@ MonoBehaviour:
       count: 4
       spawnPoint: {fileID: 621215470276923807}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: Wave 3
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -1345,7 +1341,7 @@ MonoBehaviour:
       count: 3
       spawnPoint: {fileID: 621215470785495004}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: Wave 4
     enemiesToSpawn:
     - enemyToSpawnType: 2
@@ -1364,7 +1360,7 @@ MonoBehaviour:
       count: 3
       spawnPoint: {fileID: 621215470632304749}
       name: Cat
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
     - enemyToSpawnType: 2
@@ -1387,7 +1383,7 @@ MonoBehaviour:
       count: 3
       spawnPoint: {fileID: 621215470276923807}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -1422,7 +1418,7 @@ MonoBehaviour:
       count: 2
       spawnPoint: {fileID: 621215469569325758}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -1461,7 +1457,30 @@ MonoBehaviour:
       count: 5
       spawnPoint: {fileID: 621215469569325758}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
+  - name: 
+    enemiesToSpawn:
+    - enemyToSpawnType: 3
+      count: 3
+      spawnPoint: {fileID: 621215470632304749}
+      name: 
+    - enemyToSpawnType: 3
+      count: 1
+      spawnPoint: {fileID: 621215469569325758}
+      name: 
+    - enemyToSpawnType: 3
+      count: 2
+      spawnPoint: {fileID: 621215470317730667}
+      name: 
+    - enemyToSpawnType: 3
+      count: 3
+      spawnPoint: {fileID: 621215470785495004}
+      name: 
+    - enemyToSpawnType: 3
+      count: 2
+      spawnPoint: {fileID: 621215470276923807}
+      name: 
+    spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -1484,7 +1503,7 @@ MonoBehaviour:
       count: 4
       spawnPoint: {fileID: 621215470276923807}
       name: 
-    - enemyToSpawnType: 2
+    - enemyToSpawnType: 3
       count: 4
       spawnPoint: {fileID: 621215470632304749}
       name: 
@@ -1504,50 +1523,15 @@ MonoBehaviour:
       count: 2
       spawnPoint: {fileID: 621215469569325758}
       name: 
-    - enemyToSpawnType: 2
+    - enemyToSpawnType: 3
       count: 2
-      spawnPoint: {fileID: 621215469569325758}
-      name: 
-    - enemyToSpawnType: 2
-      count: 2
-      spawnPoint: {fileID: 621215469569325758}
-      name: 
-    spawnInterval: 1
-  - name: 
-    enemiesToSpawn:
-    - enemyToSpawnType: 1
-      count: 3
-      spawnPoint: {fileID: 621215470632304749}
-      name: 
-    - enemyToSpawnType: 1
-      count: 2
-      spawnPoint: {fileID: 621215469569325758}
-      name: 
-    - enemyToSpawnType: 1
-      count: 4
       spawnPoint: {fileID: 621215470317730667}
       name: 
-    - enemyToSpawnType: 1
-      count: 3
-      spawnPoint: {fileID: 621215470785495004}
-      name: 
-    - enemyToSpawnType: 1
-      count: 4
-      spawnPoint: {fileID: 621215470276923807}
-      name: 
-    - enemyToSpawnType: 2
-      count: 4
-      spawnPoint: {fileID: 621215470632304749}
-      name: 
-    - enemyToSpawnType: 2
-      count: 2
-      spawnPoint: {fileID: 621215470785495004}
-      name: 
-    - enemyToSpawnType: 2
+    - enemyToSpawnType: 3
       count: 2
       spawnPoint: {fileID: 621215469569325758}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   timeBetweenWaves: 7.5
   debug: 0
 --- !u!1 &621215470785495006
@@ -2068,7 +2052,7 @@ MonoBehaviour:
       count: 7
       spawnPoint: {fileID: 2732338705637380240}
       name: Mouse
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: Wave 2
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -2079,7 +2063,7 @@ MonoBehaviour:
       count: 6
       spawnPoint: {fileID: 621215470983326319}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: Wave 3
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -2094,7 +2078,7 @@ MonoBehaviour:
       count: 4
       spawnPoint: {fileID: 621215470983326319}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: Wave 4
     enemiesToSpawn:
     - enemyToSpawnType: 2
@@ -2117,7 +2101,7 @@ MonoBehaviour:
       count: 2
       spawnPoint: {fileID: 621215471135543623}
       name: Cat
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
     - enemyToSpawnType: 2
@@ -2140,7 +2124,7 @@ MonoBehaviour:
       count: 4
       spawnPoint: {fileID: 2732338707101466029}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -2175,7 +2159,7 @@ MonoBehaviour:
       count: 5
       spawnPoint: {fileID: 2732338706591473778}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -2210,7 +2194,30 @@ MonoBehaviour:
       count: 5
       spawnPoint: {fileID: 2732338706591473778}
       name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
+  - name: 
+    enemiesToSpawn:
+    - enemyToSpawnType: 3
+      count: 4
+      spawnPoint: {fileID: 2732338705637380240}
+      name: 
+    - enemyToSpawnType: 3
+      count: 5
+      spawnPoint: {fileID: 2732338707101466029}
+      name: 
+    - enemyToSpawnType: 3
+      count: 6
+      spawnPoint: {fileID: 621215470983326319}
+      name: 
+    - enemyToSpawnType: 3
+      count: 4
+      spawnPoint: {fileID: 2732338706591473778}
+      name: 
+    - enemyToSpawnType: 3
+      count: 1
+      spawnPoint: {fileID: 621215471135543623}
+      name: 
+    spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
     - enemyToSpawnType: 1
@@ -2245,42 +2252,23 @@ MonoBehaviour:
       count: 5
       spawnPoint: {fileID: 2732338706591473778}
       name: 
-    spawnInterval: 1
-  - name: 
-    enemiesToSpawn:
-    - enemyToSpawnType: 1
-      count: 4
+    - enemyToSpawnType: 3
+      count: 3
+      spawnPoint: {fileID: 621215471135543623}
+      name: 
+    - enemyToSpawnType: 3
+      count: 5
       spawnPoint: {fileID: 2732338705637380240}
       name: 
-    - enemyToSpawnType: 1
+    - enemyToSpawnType: 3
       count: 5
       spawnPoint: {fileID: 2732338707101466029}
       name: 
-    - enemyToSpawnType: 1
-      count: 4
-      spawnPoint: {fileID: 621215470983326319}
-      name: 
-    - enemyToSpawnType: 1
+    - enemyToSpawnType: 3
       count: 4
       spawnPoint: {fileID: 2732338706591473778}
       name: 
-    - enemyToSpawnType: 1
-      count: 1
-      spawnPoint: {fileID: 621215471135543623}
-      name: 
-    - enemyToSpawnType: 2
-      count: 4
-      spawnPoint: {fileID: 621215470983326319}
-      name: 
-    - enemyToSpawnType: 2
-      count: 2
-      spawnPoint: {fileID: 2732338705637380240}
-      name: 
-    - enemyToSpawnType: 2
-      count: 5
-      spawnPoint: {fileID: 2732338706591473778}
-      name: 
-    spawnInterval: 1
+    spawnInterval: 1.5
   timeBetweenWaves: 7.5
   debug: 0
 --- !u!1 &2732338706591473789
@@ -3451,7 +3439,17 @@ PrefabInstance:
     - target: {fileID: 1642455250847301351, guid: 6510308dd4f0c294a973ff9c6565ce06,
         type: 3}
       propertyPath: dodgeSpeed
-      value: 10
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1642455250847301351, guid: 6510308dd4f0c294a973ff9c6565ce06,
+        type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1642455250847301351, guid: 6510308dd4f0c294a973ff9c6565ce06,
+        type: 3}
+      propertyPath: dodgeCoolDown
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 1642455250847301368, guid: 6510308dd4f0c294a973ff9c6565ce06,
         type: 3}
@@ -4407,6 +4405,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: P1Russel
       objectReference: {fileID: 0}
+    - target: {fileID: 5379768225380494157, guid: f72464b4757d8cd4baccae6563a8f7a6,
+        type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379768225380494157, guid: f72464b4757d8cd4baccae6563a8f7a6,
+        type: 3}
+      propertyPath: dodgeSpeed
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379768225380494157, guid: f72464b4757d8cd4baccae6563a8f7a6,
+        type: 3}
+      propertyPath: dodgeCoolDown
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5379768225380494162, guid: f72464b4757d8cd4baccae6563a8f7a6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4545,7 +4558,17 @@ PrefabInstance:
     - target: {fileID: 102476635491636621, guid: 42275491e6354fa4c85292595839002d,
         type: 3}
       propertyPath: dodgeSpeed
-      value: 10
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 102476635491636621, guid: 42275491e6354fa4c85292595839002d,
+        type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 102476635491636621, guid: 42275491e6354fa4c85292595839002d,
+        type: 3}
+      propertyPath: dodgeCoolDown
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 102476635491636626, guid: 42275491e6354fa4c85292595839002d,
         type: 3}
@@ -4805,7 +4828,17 @@ PrefabInstance:
     - target: {fileID: 2367282660696977215, guid: c8da16d5a24c5e644b95ed5d5d033a1b,
         type: 3}
       propertyPath: dodgeSpeed
-      value: 10
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2367282660696977215, guid: c8da16d5a24c5e644b95ed5d5d033a1b,
+        type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2367282660696977215, guid: c8da16d5a24c5e644b95ed5d5d033a1b,
+        type: 3}
+      propertyPath: dodgeCoolDown
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 2863244396888145639, guid: c8da16d5a24c5e644b95ed5d5d033a1b,
         type: 3}
