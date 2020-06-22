@@ -63,7 +63,7 @@ public class MusicManager : SingletonEntity<MusicManager>
     {
         PlayMusic(scene);
         caravanState.setParameterByName("Caravan Health", 0);
-        caravanState.setParameterByName("Intensity", 0);
+        caravanState.setParameterByName("Intensity ", 0);
         //LevelLoader.ResetLoadingParams();
     }
 
@@ -101,6 +101,7 @@ public class MusicManager : SingletonEntity<MusicManager>
 
         menuState = FMODUnity.RuntimeManager.CreateInstance(menuStateEvent);
         menuState.start();
+        Debug.Log(menuState);
         isPLayingEvent = true;
 
         int MuteInt = PlayerPrefs.GetInt("Mutetogglestate");
@@ -181,8 +182,8 @@ public class MusicManager : SingletonEntity<MusicManager>
         //}
         else
         {
-            //caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            menuState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            //menuState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
     }
 
