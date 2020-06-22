@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3220489614208002249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2438634036663501798}
+  m_Layer: 0
+  m_Name: hitloc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2438634036663501798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3220489614208002249}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.185, z: 0.823}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4534022950412767867}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2571694034817653373
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -228,6 +258,84 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 866452166198644140, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: startHealth
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210368195524477101, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: KickUpGrass
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210368195524477101, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: GetHit
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210368195524477101, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: hitloc
+      value: 
+      objectReference: {fileID: 2438634036663501798}
+    - target: {fileID: 2210368195524477101, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: KickUpGrassL
+      value: 
+      objectReference: {fileID: 3964913852255945676, guid: e114b39b2e204ef489c340f484c1d3dd,
+        type: 3}
+    - target: {fileID: 2210368195524477101, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: KickUpGrassR
+      value: 
+      objectReference: {fileID: 5023154506843940660, guid: d6c0da5d20e341d42b1102ef2e9b59c7,
+        type: 3}
+    - target: {fileID: 2210368195524477101, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: HitEffect
+      value: 
+      objectReference: {fileID: 6505530533891002000, guid: 9782990ed653c274c9f3bf2e54129720,
+        type: 3}
+    - target: {fileID: 2210368195524477101, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: attackDamage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210368195524477101, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: attackInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210368195524477101, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: frenzySpeed
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388527636788772622, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: possibleDropItems.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388527636788772622, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: amountToDrop
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388527636788772622, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: possibleDropItems.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388527636788772622, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: possibleDropItems.Array.data[3]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388527636788772622, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: possibleDropItems.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3673704426272334148, guid: d242d3fc1245abc42be5fc32c3f565e7,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -366,7 +474,7 @@ PrefabInstance:
     - target: {fileID: 7623980924273874604, guid: d242d3fc1245abc42be5fc32c3f565e7,
         type: 3}
       propertyPath: m_Name
-      value: Cat (enemy final modle)
+      value: Cat
       objectReference: {fileID: 0}
     - target: {fileID: 7623980924276166464, guid: d242d3fc1245abc42be5fc32c3f565e7,
         type: 3}

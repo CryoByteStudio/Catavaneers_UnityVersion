@@ -85,6 +85,18 @@ namespace AI
 
         public AIState currentState = AIState.FindTarget;
 
+
+        //Particle Prefab References:
+
+        public ParticleSystem KickUpGrassL;
+        public ParticleSystem KickUpGrassR;
+        public ParticleSystem HitEffect;
+        public Transform hitloc;
+
+        //gameobject references
+        private ParticleSystem hiteffect;
+        private ParticleSystem grassR;
+        private ParticleSystem grassL;
         private void OnEnable()
         {
             if (agent)
@@ -107,6 +119,18 @@ namespace AI
 
             GetWeaponReference();
             InitFSM();
+            if (KickUpGrassR)
+            {
+                grassR = Instantiate(KickUpGrassR, transform.position, Quaternion.identity, null);
+            }
+            if (HitEffect)
+            {
+                hiteffect = Instantiate(HitEffect, hitloc);
+            }
+            if (KickUpGrassL)
+            {
+                grassL = Instantiate(KickUpGrassL, transform.position, Quaternion.identity, null);
+            }
         }
 
         private void SetPosition()
@@ -477,18 +501,45 @@ namespace AI
         private void Hit()
         {
             //TODO particle FX
-
+            if (hiteffect)
+            {
+                hiteffect.transform.position = hitloc.transform.position;
+                hiteffect.Play();
+            }
+            else
+            {
+                Debug.LogWarning("No Particle effect attached to " + name + " for hit()");
+            }
             if (OnHit != null)
                 OnHit.Invoke();
         }
 
         private void FootL()
         {
+            if (grassL)
+            {
+                grassL.transform.position = new Vector3(transform.position.x, grassL.transform.position.y, transform.position.z);
+                grassL.Play();
+            }
+            else
+            {
+                Debug.LogWarning("No Particle effect attached to " + name + " for footL");
+            }
             //TODO particle FX
         }
 
         private void FootR()
         {
+            if (grassR)
+            {
+                grassR.transform.position = new Vector3(transform.position.x, grassR.transform.position.y, transform.position.z);
+                grassR.Play();
+
+            }
+            else
+            {
+                Debug.LogWarning("No Particle effect attached to " + name + " for footR");
+            }
             //TODO particle FX
         }
 
