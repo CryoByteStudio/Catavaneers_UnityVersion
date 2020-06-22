@@ -141,8 +141,7 @@ namespace Catavaneer
         private IEnumerator WinDelay()
         {
             yield return new WaitForSeconds(quitDelay);
-            //MenuManager.OpenWinMenu();
-            LevelLoader.LoadLevel("Campaign");
+            MenuManager.LoadCampaignLevel();
         }
 
         public IEnumerator StartDelay()

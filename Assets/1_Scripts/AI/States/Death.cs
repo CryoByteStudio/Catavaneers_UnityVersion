@@ -79,6 +79,7 @@ namespace AI.States
             yield return new WaitForSeconds(deathAnimationDuration);
             FadeOut();
             yield return new WaitForSeconds(fadeDuration);
+            healthComponent.ResetHealthComp();
             ObjectPooler.SetInactive(controller.gameObject);
             ResetFade();
         }

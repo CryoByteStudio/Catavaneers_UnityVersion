@@ -181,7 +181,14 @@ public class HealthComp : MonoBehaviour
         currentHealth = startHealth;
         health_slider.value = currentHealth;
         GetComponent<CapsuleCollider>().enabled = true;
-        playerMeshRenderer.enabled = true;
+
+        if (myClass == CharacterClass.Player)
+            playerMeshRenderer.enabled = true;
+    }
+
+    public void ResetHealthComp()
+    {
+        Reset();
     }
 
     /// <summary>
