@@ -57,6 +57,8 @@ public class HealthComp : MonoBehaviour
     [HideInInspector] public bool debug;
     [HideInInspector] public int damageTakenPerSecond;
 
+
+    public Text healthuitext;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -135,6 +137,12 @@ public class HealthComp : MonoBehaviour
             }
         }
 
+        if (myClass == CharacterClass.Caravan)
+        {
+            
+            healthuitext.text = currentHealth + " / " + startHealth;
+        }
+        
     }
 
     private void Update()
@@ -198,7 +206,11 @@ public class HealthComp : MonoBehaviour
             currentHealth -= amount;
             currentHealth = Mathf.Max(0, currentHealth);
             DisplayHealth();
-            if(myClass == CharacterClass.Player)
+            if (myClass == CharacterClass.Caravan)
+            {
+                healthuitext.text = currentHealth + " / " + startHealth;
+            }
+            if (myClass == CharacterClass.Player)
             {
                 A_Source.clip = MusicManager.Instance.Clip_Hit;
                 A_Source.volume = MusicManager.Instance.sfxVolume - 0.2f;
@@ -233,6 +245,10 @@ public class HealthComp : MonoBehaviour
             currentHealth -= amount;
             currentHealth = Mathf.Max(0, currentHealth);
             DisplayHealth();
+            if (myClass == CharacterClass.Caravan)
+            {
+                healthuitext.text = currentHealth + " / " + startHealth;
+            }
             if (myClass == CharacterClass.Player)
             {
                 MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
