@@ -27,7 +27,8 @@ public class Goldbag : MonoBehaviour
     {
         if (!isHeld)
         {
-            if (Time.time > droptimer) {
+            if (Time.time > droptimer)
+            {
                 if (collision.gameObject.GetComponent<PlayerInventory>())
                 {
                     transform.parent = collision.gameObject.transform;
@@ -36,7 +37,6 @@ public class Goldbag : MonoBehaviour
                 }
             }
         }
-        
     }
 
     public void DropBag()

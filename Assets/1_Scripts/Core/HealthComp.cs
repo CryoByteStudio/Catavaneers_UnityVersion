@@ -5,7 +5,6 @@ using System;
 using System.Collections;
 using AI;
 using SpawnSystem;
-using System;
 using UnityEditor;
 using ViTiet.Utils;
 using Catavaneer;
@@ -58,6 +57,8 @@ public class HealthComp : MonoBehaviour
     [HideInInspector] public bool debug;
     [HideInInspector] public int damageTakenPerSecond;
 
+
+    public Text healthuitext;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -88,7 +89,7 @@ public class HealthComp : MonoBehaviour
         if (GetComponent<PlayerInventory>())
         {
             //set % of gold to lose based on difficulty
-            switch (GameManager.DifficultyLevel)
+            switch (GameManager.Instance.DifficultyLevel)
             {
                 case DifficultyLevel.Normal:
                     percentageOfGoldToKeep = 0.75f;
@@ -110,20 +111,20 @@ public class HealthComp : MonoBehaviour
         else
         {
             //set % of gold to lose based on difficulty
-            switch (GameManager.DifficultyLevel)
+            switch (GameManager.Instance.DifficultyLevel)
             {
                 case DifficultyLevel.Normal:
                     //EditorHelper.NotSupportedException("DifficultyLevel.Normal");
                     break;
                 case DifficultyLevel.IronCat:
-                    currentHealth *= 2;
-                    startHealth *= 2;
+                    currentHealth = Mathf.RoundToInt(currentHealth * 1.3f);
+                    startHealth = Mathf.RoundToInt(currentHealth * 1.3f);
                     health_slider.maxValue = currentHealth;
                     health_slider.value = currentHealth;
                     break;
                 case DifficultyLevel.Catapocalypse:
-                    currentHealth *= 3;
-                    startHealth *= 3;
+                    currentHealth = Mathf.RoundToInt(currentHealth * 1.8f);
+                    startHealth = Mathf.RoundToInt(currentHealth * 1.8f);
                     health_slider.maxValue = currentHealth;
                     health_slider.value = currentHealth;
                     break;
@@ -136,6 +137,12 @@ public class HealthComp : MonoBehaviour
             }
         }
 
+        if (myClass == CharacterClass.Caravan)
+        {
+            
+            healthuitext.text = currentHealth + " / " + startHealth;
+        }
+        
     }
 
     private void Update()
@@ -156,7 +163,7 @@ public class HealthComp : MonoBehaviour
 
         if (myClass == CharacterClass.Caravan && is_Regenerating)
         {
-            dmg_percentage = currentHealth % (startHealth / (int)GameManager.DifficultyLevel);
+            dmg_percentage = currentHealth % (startHealth / (int)GameManager.Instance.DifficultyLevel);
 
             if (dmg_percentage == 0)
             {
@@ -199,7 +206,11 @@ public class HealthComp : MonoBehaviour
             currentHealth -= amount;
             currentHealth = Mathf.Max(0, currentHealth);
             DisplayHealth();
-            if(myClass == CharacterClass.Player)
+            if (myClass == CharacterClass.Caravan)
+            {
+                healthuitext.text = currentHealth + " / " + startHealth;
+            }
+            if (myClass == CharacterClass.Player)
             {
                 A_Source.clip = MusicManager.Instance.Clip_Hit;
                 A_Source.volume = MusicManager.Instance.sfxVolume - 0.2f;
@@ -234,6 +245,10 @@ public class HealthComp : MonoBehaviour
             currentHealth -= amount;
             currentHealth = Mathf.Max(0, currentHealth);
             DisplayHealth();
+            if (myClass == CharacterClass.Caravan)
+            {
+                healthuitext.text = currentHealth + " / " + startHealth;
+            }
             if (myClass == CharacterClass.Player)
             {
                 MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
@@ -274,7 +289,7 @@ public class HealthComp : MonoBehaviour
             case CharacterClass.Player:
                 Debug.Log("Player Dead");
 
-                if (GameManager.DifficultyLevel == DifficultyLevel.Catfight)
+                if (GameManager.Instance.DifficultyLevel == DifficultyLevel.Catfight)
                 {
                     if (GetComponent<PlayerInventory>() == FindObjectOfType<Goldbag>().holdersInventory)
                     {
@@ -334,7 +349,7 @@ public class HealthComp : MonoBehaviour
         if (myClass == CharacterClass.Player)
             GetComponent<PlayerInventory>().RemoveGoldFromInventory(percentageOfGoldToKeep);
 
-        switch (GameManager.DifficultyLevel)
+        switch (GameManager.Instance.DifficultyLevel)
         {
             case DifficultyLevel.Normal:
                 yield return new WaitForSeconds(4);

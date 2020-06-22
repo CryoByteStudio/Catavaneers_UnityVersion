@@ -782,7 +782,6 @@ GameObject:
   - component: {fileID: 8044089571560799896}
   - component: {fileID: 8044089571560799897}
   - component: {fileID: 8044089571560799894}
-  - component: {fileID: 8044089571560799895}
   m_Layer: 0
   m_Name: Cube (42)
   m_TagString: Untagged
@@ -864,22 +863,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!208 &8044089571560799895
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8044089571560799893}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &8044089571677368552
 GameObject:
   m_ObjectHideFlags: 0
@@ -1627,7 +1610,6 @@ GameObject:
   - component: {fileID: 8044089571910792701}
   - component: {fileID: 8044089571910792698}
   - component: {fileID: 8044089571910792699}
-  - component: {fileID: 8044089571910792700}
   m_Layer: 0
   m_Name: Ramp (1)
   m_TagString: Untagged
@@ -1709,22 +1691,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6346749, y: 1.0000001, z: 1}
   m_Center: {x: 0.18266228, y: 0.000010786255, z: -1.737335e-10}
---- !u!208 &8044089571910792700
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8044089571910792697}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &8044089571945521441
 GameObject:
   m_ObjectHideFlags: 0
@@ -4927,7 +4893,6 @@ GameObject:
   - component: {fileID: 8044089573426865051}
   - component: {fileID: 8044089573426865048}
   - component: {fileID: 8044089573426865049}
-  - component: {fileID: 8044089573426865050}
   m_Layer: 0
   m_Name: Ramp (2)
   m_TagString: Untagged
@@ -5009,19 +4974,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6346749, y: 1.0000001, z: 1}
   m_Center: {x: 0.18266228, y: 0.000010786255, z: -1.737335e-10}
---- !u!208 &8044089573426865050
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8044089573426865047}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5

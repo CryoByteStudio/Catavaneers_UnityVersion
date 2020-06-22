@@ -18,6 +18,8 @@ public class Region : MonoBehaviour
     [SerializeField] private RegionData innerRegion = new RegionData();
     [Header("Outer Region Settings")]
     [SerializeField] private RegionData outerRegion = new RegionData();
+    [Header("General Settings")]
+    [SerializeField] private Vector3 centerOffset = Vector3.zero;
 
     public RegionData InnerRegion { get { return innerRegion; } }
     public RegionData OuterRegion { get { return outerRegion; } }
@@ -43,7 +45,7 @@ public class Region : MonoBehaviour
 
             go.transform.position = 
                 CustomMathf.GetEvenlySpacingPositionAroundAxis(regionData.numberOfPoints, i, Axis.Y)
-                * regionData.radius + transform.position;
+                * regionData.radius + (transform.position + centerOffset);
 
             regionData.pointsList.Add(go.AddComponent<Point>());
         }

@@ -32,6 +32,7 @@ namespace AI
 
         [Header("Chase Settings")]
         [SerializeField] private float chaseSpeed = 0;
+        [SerializeField] private float transitionDistanceTolerant = 0;
 
         [Header("Attack Settings")]
         [SerializeField] private int attackDamage = 0;
@@ -54,6 +55,7 @@ namespace AI
         private NavMeshAgent agent = null;
         private Animator animatorController = null;
         private Transform targetPointTransform = null;
+        private float distanceToTargetPointTransform = Mathf.Infinity;
         private Transform currentTarget = null;
         private Weapon equippedWeapon;
         private bool isFrenzy = false;
@@ -85,6 +87,17 @@ namespace AI
 
         public AIState currentState = AIState.FindTarget;
 
+
+        //Particle Prefab References:
+
+        public ParticleSystem KickUpGrassL;
+        public ParticleSystem KickUpGrassR;
+      
+
+        //gameobject references
+  
+        private ParticleSystem grassR;
+        private ParticleSystem grassL;
         private void OnEnable()
         {
             if (agent)
@@ -107,6 +120,15 @@ namespace AI
 
             GetWeaponReference();
             InitFSM();
+            if (KickUpGrassR)
+            {
+                grassR = Instantiate(KickUpGrassR, transform.position, Quaternion.identity, null);
+            }
+           
+            if (KickUpGrassL)
+            {
+                grassL = Instantiate(KickUpGrassL, transform.position, Quaternion.identity, null);
+            }
         }
 
         private void SetPosition()
@@ -156,6 +178,11 @@ namespace AI
             if (currentTarget)
             {
                 distanceToTarget = Vector3.Distance(transform.position, currentTarget.position);
+            }
+
+            if (targetPointTransform)
+            {
+                distanceToTargetPointTransform = Vector3.Distance(transform.position, targetPointTransform.position);
             }
         }
 
@@ -220,7 +247,7 @@ namespace AI
 
         private bool BaseConditionToPreAttack()
         {
-            return targetPointTransform && Vector3.Distance(transform.position, targetPointTransform.position) <= 0.5f;
+            return targetPointTransform && distanceToTargetPointTransform <= transitionDistanceTolerant;
         }
 
         private bool BaseConditionToDeath()
@@ -476,19 +503,37 @@ namespace AI
         //----------------------------------------------------------------------------------------------
         private void Hit()
         {
-            //TODO particle FX
-
+            
             if (OnHit != null)
                 OnHit.Invoke();
         }
 
         private void FootL()
         {
+            if (grassL)
+            {
+                grassL.transform.position = new Vector3(transform.position.x, grassL.transform.position.y, transform.position.z);
+                grassL.Play();
+            }
+            else
+            {
+                Debug.LogWarning("No Particle effect attached to " + name + " for footL");
+            }
             //TODO particle FX
         }
 
         private void FootR()
         {
+            if (grassR)
+            {
+                grassR.transform.position = new Vector3(transform.position.x, grassR.transform.position.y, transform.position.z);
+                grassR.Play();
+
+            }
+            else
+            {
+                Debug.LogWarning("No Particle effect attached to " + name + " for footR");
+            }
             //TODO particle FX
         }
 
