@@ -9,12 +9,14 @@ using System;
 using UnityEditor;
 using ViTiet.Utils;
 using Catavaneer;
+using AI.States;
 
 public enum CharacterClass { Player, Enemy, Caravan, Obj };
 public enum DifficultyLevel { Normal = 5, IronCat = 10, Catapocalypse = 25, Catfight = 1};
-
+[RequireComponent(typeof(AudioSource))]
 public class HealthComp : MonoBehaviour
 {
+    public AudioSource A_Source;
     [SerializeField] private DifficultyLevel gameDifficulty = DifficultyLevel.Normal;
     public CharacterClass myClass;
     public int startHealth = 100;
@@ -63,6 +65,7 @@ public class HealthComp : MonoBehaviour
         objectPooler = FindObjectOfType<ObjectPooler>();
         animator = GetComponent<Animator>();
         characterFader = GetComponent<CharacterFader>();
+        A_Source = GetComponent<AudioSource>();
 
         if (myClass == CharacterClass.Enemy)
         {
@@ -198,10 +201,18 @@ public class HealthComp : MonoBehaviour
             DisplayHealth();
             if(myClass == CharacterClass.Player)
             {
-                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
+                A_Source.clip = MusicManager.Instance.Clip_Hit;
+                A_Source.volume = MusicManager.Instance.sfxVolume;
+                A_Source.Play();
+                //MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
+                Debug.Log("Hit");
             }else if(myClass == CharacterClass.Enemy)
             {
-                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Attack);
+                A_Source.clip = MusicManager.Instance.Clip_Attack;
+                A_Source.volume = MusicManager.Instance.sfxVolume;
+                A_Source.Play();
+                // MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Attack);
+                Debug.Log("Attack");
             }
             if (currentHealth <= 0)
             {
