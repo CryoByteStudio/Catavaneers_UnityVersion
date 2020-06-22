@@ -32,6 +32,7 @@ namespace AI
 
         [Header("Chase Settings")]
         [SerializeField] private float chaseSpeed = 0;
+        [SerializeField] private float transitionDistanceTolerant = 0;
 
         [Header("Attack Settings")]
         [SerializeField] private int attackDamage = 0;
@@ -54,6 +55,7 @@ namespace AI
         private NavMeshAgent agent = null;
         private Animator animatorController = null;
         private Transform targetPointTransform = null;
+        private float distanceToTargetPointTransform = Mathf.Infinity;
         private Transform currentTarget = null;
         private Weapon equippedWeapon;
         private bool isFrenzy = false;
@@ -177,6 +179,11 @@ namespace AI
             {
                 distanceToTarget = Vector3.Distance(transform.position, currentTarget.position);
             }
+
+            if (targetPointTransform)
+            {
+                distanceToTargetPointTransform = Vector3.Distance(transform.position, targetPointTransform.position);
+            }
         }
 
         /// <summary>
@@ -240,7 +247,7 @@ namespace AI
 
         private bool BaseConditionToPreAttack()
         {
-            return targetPointTransform && Vector3.Distance(transform.position, targetPointTransform.position) <= 0.5f;
+            return targetPointTransform && distanceToTargetPointTransform <= transitionDistanceTolerant;
         }
 
         private bool BaseConditionToDeath()
