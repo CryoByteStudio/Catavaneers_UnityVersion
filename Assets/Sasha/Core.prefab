@@ -1312,7 +1312,11 @@ MonoBehaviour:
   - name: Wave 1
     enemiesToSpawn:
     - enemyToSpawnType: 1
-      count: 5
+      count: 3
+      spawnPoint: {fileID: 621215470785495004}
+      name: Mouse
+    - enemyToSpawnType: 1
+      count: 4
       spawnPoint: {fileID: 621215470632304749}
       name: Mouse
     spawnInterval: 1.5
@@ -1323,7 +1327,11 @@ MonoBehaviour:
       spawnPoint: {fileID: 621215470317730667}
       name: 
     - enemyToSpawnType: 1
-      count: 4
+      count: 3
+      spawnPoint: {fileID: 621215470632304749}
+      name: 
+    - enemyToSpawnType: 1
+      count: 2
       spawnPoint: {fileID: 621215470276923807}
       name: 
     spawnInterval: 1.5
@@ -1338,6 +1346,10 @@ MonoBehaviour:
       spawnPoint: {fileID: 621215470317730667}
       name: 
     - enemyToSpawnType: 1
+      count: 2
+      spawnPoint: {fileID: 621215470785495004}
+      name: 
+    - enemyToSpawnType: 2
       count: 3
       spawnPoint: {fileID: 621215470785495004}
       name: 
@@ -1345,7 +1357,7 @@ MonoBehaviour:
   - name: Wave 4
     enemiesToSpawn:
     - enemyToSpawnType: 2
-      count: 1
+      count: 2
       spawnPoint: {fileID: 621215470276923807}
       name: 
     - enemyToSpawnType: 2
@@ -1358,6 +1370,10 @@ MonoBehaviour:
       name: Cat
     - enemyToSpawnType: 2
       count: 3
+      spawnPoint: {fileID: 621215470632304749}
+      name: Cat
+    - enemyToSpawnType: 1
+      count: 7
       spawnPoint: {fileID: 621215470632304749}
       name: Cat
     spawnInterval: 1.5
@@ -1383,6 +1399,14 @@ MonoBehaviour:
       count: 3
       spawnPoint: {fileID: 621215470276923807}
       name: 
+    - enemyToSpawnType: 2
+      count: 2
+      spawnPoint: {fileID: 621215469569325758}
+      name: 
+    - enemyToSpawnType: 2
+      count: 3
+      spawnPoint: {fileID: 621215470276923807}
+      name: 
     spawnInterval: 1.5
   - name: 
     enemiesToSpawn:
@@ -1416,6 +1440,10 @@ MonoBehaviour:
       name: 
     - enemyToSpawnType: 2
       count: 2
+      spawnPoint: {fileID: 621215469569325758}
+      name: 
+    - enemyToSpawnType: 3
+      count: 3
       spawnPoint: {fileID: 621215469569325758}
       name: 
     spawnInterval: 1.5
@@ -3506,6 +3534,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1805280838434753538, guid: 6510308dd4f0c294a973ff9c6565ce06,
+        type: 3}
+      propertyPath: CharacterAttackDamage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2971527370523207408, guid: 6510308dd4f0c294a973ff9c6565ce06,
         type: 3}
       propertyPath: playerSpawnPos
@@ -4400,6 +4433,11 @@ PrefabInstance:
       propertyPath: playerimageref
       value: 
       objectReference: {fileID: 621215470368946677}
+    - target: {fileID: 5003023854247844264, guid: f72464b4757d8cd4baccae6563a8f7a6,
+        type: 3}
+      propertyPath: CharacterAttackDamage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5379768225380494156, guid: f72464b4757d8cd4baccae6563a8f7a6,
         type: 3}
       propertyPath: m_Name
@@ -4675,6 +4713,11 @@ PrefabInstance:
       propertyPath: PlayerUIRef
       value: 
       objectReference: {fileID: 5975261685392198948}
+    - target: {fileID: 1056825252094601064, guid: 42275491e6354fa4c85292595839002d,
+        type: 3}
+      propertyPath: CharacterAttackDamage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4511412526849265050, guid: 42275491e6354fa4c85292595839002d,
         type: 3}
       propertyPath: playerSpawnPos
@@ -4905,6 +4948,11 @@ PrefabInstance:
       propertyPath: PlayerUIRef
       value: 
       objectReference: {fileID: 6414760734804998508}
+    - target: {fileID: 3394814766664621530, guid: c8da16d5a24c5e644b95ed5d5d033a1b,
+        type: 3}
+      propertyPath: CharacterAttackDamage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6288568398638194862, guid: c8da16d5a24c5e644b95ed5d5d033a1b,
         type: 3}
       propertyPath: PlayerID
@@ -4983,17 +5031,17 @@ PrefabInstance:
     - target: {fileID: 1351433788225591752, guid: 231e0582395bb3f4b8e6c44544ae5617,
         type: 3}
       propertyPath: startHealth
-      value: 12000
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 1351433788225591752, guid: 231e0582395bb3f4b8e6c44544ae5617,
         type: 3}
       propertyPath: damagethreshold
-      value: 9000
+      value: 7500
       objectReference: {fileID: 0}
     - target: {fileID: 1351433788225591752, guid: 231e0582395bb3f4b8e6c44544ae5617,
         type: 3}
       propertyPath: thresholdamount
-      value: 3000
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: 1351433788225591752, guid: 231e0582395bb3f4b8e6c44544ae5617,
         type: 3}
@@ -5164,6 +5212,12 @@ PrefabInstance:
       propertyPath: item_cost
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 723549540930595706, guid: a95931558a771374cbe419a360569101,
+        type: 3}
+      propertyPath: Item_Display
+      value: 
+      objectReference: {fileID: 21300000, guid: a8d5c9ec16908364b9100b36d2fba229,
+        type: 3}
     - target: {fileID: 1310234851164596889, guid: a95931558a771374cbe419a360569101,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5174,6 +5228,12 @@ PrefabInstance:
       propertyPath: item_cost
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 1491101056376090419, guid: a95931558a771374cbe419a360569101,
+        type: 3}
+      propertyPath: Item_Display
+      value: 
+      objectReference: {fileID: 21300000, guid: 94f4893032948e54282d3db45471a633,
+        type: 3}
     - target: {fileID: 1653012100206141596, guid: a95931558a771374cbe419a360569101,
         type: 3}
       propertyPath: item_cost
@@ -5340,6 +5400,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6692926230172910580, guid: a95931558a771374cbe419a360569101,
+        type: 3}
+      propertyPath: Item_Display
+      value: 
+      objectReference: {fileID: 21300000, guid: da4cc63920a1623448e110a78ede7d3b,
+        type: 3}
     - target: {fileID: 6816855509112148348, guid: a95931558a771374cbe419a360569101,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5425,6 +5491,12 @@ PrefabInstance:
       propertyPath: item_cost
       value: 600
       objectReference: {fileID: 0}
+    - target: {fileID: 8618044691975198004, guid: a95931558a771374cbe419a360569101,
+        type: 3}
+      propertyPath: Item_Display
+      value: 
+      objectReference: {fileID: 21300000, guid: 92ccae6e68496474abe88df3ed594486,
+        type: 3}
     - target: {fileID: 8769285451809860894, guid: a95931558a771374cbe419a360569101,
         type: 3}
       propertyPath: m_Mesh
@@ -5481,6 +5553,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 9060838179628189510, guid: a95931558a771374cbe419a360569101,
+        type: 3}
+      propertyPath: Item_Display
+      value: 
+      objectReference: {fileID: 21300000, guid: b51a64bd9715b1d488ee15ccec3f1dcf,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a95931558a771374cbe419a360569101, type: 3}
 --- !u!114 &6770768938680698534 stripped
