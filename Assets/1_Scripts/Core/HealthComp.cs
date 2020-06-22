@@ -201,14 +201,14 @@ public class HealthComp : MonoBehaviour
             if(myClass == CharacterClass.Player)
             {
                 A_Source.clip = MusicManager.Instance.Clip_Hit;
-                A_Source.volume = MusicManager.Instance.sfxVolume;
+                A_Source.volume = MusicManager.Instance.sfxVolume - 0.2f;
                 A_Source.Play();
                 //MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
                 Debug.Log("Hit");
             }else if(myClass == CharacterClass.Enemy)
             {
                 A_Source.clip = MusicManager.Instance.Clip_Attack;
-                A_Source.volume = MusicManager.Instance.sfxVolume;
+                A_Source.volume = MusicManager.Instance.sfxVolume - 0.2f;
                 A_Source.Play();
                 // MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Attack);
                 Debug.Log("Attack");
