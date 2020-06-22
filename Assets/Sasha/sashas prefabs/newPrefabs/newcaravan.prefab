@@ -301,8 +301,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 1
-  m_fontSizeBase: 1
+  m_fontSize: 0.5
+  m_fontSizeBase: 0.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -377,6 +377,8 @@ GameObject:
   - component: {fileID: 3602367343910020755}
   - component: {fileID: 2095978603395281526}
   - component: {fileID: 1188739491878510887}
+  - component: {fileID: 1976377691291514343}
+  - component: {fileID: 6900577070495115177}
   m_Layer: 5
   m_Name: Damage Popup
   m_TagString: Untagged
@@ -464,6 +466,35 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1976377691291514343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5471383333248744523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79a120a114be41429aeb8880cacc008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6900577070495115177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5471383333248744523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e86f6de9c4a8246a8ae4fd9ea1f5cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animateDuration: 2
+  fadeDuration: 5
+  moveUpDistance: 3
+  easeType: 34
+  graphicToFade: {fileID: 159151900374381124}
 --- !u!1 &5887393300162996730
 GameObject:
   m_ObjectHideFlags: 0
@@ -10938,15 +10969,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11b84e4ba34e4994f86b21277c59a864, type: 3}
---- !u!4 &1037233063298699335 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7356685569533802309, guid: 11b84e4ba34e4994f86b21277c59a864,
-    type: 3}
-  m_PrefabInstance: {fileID: 7529120782492395266}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2095378325927318754 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8460161475431576544, guid: 11b84e4ba34e4994f86b21277c59a864,
+    type: 3}
+  m_PrefabInstance: {fileID: 7529120782492395266}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1037233063298699335 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7356685569533802309, guid: 11b84e4ba34e4994f86b21277c59a864,
     type: 3}
   m_PrefabInstance: {fileID: 7529120782492395266}
   m_PrefabAsset: {fileID: 0}
