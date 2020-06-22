@@ -115,14 +115,14 @@ public class HealthComp : MonoBehaviour
                     //EditorHelper.NotSupportedException("DifficultyLevel.Normal");
                     break;
                 case DifficultyLevel.IronCat:
-                    currentHealth *= 2;
-                    startHealth *= 2;
+                    currentHealth = Mathf.RoundToInt(currentHealth * 1.3f);
+                    startHealth = Mathf.RoundToInt(currentHealth * 1.3f);
                     health_slider.maxValue = currentHealth;
                     health_slider.value = currentHealth;
                     break;
                 case DifficultyLevel.Catapocalypse:
-                    currentHealth *= 3;
-                    startHealth *= 3;
+                    currentHealth = Mathf.RoundToInt(currentHealth * 1.8f);
+                    startHealth = Mathf.RoundToInt(currentHealth * 1.8f);
                     health_slider.maxValue = currentHealth;
                     health_slider.value = currentHealth;
                     break;
