@@ -92,11 +92,10 @@ namespace AI
 
         public ParticleSystem KickUpGrassL;
         public ParticleSystem KickUpGrassR;
-        public ParticleSystem HitEffect;
-        public Transform hitloc;
+      
 
         //gameobject references
-        private ParticleSystem hiteffect;
+  
         private ParticleSystem grassR;
         private ParticleSystem grassL;
         private void OnEnable()
@@ -125,10 +124,7 @@ namespace AI
             {
                 grassR = Instantiate(KickUpGrassR, transform.position, Quaternion.identity, null);
             }
-            if (HitEffect)
-            {
-                hiteffect = Instantiate(HitEffect, hitloc);
-            }
+           
             if (KickUpGrassL)
             {
                 grassL = Instantiate(KickUpGrassL, transform.position, Quaternion.identity, null);
@@ -507,16 +503,7 @@ namespace AI
         //----------------------------------------------------------------------------------------------
         private void Hit()
         {
-            //TODO particle FX
-            if (hiteffect)
-            {
-                hiteffect.transform.position = hitloc.transform.position;
-                hiteffect.Play();
-            }
-            else
-            {
-                Debug.LogWarning("No Particle effect attached to " + name + " for hit()");
-            }
+            
             if (OnHit != null)
                 OnHit.Invoke();
         }
