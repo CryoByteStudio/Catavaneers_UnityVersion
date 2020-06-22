@@ -7,6 +7,7 @@ using SpawnSystem.Standard;
 using System;
 using UnityEngine.SceneManagement;
 using Catavaneer.Extensions;
+using Catavaneer.Singleton;
 
 namespace SpawnSystem
 {
@@ -60,6 +61,10 @@ namespace SpawnSystem
 
         public int TotalWaves => waves.Count;
         public int CurrentWaveTotalEnemies => currentWave.EnemyCount;
+        public float NextWaveTime => nextWaveTime;
+        public float TimeElapsed => timeElapsed;
+
+        private bool hasSetNextWaveTime = false;
 
         private void Start()
         {
@@ -88,9 +93,15 @@ namespace SpawnSystem
                     SpawnNextWave();
                 }
 
-                // otherwise update time elapsed    
-                timeElapsed += Time.deltaTime;
             }
+            
+            timeElapsed += Time.deltaTime;
+        }
+
+        public void SetNextWaveTime()
+        {
+            if (Wave.number < waves.Count && SpawnPoint.HasStartedSpawning)
+                nextWaveTime = timeElapsed + timeBetweenWaves;
         }
 
         public static void SetEnemyLeftToSpawn(int amount)
@@ -127,7 +138,11 @@ namespace SpawnSystem
             //SetSpawnPointParams();
             //***************************//
 
-            nextWaveTime = timeElapsed + currentWave.EnemyCount * currentWave.spawnInterval + timeBetweenWaves;
+            //Old next wave time calculation
+            //nextWaveTime = timeElapsed + currentWave.EnemyCount * currentWave.spawnInterval + timeBetweenWaves;
+
+            nextWaveTime = Mathf.Infinity;
+
             //print("Enemy Left To Spawn: " + EnemyLeftToSpawn);
         }
 

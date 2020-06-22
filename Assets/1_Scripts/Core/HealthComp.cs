@@ -225,10 +225,9 @@ public class HealthComp : MonoBehaviour
                 A_Source.Play();
                 //MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
                 Debug.Log("Hit");
-            }else if(myClass == CharacterClass.Enemy)
+            }
+            if (myClass == CharacterClass.Enemy)
             {
-              
-             
                 A_Source.clip = MusicManager.Instance.Clip_Attack;
                 A_Source.volume = MusicManager.Instance.sfxVolume - 0.2f;
                 A_Source.Play();
@@ -248,35 +247,35 @@ public class HealthComp : MonoBehaviour
     /// <param name="damageDealer"> The transform of the damage dealer </param>
     /// <param name="amount"> The amount that will be subtracted from health </param>
     /// <param name="weaponForce"> The amount of knockback_force from the weapon </param>"
-    public void TakeDamage(Transform damageDealer, int amount, float weaponForce)
-    {
-        if (!isDead)
-        {
-            currentHealth -= amount;
-            currentHealth = Mathf.Max(0, currentHealth);
-            DisplayHealth();
-            if (myClass == CharacterClass.Caravan)
-            {
-                healthuitext.text = currentHealth + " / " + startHealth;
-            }
-            if (myClass == CharacterClass.Player)
-            {
-                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
-            }
-            else if (myClass == CharacterClass.Enemy)
-            {
+    //public void TakeDamage(Transform damageDealer, int amount, float weaponForce)
+    //{
+    //    if (!isDead)
+    //    {
+    //        currentHealth -= amount;
+    //        currentHealth = Mathf.Max(0, currentHealth);
+    //        DisplayHealth();
+    //        if (myClass == CharacterClass.Caravan)
+    //        {
+    //            healthuitext.text = currentHealth + " / " + startHealth;
+    //        }
+    //        if (myClass == CharacterClass.Player)
+    //        {
+    //            MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
+    //        }
+    //        else if (myClass == CharacterClass.Enemy)
+    //        {
                 
              
-                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Attack);
-            }
-            KnockBack((damageDealer.position - transform.position) * 2f * weaponForce);
+    //            MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Attack);
+    //        }
+    //        KnockBack((damageDealer.position - transform.position) * 2f * weaponForce);
 
-            if (currentHealth == 0)
-            {
-                Dead();
-            }
-        }
-    }
+    //        if (currentHealth == 0)
+    //        {
+    //            Dead();
+    //        }
+    //    }
+    //}
 
     /// <summary>
     /// Apply knock back force
@@ -334,6 +333,12 @@ public class HealthComp : MonoBehaviour
                 dropController.DropItem();
                 //ObjectPooler.SetInactive(this.gameObject);
                 SpawnManager.EnemiesAlive--;
+
+                if (SpawnManager.EnemiesAlive <= 0)
+                {
+                    FindObjectOfType<SpawnManager>().SetNextWaveTime();
+                }
+
                 break;
         }
     }
