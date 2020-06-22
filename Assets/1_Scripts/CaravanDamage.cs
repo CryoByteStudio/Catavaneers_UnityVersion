@@ -19,10 +19,7 @@ public class CaravanDamage : MonoBehaviour
             damageparticles[damageStage].SetActive(true);
             damageStage++;
             // TODO Add more partical
-        }
-                
-            
-        
+        } 
     }
     public void TriggerFinalDamageStageParticle()
     {
