@@ -7,6 +7,12 @@ public class Point : MonoBehaviour
     private bool isOpen = true;
     private HealthComp occupant = null;
     public Vector3 Position { get { return transform.position; } }
+    
+    private void OnDisable()
+    {
+        if (occupant)
+            occupant.OnDeath -= OnEnemyDeathHandler;
+    }
 
     public bool IsPointOpen()
     {
@@ -16,9 +22,15 @@ public class Point : MonoBehaviour
     public void SetOccupant(HealthComp occupant)
     {
         this.occupant = occupant;
-
+        if (occupant)
+            occupant.OnDeath += OnEnemyDeathHandler;
         // open if no occupant, close if has occupant
         SetOpen(occupant == null);
+    }
+
+    private void OnEnemyDeathHandler()
+    {
+        SetOccupant(null);
     }
 
     public void SetOpen(bool value)

@@ -47,7 +47,6 @@ namespace SpawnSystem
                 if (timeElapsed > nextSpawnTime)
                 {
                     Spawn(spawnQueue.Dequeue());
-                    hasStartedSpawning = true;
                     nextSpawnTime = timeElapsed + spawnInterval;
                 }
 
@@ -69,6 +68,7 @@ namespace SpawnSystem
             enemyLeftToSpawn--;
             SpawnManager.SetEnemyLeftToSpawn(enemyLeftToSpawn);
             SpawnManager.EnemiesAlive++;
+            hasStartedSpawning = true;
 
             // for debugging
             GameQuitDebugging();
@@ -90,6 +90,8 @@ namespace SpawnSystem
         /// <param name="spawnInterval"> The interval which enemy should spawn back to back with </param>
         public void SetSpawnParams(List<Standard.EnemyToSpawn> enemiesToSpawn, float spawnInterval)
         {
+            Reset();
+
             for (int i = 0; i < enemiesToSpawn.Count; i++)
             {
                 for (int j = 0; j < enemiesToSpawn[i].count; j++)
@@ -120,6 +122,14 @@ namespace SpawnSystem
 
             enemyLeftToSpawn = spawnQueue.Count;
             this.spawnInterval = spawnInterval;
+        }
+
+        private void Reset()
+        {
+            hasStartedSpawning = false;
+            enemyLeftToSpawn = 0;
+            spawnInterval = 0;
+            //spawnQueue.Clear();
         }
 
         private void OnDrawGizmosSelected()

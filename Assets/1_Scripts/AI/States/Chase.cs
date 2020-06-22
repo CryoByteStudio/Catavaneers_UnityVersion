@@ -64,9 +64,32 @@ namespace AI.States
         /// <param name="radius"> The radius in which the random point will be picked from </param>
         private Vector3 FindPositionNearTarget(Vector3 targetPosition, float radius)
         {
-            Vector3 positionNearTarget = CustomMathf.RandomPointInCirclePerpendicularToAxis(radius, Axis.Y) + targetPosition;
-            positionNearTarget.y = targetPosition.y;
-            return positionNearTarget;
+            //Vector3 positionNearTarget = CustomMathf.RandomPointInCirclePerpendicularToAxis(radius, Axis.Y) + targetPosition;
+            //positionNearTarget.y = targetPosition.y;
+            //return positionNearTarget;
+            Vector3 randomPosition = Random.onUnitSphere + targetPosition;
+            randomPosition.y = targetPosition.y;
+            Vector3 fromTargetToRandPos = randomPosition - targetPosition;
+            fromTargetToRandPos.Normalize();
+            randomPosition = fromTargetToRandPos * radius + targetPosition;
+
+            //int count = 0;
+            //while (GetProjectedDistanceMagnitude(randomPosition, targetPosition) > radius)
+            //{
+            //    if (count > 1000)
+            //    {
+            //        Debug.Log("Could not find suitable position. Keep slacking... Position: " + randomPosition);
+            //        return randomPosition;
+            //    }
+
+            //    randomPosition = Random.onUnitSphere;
+            //    randomPosition.y = targetPosition.y;
+            //    randomPosition.Normalize();
+            //    randomPosition *= radius;
+            //    count++;
+            //}
+
+            return randomPosition;
         }
 
         /// <summary>
@@ -79,7 +102,7 @@ namespace AI.States
         {
             for (int i = 0; i < targetRegion.InnerRegion.pointsList.Count; i++)
             {
-                if (targetRegion.InnerRegion.pointsList[i].IsPointOpen())
+                if (targetRegion.InnerRegion.pointsList[i].IsPointOpen() && !controller.TargetPointTransform)
                 {
                     targetRegion.InnerRegion.pointsList[i].SetOccupant(controller.GetComponent<HealthComp>());
                     controller.SetTargetPoint(targetRegion.InnerRegion.pointsList[i].transform);
@@ -89,7 +112,7 @@ namespace AI.States
 
             for (int i = 0; i < targetRegion.OuterRegion.pointsList.Count; i++)
             {
-                if (targetRegion.OuterRegion.pointsList[i].IsPointOpen())
+                if (targetRegion.OuterRegion.pointsList[i].IsPointOpen() && !controller.TargetPointTransform)
                 {
                     targetRegion.OuterRegion.pointsList[i].SetOccupant(controller.GetComponent<HealthComp>());
                     controller.SetTargetPoint(targetRegion.OuterRegion.pointsList[i].transform);
@@ -98,7 +121,9 @@ namespace AI.States
             }
 
             controller.SetTargetPoint(null);
-            return FindPositionNearTarget(targetRegion.transform.position, controller.AttackRange);
+            Vector3 positionNearTarget = FindPositionNearTarget(targetRegion.transform.position, controller.AttackRange - .1f);
+            Debug.Log("Could not find open point. New position near target is: " + positionNearTarget);
+            return positionNearTarget;
         }
 
         /// <summary>
@@ -133,6 +158,12 @@ namespace AI.States
                 Controller.RemoveFromTargetList(targetHealth);
                 controller.SetCurrentTarget(null);
             }
+        }
+
+        public static float GetProjectedDistanceMagnitude(Vector3 fromPosition, Vector3 targetPosition)
+        {
+            float distance = Vector3.ProjectOnPlane(targetPosition - fromPosition, Vector3.up).magnitude;
+            return distance;
         }
     }
 }
