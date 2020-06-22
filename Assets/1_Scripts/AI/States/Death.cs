@@ -74,6 +74,8 @@ namespace AI.States
         private IEnumerator DeathBehaviourRoutine()
         {
             animatorController.SetTrigger("Die");
+            if (collider)
+                collider.enabled = false;
             yield return new WaitForSeconds(deathAnimationDuration);
             FadeOut();
             yield return new WaitForSeconds(fadeDuration);
@@ -85,8 +87,6 @@ namespace AI.States
         {
             if (rendererFader)
                 rendererFader.FadeOut(deathAnimationDuration + 0.1f);
-            if (collider)
-                collider.enabled = false;
         }
 
         private void ResetFade()

@@ -49,14 +49,14 @@ namespace Catavaneer
 
             if (!doneOnce && isGameOver)
             {
-                if (LevelLoader.GetCurrentSceneIndex() < catFightSceneIndex)
+                if (LevelLoader.IsGameLevel() && LevelLoader.GetCurrentSceneIndex() < catFightSceneIndex)
                 {
                     StartCoroutine(WinDelay());
                 }
                 else
                 {
-                    MenuManager.LoadMainMenuLevel(true);
                     hasFinishedAllLevel = true;
+                    MenuManager.LoadMainMenuLevel(true);
                 }
 
                 doneOnce = true;
@@ -77,6 +77,7 @@ namespace Catavaneer
             else if (hasFinishedAllLevel)
             {
                 MenuManager.OpenMenu(MenuManager.CreditsMenu);
+                hasFinishedAllLevel = false;
             }
         }
 
@@ -90,11 +91,6 @@ namespace Catavaneer
             LevelLoader.SetFirstGameSceneIndex(firstGameSceneIndex);
             isGameOver = false;
             doneOnce = false;
-        }
-
-        public void ResetHasFinishedAllLevel()
-        {
-            hasFinishedAllLevel = false;
         }
 
         /// <summary>
@@ -145,7 +141,8 @@ namespace Catavaneer
         private IEnumerator WinDelay()
         {
             yield return new WaitForSeconds(quitDelay);
-            MenuManager.OpenWinMenu();
+            //MenuManager.OpenWinMenu();
+            LevelLoader.LoadLevel("Campaign");
         }
 
         public IEnumerator StartDelay()

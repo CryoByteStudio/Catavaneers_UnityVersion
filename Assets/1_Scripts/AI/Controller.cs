@@ -52,10 +52,12 @@ namespace AI
         private FSM finiteStateMachine = new FSM();
         private HealthComp healthComponent = null;
         private float distanceToTarget = Mathf.Infinity;
+        private float distanceToTargetSqr = Mathf.Infinity;
         private NavMeshAgent agent = null;
         private Animator animatorController = null;
         private Transform targetPointTransform = null;
         private float distanceToTargetPointTransform = Mathf.Infinity;
+        private float distanceToTargetPointTransformSqr = Mathf.Infinity;
         private Transform currentTarget = null;
         private Weapon equippedWeapon;
         private bool isFrenzy = false;
@@ -64,6 +66,7 @@ namespace AI
         public float DistanceToTarget { get { return distanceToTarget; } }
         public NavMeshAgent Agent { get { return agent; } }
         public Animator AnimatorController { get { return animatorController; } }
+        public Transform TargetPointTransform { get { return targetPointTransform; }}
         public Transform CurrentTarget { get { return currentTarget; } }
         public float ChaseSpeed { get { return chaseSpeed; } }
         public int BaseAttackDamage { get { return attackDamage; } }
@@ -177,12 +180,14 @@ namespace AI
 
             if (currentTarget)
             {
-                distanceToTarget = Vector3.Distance(transform.position, currentTarget.position);
+                //distanceToTarget = Vector3.Distance(transform.position, currentTarget.position);
+                distanceToTarget = GetProjectedDistanceMagnitude(transform.position, currentTarget.position);
             }
 
             if (targetPointTransform)
             {
-                distanceToTargetPointTransform = Vector3.Distance(transform.position, targetPointTransform.position);
+                //distanceToTargetPointTransform = Vector3.Distance(transform.position, targetPointTransform.position);
+                distanceToTargetPointTransform = GetProjectedDistanceMagnitude(transform.position, targetPointTransform.position);
             }
         }
 
@@ -372,6 +377,18 @@ namespace AI
         {
             if (!dogTargets.Contains(target))
                 dogTargets.Add(target);
+        }
+
+        public static float GetProjectedDistanceMagnitude(Vector3 fromPosition, Vector3 targetPosition)
+        {
+            float distance = Vector3.ProjectOnPlane(targetPosition - fromPosition, Vector3.up).magnitude;
+            return distance;
+        }
+
+        public static float GetProjectedDistanceSqrMagnitude(Vector3 fromPosition, Vector3 targetPosition)
+        {
+            float distance = Vector3.ProjectOnPlane(targetPosition - fromPosition, Vector3.up).sqrMagnitude;
+            return distance;
         }
 
         /// <summary>

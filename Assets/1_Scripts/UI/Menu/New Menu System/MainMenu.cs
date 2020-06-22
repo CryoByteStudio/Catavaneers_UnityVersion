@@ -17,7 +17,6 @@ namespace Catavaneer.MenuSystem
             }
             else
             {
-                GameManager.Instance.ResetHasFinishedAllLevel();
                 SetSelectedGameObject(firstSelected);
                 ForceHighlightFirstSelected();
             }

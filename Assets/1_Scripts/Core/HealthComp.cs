@@ -25,6 +25,7 @@ public class HealthComp : MonoBehaviour
     public int thresholdamount;
 
     public static event Action OnCaravanDestroyed;
+    public event Action OnDeath;
     public SoundClipsInts soundCue = SoundClipsInts.Death;
 
     [SerializeField]
@@ -321,6 +322,8 @@ public class HealthComp : MonoBehaviour
                 //{
                 //    GetComponent<Animator>().SetTrigger("Die");
                 //}
+                if (OnDeath != null)
+                    OnDeath.Invoke();
                 dropController.DropItem();
                 //ObjectPooler.SetInactive(this.gameObject);
                 SpawnManager.EnemiesAlive--;
