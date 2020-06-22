@@ -227,6 +227,8 @@ public class HealthComp : MonoBehaviour
                 Debug.Log("Hit");
             }else if(myClass == CharacterClass.Enemy)
             {
+              
+             
                 A_Source.clip = MusicManager.Instance.Clip_Attack;
                 A_Source.volume = MusicManager.Instance.sfxVolume - 0.2f;
                 A_Source.Play();
@@ -263,6 +265,8 @@ public class HealthComp : MonoBehaviour
             }
             else if (myClass == CharacterClass.Enemy)
             {
+                
+             
                 MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Attack);
             }
             KnockBack((damageDealer.position - transform.position) * 2f * weaponForce);

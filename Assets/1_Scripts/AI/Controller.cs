@@ -99,8 +99,8 @@ namespace AI
 
         //gameobject references
   
-        private ParticleSystem grassR;
-        private ParticleSystem grassL;
+        public ParticleSystem grassR;
+        public  ParticleSystem grassL;
         private void OnEnable()
         {
             if (agent)
