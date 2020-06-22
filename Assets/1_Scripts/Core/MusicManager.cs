@@ -75,7 +75,7 @@ public class MusicManager : SingletonEntity<MusicManager>
 
     private void PlayMusic(Scene scene)
     {
-        if (scene.name == "Menu_Main")
+        if (scene.name == "Menu_Main" && !isPLayingEvent)
         {
             menuState.start();
         }
