@@ -19,18 +19,17 @@ namespace Catavaneer
 
         public float startDelay = 1;
         public float quitDelay = 0;
-        
+
         private bool doneOnce = false;
 
         private DifficultyLevel difficultyLevel;
-        public static DifficultyLevel DifficultyLevel { get { return instance.difficultyLevel; } }
+        public DifficultyLevel DifficultyLevel { get { return instance.difficultyLevel; } }
         private bool isGameOver;
         public bool IsGameOver { get { return isGameOver; } }
-
+        private bool hasFinishedAllLevel = false;
+        public bool HasFinishedAllLevel { get { return hasFinishedAllLevel; } }
         public int FirstGameSceneIndex { get { return firstGameSceneIndex; } }
-
-        //[SerializeField] HealthComp caravan_HC;
-
+        
         protected override void Awake()
         {
             base.Awake();
@@ -46,16 +45,20 @@ namespace Catavaneer
 
         private void Update()
         {
-            //if (LevelLoader.IsGameLevel() && Time.time > startTime && LevelLoader.GetCurrentSceneIndex() != catFightSceneIndex)
-            //{
-            //    SpawnManager.CanSpawnEnemy = true;
-            //}
-
             isGameOver = CheckObjectiveCondition();
 
             if (!doneOnce && isGameOver)
             {
-                StartCoroutine(WinDelay());
+                if (LevelLoader.GetCurrentSceneIndex() < catFightSceneIndex)
+                {
+                    StartCoroutine(WinDelay());
+                }
+                else
+                {
+                    MenuManager.LoadMainMenuLevel(true);
+                    hasFinishedAllLevel = true;
+                }
+
                 doneOnce = true;
             }
         }
@@ -63,25 +66,57 @@ namespace Catavaneer
         protected override void SceneLoadedHandler(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
         {
             base.SceneLoadedHandler(scene, mode);
-            
-            if (LevelLoader.IsGameLevel() && LevelLoader.GetCurrentSceneIndex() < catFightSceneIndex)
+
+            if (LevelLoader.IsGameLevel())
             {
                 Reset();
-                StartCoroutine(StartDelay());
-            }
 
+                if (LevelLoader.GetCurrentSceneIndex() < catFightSceneIndex)
+                    StartCoroutine(StartDelay());
+            }
+            else if (hasFinishedAllLevel)
+            {
+                MenuManager.OpenMenu(MenuManager.CreditsMenu);
+            }
         }
 
         private void Reset()
         {
-            if (gameObject.activeSelf)
+            if (gameObject.activeSelf && FindCaravanHealthComp())
                 HealthComp.OnCaravanDestroyed += OnCaravanDestroyedHandler;
-            
+
             LevelLoader.SetMainMenuSceneIndex(mainMenuSceneIndex);
             LevelLoader.SetCharacterSelectSceneIndex(characterSelectSceneIndex);
             LevelLoader.SetFirstGameSceneIndex(firstGameSceneIndex);
             isGameOver = false;
             doneOnce = false;
+        }
+
+        public void ResetHasFinishedAllLevel()
+        {
+            hasFinishedAllLevel = false;
+        }
+
+        /// <summary>
+        /// Find Caravan health component in scene. Not optimized to use every frame.
+        /// </summary>
+        /// <returns></returns>
+        private static HealthComp FindCaravanHealthComp()
+        {
+            HealthComp[] healthComps = FindObjectsOfType<HealthComp>();
+
+            if (healthComps != null && healthComps.Length > 0)
+            {
+                foreach (HealthComp healthComp in healthComps)
+                {
+                    if (healthComp.myClass == CharacterClass.Caravan)
+                    {
+                        return healthComp;
+                    }
+                }
+            }
+
+            return null;
         }
 
         private void OnCaravanDestroyedHandler()

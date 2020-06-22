@@ -37,7 +37,7 @@ namespace Catavaneer.MenuSystem
 
         private void Update()
         {
-            if (LevelLoader.IsLoading)
+            if (loadingBar && LevelLoader.IsLoading)
             {
                 loadingBar.value = LevelLoader.LoadingProgress;
             }

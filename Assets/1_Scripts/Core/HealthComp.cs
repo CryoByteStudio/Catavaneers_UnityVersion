@@ -5,7 +5,6 @@ using System;
 using System.Collections;
 using AI;
 using SpawnSystem;
-using System;
 using UnityEditor;
 using ViTiet.Utils;
 using Catavaneer;
@@ -88,7 +87,7 @@ public class HealthComp : MonoBehaviour
         if (GetComponent<PlayerInventory>())
         {
             //set % of gold to lose based on difficulty
-            switch (GameManager.DifficultyLevel)
+            switch (GameManager.Instance.DifficultyLevel)
             {
                 case DifficultyLevel.Normal:
                     percentageOfGoldToKeep = 0.75f;
@@ -110,7 +109,7 @@ public class HealthComp : MonoBehaviour
         else
         {
             //set % of gold to lose based on difficulty
-            switch (GameManager.DifficultyLevel)
+            switch (GameManager.Instance.DifficultyLevel)
             {
                 case DifficultyLevel.Normal:
                     //EditorHelper.NotSupportedException("DifficultyLevel.Normal");
@@ -156,7 +155,7 @@ public class HealthComp : MonoBehaviour
 
         if (myClass == CharacterClass.Caravan && is_Regenerating)
         {
-            dmg_percentage = currentHealth % (startHealth / (int)GameManager.DifficultyLevel);
+            dmg_percentage = currentHealth % (startHealth / (int)GameManager.Instance.DifficultyLevel);
 
             if (dmg_percentage == 0)
             {
@@ -274,7 +273,7 @@ public class HealthComp : MonoBehaviour
             case CharacterClass.Player:
                 Debug.Log("Player Dead");
 
-                if (GameManager.DifficultyLevel == DifficultyLevel.Catfight)
+                if (GameManager.Instance.DifficultyLevel == DifficultyLevel.Catfight)
                 {
                     if (GetComponent<PlayerInventory>() == FindObjectOfType<Goldbag>().holdersInventory)
                     {
@@ -334,7 +333,7 @@ public class HealthComp : MonoBehaviour
         if (myClass == CharacterClass.Player)
             GetComponent<PlayerInventory>().RemoveGoldFromInventory(percentageOfGoldToKeep);
 
-        switch (GameManager.DifficultyLevel)
+        switch (GameManager.Instance.DifficultyLevel)
         {
             case DifficultyLevel.Normal:
                 yield return new WaitForSeconds(4);

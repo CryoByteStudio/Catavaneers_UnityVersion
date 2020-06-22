@@ -1,19 +1,35 @@
-﻿using UnityEngine.EventSystems;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Catavaneer.MenuSystem
 {
     public class MainMenu : Menu<MainMenu>
     {
+        [SerializeField] private GameObject firstSelected;
+
         #region UNITY ENGINE FUNCTIONS
         private void OnEnable()
         {
-            if (selectedGameObject)
+            if (selectedGameObject && !GameManager.Instance.HasFinishedAllLevel)
             {
-                EventSystem.current.SetSelectedGameObject(selectedGameObject);
-                selectedGameObject.GetComponent<Selectable>().OnSelect(new BaseEventData(EventSystem.current));
-                SetSelectedGameObject(null);
+                ForceHighlightFirstSelected();
             }
+            else
+            {
+                GameManager.Instance.ResetHasFinishedAllLevel();
+                SetSelectedGameObject(firstSelected);
+                ForceHighlightFirstSelected();
+            }
+        }
+        #endregion
+
+        #region PRIVATE METHODS
+        private void ForceHighlightFirstSelected()
+        {
+            EventSystem.current.SetSelectedGameObject(selectedGameObject);
+            selectedGameObject.GetComponent<Selectable>().OnSelect(new BaseEventData(EventSystem.current));
+            SetSelectedGameObject(null);
         }
         #endregion
 
