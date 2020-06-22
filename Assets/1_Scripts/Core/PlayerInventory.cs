@@ -158,6 +158,7 @@ public class PlayerInventory : MonoBehaviour //Sasha
                     case 0:
                         Debug.Log("no traps");
                         Trap1UI = null;
+                        Trap2UI = null;
                         break;
                     case 1:
                         Debug.Log("Trap1");
@@ -166,6 +167,7 @@ public class PlayerInventory : MonoBehaviour //Sasha
                         break;
                     case 2:
                         Debug.Log("Only Trap 2");
+                        Trap1UI = null;
                         break;
                     case 3:
                         Debug.Log("both traps");
