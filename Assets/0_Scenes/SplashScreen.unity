@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &261178109 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4864545754153482366, guid: 9f213cfa0de5c984a94518ce0d05017b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2011324758}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &331441236 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6948538760585777077, guid: ace7a61e234fad44d860b5c43f2e46b8,
@@ -323,11 +329,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1389958249310846409, guid: bab0b7116ec11ed448919eacac8ba271,
-        type: 3}
-      propertyPath: quitDelay
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bab0b7116ec11ed448919eacac8ba271, type: 3}
 --- !u!1 &1251150779
@@ -409,6 +410,7 @@ GameObject:
   - component: {fileID: 1922545375}
   - component: {fileID: 1922545379}
   - component: {fileID: 1922545378}
+  - component: {fileID: 1922545380}
   m_Layer: 5
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -558,6 +560,20 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &1922545380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922545374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 261178109}
+  ListenerNumber: -1
 --- !u!1001 &2011324758
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -63,7 +63,7 @@ public class MusicManager : SingletonEntity<MusicManager>
     {
         PlayMusic(scene);
         caravanState.setParameterByName("Caravan Health", 0);
-        caravanState.setParameterByName("Intensity", 0);
+        caravanState.setParameterByName("Intensity ", 0);
         //LevelLoader.ResetLoadingParams();
     }
 
@@ -101,6 +101,7 @@ public class MusicManager : SingletonEntity<MusicManager>
 
         menuState = FMODUnity.RuntimeManager.CreateInstance(menuStateEvent);
         menuState.start();
+        Debug.Log(menuState);
         isPLayingEvent = true;
 
         int MuteInt = PlayerPrefs.GetInt("Mutetogglestate");
@@ -181,8 +182,8 @@ public class MusicManager : SingletonEntity<MusicManager>
         //}
         else
         {
-            //caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            menuState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            caravanState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            //menuState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
     }
 
@@ -197,12 +198,12 @@ public class MusicManager : SingletonEntity<MusicManager>
         switch (TrackID)
         {
             case SoundClipsInts.GoldPickUp:
-                A_Source.PlayOneShot(Clip_GoldPickUp, sfxVolume);
+                A_Source.PlayOneShot(Clip_GoldPickUp, sfxVolume + 0.1f);
                 break;
 
             case SoundClipsInts.Attack:
 
-                A_Source.PlayOneShot(Clip_Attack, sfxVolume);
+                A_Source.PlayOneShot(Clip_Attack, sfxVolume - 0.2f);
                 break;
 
             case SoundClipsInts.Hit:
@@ -217,11 +218,11 @@ public class MusicManager : SingletonEntity<MusicManager>
                 break;
 
             case SoundClipsInts.Bandage:
-                A_Source.PlayOneShot(Clip_Bandage, sfxVolume);
+                A_Source.PlayOneShot(Clip_Bandage, sfxVolume + 0.2f);
                 break;
 
             case SoundClipsInts.TrapTrigger:
-                A_Source.PlayOneShot(Clip_TrapTrigger, sfxVolume);
+                A_Source.PlayOneShot(Clip_TrapTrigger, sfxVolume + 0.2f);
                 break;
 
             default:

@@ -5,16 +5,17 @@ using System;
 using System.Collections;
 using AI;
 using SpawnSystem;
-using System;
 using UnityEditor;
 using ViTiet.Utils;
 using Catavaneer;
+using AI.States;
 
 public enum CharacterClass { Player, Enemy, Caravan, Obj };
 public enum DifficultyLevel { Normal = 5, IronCat = 10, Catapocalypse = 25, Catfight = 1};
-
+[RequireComponent(typeof(AudioSource))]
 public class HealthComp : MonoBehaviour
 {
+    public AudioSource A_Source;
     [SerializeField] private DifficultyLevel gameDifficulty = DifficultyLevel.Normal;
     public CharacterClass myClass;
     public int startHealth = 100;
@@ -63,6 +64,7 @@ public class HealthComp : MonoBehaviour
         objectPooler = FindObjectOfType<ObjectPooler>();
         animator = GetComponent<Animator>();
         characterFader = GetComponent<CharacterFader>();
+        A_Source = GetComponent<AudioSource>();
 
         if (myClass == CharacterClass.Enemy)
         {
@@ -85,7 +87,7 @@ public class HealthComp : MonoBehaviour
         if (GetComponent<PlayerInventory>())
         {
             //set % of gold to lose based on difficulty
-            switch (GameManager.DifficultyLevel)
+            switch (GameManager.Instance.DifficultyLevel)
             {
                 case DifficultyLevel.Normal:
                     percentageOfGoldToKeep = 0.75f;
@@ -107,7 +109,7 @@ public class HealthComp : MonoBehaviour
         else
         {
             //set % of gold to lose based on difficulty
-            switch (GameManager.DifficultyLevel)
+            switch (GameManager.Instance.DifficultyLevel)
             {
                 case DifficultyLevel.Normal:
                     //EditorHelper.NotSupportedException("DifficultyLevel.Normal");
@@ -153,7 +155,7 @@ public class HealthComp : MonoBehaviour
 
         if (myClass == CharacterClass.Caravan && is_Regenerating)
         {
-            dmg_percentage = currentHealth % (startHealth / (int)GameManager.DifficultyLevel);
+            dmg_percentage = currentHealth % (startHealth / (int)GameManager.Instance.DifficultyLevel);
 
             if (dmg_percentage == 0)
             {
@@ -198,10 +200,18 @@ public class HealthComp : MonoBehaviour
             DisplayHealth();
             if(myClass == CharacterClass.Player)
             {
-                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
+                A_Source.clip = MusicManager.Instance.Clip_Hit;
+                A_Source.volume = MusicManager.Instance.sfxVolume - 0.2f;
+                A_Source.Play();
+                //MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
+                Debug.Log("Hit");
             }else if(myClass == CharacterClass.Enemy)
             {
-                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Attack);
+                A_Source.clip = MusicManager.Instance.Clip_Attack;
+                A_Source.volume = MusicManager.Instance.sfxVolume - 0.2f;
+                A_Source.Play();
+                // MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Attack);
+                Debug.Log("Attack");
             }
             if (currentHealth <= 0)
             {
@@ -263,7 +273,7 @@ public class HealthComp : MonoBehaviour
             case CharacterClass.Player:
                 Debug.Log("Player Dead");
 
-                if (GameManager.DifficultyLevel == DifficultyLevel.Catfight)
+                if (GameManager.Instance.DifficultyLevel == DifficultyLevel.Catfight)
                 {
                     if (GetComponent<PlayerInventory>() == FindObjectOfType<Goldbag>().holdersInventory)
                     {
@@ -323,7 +333,7 @@ public class HealthComp : MonoBehaviour
         if (myClass == CharacterClass.Player)
             GetComponent<PlayerInventory>().RemoveGoldFromInventory(percentageOfGoldToKeep);
 
-        switch (GameManager.DifficultyLevel)
+        switch (GameManager.Instance.DifficultyLevel)
         {
             case DifficultyLevel.Normal:
                 yield return new WaitForSeconds(4);

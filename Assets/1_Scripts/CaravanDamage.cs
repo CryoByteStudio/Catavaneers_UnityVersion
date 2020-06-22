@@ -14,12 +14,12 @@ public class CaravanDamage : MonoBehaviour
     public void TriggerDamageStageParticles()
     {
         
-           
-                damageparticles[damageStage].SetActive(true);
-                damageStage++;
-                
-            
-        
+        if(damageparticles[damageStage] != null)
+        {
+            damageparticles[damageStage].SetActive(true);
+            damageStage++;
+            // TODO Add more partical
+        } 
     }
     public void TriggerFinalDamageStageParticle()
     {

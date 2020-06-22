@@ -17,6 +17,7 @@ namespace AI.States
         private float attackRange = 0;
         private float attackInterval = 0;
         private float speedOffset = 0;
+        private GameObject go = null;
 
         // internal variables
         private float timeSinceLastAttack = Mathf.Infinity;
@@ -37,6 +38,8 @@ namespace AI.States
 
         private void Init()
         {
+            if (!go)
+                go = Resources.Load("Damage Popup") as GameObject;
             if (!controller)
                 Debug.LogWarning("Controller is not set in Attack state");
             if (!agent)
@@ -114,8 +117,15 @@ namespace AI.States
         {
             HealthComp targetHealth = target.GetComponent<HealthComp>();
 
-            if (targetHealth && !targetHealth.IsDead())
+            if (targetHealth && !targetHealth.IsDead() && controller.DistanceToTarget <= attackRange)
             {
+                if (go)
+                {
+                    DamagePopup dp = Object.Instantiate(go, target.position, Quaternion.identity).GetComponent<DamagePopup>();
+                    if (dp)
+                        dp.Play(attackDamage);
+                }
+
                 targetHealth.TakeDamage(attackDamage);
                 //Debug.Log("[" + controller.name + "] dealt " + damage + " to [" + target.name + "]");
             }
