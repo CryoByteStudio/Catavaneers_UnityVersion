@@ -53,6 +53,11 @@ public class PlayerController : MonoBehaviour
     public float ymin = -2f;
     public float ymax = 30f;
     public float constraintbuffer=2f;
+
+    public ParticleSystem FreezeEffect;
+    public ParticleSystem DamageEffect;
+    public ParticleSystem SlowEffect;
+    public ParticleSystem ReverseEffect;
     private void Start()
     {
         health = GetComponent<HealthComp>();
@@ -239,6 +244,7 @@ public class PlayerController : MonoBehaviour
 
     public void HitByTrap(float reverseTrapValue, float slowTrapValue, float lastingTime)
     {
+        
         reverseValue = reverseTrapValue;
         slowValue = slowTrapValue;
         StartCoroutine(UndoAfliction(lastingTime));
@@ -263,6 +269,7 @@ public class PlayerController : MonoBehaviour
     public void SetFreeze(float lastingTime)
     {
         states = MoveStates.Freeze;
+       
         leftInputMagnitud = 0;
         StartCoroutine(UndoAfliction(lastingTime));
     }
