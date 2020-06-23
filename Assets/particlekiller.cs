@@ -18,18 +18,18 @@ public class particlekiller : MonoBehaviour
     {
         if (part.isPlaying)
         {
-            Debug.Log("playing");
+            //Debug.Log("playing");
             hasdestroytime = false;
         }
         if (!part.isPlaying&&!hasdestroytime)
         {
-            Debug.Log("not plyaing");
+            //Debug.Log("not plyaing");
             timetodestroy = Time.time + 0.5f;
             hasdestroytime = true;
         }
         if (Time.time >= timetodestroy && hasdestroytime)
         {
-            Debug.Log("destroy");
+            //Debug.Log("destroy");
             Destroy(this.gameObject);
         }
        
