@@ -137,7 +137,7 @@ public class PlayerInventory : MonoBehaviour //Sasha
             if (ConsumableItem)
             {
                 Debug.Log("Use Consumable");
-                GetComponent<HealthComp>().AddHealth(25);
+                GetComponent<HealthComp>().AddHealth(200);
                 ConsumableUI.sprite = null;
                 Destroy(ConsumableItem.gameObject);
             }
