@@ -9,13 +9,13 @@ public class CoinPickUp : MonoBehaviour
     public SoundClipsInts soundCue = SoundClipsInts.GoldPickUp;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-           if (other.gameObject.GetComponent<PlayerInventory>() != null)
-            other.gameObject.GetComponent<PlayerInventory>().gold += (int)Coin;
+            if (other.gameObject.GetComponent<PlayerInventory>() != null)
+                other.gameObject.GetComponent<PlayerInventory>().AddGold(+(int)Coin);
+
             MusicManager.Instance.PlaySoundTrack(soundCue);
             Destroy(gameObject);
-            
         }
     }
 

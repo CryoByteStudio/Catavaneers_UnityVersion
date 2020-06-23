@@ -4,135 +4,141 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Catavaneer;
+using CustomMathLibrary;
 
 public class PlayerSelectController : MonoBehaviour
 {
-    public CharacterManager charman;
     public int PlayerID;
-    public Image PlayerSelectReference;
-    int SelectIndex;
-    public List<Image> Selections = new List<Image>();
-    public float selectdelay=1f;
-    float timer=0;
-    public string inputhorizontalaxis;
-    public string inputacceptbutton;   //Submit/Interact
-    public string inputbackbutton;
-    public bool lockedin=false;
-    public int totalplayers=0;
-    public GameManager gman;
-    // Start is called before the first frame update
-    void Start()
-    {
-        gman = FindObjectOfType<GameManager>();
-        charman = FindObjectOfType<CharacterManager>();
-        SelectIndex = PlayerID;
-       
+    public Image playerSelectReference;
+    private int selectIndex;
+    public List<Image> selections = new List<Image>();
+    public float selectDelay = 1f;
+    private float timer = 0;
+    public string inputHorizontalAxis;
+    public string inputAcceptButton;   //Submit/Interact
+    //public string inputBackButton;
+    public bool lockedIn = false;
+    public int totalPlayers = 0;
+    //public CharacterManager charman;
+    //public GameManager gman;
+    public bool LockedIn => lockedIn;
 
+    private PlayerSelectController[] playerSelectControllers;
+
+    private void Start()
+    {
+        //gman = FindObjectOfType<GameManager>();
+        //charman = FindObjectOfType<CharacterManager>();
+        selectIndex = PlayerID;
+        playerSelectControllers = FindObjectsOfType<PlayerSelectController>();
     }
 
-    // Update is called once per frame
-    void LateUpdate()
+    private void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.T)) //Debug for if you only have one controller
-        {
+        //if (Input.GetKeyDown(KeyCode.T)) //Debug for if you only have one controller
+        //{
             
-            foreach (PlayerSelectController player in FindObjectsOfType<PlayerSelectController>())
-            {
-                player.lockedin = true;
-                PlayerSelectReference.color = Color.black;
+        //    foreach (PlayerSelectController player in FindObjectsOfType<PlayerSelectController>())
+        //    {
+        //        player.lockedin = true;
+        //        playerSelectReference.color = Color.black;
 
-            }
-          //  StartCoroutine(gman.StartDelay());
+        //    }
+        //    // StartCoroutine(gman.StartDelay());
             
-            charman.StartGame();
+        //    charman.StartGame();
+        //}
 
-        }
-
-
-       
-        if (!lockedin)
+        if (!lockedIn)
         {
-            if (Input.GetButtonDown(inputacceptbutton))
+            if (Input.GetButtonDown(inputAcceptButton))
             {
-             
-                lockedin = true;
-                PlayerSelectReference.color = Color.black;
+                lockedIn = true;
+                playerSelectReference.color = Color.black;
                 CheckForReady();
-                
             }
-            else if (Input.GetAxis(inputhorizontalaxis) > 0 && Time.time > timer)
+            else if (Input.GetAxis(inputHorizontalAxis) > 0 && Time.time > timer)
             {
                 MoveRight();
-                timer = Time.time + selectdelay;
+                timer = Time.time + selectDelay;
             }
-            else if (Input.GetAxis(inputhorizontalaxis) < 0 && Time.time > timer)
+            else if (Input.GetAxis(inputHorizontalAxis) < 0 && Time.time > timer)
             {
                 MoveLeft();
-                timer = Time.time + selectdelay;
+                timer = Time.time + selectDelay;
             }
         }
-        
+
+        if (Input.GetKey(KeyCode.C))
+        {
+            lockedIn = false;
+            playerSelectReference.color = Color.white;
+        }
     }
 
-    void MoveLeft()
+    private void MoveLeft()
     {
-        SelectIndex--;
-        if (SelectIndex < 0) //Wrap around if select index is less than 0.
-        {
-            SelectIndex = 3;
-        }
+        selectIndex = CustomMathf.GetPreviousLoopIndex(selectIndex, selections.Count);
 
-        PlayerSelectReference.transform.position = new Vector3(Selections[SelectIndex].transform.position.x, PlayerSelectReference.transform.position.y, PlayerSelectReference.transform.position.z);
+        playerSelectReference.transform.position = new Vector3(selections[selectIndex].transform.position.x, playerSelectReference.transform.position.y, playerSelectReference.transform.position.z);
             
     }
-    void MoveRight()
+
+    private void MoveRight()
     {
-        SelectIndex++;
-        if (SelectIndex > 3) //Wrap around if select index is less than 0.
-        {
-            SelectIndex = 0;
-        }
-        PlayerSelectReference.transform.position = new Vector3(Selections[SelectIndex].transform.position.x, PlayerSelectReference.transform.position.y, PlayerSelectReference.transform.position.z);
+        selectIndex = CustomMathf.GetNextLoopIndex(selectIndex, selections.Count);
+
+        playerSelectReference.transform.position = new Vector3(selections[selectIndex].transform.position.x, playerSelectReference.transform.position.y, playerSelectReference.transform.position.z);
     }
 
-    void CheckForReady()
+    private void CheckForReady()
     {
-        int playerslocked = 0;
-        totalplayers = charman.playercount;
-        //Debug.Log(charman.playercount);
-        foreach (PlayerSelectController player in FindObjectsOfType<PlayerSelectController>())
+        if (!CharacterManager.Instance)
         {
-            if (player.lockedin)
+            Debug.Log("Character Manager is null");
+            return;
+        }
+
+        int playersLocked = 0;
+        //totalPlayers = charman.playerCount;
+        totalPlayers = CharacterManager.Instance.playerCount;
+        //Debug.Log(charman.playercount);
+        foreach (PlayerSelectController player in playerSelectControllers)
+        {
+            if (player.lockedIn)
             {
-                if (player.SelectIndex == 0)
-                {
-                    charman.charnames[player.PlayerID]= "Russel";
-                }
-                else if (player.SelectIndex == 1)
-                {
-                    charman.charnames[player.PlayerID] = "Momo";
-                }
-                else if (player.SelectIndex == 2)
-                {
-                    charman.charnames[player.PlayerID] = "Kiki";
-                }
-                else if (player.SelectIndex == 3)
-                {
-                    charman.charnames[player.PlayerID] = "Jojo";
-                }
+                //if (player.selectIndex == 0)
+                //{
+                //    //charman.charNames[player.PlayerID]= "Russel";
+                //    CharacterManager.Instance.charNames[player.PlayerID] = "Russel";
+                //}
+                //else if (player.selectIndex == 1)
+                //{
+                //    //charman.charNames[player.PlayerID] = "Jojo";
+                //    CharacterManager.Instance.charNames[player.PlayerID] = "Jojo";
+                //}
+                //else if (player.selectIndex == 2)
+                //{
+                //    //charman.charNames[player.PlayerID] = "Kiki";
+                //    CharacterManager.Instance.charNames[player.PlayerID] = "Kiki";
+                //}
+                //else if (player.selectIndex == 3)
+                //{
+                //    //charman.charNames[player.PlayerID] = "Momo";
+                //    CharacterManager.Instance.charNames[player.PlayerID] = "Momo";
+                //}
+
+                CharacterManager.Instance.charNames[player.PlayerID] = selections[player.selectIndex].name;
+                Debug.Log(selections[player.selectIndex].name);
                 
-                playerslocked++;
-               
+                playersLocked++;
             }
-           
         }
         
-        if (playerslocked >= totalplayers)
+        if (playersLocked >= totalPlayers)
         {
-            // StartCoroutine(gman.StartDelay());
-            //Debug.Log(totalplayers);
-            //Debug.Log(playerslocked);
-            charman.StartGame();
+            //charman.StartGame();
+            CharacterManager.Instance.StartGame();
         }
     }
 }

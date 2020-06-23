@@ -30,6 +30,9 @@ namespace Catavaneer
         public bool HasFinishedAllLevel { get { return hasFinishedAllLevel; } }
         public int FirstGameSceneIndex { get { return firstGameSceneIndex; } }
         
+        public static int LastEncounterIndex = 0;
+        public static int CurrentDay = 0;
+
         protected override void Awake()
         {
             base.Awake();
@@ -124,8 +127,10 @@ namespace Catavaneer
         {
             int currentSceneIndex = LevelLoader.GetCurrentSceneIndex();
 
+            // if PVE mode
             if (LevelLoader.IsGameLevel() && currentSceneIndex < catFightSceneIndex)
                 return SpawnManager.HasFinishedSpawning && SpawnManager.EnemiesAlive <= 0;
+            // if PVP mode
             else if (currentSceneIndex >= catFightSceneIndex)
                 return Goldbag.HasWinner;
 

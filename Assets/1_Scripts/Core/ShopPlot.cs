@@ -29,8 +29,6 @@ public class ShopPlot : MonoBehaviour
         {
             if (!isoccupied)
             {
-
-
                 if (collision.gameObject.GetComponent<PlayerInventory>())
                 {
                     InvRef = collision.gameObject.GetComponent<PlayerInventory>();
@@ -42,7 +40,6 @@ public class ShopPlot : MonoBehaviour
                         SoldOut.gameObject.SetActive(true);
                     }
                 }
-
             }
         }
     }
@@ -50,32 +47,30 @@ public class ShopPlot : MonoBehaviour
     private void OnTriggerExit(Collider collision)
     {
         //Removes reference when the shop is exited
-           
-            if (InvRef == collision.gameObject.GetComponent<PlayerInventory>() && collision.gameObject.tag == "Player")
-            {
-                InvRef.plotref = null;
-                InvRef = null;
-                isoccupied = false;
+
+        if (InvRef == collision.gameObject.GetComponent<PlayerInventory>() && collision.gameObject.tag == "Player")
+        {
+            InvRef.plotref = null;
+            InvRef = null;
+            isoccupied = false;
             ItemDisplay.gameObject.SetActive(false);
             SoldOut.gameObject.SetActive(false);
-            }
-  
+        }
     }
 
     public void CheckIfCanPurchase()
     {
         if (!issoldout)
         {
-            if (InvRef.gold >= shop.displayedItems[plotid].item_cost)
+            if (InvRef.Gold >= shop.displayedItems[plotid].item_cost)
             {
-
                 //check if player has inventory space for the item
                 if (shop.displayedItems[plotid].type == Item.ItemType.Consumable)
                 {
                     if (InvRef.ConsumableItem == null)
                     {
                         //remove item cost from player gold
-                        InvRef.gold -= shop.displayedItems[plotid].item_cost;
+                        InvRef.AddGold(-shop.displayedItems[plotid].item_cost);
                         //create a copy of the displayed item
                         Item purchaseditem = Instantiate(shop.displayedItems[plotid]);
                         //add item to player inventory
@@ -95,7 +90,7 @@ public class ShopPlot : MonoBehaviour
                     if (InvRef.WeaponItem == null)
                     {
                         //remove item cost from player gold
-                        InvRef.gold -= shop.displayedItems[plotid].item_cost;
+                        InvRef.AddGold(-shop.displayedItems[plotid].item_cost);
                         //create a copy of the displayed item
                         Item purchaseditem = Instantiate(shop.displayedItems[plotid]);
                         //add item to player inventory
@@ -116,7 +111,7 @@ public class ShopPlot : MonoBehaviour
                     if (InvRef.TrapItem == null)
                     {
                         //remove item cost from player gold
-                        InvRef.gold -= shop.displayedItems[plotid].item_cost;
+                        InvRef.AddGold(-shop.displayedItems[plotid].item_cost);
                         //create a copy of the displayed item
                         Item purchaseditem = Instantiate(shop.displayedItems[plotid]);
                         //add item to player inventory
@@ -135,8 +130,6 @@ public class ShopPlot : MonoBehaviour
                 {
                     Debug.LogError("Invalid Inventory Item Type");
                 }
-
-
             }
             else
             {
@@ -148,8 +141,5 @@ public class ShopPlot : MonoBehaviour
             SoldOut.gameObject.SetActive(true);
             issoldout = true;
         }
-
     }
-   
-
 }

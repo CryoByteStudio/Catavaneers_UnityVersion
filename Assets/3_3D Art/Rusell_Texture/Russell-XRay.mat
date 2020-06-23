@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rusell-Dissolve
-  m_Shader: {fileID: 4800000, guid: 1315f7cf49de13748a21177cb1805493, type: 3}
+  m_Name: Russell-XRay
+  m_Shader: {fileID: 4800000, guid: d6bc4978104cade46b6e3bffe0855ddf, type: 3}
   m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3001
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -85,5 +85,6 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BurnColor: {r: 1, g: 0, b: 0, a: 1}
-    - _Color: {r: 8, g: 8, b: 8, a: 1}
+    - _Color: {r: 5.992157, g: 5.992157, b: 5.992157, a: 1}
+    - _ColorXRay: {r: 4, g: 0, b: 0.17060089, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

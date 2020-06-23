@@ -66,22 +66,16 @@ MonoBehaviour:
   playername: 
   playerindex: 3
   kills: 0
-  gold: 0
+  startGold: 1000
   WeaponItem: {fileID: 0}
   ConsumableItem: {fileID: 0}
   TrapItem: {fileID: 0}
   plotref: {fileID: 0}
-  health: {fileID: 0}
   NameUI: {fileID: 0}
-  WeaponUI: {fileID: 0}
   Trap1UI: {fileID: 0}
   Trap2UI: {fileID: 0}
   ConsumableUI: {fileID: 0}
-  GoldUI: {fileID: 0}
-  HealthUI: {fileID: 0}
-  KillsUI: {fileID: 0}
-  startingWeapon: {fileID: 11400000, guid: 8a36c59b744505144a701d151ffe297a, type: 2}
-  cman: {fileID: 0}
+  startingWeaponItem: {fileID: 0}
   buyButton: P2Buy
   useItemButton: P2Use Item
   cancelButton: P2Cancel/Shop3
@@ -143,6 +137,7 @@ MonoBehaviour:
   health_slider: {fileID: 8441017094229593987}
   debug: 0
   damageTakenPerSecond: 0
+  healthuitext: {fileID: 0}
 --- !u!114 &102476635491636621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,18 +227,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102476635491636620}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7500a78b041366f4892f8404600880ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerID: 0
-  rendref: {fileID: 102476636235319279}
-  P1Skin: {fileID: 2100000, guid: 93a38d63f3a832f4bb86f296c7b6c54e, type: 2}
-  P2Skin: {fileID: 2100000, guid: 59239a2190cfbb44780ff3e908458c39, type: 2}
-  P3Skin: {fileID: 2100000, guid: 1c80701e8381a0a4891fa5702688ed04, type: 2}
-  P4Skin: {fileID: 2100000, guid: 4015dd9ae38f3cc4c9216ef71e3f85bf, type: 2}
-  charman: {fileID: 0}
+  PlayerID: 2
 --- !u!114 &4738548397950595188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,8 +246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentTrap: {fileID: 0}
-  Trap1: {fileID: 0}
-  Trap2: {fileID: 0}
+  trap1: {fileID: 0}
+  trap2: {fileID: 0}
   MatFlash: {fileID: 2100000, guid: 110508575c0709f4dae256c19fc40ef8, type: 2}
   sr: {fileID: 8558412937233765536}
   trapButton: P2UseTrap
@@ -275,7 +264,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ca7a77f227b734ba6a329c4d3b6f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 0}
+  isPlayer: 1
+  playerID: 2
+  renderer: {fileID: 8558412937233765536}
   materialPropertyName: _Amount
   healthBarImage: {fileID: 4136424945309090555}
   from: 0
@@ -2596,7 +2587,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bf49667980ff0f74bac093a283fc8126, type: 2}
+  - {fileID: 2100000, guid: fe7451076292de54d96e63c1f5ff15ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3065,12 +3056,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
---- !u!137 &102476636235319279 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 13707166, guid: 679ff741e12a7e740819ede24a7000b7,
-    type: 3}
-  m_PrefabInstance: {fileID: 102476636230017137}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &102476636229911915 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 435482, guid: 679ff741e12a7e740819ede24a7000b7,

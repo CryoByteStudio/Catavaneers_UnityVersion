@@ -1,12 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TrapSystem : MonoBehaviour
 {
     [SerializeField] TrapScriptable CurrentTrap;
-    [SerializeField] TrapScriptable Trap1;
-    [SerializeField] TrapScriptable Trap2;
+    [SerializeField] TrapScriptable trap1;
+    [SerializeField] TrapScriptable trap2;
     //[SerializeField] Transform TrapSpawnLocation;
 
     [SerializeField]private Material MatFlash;
@@ -25,8 +26,8 @@ public class TrapSystem : MonoBehaviour
 
     private void Update()
     {
-        if(Trap1 != null) CurrentTrap = Trap1;
-        else if (Trap1 == null && Trap2 != null) CurrentTrap = Trap2;
+        if(trap1 != null) CurrentTrap = trap1;
+        else if (trap1 == null && trap2 != null) CurrentTrap = trap2;
         else CurrentTrap = null;
 
         if(Input.GetButtonDown(trapButton))
@@ -34,19 +35,19 @@ public class TrapSystem : MonoBehaviour
             Debug.Log("trapbutton");
             if (CurrentTrap == null) return;
             CurrentTrap.SpawnTrap(transform.position);
-            if(CurrentTrap == Trap1) Trap1 = null;
-            else if(CurrentTrap == Trap2) Trap2 = null;
+            if(CurrentTrap == trap1) trap1 = null;
+            else if(CurrentTrap == trap2) trap2 = null;
         }
 
-        float X = Input.GetAxis(dpadAxis);
+        float X = Input.GetAxisRaw(dpadAxis);
 
         if(DPadX != X)
         {
             if(X == -1 || X == 1)
             {
-                TrapScriptable Temp = Trap1;
-                Trap1 = Trap2;
-                Trap2 = Temp;
+                TrapScriptable Temp = trap1;
+                trap1 = trap2;
+                trap2 = Temp;
             }
         }
 
@@ -55,13 +56,13 @@ public class TrapSystem : MonoBehaviour
 
     public int CheckHasTrap()
     {
-        if (Trap1&&Trap2)
+        if (trap1&&trap2)
         {
             return 3;
-        }else if (Trap1)
+        }else if (trap1)
         {
             return 1;
-        }else if (Trap2)
+        }else if (trap2)
         {
             return 2;
         }
@@ -70,12 +71,12 @@ public class TrapSystem : MonoBehaviour
 
     public void EquipTrap(TrapScriptable TrapInShop)
     {
-        if (Trap1 == null) Trap1 = TrapInShop;
-        else if (Trap2 == null) Trap2 = TrapInShop;
-        else if (Trap1 != null && Trap2 != null)
+        if (trap1 == null) trap1 = TrapInShop;
+        else if (trap2 == null) trap2 = TrapInShop;
+        else if (trap1 != null && trap2 != null)
         {
-            Trap2 = Trap1;
-            Trap1 = TrapInShop;
+            trap2 = trap1;
+            trap1 = TrapInShop;
         }
     }
 

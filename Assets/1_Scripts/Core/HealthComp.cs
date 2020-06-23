@@ -26,6 +26,7 @@ public class HealthComp : MonoBehaviour
 
     public static event Action OnCaravanDestroyed;
     public event Action OnDeath;
+    public event Action OnPlayerHealthChanged;
     public SoundClipsInts soundCue = SoundClipsInts.Death;
 
     [SerializeField]
@@ -85,6 +86,10 @@ public class HealthComp : MonoBehaviour
         }
 
         currentHealth = startHealth;
+
+        if (OnPlayerHealthChanged != null)
+            OnPlayerHealthChanged.Invoke();
+
         DisplayHealth();
 
         if (GetComponent<PlayerInventory>())
@@ -140,10 +145,8 @@ public class HealthComp : MonoBehaviour
 
         if (myClass == CharacterClass.Caravan)
         {
-            
             healthuitext.text = currentHealth + " / " + startHealth;
         }
-        
     }
 
     private void Update()
@@ -220,6 +223,9 @@ public class HealthComp : MonoBehaviour
             }
             if (myClass == CharacterClass.Player)
             {
+                if (OnPlayerHealthChanged != null)
+                    OnPlayerHealthChanged.Invoke();
+
                 A_Source.clip = MusicManager.Instance.Clip_Hit;
                 A_Source.volume = MusicManager.Instance.sfxVolume - 0.2f;
                 A_Source.Play();
@@ -409,6 +415,9 @@ public class HealthComp : MonoBehaviour
             {
                 MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Bandage);
             }
+
+            if (OnPlayerHealthChanged != null)
+                OnPlayerHealthChanged.Invoke();
         }
     }
 

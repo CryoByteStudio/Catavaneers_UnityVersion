@@ -529,6 +529,7 @@ namespace AI
         {
             if (grassL)
             {
+                grassL.Stop();
                 grassL.transform.position = new Vector3(transform.position.x, grassL.transform.position.y, transform.position.z);
                 grassL.Play();
             }
@@ -543,6 +544,7 @@ namespace AI
         {
             if (grassR)
             {
+                grassL.Stop();
                 grassR.transform.position = new Vector3(transform.position.x, grassR.transform.position.y, transform.position.z);
                 grassR.Play();
 

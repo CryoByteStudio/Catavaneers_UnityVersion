@@ -60,10 +60,10 @@ public class Goldbag : MonoBehaviour
             {
                 if (Time.time >= goldticktimer + timebetweengoldtick)
                 {
-                    holdersInventory.gold += goldpertick;
+                    holdersInventory.AddGold(goldpertick);
                     goldticktimer = Time.time;
 
-                    if (holdersInventory.gold >= victorygold)
+                    if (holdersInventory.Gold >= victorygold)
                     {
                         //victoryui.SetActive(true);
                         //victorytext.text = "Congratulations! " + holdersInventory.playername + " wins! press any key to return to the main menu.";

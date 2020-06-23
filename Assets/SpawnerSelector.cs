@@ -14,7 +14,7 @@ public class SpawnerSelector : MonoBehaviour
        
         if (cman)
         {
-            switch (cman.playercount)
+            switch (cman.playerCount)
             {
                 case 1:
                     spawners[0].gameObject.SetActive(true);

@@ -153,19 +153,19 @@ namespace CustomMathLibrary
             return position;
         }
         
-        public static int GetNextLoopIndex(int currentIndex, int maxIndex)
+        public static int GetNextLoopIndex(int currentIndex, int elementsCount)
         {
-            return ((currentIndex + 1) % maxIndex + maxIndex) % maxIndex;
+            return GetLoopIndex(currentIndex + 1, elementsCount);
         }
 
-        public static int GetPreviousLoopIndex(int currentIndex, int maxIndex)
+        public static int GetPreviousLoopIndex(int currentIndex, int elementsCount)
         {
-            return ((currentIndex - 1) % maxIndex + maxIndex) % maxIndex;
+            return GetLoopIndex(currentIndex - 1, elementsCount);
         }
 
-        public static int GetLoopIndex(int currentIndex, int maxIndex)
+        public static int GetLoopIndex(int currentIndex, int elementsCount)
         {
-            return (currentIndex % maxIndex + maxIndex) % maxIndex;
+            return (currentIndex % elementsCount + elementsCount) % elementsCount;
         }
 
         public static int GetClampedLoopIndex(int currentIndex, int minIndex, int maxIndex)
