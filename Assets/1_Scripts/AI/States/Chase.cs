@@ -122,7 +122,7 @@ namespace AI.States
 
             controller.SetTargetPoint(null);
             Vector3 positionNearTarget = FindPositionNearTarget(targetRegion.transform.position, controller.AttackRange - .1f);
-            Debug.Log("Could not find open point. New position near target is: " + positionNearTarget);
+            //Debug.Log("Could not find open point. New position near target is: " + positionNearTarget);
             return positionNearTarget;
         }
 

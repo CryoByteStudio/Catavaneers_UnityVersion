@@ -232,7 +232,7 @@ public class HealthComp : MonoBehaviour
                 A_Source.volume = MusicManager.Instance.sfxVolume - 0.2f;
                 A_Source.Play();
                 // MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Attack);
-                Debug.Log("Attack");
+                //Debug.Log("Attack");
             }
             if (currentHealth <= 0)
             {

@@ -45,7 +45,7 @@ namespace SpawnSystem
         public bool debug = false;
 
         private float timeElapsed = 0;
-        private float nextWaveTime = 0;
+        private float nextWaveTime = Mathf.NegativeInfinity;
         private Wave currentWave;
        
 
