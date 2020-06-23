@@ -77,9 +77,12 @@ public class HealthComp : MonoBehaviour
         animator = GetComponent<Animator>();
         characterFader = GetComponent<CharacterFader>();
         A_Source = GetComponent<AudioSource>();
-        if (FindObjectOfType<CharacterManager>())
+
+        //if (FindObjectOfType<CharacterManager>())
+        if (CharacterManager.Instance)
         {
-            switch (FindObjectOfType<CharacterManager>().playercount)
+            //switch (FindObjectOfType<CharacterManager>().playercount)
+            switch (CharacterManager.Instance.playerCount)
             {
                 case 1:
                     playerhealthscale = 1f;
