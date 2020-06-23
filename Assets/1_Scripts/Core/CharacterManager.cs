@@ -10,8 +10,7 @@ public class CharacterManager : SingletonEntity<CharacterManager>
     public int LastEncounterIndex=0;
     public int CurrentDay = 0;
 
-
-
+    [SerializeField] private GameObject[] PlayerIcons;
 
     bool isstarted = false;
     public int playercount;
@@ -22,6 +21,11 @@ public class CharacterManager : SingletonEntity<CharacterManager>
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
+        
+        for(int i = 0; i < Input.GetJoystickNames().Length; i++)
+        {
+            PlayerIcons[i].SetActive(true);
+        }
     }
     
     void Start()
