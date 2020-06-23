@@ -6,6 +6,7 @@ public class CaravanDamage : MonoBehaviour
 {
     public List<GameObject> damageparticles =new List<GameObject>();
     public GameObject FinalParticle;
+    public GameObject VictoryParticles;
     public int damageStage=0;
     // Start is called before the first frame update
 
@@ -20,6 +21,16 @@ public class CaravanDamage : MonoBehaviour
             damageStage++;
             // TODO Add more partical
         } 
+    }
+
+    public void PlayVictory()
+    {
+        foreach (GameObject particle in damageparticles)
+        {
+            particle.gameObject.SetActive(false);
+        }
+
+        VictoryParticles.SetActive(true);
     }
     public void TriggerFinalDamageStageParticle()
     {

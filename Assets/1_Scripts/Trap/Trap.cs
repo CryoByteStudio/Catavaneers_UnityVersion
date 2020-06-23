@@ -96,7 +96,11 @@ public class Trap : MonoBehaviour
                         if (type == TrapType.Freeze) FreezeTrap();
                         if (type == TrapType.Reverse) ReverseTrap(aflictionValue);
                         if (type == TrapType.Slow) SlowTrap(aflictionValue);
-                        if (type == TrapType.Damage) colliders[i].GetComponent<HealthComp>().TakeDamage(TrapDamage);
+                        if (type == TrapType.Damage) {
+                            colliders[i].GetComponent<HealthComp>().TakeDamage(TrapDamage);
+                            if(target.DamageEffect)
+                            target.DamageEffect.Play();
+                        }
                         target.GetComponent<TrapSystem>().Flash();
                     }
                 }
@@ -125,16 +129,22 @@ public class Trap : MonoBehaviour
     private void SlowTrap(float slow)
     {
         target.HitByTrap(reverse, slow, duration);
+        if(target.SlowEffect)
+        target.SlowEffect.Play();
     }
 
     private void ReverseTrap(float reverse)
     {
         target.HitByTrap(reverse, slow, duration);
+        if(target.ReverseEffect)
+        target.ReverseEffect.Play();
     }
 
     private void FreezeTrap()
     {
         target.SetFreeze(duration);
+        if(target.FreezeEffect)
+        target.FreezeEffect.Play();
     }
 
     private void OnDrawGizmos()

@@ -24,6 +24,14 @@ public class HealthComp : MonoBehaviour
     public int damagethreshold;
     public int thresholdamount;
 
+    public float healthscale2P=1.1f;
+    public float healthscale3P=1.3f;
+    public float healthscale4P=1.5f;
+    public float healthscaleIroncat=1.3f;
+    public float healthscaleCatpoc=1.6f;
+
+
+
     public static event Action OnCaravanDestroyed;
     public event Action OnDeath;
     public event Action OnPlayerHealthChanged;
@@ -59,7 +67,7 @@ public class HealthComp : MonoBehaviour
     [HideInInspector] public bool debug;
     [HideInInspector] public int damageTakenPerSecond;
 
-
+    private float playerhealthscale;
     public Text healthuitext;
     private void Start()
     {
@@ -69,7 +77,29 @@ public class HealthComp : MonoBehaviour
         animator = GetComponent<Animator>();
         characterFader = GetComponent<CharacterFader>();
         A_Source = GetComponent<AudioSource>();
+        if (FindObjectOfType<CharacterManager>())
+        {
+            switch (FindObjectOfType<CharacterManager>().playercount)
+            {
+                case 1:
+                    playerhealthscale = 1f;
+                    break;
+                case 2:
+                    playerhealthscale = healthscale2P;
+                    break;
+                case 3:
+                    playerhealthscale = healthscale3P;
+                    break;
 
+                case 4:
+                    playerhealthscale = healthscale4P;
+                    break;
+                default:
+                    playerhealthscale = 1f;
+                    Debug.LogWarning("problem finding character manager on health comp, defaulting playerhealthscale to 1");
+                    break;
+            }
+        }
         if (myClass == CharacterClass.Enemy)
         {
         }
@@ -123,14 +153,14 @@ public class HealthComp : MonoBehaviour
                     //EditorHelper.NotSupportedException("DifficultyLevel.Normal");
                     break;
                 case DifficultyLevel.IronCat:
-                    currentHealth = Mathf.RoundToInt(currentHealth * 1.3f);
-                    startHealth = Mathf.RoundToInt(currentHealth * 1.3f);
+                    currentHealth = Mathf.RoundToInt(currentHealth * healthscaleIroncat * playerhealthscale);
+                    startHealth = Mathf.RoundToInt(currentHealth * healthscaleIroncat * playerhealthscale);
                     health_slider.maxValue = currentHealth;
                     health_slider.value = currentHealth;
                     break;
                 case DifficultyLevel.Catapocalypse:
-                    currentHealth = Mathf.RoundToInt(currentHealth * 1.8f);
-                    startHealth = Mathf.RoundToInt(currentHealth * 1.8f);
+                    currentHealth = Mathf.RoundToInt(currentHealth * healthscaleCatpoc *playerhealthscale);
+                    startHealth = Mathf.RoundToInt(currentHealth * healthscaleCatpoc * playerhealthscale);
                     health_slider.maxValue = currentHealth;
                     health_slider.value = currentHealth;
                     break;

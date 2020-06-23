@@ -95,12 +95,16 @@ namespace AI
 
         public ParticleSystem KickUpGrassL;
         public ParticleSystem KickUpGrassR;
-      
+       
+
 
         //gameobject references
-  
+
+        public ParticleSystem hiteffect;
         public ParticleSystem grassR;
         public  ParticleSystem grassL;
+
+       
         private void OnEnable()
         {
             if (agent)
@@ -132,6 +136,8 @@ namespace AI
             {
                 grassL = Instantiate(KickUpGrassL, transform.position, Quaternion.identity, null);
             }
+
+          
         }
 
         private void SetPosition()
@@ -520,7 +526,10 @@ namespace AI
         //----------------------------------------------------------------------------------------------
         private void Hit()
         {
-            
+            if (hiteffect)
+            {
+                hiteffect.Play();
+            }
             if (OnHit != null)
                 OnHit.Invoke();
         }
