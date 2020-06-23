@@ -51,6 +51,10 @@ namespace Catavaneer
             {
                 if (LevelLoader.IsGameLevel() && LevelLoader.GetCurrentSceneIndex() < catFightSceneIndex)
                 {
+                    if (FindObjectOfType<CaravanDamage>())
+                    {
+                        FindObjectOfType<CaravanDamage>().PlayVictory();
+                    }
                     StartCoroutine(WinDelay());
                 }
                 else
@@ -125,7 +129,10 @@ namespace Catavaneer
             int currentSceneIndex = LevelLoader.GetCurrentSceneIndex();
 
             if (LevelLoader.IsGameLevel() && currentSceneIndex < catFightSceneIndex)
+            {
+               
                 return SpawnManager.HasFinishedSpawning && SpawnManager.EnemiesAlive <= 0;
+            }
             else if (currentSceneIndex >= catFightSceneIndex)
                 return Goldbag.HasWinner;
 
