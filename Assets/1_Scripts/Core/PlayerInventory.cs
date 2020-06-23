@@ -114,7 +114,7 @@ public class PlayerInventory : MonoBehaviour //Sasha
                                 OnTrap2Changed.Invoke(TrapItem.Item_Display);
                             break;
                     }
-                    
+
                     TrapItem = null;
                     //Destroy(TrapItem);
                 }
@@ -158,7 +158,7 @@ public class PlayerInventory : MonoBehaviour //Sasha
                 Debug.Log("No Consumable in inventory");
             }
         }
-        
+
         else if (Input.GetButtonDown(cancelButton))
         {
             if (TrapItem)
@@ -201,7 +201,7 @@ public class PlayerInventory : MonoBehaviour //Sasha
             }
         }
 
-       
+
         /*   Test Controller in shop test scene
         else if (Input.GetKey(KeyCode.A))
         {
@@ -212,7 +212,7 @@ public class PlayerInventory : MonoBehaviour //Sasha
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            
+
             rb.AddForce(Camera.main.transform.right * 20f);
         }*/
     }

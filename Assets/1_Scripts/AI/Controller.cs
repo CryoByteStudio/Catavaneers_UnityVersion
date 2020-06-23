@@ -104,7 +104,10 @@ namespace AI
         public ParticleSystem grassR;
         public  ParticleSystem grassL;
 
-       
+        public ParticleSystem FreezeEffect;
+        public ParticleSystem DamageEffect;
+        public ParticleSystem SlowEffect;
+        public ParticleSystem ReverseEffect;
         private void OnEnable()
         {
             if (agent)

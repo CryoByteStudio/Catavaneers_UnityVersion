@@ -146,36 +146,43 @@ public class HealthComp : MonoBehaviour
         }
         else
         {
-            //set % of gold to lose based on difficulty
-            switch (GameManager.Instance.DifficultyLevel)
+            if (myClass == CharacterClass.Enemy)
             {
-                case DifficultyLevel.Normal:
-                    //EditorHelper.NotSupportedException("DifficultyLevel.Normal");
-                    break;
-                case DifficultyLevel.IronCat:
-                    currentHealth = Mathf.RoundToInt(currentHealth * healthscaleIroncat * playerhealthscale);
-                    startHealth = Mathf.RoundToInt(currentHealth * healthscaleIroncat * playerhealthscale);
-                    health_slider.maxValue = currentHealth;
-                    health_slider.value = currentHealth;
-                    break;
-                case DifficultyLevel.Catapocalypse:
-                    currentHealth = Mathf.RoundToInt(currentHealth * healthscaleCatpoc *playerhealthscale);
-                    startHealth = Mathf.RoundToInt(currentHealth * healthscaleCatpoc * playerhealthscale);
-                    health_slider.maxValue = currentHealth;
-                    health_slider.value = currentHealth;
-                    break;
-                case DifficultyLevel.Catfight:
-                    EditorHelper.NotSupportedException("DifficultyLevel.Catfight");
-                    break;
-                default:
-                    EditorHelper.NotSupportedException("default");
-                    break;
+                //setenemy health
+                switch (GameManager.Instance.DifficultyLevel)
+                {
+                    case DifficultyLevel.Normal:
+                        //EditorHelper.NotSupportedException("DifficultyLevel.Normal");
+                        DisplayHealth();
+                        break;
+                    case DifficultyLevel.IronCat:
+                        currentHealth = Mathf.RoundToInt(currentHealth * healthscaleIroncat * playerhealthscale);
+                        startHealth = Mathf.RoundToInt(currentHealth * healthscaleIroncat * playerhealthscale);
+                        health_slider.maxValue = currentHealth;
+                        health_slider.value = currentHealth;
+                        DisplayHealth();
+                        break;
+                    case DifficultyLevel.Catapocalypse:
+                        currentHealth = Mathf.RoundToInt(currentHealth * healthscaleCatpoc * playerhealthscale);
+                        startHealth = Mathf.RoundToInt(currentHealth * healthscaleCatpoc * playerhealthscale);
+                        health_slider.maxValue = currentHealth;
+                        health_slider.value = currentHealth;
+                        DisplayHealth();
+                        break;
+                    case DifficultyLevel.Catfight:
+                        EditorHelper.NotSupportedException("DifficultyLevel.Catfight");
+                        break;
+                    default:
+                        EditorHelper.NotSupportedException("default");
+                        break;
+                }
             }
         }
 
         if (myClass == CharacterClass.Caravan)
         {
             healthuitext.text = currentHealth + " / " + startHealth;
+            DisplayHealth();
         }
     }
 
@@ -197,6 +204,7 @@ public class HealthComp : MonoBehaviour
 
         if (myClass == CharacterClass.Caravan && is_Regenerating)
         {
+            DisplayHealth();
             dmg_percentage = currentHealth % (startHealth / (int)GameManager.Instance.DifficultyLevel);
 
             if (dmg_percentage == 0)
@@ -250,6 +258,7 @@ public class HealthComp : MonoBehaviour
             if (myClass == CharacterClass.Caravan)
             {
                 healthuitext.text = currentHealth + " / " + startHealth;
+                DisplayHealth();
             }
             if (myClass == CharacterClass.Player)
             {

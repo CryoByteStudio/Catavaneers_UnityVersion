@@ -111,9 +111,28 @@ public class Trap : MonoBehaviour
                     {
                         CurrentTime++;
                         Controller EnemyController = colliders[i].gameObject.GetComponent<Controller>();
-                        if (type == TrapType.Reverse) EnemyController.ToggleFrenzyStateWithTimer(duration);
-                        if (type == TrapType.Freeze) EnemyController.SetTemporaryMovementSpeed(EnemyController.ChaseSpeed * SpeedModifier, duration);
-                        if (type == TrapType.Slow) EnemyController.SetTemporaryMovementSpeed(EnemyController.ChaseSpeed * SpeedModifier, duration);
+                        if (type == TrapType.Reverse)
+                        {
+                            EnemyController.ToggleFrenzyStateWithTimer(duration);
+                            if (EnemyController.ReverseEffect)
+                            {
+                                EnemyController.ReverseEffect.Play();
+                            }
+                        }
+                        if (type == TrapType.Freeze) {
+                            EnemyController.SetTemporaryMovementSpeed(EnemyController.ChaseSpeed * SpeedModifier, duration);
+                            if (EnemyController.FreezeEffect)
+                            {
+                                EnemyController.FreezeEffect.Play();
+                            }
+                                }
+                        if (type == TrapType.Slow) { 
+                            EnemyController.SetTemporaryMovementSpeed(EnemyController.ChaseSpeed * SpeedModifier, duration);
+                            if (EnemyController.SlowEffect)
+                            {
+                                EnemyController.SlowEffect.Play();
+                            }
+                        }
                     }
                     if (type == TrapType.Damage) colliders[i].GetComponent<HealthComp>().TakeDamage(TrapDamage);
                 }
