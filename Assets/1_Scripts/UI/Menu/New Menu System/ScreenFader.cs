@@ -36,7 +36,19 @@ namespace Catavaneer.MenuSystem
                 if (graphic)
                 {
                     graphic.CrossFadeAlpha(targetAlpha, duration, true);
-                    //graphic.DOFade(targetAlpha, duration);
+                }
+            }
+        }
+
+        private void TweeningFade(float from, float to, float duration)
+        {
+            if (graphicsToFade.Count == 0) return;
+
+            foreach (MaskableGraphic graphic in graphicsToFade)
+            {
+                if (graphic)
+                {
+                    graphic.DOFade(to, duration).From(from);
                 }
             }
         }
@@ -58,37 +70,20 @@ namespace Catavaneer.MenuSystem
 
         public void SetFadeDuration(float fadeDuration)
         {
-            this.fadeOnDuration = fadeDuration;
+            fadeOnDuration = fadeDuration;
         }
 
         public void FadeOff()
         {
-            //SetAlpha(SOLID_APLHA);
-            //CrossFadeAlpha(CLEAR_ALPHA, fadeOffDuration);
-            if (graphicsToFade.Count == 0) return;
-
-            foreach (MaskableGraphic graphic in graphicsToFade)
-            {
-                if (graphic)
-                {
-                    graphic.DOFade(CLEAR_ALPHA, fadeOffDuration).From(SOLID_APLHA);
-                }
-            }
+            SetAlpha(SOLID_APLHA);
+            CrossFadeAlpha(CLEAR_ALPHA, fadeOffDuration);
         }
 
         public void FadeOff(float fadeDuration)
         {
             //SetAlpha(SOLID_APLHA);
             //CrossFadeAlpha(CLEAR_ALPHA, fadeDuration);
-            if (graphicsToFade.Count == 0) return;
-
-            foreach (MaskableGraphic graphic in graphicsToFade)
-            {
-                if (graphic)
-                {
-                    graphic.DOFade(CLEAR_ALPHA, fadeOffDuration).From(SOLID_APLHA);
-                }
-            }
+            TweeningFade(SOLID_APLHA, CLEAR_ALPHA, fadeDuration);
         }
 
         public void FadeOn()

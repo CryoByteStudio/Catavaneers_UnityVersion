@@ -18,8 +18,8 @@ namespace Catavaneer.Extensions
 
             foreach (Transform branch in root)
             {
-                GetAllTransformInHierachy(branch, transformList, false);
                 transformList.Add(branch);
+                GetAllTransformInHierachy(branch, transformList, false);
             }
 
             return transformList;
@@ -40,12 +40,12 @@ namespace Catavaneer.Extensions
 
             foreach (Transform child in root)
             {
-                GetAllComponentsOfTypeInHierachy(child, genericList, false);
-
                 T childComponent = child.GetComponent<T>();
 
                 if (childComponent)
                     genericList.Add(childComponent);
+
+                GetAllComponentsOfTypeInHierachy(child, genericList, false);
             }
 
             return genericList;
