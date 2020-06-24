@@ -7,22 +7,23 @@ public class CharacterFader : MonoBehaviour
 {
     [SerializeField] private bool isPlayer;
     [SerializeField] private new SkinnedMeshRenderer renderer;
-    [SerializeField] private string materialPropertyName;
     [SerializeField] private Image healthBarImage;
     [SerializeField] private float from;
     [SerializeField] private float to;
-    [SerializeField] private bool swapMaterial;
+    [SerializeField] private string materialPropertyName = "_Amount";
     [SerializeField] private Material originalMaterial;
     [SerializeField] private Material newMaterial;
+
 
     private int playerID;
 
     private void Awake()
     {
         if (isPlayer)
+        {
+            playerID = GetComponent<PlayerInfo>().PlayerID;
             GetMaterialFromCharacterManager();
-
-        playerID = GetComponent<PlayerInfo>().PlayerID;
+        }
 
         CreateMaterialInstance();
     }
@@ -75,9 +76,7 @@ public class CharacterFader : MonoBehaviour
     // Fade object model
     private void ModelFadeOut(float startValue, float endValue, float duration)
     {
-        if (swapMaterial)
-            renderer.material = new Material(newMaterial);
-
+        renderer.material = new Material(newMaterial);
         renderer.material.SetFloat(materialPropertyName, startValue);
         renderer.material.DOFloat(endValue, materialPropertyName, duration);
     }
@@ -100,9 +99,7 @@ public class CharacterFader : MonoBehaviour
     private void ResetModelFade(float initialValue)
     {
         renderer.material.SetFloat(materialPropertyName, initialValue);
-
-        if (swapMaterial)
-            renderer.material = new Material(originalMaterial);
+        renderer.material = new Material(originalMaterial);
     }
 
     // Reset health bar

@@ -339,6 +339,31 @@ PrefabInstance:
       propertyPath: renderer
       value: 
       objectReference: {fileID: 3388297593830676418}
+    - target: {fileID: 3162961147379901772, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: originalMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 095039e91ba97ee46a5dc39ed52f53bf, type: 2}
+    - target: {fileID: 3162961147379901772, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: newMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 1a64cf0a23f83924f9debcb452685f6f, type: 2}
+    - target: {fileID: 3998710886462812101, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: characterClass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3998710886462812101, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: healthCompRef
+      value: 
+      objectReference: {fileID: 6568366189406570868}
+    - target: {fileID: 3998710886462812101, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: textField
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5575614588924106770, guid: d242d3fc1245abc42be5fc32c3f565e7,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -459,6 +484,16 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8093834131287993339, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: characterClass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8093834131287993339, guid: d242d3fc1245abc42be5fc32c3f565e7,
+        type: 3}
+      propertyPath: healthCompRef
+      value: 
+      objectReference: {fileID: 6568366189406570868}
     - target: {fileID: 8833951719064131521, guid: d242d3fc1245abc42be5fc32c3f565e7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -472,6 +507,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6278518811974993112}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6568366189406570868 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 866452166198644140, guid: d242d3fc1245abc42be5fc32c3f565e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6278518811974993112}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7784c49aa9ec001478701ddc8f0f581e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &3388297593830676418 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 8657151231878632218, guid: d242d3fc1245abc42be5fc32c3f565e7,

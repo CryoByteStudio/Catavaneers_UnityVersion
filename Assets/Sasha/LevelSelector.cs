@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Catavaneer.MenuSystem;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,14 +20,9 @@ namespace Catavaneer
         float travelCurrentDistance;
         float travelTotalDistance;
         public float travelSpeed;
-        // Start is called before the first frame update
+
         void Start()
         {
-            //cman = FindObjectOfType<CharacterManager>();
-            //cman.CurrentDay++;
-            //lastEncounter = destinations[cman.LastEncounterIndex];
-            //currentPoint = destinations[cman.LastEncounterIndex];
-
             GameManager.CurrentDay++;
             lastEncounter = destinations[GameManager.LastEncounterIndex];
             currentPoint = destinations[GameManager.LastEncounterIndex];
@@ -40,7 +36,7 @@ namespace Catavaneer
                     point.GetComponentInParent<Renderer>().material = currentPoint.SelectedMat;
                 }
             }
-            //dayttext.text = "Day " + cman.CurrentDay + "/ " + maxdays;
+
             dayttext.text = "Day " + GameManager.CurrentDay + "/ " + maxdays;
         }
 
@@ -62,10 +58,10 @@ namespace Catavaneer
                 if (Vector3.Distance(Caravan.transform.position, currentPoint.transform.position) <= 1f)
                 {
                     lastEncounter = currentPoint;
-                    //cman.LastEncounterIndex = destinations.IndexOf(currentPoint);
                     GameManager.LastEncounterIndex = destinations.IndexOf(currentPoint);
                     travelling = false;
-                    SceneManager.LoadScene(currentPoint.leveltoload);
+                    //SceneManager.LoadScene(currentPoint.leveltoload);
+                    MenuManager.LoadGameLevel(currentPoint.leveltoload);
                 }
             }
         }

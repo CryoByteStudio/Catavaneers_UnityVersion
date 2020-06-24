@@ -37,6 +37,8 @@ namespace Catavaneer.MenuSystem
         private static bool isPaused;
         private static bool isInBetweenScene;
         private static Transform menuParent;
+        private static TransitionFader fader;
+
         #endregion
 
         #region UNITY ENGINE FUNCTIONS
@@ -181,46 +183,71 @@ namespace Catavaneer.MenuSystem
             OpenMenu(menu);
         }
 
-        private static IEnumerator PlayTransitionRoutine(TransitionFaderType transitionFaderType)
+        private static IEnumerator PlayPreTransitionRoutine(TransitionFaderType transitionFaderType)
         {
-            TransitionFader fader;
             PlayTransition(out fader, transitionFaderType);
-            yield return new WaitForSeconds(fader.FadeOnDuration + fader.DisplayDuration);
+            yield return new WaitForSeconds(fader.FadeOnDuration);
+        }
+
+        private static IEnumerator PlayePostTransitionRoutine()
+        {
+            yield return new WaitForSeconds(fader.DisplayDuration);
+            fader = null;
         }
 
         private static IEnumerator PlayGameTransitionRoutine()
         {
-            yield return PlayTransitionRoutine(TransitionFaderType.StartLevelTransition);
+            yield return PlayPreTransitionRoutine(TransitionFaderType.StartLevelTransition);
             LevelLoader.LoadLevelAsync(instance, GameManager.Instance.FirstGameSceneIndex);
+            yield return PlayePostTransitionRoutine();
             OpenMenuPostTransition(GameMenu);
         }
 
         private static IEnumerator RestartLevelTransitionRoutine()
         {
-            yield return PlayTransitionRoutine(TransitionFaderType.StartLevelTransition);
+            yield return PlayPreTransitionRoutine(TransitionFaderType.StartLevelTransition);
             LevelLoader.ReloadLevelAsync(instance);
+            yield return PlayePostTransitionRoutine();
             OpenMenuPostTransition(GameMenu);
         }
 
         private static IEnumerator LoadCampaignLevelRoutine()
         {
-            yield return PlayTransitionRoutine(TransitionFaderType.MainMenuTransition);
-            //LevelLoader.LoadLevelAsync(instance, "Campaign");
-            LevelLoader.LoadLevel("Campaign");
+            yield return PlayPreTransitionRoutine(TransitionFaderType.MainMenuTransition);
+            LevelLoader.LoadLevelAsync(instance, "Campaign");
+            yield return PlayePostTransitionRoutine();
+            OpenMenuPostTransition(GameMenu);
+        }
+
+        private static IEnumerator LoadGameLevelRoutine(int levelIndex)
+        {
+            yield return PlayPreTransitionRoutine(TransitionFaderType.StartLevelTransition);
+            LevelLoader.LoadLevelAsync(instance, levelIndex);
+            yield return PlayePostTransitionRoutine();
+            OpenMenuPostTransition(GameMenu);
+        }
+
+        private static IEnumerator LoadGameLevelRoutine(string levelName)
+        {
+            yield return PlayPreTransitionRoutine(TransitionFaderType.StartLevelTransition);
+            LevelLoader.LoadLevelAsync(instance, levelName);
+            yield return PlayePostTransitionRoutine();
             OpenMenuPostTransition(GameMenu);
         }
 
         private static IEnumerator LoadMainMenuLevelTransitionRoutine()
         {
-            yield return PlayTransitionRoutine(TransitionFaderType.MainMenuTransition);
+            yield return PlayPreTransitionRoutine(TransitionFaderType.MainMenuTransition);
             LevelLoader.LoadMainMenuLevelAsync(instance);
+            yield return PlayePostTransitionRoutine();
             OpenMenuPostTransition(MainMenu);
         }
 
         private static IEnumerator LoadCharacterSelectLevelTransitionRoutine()
         {
-            yield return PlayTransitionRoutine(TransitionFaderType.MainMenuTransition);
+            yield return PlayPreTransitionRoutine(TransitionFaderType.MainMenuTransition);
             LevelLoader.LoadCharacterSelectLevelAsync(instance);
+            yield return PlayePostTransitionRoutine();
             CloseAllMenus();
         }
 
@@ -228,34 +255,31 @@ namespace Catavaneer.MenuSystem
         {
             if (!isTransitionFromLastLevel)
             {
-                yield return PlayTransitionRoutine(TransitionFaderType.MainMenuTransition);
+                yield return PlayPreTransitionRoutine(TransitionFaderType.MainMenuTransition);
             }
             else
             {
-                yield return PlayTransitionRoutine(TransitionFaderType.EndGameTransition);
+                yield return PlayPreTransitionRoutine(TransitionFaderType.EndGameTransition);
             }
 
             LevelLoader.LoadMainMenuLevelAsync(instance);
+            yield return PlayePostTransitionRoutine();
             OpenMenuPostTransition(MainMenu);
         }
 
         private static IEnumerator OpenWinMenuRoutine()
         {
-            TransitionFader fader;
-            PlayTransition(out fader, TransitionFaderType.WinScreenTransition);
-            yield return new WaitForSeconds(fader.FadeOnDuration + fader.DisplayDuration);
+            yield return PlayPreTransitionRoutine(TransitionFaderType.WinScreenTransition);
             OpenMenuPostTransition(WinMenu);
-            yield return new WaitForSeconds(fader.FadeOffDuration);
+            yield return PlayePostTransitionRoutine();
             Pause();
         }
 
         private static IEnumerator OpenLoseMenuRoutine()
         {
-            TransitionFader fader;
-            PlayTransition(out fader, TransitionFaderType.LoseScreenTransition);
-            yield return new WaitForSeconds(fader.FadeOnDuration + fader.DisplayDuration);
+            yield return PlayPreTransitionRoutine(TransitionFaderType.LoseScreenTransition);
             OpenMenuPostTransition(LoseMenu);
-            yield return new WaitForSeconds(fader.FadeOffDuration);
+            yield return PlayePostTransitionRoutine();
             Pause();
         }
         #endregion
@@ -435,6 +459,28 @@ namespace Catavaneer.MenuSystem
             }
 
             instance.StartCoroutine(LoadCampaignLevelRoutine());
+        }
+
+        public static void LoadGameLevel(int levelIndex)
+        {
+            if (!instance)
+            {
+                EditorHelper.ArgumentNullException("instance");
+                return;
+            }
+
+            instance.StartCoroutine(LoadGameLevelRoutine(levelIndex));
+        }
+
+        public static void LoadGameLevel(string levelName)
+        {
+            if (!instance)
+            {
+                EditorHelper.ArgumentNullException("instance");
+                return;
+            }
+
+            instance.StartCoroutine(LoadGameLevelRoutine(levelName));
         }
         #endregion
     }

@@ -11,7 +11,7 @@ public class Point : MonoBehaviour
     private void OnDisable()
     {
         if (occupant)
-            occupant.OnDeath -= OnEnemyDeathHandler;
+            occupant.OnEnemyDeath -= OnEnemyDeathHandler;
     }
 
     public bool IsPointOpen()
@@ -23,7 +23,8 @@ public class Point : MonoBehaviour
     {
         this.occupant = occupant;
         if (occupant)
-            occupant.OnDeath += OnEnemyDeathHandler;
+            occupant.OnEnemyDeath += OnEnemyDeathHandler;
+
         // open if no occupant, close if has occupant
         SetOpen(occupant == null);
     }

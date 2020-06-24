@@ -6,31 +6,25 @@ using System;
 public class PlayerInventory : MonoBehaviour //Sasha
 {
     public SoundClipsInts soundCue = SoundClipsInts.Buying;
-    public string playername;
     public int playerindex;
-    public int kills=0;
-    [SerializeField] private int startGold=1000;
+    public int startGold = 1000;
+
     private int currentGold;
     public int Gold => currentGold;
+
     public Item WeaponItem;
     public Item ConsumableItem;
     public Item TrapItem;
     public ShopPlot plotref;
 
-    //ui
-    //public Text NameUI;
-    public TMP_Text NameUI;
-    public Image Trap1UI;
-    public Image Trap2UI;
-    public Image ConsumableUI;
     public Item startingWeaponItem;
-    //public CharacterManager cman;
     public string buyButton;
     public string useItemButton;
     public string cancelButton;
 
     public GameObject PlayerUIRef;
-
+    
+    // UI events
     public event Action OnGoldChanged;
     public event Action<Sprite> OnConsumableChanged;
     public event Action<Sprite> OnWeaponChanged;
@@ -40,12 +34,9 @@ public class PlayerInventory : MonoBehaviour //Sasha
     private void Start()
     {
         AddGold(startGold);
-
-        //cman= FindObjectOfType<CharacterManager>();
-        //if (cman)
+        
         if (CharacterManager.Instance)
         {
-            //if (cman.playerCount <= playerindex)
             if (CharacterManager.Instance.playerCount <= playerindex)
             {
                 gameObject.SetActive(false);
@@ -116,7 +107,6 @@ public class PlayerInventory : MonoBehaviour //Sasha
                     }
 
                     TrapItem = null;
-                    //Destroy(TrapItem);
                 }
                 if (WeaponItem)
                 {
@@ -126,8 +116,6 @@ public class PlayerInventory : MonoBehaviour //Sasha
                         OnWeaponChanged.Invoke(WeaponItem.Item_Display);
                     WeaponItem = null;
                     MusicManager.Instance.PlaySoundTrack(soundCue);
-
-                    //Destroy(WeaponItem);
                 }
                 if (ConsumableItem)
                 {

@@ -20,7 +20,6 @@ public class HealthComp : MonoBehaviour
     public CharacterClass myClass;
     public int startHealth = 100;
     public GameManager gman;
-    public bool caravan = false;
     public int damagethreshold;
     public int thresholdamount;
 
@@ -33,8 +32,10 @@ public class HealthComp : MonoBehaviour
 
 
     public static event Action OnCaravanDestroyed;
-    public event Action OnDeath;
+    public event Action OnEnemyDeath;
     public event Action OnPlayerHealthChanged;
+    public event Action OnEnemyHealthChanged;
+    public event Action OnCaravanHealthChanged;
     public SoundClipsInts soundCue = SoundClipsInts.Death;
 
     [SerializeField]
@@ -56,74 +57,46 @@ public class HealthComp : MonoBehaviour
     private bool isDead = false;
     private Rigidbody rb;
     private DropController dropController;
-
     private CharacterFader characterFader;
 
-    public Slider health_slider = null;
-
-    private static ObjectPooler objectPooler;
     Animator animator;
+    private float playerHealthScale;
+    public Text healthuitext;
 
     [HideInInspector] public bool debug;
     [HideInInspector] public int damageTakenPerSecond;
 
-    private float playerhealthscale;
-    public Text healthuitext;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         dropController = GetComponent<DropController>();
-        objectPooler = FindObjectOfType<ObjectPooler>();
         animator = GetComponent<Animator>();
         characterFader = GetComponent<CharacterFader>();
         A_Source = GetComponent<AudioSource>();
-
-        //if (FindObjectOfType<CharacterManager>())
+        
         if (CharacterManager.Instance)
         {
-            //switch (FindObjectOfType<CharacterManager>().playercount)
             switch (CharacterManager.Instance.playerCount)
             {
                 case 1:
-                    playerhealthscale = 1f;
+                    playerHealthScale = 1f;
                     break;
                 case 2:
-                    playerhealthscale = healthscale2P;
+                    playerHealthScale = healthscale2P;
                     break;
                 case 3:
-                    playerhealthscale = healthscale3P;
+                    playerHealthScale = healthscale3P;
                     break;
 
                 case 4:
-                    playerhealthscale = healthscale4P;
+                    playerHealthScale = healthscale4P;
                     break;
                 default:
-                    playerhealthscale = 1f;
+                    playerHealthScale = 1f;
                     Debug.LogWarning("problem finding character manager on health comp, defaulting playerhealthscale to 1");
                     break;
             }
         }
-        if (myClass == CharacterClass.Enemy)
-        {
-        }
-        else if (myClass == CharacterClass.Caravan)
-        {
-        }
-        else if (myClass == CharacterClass.Obj)
-        {
-        }
-
-        if (health_slider)
-        {
-            health_slider.maxValue = startHealth;
-        }
-
-        currentHealth = startHealth;
-
-        if (OnPlayerHealthChanged != null)
-            OnPlayerHealthChanged.Invoke();
-
-        DisplayHealth();
 
         if (GetComponent<PlayerInventory>())
         {
@@ -151,41 +124,44 @@ public class HealthComp : MonoBehaviour
         {
             if (myClass == CharacterClass.Enemy)
             {
-                //setenemy health
+                //set enemy health
                 switch (GameManager.Instance.DifficultyLevel)
                 {
                     case DifficultyLevel.Normal:
-                        //EditorHelper.NotSupportedException("DifficultyLevel.Normal");
-                        DisplayHealth();
                         break;
                     case DifficultyLevel.IronCat:
-                        currentHealth = Mathf.RoundToInt(currentHealth * healthscaleIroncat * playerhealthscale);
-                        startHealth = Mathf.RoundToInt(currentHealth * healthscaleIroncat * playerhealthscale);
-                        health_slider.maxValue = currentHealth;
-                        health_slider.value = currentHealth;
-                        DisplayHealth();
+                        startHealth = Mathf.RoundToInt(currentHealth * healthscaleIroncat * playerHealthScale);
                         break;
                     case DifficultyLevel.Catapocalypse:
-                        currentHealth = Mathf.RoundToInt(currentHealth * healthscaleCatpoc * playerhealthscale);
-                        startHealth = Mathf.RoundToInt(currentHealth * healthscaleCatpoc * playerhealthscale);
-                        health_slider.maxValue = currentHealth;
-                        health_slider.value = currentHealth;
-                        DisplayHealth();
+                        startHealth = Mathf.RoundToInt(currentHealth * healthscaleCatpoc * playerHealthScale);
                         break;
                     case DifficultyLevel.Catfight:
-                        EditorHelper.NotSupportedException("DifficultyLevel.Catfight");
                         break;
                     default:
-                        EditorHelper.NotSupportedException("default");
                         break;
                 }
             }
         }
 
-        if (myClass == CharacterClass.Caravan)
+        currentHealth = startHealth;
+
+        switch (myClass)
         {
-            healthuitext.text = currentHealth + " / " + startHealth;
-            DisplayHealth();
+            case CharacterClass.Player:
+                if (OnPlayerHealthChanged != null)
+                    OnPlayerHealthChanged.Invoke();
+                break;
+            case CharacterClass.Enemy:
+                if (OnEnemyHealthChanged != null)
+                    OnEnemyHealthChanged.Invoke();
+                break;
+            case CharacterClass.Caravan:
+                if (OnCaravanHealthChanged != null)
+                    OnCaravanHealthChanged.Invoke();
+                break;
+            case CharacterClass.Obj:
+            default:
+                break;
         }
     }
 
@@ -223,7 +199,10 @@ public class HealthComp : MonoBehaviour
     {
         isDead = false;
         currentHealth = startHealth;
-        health_slider.value = currentHealth;
+
+        if (OnPlayerHealthChanged != null)
+            OnPlayerHealthChanged.Invoke();
+
         GetComponent<CapsuleCollider>().enabled = true;
 
         if (myClass == CharacterClass.Player)
@@ -257,83 +236,42 @@ public class HealthComp : MonoBehaviour
         {
             currentHealth -= amount;
             currentHealth = Mathf.Max(0, currentHealth);
-            DisplayHealth();
-            if (myClass == CharacterClass.Caravan)
-            {
-                healthuitext.text = currentHealth + " / " + startHealth;
-                DisplayHealth();
-            }
-            if (myClass == CharacterClass.Player)
-            {
+
+            OnTakeDamageBehaviour();
+
+            if (currentHealth <= 0)
+                Dead();
+        }
+    }
+
+    private void OnTakeDamageBehaviour()
+    {
+        switch (myClass)
+        {
+            case CharacterClass.Player:
                 if (OnPlayerHealthChanged != null)
                     OnPlayerHealthChanged.Invoke();
 
                 A_Source.clip = MusicManager.Instance.Clip_Hit;
                 A_Source.volume = MusicManager.Instance.sfxVolume - 0.2f;
                 A_Source.Play();
-                //MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
-                Debug.Log("Hit");
-            }
-            if (myClass == CharacterClass.Enemy)
-            {
+                break;
+            case CharacterClass.Enemy:
+                if (OnEnemyHealthChanged != null)
+                    OnEnemyHealthChanged.Invoke();
+
                 A_Source.clip = MusicManager.Instance.Clip_Attack;
                 A_Source.volume = MusicManager.Instance.sfxVolume - 0.2f;
                 A_Source.Play();
-                // MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Attack);
-                //Debug.Log("Attack");
-            }
-            if (currentHealth <= 0)
-            {
-                Dead();
-            }
+                break;
+            case CharacterClass.Caravan:
+                if (OnCaravanHealthChanged != null)
+                    OnCaravanHealthChanged.Invoke();
+                break;
+            case CharacterClass.Obj:
+            default:
+                break;
         }
-    }
-
-    /// <summary>
-    /// Subtract health by some amount and knock back base on the damage dealer position
-    /// </summary>
-    /// <param name="damageDealer"> The transform of the damage dealer </param>
-    /// <param name="amount"> The amount that will be subtracted from health </param>
-    /// <param name="weaponForce"> The amount of knockback_force from the weapon </param>"
-    //public void TakeDamage(Transform damageDealer, int amount, float weaponForce)
-    //{
-    //    if (!isDead)
-    //    {
-    //        currentHealth -= amount;
-    //        currentHealth = Mathf.Max(0, currentHealth);
-    //        DisplayHealth();
-    //        if (myClass == CharacterClass.Caravan)
-    //        {
-    //            healthuitext.text = currentHealth + " / " + startHealth;
-    //        }
-    //        if (myClass == CharacterClass.Player)
-    //        {
-    //            MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Hit);
-    //        }
-    //        else if (myClass == CharacterClass.Enemy)
-    //        {
-                
-             
-    //            MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Attack);
-    //        }
-    //        KnockBack((damageDealer.position - transform.position) * 2f * weaponForce);
-
-    //        if (currentHealth == 0)
-    //        {
-    //            Dead();
-    //        }
-    //    }
-    //}
-
-    /// <summary>
-    /// Apply knock back force
-    /// </summary>
-    /// <param name="force"> The force that will be applied on the rigidbody </param>
-    private void KnockBack(Vector3 force)
-    {
-        rb.isKinematic = false;
-        rb.AddForce(force);
-        rb.isKinematic = true;
     }
 
     /// <summary>
@@ -360,7 +298,6 @@ public class HealthComp : MonoBehaviour
                 {
                     DeathBehaviour();
                 }
-
                 break;
             case CharacterClass.Caravan:
                 if (OnCaravanDestroyed != null)
@@ -372,14 +309,11 @@ public class HealthComp : MonoBehaviour
                 gameObject.SetActive(false);
                 break;
             case CharacterClass.Enemy:
-                //if (GetComponent<Animator>() != null)
-                //{
-                //    GetComponent<Animator>().SetTrigger("Die");
-                //}
-                if (OnDeath != null)
-                    OnDeath.Invoke();
+                if (OnEnemyDeath != null)
+                    OnEnemyDeath.Invoke();
+
                 dropController.DropItem();
-                //ObjectPooler.SetInactive(this.gameObject);
+
                 SpawnManager.EnemiesAlive--;
 
                 if (SpawnManager.EnemiesAlive <= 0)
@@ -452,14 +386,27 @@ public class HealthComp : MonoBehaviour
         {
             currentHealth += amount;
             currentHealth = Mathf.Min(currentHealth, startHealth);
-            DisplayHealth();
-            if(myClass == CharacterClass.Player && currentHealth < startHealth)
-            {
-                MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Bandage);
-            }
 
-            if (OnPlayerHealthChanged != null)
-                OnPlayerHealthChanged.Invoke();
+            switch (myClass)
+            {
+                case CharacterClass.Player:
+                    if (OnPlayerHealthChanged != null)
+                        OnPlayerHealthChanged.Invoke();
+                    if (currentHealth < startHealth)
+                        MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Bandage);
+                    break;
+                case CharacterClass.Enemy:
+                    if (OnEnemyHealthChanged != null)
+                        OnEnemyHealthChanged.Invoke();
+                    break;
+                case CharacterClass.Caravan:
+                    if (OnCaravanHealthChanged != null)
+                        OnCaravanHealthChanged.Invoke();
+                    break;
+                case CharacterClass.Obj:
+                default:
+                    break;
+            }
         }
     }
 
@@ -505,7 +452,6 @@ public class HealthComp : MonoBehaviour
     /// </summary>
     private void DisplayHealth()
     {
-
         if (hitParticle)
         {
             GameObject temp = Instantiate(hitParticle.gameObject);
@@ -516,10 +462,7 @@ public class HealthComp : MonoBehaviour
             Destroy(temp.gameObject, 1f);
         }
 
-        if (health_slider)
-            health_slider.value = currentHealth;
-
-        if (caravan)
+        if (myClass == CharacterClass.Caravan)
         {
             if (currentHealth <= 0)
             {

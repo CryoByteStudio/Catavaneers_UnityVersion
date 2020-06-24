@@ -50,9 +50,22 @@ namespace Catavaneer.MenuSystem
         private IEnumerator PlayRoutine()
         {
             FadeOn();
-            yield return new WaitForSeconds(FadeOnDuration + displayDuration);
+            yield return new WaitForSeconds(FadeOnDuration + (loadingBar ? 0.5f : displayDuration));
+
+            if (loadingBar)
+                yield return LoadingRoutine();
+
             FadeOff();
             Destroy(gameObject, FadeOffDuration);
+        }
+
+        private IEnumerator LoadingRoutine()
+        {
+            while (loadingBar && LevelLoader.IsLoading)
+            {
+                loadingBar.value = LevelLoader.LoadingProgress;
+                yield return null;
+            }
         }
 
         #endregion

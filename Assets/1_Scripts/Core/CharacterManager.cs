@@ -16,13 +16,12 @@ public struct PlayerData
 
 public class CharacterManager : SingletonEntity<CharacterManager>
 {
-    //public int LastEncounterIndex=0;
-    //public int CurrentDay = 0;
     [SerializeField] private int firstWorkingSceneIndex;
+    [SerializeField] private List<GameObject> playerSelectorIcons;
     [SerializeField] private List<PlayerData> playerData;
     public List<PlayerData> PlayerData => playerData;
 
-    bool isstarted = false;
+    private bool hasStarted = false;
     public int playerCount;
     public int maxPlayerCount;
 
@@ -37,16 +36,18 @@ public class CharacterManager : SingletonEntity<CharacterManager>
     void Start()
     {
         playerCount = Input.GetJoystickNames().Length;
-        Debug.Log(playerCount + " Players connected)");
-        //charNames.Add(default);
-        //charNames.Add(default);
-        //charNames.Add(default);
-        //charNames.Add(default);
+        Debug.Log(playerCount + " players connected.");
+
+        if (playerSelectorIcons != null && playerSelectorIcons.Count >= playerCount)
+        for (int i = 0; i < playerCount; i++)
+        {
+            playerSelectorIcons[i].SetActive(true);
+        }
+        
         for (int i = 0; i < maxPlayerCount; i++)
         {
             charNames.Add(default);
         }
-        Debug.Log("Start");
     }
 
     protected override void OnEnable()
@@ -56,15 +57,7 @@ public class CharacterManager : SingletonEntity<CharacterManager>
 
     private void OnSceneLoadedHandler(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
     {
-        isstarted = false;
-    }
-
-    private void OnLevelWasLoaded(int level)
-    {
-        if (level == 1)
-        {
-            Destroy(this.gameObject);
-        }
+        hasStarted = false;
     }
 
     protected override void OnDisable()
@@ -74,12 +67,11 @@ public class CharacterManager : SingletonEntity<CharacterManager>
 
     public void StartGame()
     {
-        if (!isstarted)
+        if (!hasStarted)
         {
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             MenuManager.LoadCampaignLevel();
             MenuManager.OpenGameMenu();
-            isstarted = true;
+            hasStarted = true;
         }
     }
 }

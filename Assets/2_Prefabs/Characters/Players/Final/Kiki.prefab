@@ -63,18 +63,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundCue: 5
-  playername: 
-  playerindex: 3
-  kills: 0
+  playerindex: 2
   startGold: 1000
   WeaponItem: {fileID: 0}
   ConsumableItem: {fileID: 0}
   TrapItem: {fileID: 0}
   plotref: {fileID: 0}
-  NameUI: {fileID: 0}
-  Trap1UI: {fileID: 0}
-  Trap2UI: {fileID: 0}
-  ConsumableUI: {fileID: 0}
   startingWeaponItem: {fileID: 0}
   buyButton: P2Buy
   useItemButton: P2Use Item
@@ -125,19 +119,22 @@ MonoBehaviour:
   myClass: 0
   startHealth: 100
   gman: {fileID: 0}
-  caravan: 0
   damagethreshold: 0
   thresholdamount: 0
+  healthscale2P: 1.1
+  healthscale3P: 1.3
+  healthscale4P: 1.5
+  healthscaleIroncat: 1.3
+  healthscaleCatpoc: 1.6
   soundCue: 4
   currentHealth: 100
   is_Regenerating: 0
   dmg_percentage: 0
   playerSpawnPos: {fileID: 0}
   playerMeshRenderer: {fileID: 8558412937233765536}
-  health_slider: {fileID: 8441017094229593987}
+  healthuitext: {fileID: 0}
   debug: 0
   damageTakenPerSecond: 0
-  healthuitext: {fileID: 0}
 --- !u!114 &102476635491636621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,11 +147,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fc7226a59ca0c439e0511a048c3424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4.5
-  dodgeSpeed: 20
+  speed: 4
+  dodgeSpeed: 10
   straffSensitiviy: 30
   animator: {fileID: 0}
-  dodgeCoolDown: 2
+  dodgeCoolDown: 1.2
   dodgeDirection: 4
   reverseValue: 1
   slowValue: 1
@@ -165,12 +162,20 @@ MonoBehaviour:
   inputVerticalRightThumb: P2Vertical Right Thumbstick
   dodgeButton: P2Dodge
   xmin: -25
-  xmax: 30
+  xmax: 25
   zmin: -18
-  zmax: 33
+  zmax: 18
   ymin: -2
   ymax: 30
   constraintbuffer: 0
+  FreezeEffect: {fileID: 351473243331623029, guid: 62fcd23ffbad5a049a4ab8da8a96ad64,
+    type: 3}
+  DamageEffect: {fileID: 1801800167772307329, guid: 4f02d057c68bdd544a01bbacb4e6ae8e,
+    type: 3}
+  SlowEffect: {fileID: 8430333900405559457, guid: 9146286075360754fa0dfcb12b50cd96,
+    type: 3}
+  ReverseEffect: {fileID: 3501388936892258340, guid: dce24fbfe8f8c0548b52ba9535f436b3,
+    type: 3}
 --- !u!95 &102476635491636627
 Animator:
   serializedVersion: 3
@@ -265,13 +270,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 1
-  playerID: 2
   renderer: {fileID: 8558412937233765536}
-  materialPropertyName: _Amount
   healthBarImage: {fileID: 4136424945309090555}
   from: 0
   to: 1
-  swapMaterial: 1
+  materialPropertyName: _Amount
   originalMaterial: {fileID: 2100000, guid: 1c80701e8381a0a4891fa5702688ed04, type: 2}
   newMaterial: {fileID: 2100000, guid: e1f73bf22b0c2cf41aa663c97ab10976, type: 2}
 --- !u!82 &382356193074515485
@@ -3666,11 +3669,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2942087399766296832, guid: 2d1feb05bea632143ba2903bc3f4001a,
+        type: 3}
+      propertyPath: healthCompRef
+      value: 
+      objectReference: {fileID: 4511412526849265050}
     - target: {fileID: 7357883830083187936, guid: 2d1feb05bea632143ba2903bc3f4001a,
         type: 3}
       propertyPath: m_Name
       value: Health Bar UI
       objectReference: {fileID: 0}
+    - target: {fileID: 8068535156827819326, guid: 2d1feb05bea632143ba2903bc3f4001a,
+        type: 3}
+      propertyPath: healthCompRef
+      value: 
+      objectReference: {fileID: 4511412526849265050}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d1feb05bea632143ba2903bc3f4001a, type: 3}
 --- !u!114 &4136424945309090555 stripped
@@ -3683,18 +3696,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8441017094229593987 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4228759947577681572, guid: 2d1feb05bea632143ba2903bc3f4001a,
-    type: 3}
-  m_PrefabInstance: {fileID: 5731699790019455271}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &7896183965184023581 stripped

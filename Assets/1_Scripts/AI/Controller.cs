@@ -404,26 +404,6 @@ namespace AI
         /// Remove a target from target list
         /// </summary>
         /// <param name="target"> The target to be removed from list </param>
-        //public void RemoveFromTargetList(HealthComp target)
-        //{
-        //    switch (type)
-        //    {
-        //        case EnemyType.Mouse:
-        //            RemoveFromMouseTargets(target);
-        //            break;
-        //        case EnemyType.Cat:
-        //            RemoveFromCatTargets(target);
-        //            break;
-        //        case EnemyType.Dog:
-        //            RemoveFromDogTargets(target);
-        //            break;
-        //    }
-        //}
-
-        /// <summary>
-        /// Remove a target from target list
-        /// </summary>
-        /// <param name="target"> The target to be removed from list </param>
         public static void RemoveFromTargetList(HealthComp target)
         {
             switch (target.myClass)

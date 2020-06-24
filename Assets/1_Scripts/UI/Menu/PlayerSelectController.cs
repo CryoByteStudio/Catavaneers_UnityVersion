@@ -19,36 +19,18 @@ public class PlayerSelectController : MonoBehaviour
     //public string inputBackButton;
     public bool lockedIn = false;
     public int totalPlayers = 0;
-    //public CharacterManager charman;
-    //public GameManager gman;
     public bool LockedIn => lockedIn;
 
     private PlayerSelectController[] playerSelectControllers;
 
     private void Start()
     {
-        //gman = FindObjectOfType<GameManager>();
-        //charman = FindObjectOfType<CharacterManager>();
         selectIndex = PlayerID;
         playerSelectControllers = FindObjectsOfType<PlayerSelectController>();
     }
 
     private void LateUpdate()
     {
-        //if (Input.GetKeyDown(KeyCode.T)) //Debug for if you only have one controller
-        //{
-            
-        //    foreach (PlayerSelectController player in FindObjectsOfType<PlayerSelectController>())
-        //    {
-        //        player.lockedin = true;
-        //        playerSelectReference.color = Color.black;
-
-        //    }
-        //    // StartCoroutine(gman.StartDelay());
-            
-        //    charman.StartGame();
-        //}
-
         if (!lockedIn)
         {
             if (Input.GetButtonDown(inputAcceptButton))
@@ -67,12 +49,6 @@ public class PlayerSelectController : MonoBehaviour
                 MoveLeft();
                 timer = Time.time + selectDelay;
             }
-        }
-
-        if (Input.GetKey(KeyCode.C))
-        {
-            lockedIn = false;
-            playerSelectReference.color = Color.white;
         }
     }
 
@@ -100,34 +76,11 @@ public class PlayerSelectController : MonoBehaviour
         }
 
         int playersLocked = 0;
-        //totalPlayers = charman.playerCount;
         totalPlayers = CharacterManager.Instance.playerCount;
-        //Debug.Log(charman.playercount);
         foreach (PlayerSelectController player in playerSelectControllers)
         {
             if (player.lockedIn)
             {
-                //if (player.selectIndex == 0)
-                //{
-                //    //charman.charNames[player.PlayerID]= "Russel";
-                //    CharacterManager.Instance.charNames[player.PlayerID] = "Russel";
-                //}
-                //else if (player.selectIndex == 1)
-                //{
-                //    //charman.charNames[player.PlayerID] = "Jojo";
-                //    CharacterManager.Instance.charNames[player.PlayerID] = "Jojo";
-                //}
-                //else if (player.selectIndex == 2)
-                //{
-                //    //charman.charNames[player.PlayerID] = "Kiki";
-                //    CharacterManager.Instance.charNames[player.PlayerID] = "Kiki";
-                //}
-                //else if (player.selectIndex == 3)
-                //{
-                //    //charman.charNames[player.PlayerID] = "Momo";
-                //    CharacterManager.Instance.charNames[player.PlayerID] = "Momo";
-                //}
-
                 CharacterManager.Instance.charNames[player.PlayerID] = selections[player.selectIndex].name;
                 Debug.Log(selections[player.selectIndex].name);
                 
@@ -137,7 +90,6 @@ public class PlayerSelectController : MonoBehaviour
         
         if (playersLocked >= totalPlayers)
         {
-            //charman.StartGame();
             CharacterManager.Instance.StartGame();
         }
     }
