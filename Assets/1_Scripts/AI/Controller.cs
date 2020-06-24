@@ -102,7 +102,7 @@ namespace AI
 
         public ParticleSystem hiteffect;
         public ParticleSystem grassR;
-        public  ParticleSystem grassL;
+        public ParticleSystem grassL;
 
         public ParticleSystem FreezeEffect;
         public ParticleSystem DamageEffect;
@@ -130,6 +130,7 @@ namespace AI
 
             GetWeaponReference();
             InitFSM();
+
             if (KickUpGrassR)
             {
                 grassR = Instantiate(KickUpGrassR, transform.position, Quaternion.identity, null);
@@ -139,8 +140,6 @@ namespace AI
             {
                 grassL = Instantiate(KickUpGrassL, transform.position, Quaternion.identity, null);
             }
-
-          
         }
 
         private void SetPosition()
@@ -509,10 +508,11 @@ namespace AI
         //----------------------------------------------------------------------------------------------
         private void Hit()
         {
-            if (hiteffect)
-            {
-                hiteffect.Play();
-            }
+            //if (hiteffect)
+            //{
+            //    hiteffect.Play();
+            //}
+
             if (OnHit != null)
                 OnHit.Invoke();
         }
@@ -536,7 +536,7 @@ namespace AI
         {
             if (grassR)
             {
-                grassL.Stop();
+                grassR.Stop();
                 grassR.transform.position = new Vector3(transform.position.x, grassR.transform.position.y, transform.position.z);
                 grassR.Play();
 

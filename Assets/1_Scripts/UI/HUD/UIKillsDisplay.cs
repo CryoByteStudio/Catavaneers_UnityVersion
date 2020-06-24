@@ -1,18 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 
 public class UIKillsDisplay : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private TMP_Text textField;
+    [SerializeField] private Fighter damageDealer;
+    
+    private int killCount;
+
+    private void OnEnable()
     {
-        
+        if (damageDealer)
+            damageDealer.OnEnemyKilled += UpdateKillUI;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateKillUI(int killCount)
     {
-        
+        if (textField)
+            textField.text = "Kills: " + killCount;
+    }
+
+    private void OnDisable()
+    {
+        if (damageDealer)
+            damageDealer.OnEnemyKilled -= UpdateKillUI;
     }
 }

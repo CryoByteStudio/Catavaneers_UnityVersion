@@ -16,7 +16,7 @@ public class Point : MonoBehaviour
 
     public bool IsPointOpen()
     {
-        return isOpen;
+        return isOpen = occupant == null;
     }
 
     public void SetOccupant(HealthComp occupant)
@@ -24,18 +24,10 @@ public class Point : MonoBehaviour
         this.occupant = occupant;
         if (occupant)
             occupant.OnEnemyDeath += OnEnemyDeathHandler;
-
-        // open if no occupant, close if has occupant
-        SetOpen(occupant == null);
     }
 
     private void OnEnemyDeathHandler()
     {
         SetOccupant(null);
-    }
-
-    public void SetOpen(bool value)
-    {
-        isOpen = value;
     }
 }

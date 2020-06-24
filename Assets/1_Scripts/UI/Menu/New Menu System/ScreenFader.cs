@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Catavaneer.Extensions;
+using DG.Tweening;
 
 namespace Catavaneer.MenuSystem
 {
@@ -12,7 +13,7 @@ namespace Catavaneer.MenuSystem
 
         [SerializeField] private float fadeOnDuration = 0f;
         [SerializeField] private float fadeOffDuration = 0f;
-        private List<MaskableGraphic> graphicsToFade;
+        protected List<MaskableGraphic> graphicsToFade;
 
         public float FadeOnDuration { get { return fadeOnDuration; } }
         public float FadeOffDuration { get { return fadeOffDuration; } }
@@ -35,6 +36,7 @@ namespace Catavaneer.MenuSystem
                 if (graphic)
                 {
                     graphic.CrossFadeAlpha(targetAlpha, duration, true);
+                    //graphic.DOFade(targetAlpha, duration);
                 }
             }
         }
@@ -61,14 +63,32 @@ namespace Catavaneer.MenuSystem
 
         public void FadeOff()
         {
-            SetAlpha(SOLID_APLHA);
-            CrossFadeAlpha(CLEAR_ALPHA, fadeOffDuration);
+            //SetAlpha(SOLID_APLHA);
+            //CrossFadeAlpha(CLEAR_ALPHA, fadeOffDuration);
+            if (graphicsToFade.Count == 0) return;
+
+            foreach (MaskableGraphic graphic in graphicsToFade)
+            {
+                if (graphic)
+                {
+                    graphic.DOFade(CLEAR_ALPHA, fadeOffDuration).From(SOLID_APLHA);
+                }
+            }
         }
 
         public void FadeOff(float fadeDuration)
         {
-            SetAlpha(SOLID_APLHA);
-            CrossFadeAlpha(CLEAR_ALPHA, fadeDuration);
+            //SetAlpha(SOLID_APLHA);
+            //CrossFadeAlpha(CLEAR_ALPHA, fadeDuration);
+            if (graphicsToFade.Count == 0) return;
+
+            foreach (MaskableGraphic graphic in graphicsToFade)
+            {
+                if (graphic)
+                {
+                    graphic.DOFade(CLEAR_ALPHA, fadeOffDuration).From(SOLID_APLHA);
+                }
+            }
         }
 
         public void FadeOn()

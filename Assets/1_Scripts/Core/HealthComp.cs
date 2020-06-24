@@ -244,6 +244,20 @@ public class HealthComp : MonoBehaviour
         }
     }
 
+    public void TakeDamage(Fighter damageDealer, int amount)
+    {
+        if (!isDead)
+        {
+            currentHealth -= amount;
+            currentHealth = Mathf.Max(0, currentHealth);
+
+            OnTakeDamageBehaviour();
+
+            if (currentHealth <= 0)
+                Dead(damageDealer);
+        }
+    }
+
     private void OnTakeDamageBehaviour()
     {
         switch (myClass)
@@ -251,6 +265,12 @@ public class HealthComp : MonoBehaviour
             case CharacterClass.Player:
                 if (OnPlayerHealthChanged != null)
                     OnPlayerHealthChanged.Invoke();
+
+                if (currentHealth <= damagethreshold && currentHealth > 0)
+                {
+                    damagethreshold -= thresholdamount;
+                    GetComponent<CaravanDamage>().TriggerDamageStageParticles();
+                }
 
                 A_Source.clip = MusicManager.Instance.Clip_Hit;
                 A_Source.volume = MusicManager.Instance.sfxVolume - 0.2f;
@@ -284,51 +304,80 @@ public class HealthComp : MonoBehaviour
         switch (myClass)
         {
             case CharacterClass.Player:
-                Debug.Log("Player Dead");
-
-                if (GameManager.Instance.DifficultyLevel == DifficultyLevel.Catfight)
-                {
-                    if (GetComponent<PlayerInventory>() == FindObjectOfType<Goldbag>().holdersInventory)
-                    {
-                        FindObjectOfType<Goldbag>().DropBag();
-                    }
-                }
-
-                if (animator != null)
-                {
-                    DeathBehaviour();
-                }
+                PlayerDeathBehaviour();
                 break;
             case CharacterClass.Caravan:
-                if (OnCaravanDestroyed != null)
-                    OnCaravanDestroyed.Invoke();
-                Debug.Log("Caravan Dead");
-                break;
-            case CharacterClass.Obj:
-                dropController.DropItem();
-                gameObject.SetActive(false);
+                CaravanDestroyedBehaviour();
                 break;
             case CharacterClass.Enemy:
+                EnemyDeathBehaviour();
+
                 if (OnEnemyDeath != null)
                     OnEnemyDeath.Invoke();
-
-                dropController.DropItem();
-
-                SpawnManager.EnemiesAlive--;
-
-                if (SpawnManager.EnemiesAlive <= 0)
-                {
-                    FindObjectOfType<SpawnManager>().SetNextWaveTime();
-                }
-
+                break;
+            case CharacterClass.Obj:
+            default:
                 break;
         }
     }
 
-    private void DeathBehaviour()
+    private void Dead(Fighter damageDealer)
     {
-        animator.SetTrigger("Die");
-        StartCoroutine(RespawnRoutine());
+        isDead = true;
+
+        switch (myClass)
+        {
+            case CharacterClass.Player:
+                PlayerDeathBehaviour();
+                break;
+            case CharacterClass.Caravan:
+                CaravanDestroyedBehaviour();
+                break;
+            case CharacterClass.Enemy:
+                EnemyDeathBehaviour();
+                damageDealer.AddKill();
+                break;
+            case CharacterClass.Obj:
+            default:
+                break;
+        }
+    }
+
+    private void EnemyDeathBehaviour()
+    {
+        dropController.DropItem();
+
+        SpawnManager.EnemiesAlive--;
+
+        if (SpawnManager.EnemiesAlive <= 0)
+        {
+            FindObjectOfType<SpawnManager>().SetNextWaveTime();
+        }
+    }
+
+    private void CaravanDestroyedBehaviour()
+    {
+        GetComponent<CaravanDamage>().TriggerFinalDamageStageParticle();
+
+        if (OnCaravanDestroyed != null)
+            OnCaravanDestroyed.Invoke();
+    }
+
+    private void PlayerDeathBehaviour()
+    {
+        if (GameManager.Instance.DifficultyLevel == DifficultyLevel.Catfight)
+        {
+            if (GetComponent<PlayerInventory>() == FindObjectOfType<Goldbag>().holdersInventory)
+            {
+                FindObjectOfType<Goldbag>().DropBag();
+            }
+        }
+
+        if (animator != null)
+        {
+            animator.SetTrigger("Die");
+            StartCoroutine(RespawnRoutine());
+        }
     }
 
     /// <summary>
@@ -468,9 +517,10 @@ public class HealthComp : MonoBehaviour
             {
                 GetComponent<CaravanDamage>().TriggerFinalDamageStageParticle();
             }
-            else if (currentHealth <= damagethreshold) {
+            else if (currentHealth <= damagethreshold)
+            {
                 damagethreshold -= thresholdamount;
-            GetComponent<CaravanDamage>().TriggerDamageStageParticles();
+                GetComponent<CaravanDamage>().TriggerDamageStageParticles();
             }
         }
     }

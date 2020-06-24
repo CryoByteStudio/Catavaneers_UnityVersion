@@ -51,6 +51,11 @@ namespace AI.States
             Reset();
         }
 
+        private void OnEnemyDeathHandler()
+        {
+            throw new System.NotImplementedException();
+        }
+
         private void Reset()
         {
             destination = Vector3.zero;

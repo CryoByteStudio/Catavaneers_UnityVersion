@@ -39,9 +39,11 @@ public class CharacterManager : SingletonEntity<CharacterManager>
         Debug.Log(playerCount + " players connected.");
 
         if (playerSelectorIcons != null && playerSelectorIcons.Count >= playerCount)
-        for (int i = 0; i < playerCount; i++)
         {
-            playerSelectorIcons[i].SetActive(true);
+            for (int i = 0; i < playerCount; i++)
+            {
+                playerSelectorIcons[i].SetActive(true);
+            }
         }
         
         for (int i = 0; i < maxPlayerCount; i++)

@@ -1,14 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class UINameDisplay : MonoBehaviour
 {
     [SerializeField] private TMP_Text textField;
+    [SerializeField] private PlayerInfo playerInfoRef;
+
+    private string characterName;
 
     private void Start()
     {
-        // TODO Do something based on specification
+        if (CharacterManager.Instance)
+        {
+            characterName = CharacterManager.Instance.charNames.ElementAtOrDefault(playerInfoRef.PlayerID);
+
+            if (textField && playerInfoRef && !string.IsNullOrEmpty(characterName))
+                textField.text = CharacterManager.Instance.charNames[playerInfoRef.PlayerID];
+            else
+                textField.text = "Player " + playerInfoRef.PlayerID;
+        }
     }
 }

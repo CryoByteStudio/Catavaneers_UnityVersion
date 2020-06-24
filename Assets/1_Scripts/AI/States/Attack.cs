@@ -16,8 +16,8 @@ namespace AI.States
         private int attackDamage = 0;
         private float attackRange = 0;
         private float attackInterval = 0;
-        private float speedOffset = 0;
-        private GameObject go = null;
+        private float speedOffsetThreshold = 0.5f;
+        private GameObject damagePopupPrefab = null;
 
         // internal variables
         private float timeSinceLastAttack = Mathf.Infinity;
@@ -38,8 +38,8 @@ namespace AI.States
 
         private void Init()
         {
-            if (!go)
-                go = Resources.Load("Damage Popup") as GameObject;
+            if (!damagePopupPrefab)
+                damagePopupPrefab = Resources.Load("Damage Popup") as GameObject;
             if (!controller)
                 Debug.LogWarning("Controller is not set in Attack state");
             if (!agent)
@@ -48,15 +48,13 @@ namespace AI.States
                 animatorController = controller.AnimatorController;
             if (!equippedWeapon)
                 equippedWeapon = controller.EquippedWeapon;
-            if (speedOffset == 0)
-                speedOffset = Random.Range(-0.2f, 0.2f);
 
             target = controller.CurrentTarget;
             //attackDamage = controller.AttackDamage;
             attackDamage = controller.BaseAttackDamage + equippedWeapon.GetDamage();
             attackRange = controller.AttackRange;
             //attackInterval = controller.AttackInterval;
-            attackInterval = equippedWeapon.GetWeaponAttackSpeed() + speedOffset;
+            attackInterval = equippedWeapon.GetWeaponAttackSpeed();
         }
 
         override public void Update(float deltaTime)
@@ -117,22 +115,40 @@ namespace AI.States
         {
             HealthComp targetHealth = target.GetComponent<HealthComp>();
 
-            if (targetHealth && !targetHealth.IsDead() && controller.DistanceToTarget <= attackRange)
+            if (targetHealth && !targetHealth.IsDead())
             {
-                if (go)
+                if (damagePopupPrefab)
                 {
-                    DamagePopup dp = Object.Instantiate(go, target.position, Quaternion.identity).GetComponent<DamagePopup>();
-                    if (dp)
-                        dp.Play(attackDamage);
-                }
+                    DamagePopup damagePopupInstance = Object.Instantiate(damagePopupPrefab, target.position, Quaternion.identity).GetComponent<DamagePopup>();
 
-                targetHealth.TakeDamage(attackDamage);
-                //Debug.Log("[" + controller.name + "] dealt " + damage + " to [" + target.name + "]");
+                    if (controller.DistanceToTarget <= attackRange)
+                    {
+                        if (damagePopupInstance)
+                            damagePopupInstance.Play(attackDamage);
+
+                        if (controller.hiteffect)
+                            controller.hiteffect.Play();
+
+                        targetHealth.TakeDamage(attackDamage);
+                    }
+                    else
+                    {
+                        if (damagePopupInstance)
+                            damagePopupInstance.Play("MISS");
+                    }
+                }
             }
             else
             {
                 HandleTargetIsDead(targetHealth);
             }
+
+            RandomizeAttackInterval();
+        }
+
+        private void RandomizeAttackInterval()
+        {
+            attackInterval = Random.Range(-speedOffsetThreshold / 2, speedOffsetThreshold / 2);
         }
 
         /// <summary>

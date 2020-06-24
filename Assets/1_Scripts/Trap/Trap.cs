@@ -107,10 +107,11 @@ public class Trap : MonoBehaviour
 
                 if(colliders[i].gameObject.tag == "Enemy")
                 {
-                    if(colliders[i].gameObject.GetComponent<Controller>() != null)
+                    if (colliders[i].gameObject.GetComponent<Controller>() != null)
                     {
                         CurrentTime++;
                         Controller EnemyController = colliders[i].gameObject.GetComponent<Controller>();
+
                         if (type == TrapType.Reverse)
                         {
                             EnemyController.ToggleFrenzyStateWithTimer(duration);
@@ -119,14 +120,18 @@ public class Trap : MonoBehaviour
                                 EnemyController.ReverseEffect.Play();
                             }
                         }
-                        if (type == TrapType.Freeze) {
+
+                        if (type == TrapType.Freeze)
+                        {
                             EnemyController.SetTemporaryMovementSpeed(EnemyController.ChaseSpeed * SpeedModifier, duration);
                             if (EnemyController.FreezeEffect)
                             {
                                 EnemyController.FreezeEffect.Play();
                             }
-                                }
-                        if (type == TrapType.Slow) { 
+                        }
+
+                        if (type == TrapType.Slow)
+                        {
                             EnemyController.SetTemporaryMovementSpeed(EnemyController.ChaseSpeed * SpeedModifier, duration);
                             if (EnemyController.SlowEffect)
                             {
@@ -134,6 +139,7 @@ public class Trap : MonoBehaviour
                             }
                         }
                     }
+
                     if (type == TrapType.Damage) colliders[i].GetComponent<HealthComp>().TakeDamage(TrapDamage);
                 }
             }

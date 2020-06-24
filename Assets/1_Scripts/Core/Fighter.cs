@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,10 @@ public class Fighter : MonoBehaviour
     PlayerController player;
 
     public string attackAxis;
+
+    public event Action<int> OnEnemyKilled;
+    private int killCount;
+
     void Start()
     {
         if (currentWeapon == null)
@@ -131,11 +136,19 @@ public class Fighter : MonoBehaviour
         currentWeaponCollider.GetComponent<BoxCollider>().enabled = false;
     }
 
+    public void AddKill()
+    {
+        killCount++;
+
+        if (OnEnemyKilled != null)
+            OnEnemyKilled.Invoke(killCount);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
         {
-            other.GetComponent<HealthComp>().TakeDamage(currentWeapon.GetDamage());
+            other.GetComponent<HealthComp>().TakeDamage(this, currentWeapon.GetDamage());
         } else if (other.tag == "Player" && FindObjectOfType<GameDifficultyManager>().dif == DifficultyLevel.Catfight)
         {
             other.GetComponent<HealthComp>().TakeDamage(currentWeapon.GetDamage());
