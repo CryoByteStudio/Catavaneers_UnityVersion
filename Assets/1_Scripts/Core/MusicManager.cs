@@ -11,7 +11,7 @@ using Catavaneer.MenuSystem;
 using Catavaneer.Singleton;
 using Catavaneer.LevelManagement;
 
-public enum SoundClipsInts { Default, GoldPickUp, Attack, Hit, Death, Buying, Bandage, TrapTrigger };
+public enum SoundClipsInts { Default, GoldPickUp, Attack, Hit, Death, Buying, Bandage, TrapTrigger, RussellCharSelect,MomoCharSelect,JojoCharSelect,KikiCharSelect};
 
 [RequireComponent(typeof(AudioSource))]
 public class MusicManager : SingletonEntity<MusicManager>
@@ -26,6 +26,7 @@ public class MusicManager : SingletonEntity<MusicManager>
     public string menuStateEvent = "";
     public FMOD.Studio.EventInstance menuState;
     public float sfxVolume;
+    private float charVolume;
     private bool doneOnce = false;
 
     bool isPLayingEvent = false;
@@ -42,6 +43,10 @@ public class MusicManager : SingletonEntity<MusicManager>
     public AudioClip Clip_Buying;
     public AudioClip Clip_Bandage;
     public AudioClip Clip_TrapTrigger;
+    public AudioClip RussellSelect;
+    public AudioClip MomoSelect;
+    public AudioClip KikiSelect;
+    public AudioClip JojoSelect;
 
     //Singleton accessor
     //public static MusicManager Instance;
@@ -133,6 +138,15 @@ public class MusicManager : SingletonEntity<MusicManager>
 
     void Update()
     {
+        if(isMuted == true)
+        {
+            charVolume = 0;
+        }
+        else
+        {
+            charVolume = PlayerPrefs.GetFloat("MVolume") + 1f;
+        }
+
         if (!LevelLoader.IsGameLevel() && !isPLayingEvent)
         {
             menuState.start();
@@ -198,12 +212,12 @@ public class MusicManager : SingletonEntity<MusicManager>
         switch (TrackID)
         {
             case SoundClipsInts.GoldPickUp:
-                A_Source.PlayOneShot(Clip_GoldPickUp, sfxVolume + 0.1f);
+                A_Source.PlayOneShot(Clip_GoldPickUp, sfxVolume);
                 break;
 
             case SoundClipsInts.Attack:
 
-                A_Source.PlayOneShot(Clip_Attack, sfxVolume - 0.2f);
+                A_Source.PlayOneShot(Clip_Attack, sfxVolume);
                 break;
 
             case SoundClipsInts.Hit:
@@ -218,11 +232,24 @@ public class MusicManager : SingletonEntity<MusicManager>
                 break;
 
             case SoundClipsInts.Bandage:
-                A_Source.PlayOneShot(Clip_Bandage, sfxVolume + 0.2f);
+                A_Source.PlayOneShot(Clip_Bandage, sfxVolume);
                 break;
 
             case SoundClipsInts.TrapTrigger:
-                A_Source.PlayOneShot(Clip_TrapTrigger, sfxVolume + 0.2f);
+                A_Source.PlayOneShot(Clip_TrapTrigger, sfxVolume);
+                break;
+
+            case SoundClipsInts.RussellCharSelect:
+                A_Source.PlayOneShot(RussellSelect, charVolume);
+                break;
+            case SoundClipsInts.JojoCharSelect:
+                A_Source.PlayOneShot(JojoSelect, charVolume);
+                break;
+            case SoundClipsInts.MomoCharSelect:
+                A_Source.PlayOneShot(MomoSelect, charVolume);
+                break;
+            case SoundClipsInts.KikiCharSelect:
+                A_Source.PlayOneShot(KikiSelect, charVolume);
                 break;
 
             default:
