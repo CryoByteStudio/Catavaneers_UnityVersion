@@ -7,13 +7,229 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0000018A6AE05938 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 0000018A46051FB8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] PlaybackSystem::init                     : done
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
+[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 132)
+[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 132)
+[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 132)
+[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 132)
+[LOG] SystemI::createSound                     : filename = Catavaneers_music\Build\Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 00000189A942E188 : node = 0000018A474F8750
+[LOG] SystemI::createSound                     : add node to async list : head = 00000189A76A7DE8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000189A942E188
+[LOG] SystemI::createSoundInternal             :     Create name='Catavaneers_music\Build\Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSound                     : filename = Catavaneers_music\Build\Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1872928
+[LOG] SystemI::createSound                     :     setdata soundi = 00000189A942E848 : node = 0000018A474F9150
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 6624
+[LOG] SystemI::createSound                     :     add node to async list : head = 00000189A76A7DE8.  list count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSound                     :     filename = Catavaneers_music\Build\Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000018A474F8860
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     :     setdata soundi = 00000189A942E338 : node = 0000018A474F89D0
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSound                     :     add node to async list : head = 00000189A76A7DE8.  list count = 1
+[LOG] SystemI::createSound                     :     filename = Catavaneers_music\Build\Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     :     setdata soundi = 00000189A942E4E8 : node = 0000018A474F84D0
+[LOG] SystemI::createSound                     :     add node to async list : head = 00000189A76A7DE8.  list count = 2
+[LOG] SystemI::createSound                     :     filename = Catavaneers_music\Build\Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     :     setdata soundi = 00000189A942E698 : node = 0000018A474F8C50
+[LOG] SystemI::createSound                     :     add node to async list : head = 00000189A76A7DE8.  list count = 3
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Combat_Caravan50_loop', format=5, channels=2, frequency=48000, lengthbytes=236992, lengthpcm=1344000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.146925.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000189A942E188
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000189A942E848
+[LOG] SystemI::createSoundInternal             :     Create name='Catavaneers_music\Build\Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1872928
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 6624
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000018A474F9260
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Combat_Caravan25_loop_2', format=5, channels=2, frequency=48000, lengthbytes=264416, lengthpcm=1344000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.071364.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000189A942E848
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000189A942E338
+[LOG] SystemI::createSoundInternal             :     Create name='Catavaneers_music\Build\Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1872928
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 6624
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000018A474F8AE0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Combat_Drum_loop', format=5, channels=2, frequency=48000, lengthbytes=258528, lengthpcm=1344000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.065071.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000189A942E338
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000189A942E4E8
+[LOG] SystemI::createSoundInternal             :     Create name='Catavaneers_music\Build\Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1872928
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 6624
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000018A474F85E0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Combat_Enemies_loop_2', format=5, channels=2, frequency=48000, lengthbytes=324128, lengthpcm=1344000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.100146.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000189A942E4E8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000189A942E698
+[LOG] SystemI::createSoundInternal             :     Create name='Catavaneers_music\Build\Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1872928
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 6624
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000018A474F8D60
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Combat_Enemies_loop_1', format=5, channels=2, frequency=48000, lengthbytes=333152, lengthpcm=1344000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.101225.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000189A942E698
+[LOG] SoundI::release                          : Menu+Intro_Catavaneers (0000018A6A32E088)
+[LOG] SoundI::release                          :     Menu+Intro_Catavaneers (0000018A46E73F98)
+[LOG] SoundI::release                          :     Menu+Intro_Catavaneers (00000189570A1708)
+[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 132)
+[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 132)
+[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 132)
+[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 132)
+[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 132)
+[LOG] SystemI::createSound                     : filename = Catavaneers_music\Build\Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000018A474FC588 : node = 0000018A474F8390
+[LOG] SystemI::createSound                     : add node to async list : head = 00000189A76A7DE8.  list count = 0
+[LOG] SystemI::createSound                     : filename = Catavaneers_music\Build\Desktop/Master.bank : mode 02010082
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000018A474FC588
+[LOG] SystemI::createSoundInternal             :     Create name='Catavaneers_music\Build\Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSound                     :     setdata soundi = 0000018A474FC228 : node = 0000018A474F8890
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1872928
+[LOG] SystemI::createSound                     :     add node to async list : head = 00000189A76A7DE8.  list count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 6624
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSound                     :     filename = Catavaneers_music\Build\Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000018A474F84A0
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSound                     :     setdata soundi = 0000018A474FC3D8 : node = 0000018A474F8610
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSound                     :     add node to async list : head = 00000189A76A7DE8.  list count = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSound                     :     filename = Catavaneers_music\Build\Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     :     setdata soundi = 00000189A8C3EE38 : node = 0000018A474F8D90
+[LOG] SystemI::createSound                     :     add node to async list : head = 00000189A76A7DE8.  list count = 2
+[LOG] SystemI::createSound                     :     filename = Catavaneers_music\Build\Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     :     setdata soundi = 00000189A8C3EFE8 : node = 0000018A474F8B10
+[LOG] SystemI::createSound                     :     add node to async list : head = 00000189A76A7DE8.  list count = 3
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Combat_Caravan50_loop', format=5, channels=2, frequency=48000, lengthbytes=236992, lengthpcm=1344000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.146925.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000018A474FC588
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000018A474FC228
+[LOG] SystemI::createSoundInternal             :     Create name='Catavaneers_music\Build\Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1872928
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 6624
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000018A474F89A0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Combat_Caravan25_loop_2', format=5, channels=2, frequency=48000, lengthbytes=264416, lengthpcm=1344000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.071364.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000018A474FC228
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000018A474FC3D8
+[LOG] SystemI::createSoundInternal             :     Create name='Catavaneers_music\Build\Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1872928
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 6624
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000018A474F8720
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Combat_Drum_loop', format=5, channels=2, frequency=48000, lengthbytes=258528, lengthpcm=1344000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.065071.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000018A474FC3D8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000189A8C3EE38
+[LOG] SystemI::createSoundInternal             :     Create name='Catavaneers_music\Build\Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1872928
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 6624
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000018A474F8EA0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Combat_Enemies_loop_2', format=5, channels=2, frequency=48000, lengthbytes=324128, lengthpcm=1344000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.100146.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000189A8C3EE38
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000189A8C3EFE8
+[LOG] SystemI::createSoundInternal             :     Create name='Catavaneers_music\Build\Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1872928
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 6624
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000018A474F8C20
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Combat_Enemies_loop_1', format=5, channels=2, frequency=48000, lengthbytes=333152, lengthpcm=1344000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.101225.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000189A8C3EFE8
+[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 132)
+[LOG] SoundI::release                          : Combat_Enemies_loop_1 (00000189A942E698)
+[LOG] SoundI::release                          :     Combat_Enemies_loop_1 (0000018A46E75318)
+[LOG] SoundI::release                          :     Combat_Enemies_loop_1 (00000189D9581DE8)
+[LOG] SoundI::release                          : Combat_Enemies_loop_2 (00000189A942E4E8)
+[LOG] SoundI::release                          :     Combat_Enemies_loop_2 (0000018A46E79418)
+[LOG] SoundI::release                          :     Combat_Enemies_loop_2 (00000189D9581578)
+[LOG] SoundI::release                          : Combat_Caravan25_loop_2 (00000189A942E848)
+[LOG] SoundI::release                          :     Combat_Caravan25_loop_2 (0000018A46E79A98)
+[LOG] SoundI::release                          :     Combat_Caravan25_loop_2 (00000189D9581218)
+[LOG] SoundI::release                          : Combat_Caravan50_loop (00000189A942E188)
+[LOG] SoundI::release                          :     Combat_Caravan50_loop (0000018A46E757F8)
+[LOG] SoundI::release                          :     Combat_Caravan50_loop (00000189D9581C38)
+[LOG] SoundI::release                          : Combat_Drum_loop (00000189A942E338)
+[LOG] SoundI::release                          :     Combat_Drum_loop (0000018A46E78BF8)
+[LOG] SoundI::release                          :     Combat_Drum_loop (00000189D95813C8)
+[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 132)
+[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 132)
+[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 132)
+[LOG] SoundI::release                          : Combat_Enemies_loop_1 (00000189A8C3EFE8)
+[LOG] SoundI::release                          :     Combat_Enemies_loop_1 (0000018A46E795B8)
+[LOG] SoundI::release                          :     Combat_Enemies_loop_1 (00000189D3308E68)
+[LOG] SoundI::release                          : Combat_Enemies_loop_2 (00000189A8C3EE38)
+[LOG] SoundI::release                          :     Combat_Enemies_loop_2 (0000018A46E6F678)
+[LOG] SoundI::release                          :     Combat_Enemies_loop_2 (00000189D3309018)
+[LOG] SoundI::release                          : Combat_Drum_loop (0000018A474FC3D8)
+[LOG] SoundI::release                          :     Combat_Drum_loop (0000018A46E6F338)
+[LOG] SoundI::release                          :     Combat_Drum_loop (00000189D33096D8)
+[LOG] SoundI::release                          : Combat_Caravan25_loop_2 (0000018A474FC228)
+[LOG] SoundI::release                          :     Combat_Caravan25_loop_2 (0000018A46E6E638)
+[LOG] SoundI::release                          :     Combat_Caravan25_loop_2 (00000189D3308CB8)
+[LOG] SoundI::release                          : Combat_Caravan50_loop (0000018A474FC588)
+[LOG] SoundI::release                          :     Combat_Caravan50_loop (0000018A46E73F98)
+[LOG] SoundI::release                          :     Combat_Caravan50_loop (00000189D3308B08)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SystemI::close                           : Closed.
 [LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 132)
 [LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 132)
 [LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 132)
@@ -25,3 +241,5 @@
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] SystemI::close                           : Closed.
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.
