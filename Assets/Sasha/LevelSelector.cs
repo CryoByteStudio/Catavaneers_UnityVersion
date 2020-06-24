@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Catavaneer
 {
@@ -13,7 +14,7 @@ namespace Catavaneer
         public TravelPoint lastEncounter;
         public TravelPoint currentPoint;
         public GameObject Caravan;
-        public Text dayttext;
+        public TMP_Text dayttext;
         bool travelling = false;
         //public CharacterManager cman;
         float startLerpTime;
