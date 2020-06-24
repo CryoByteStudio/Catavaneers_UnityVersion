@@ -3175,7 +3175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6887192146109156836}
   m_Layer: 0
-  m_Name: CurrentCore
+  m_Name: Core_Current
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6516,7 +6516,7 @@ PrefabInstance:
     - target: {fileID: 723549540930595706, guid: a95931558a771374cbe419a360569101,
         type: 3}
       propertyPath: item_cost
-      value: 400
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 723549540930595706, guid: a95931558a771374cbe419a360569101,
         type: 3}
@@ -6532,7 +6532,7 @@ PrefabInstance:
     - target: {fileID: 1491101056376090419, guid: a95931558a771374cbe419a360569101,
         type: 3}
       propertyPath: item_cost
-      value: 400
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1491101056376090419, guid: a95931558a771374cbe419a360569101,
         type: 3}
@@ -6543,7 +6543,7 @@ PrefabInstance:
     - target: {fileID: 1653012100206141596, guid: a95931558a771374cbe419a360569101,
         type: 3}
       propertyPath: item_cost
-      value: 200
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 1917064314397546265, guid: a95931558a771374cbe419a360569101,
         type: 3}
@@ -6584,12 +6584,17 @@ PrefabInstance:
     - target: {fileID: 3245100270171981154, guid: a95931558a771374cbe419a360569101,
         type: 3}
       propertyPath: item_cost
-      value: 200
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 3245100271268609365, guid: a95931558a771374cbe419a360569101,
         type: 3}
       propertyPath: item_cost
-      value: 200
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888806323161953312, guid: a95931558a771374cbe419a360569101,
+        type: 3}
+      propertyPath: m_Name
+      value: ReverseTrap_area
       objectReference: {fileID: 0}
     - target: {fileID: 3950954786569255795, guid: a95931558a771374cbe419a360569101,
         type: 3}
@@ -6605,6 +6610,11 @@ PrefabInstance:
         type: 3}
       propertyPath: item_cost
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184472875001310516, guid: a95931558a771374cbe419a360569101,
+        type: 3}
+      propertyPath: m_Name
+      value: damageTrap_area
       objectReference: {fileID: 0}
     - target: {fileID: 6096537143711192903, guid: a95931558a771374cbe419a360569101,
         type: 3}
@@ -6717,6 +6727,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: da4cc63920a1623448e110a78ede7d3b,
         type: 3}
+    - target: {fileID: 6743497994694271520, guid: a95931558a771374cbe419a360569101,
+        type: 3}
+      propertyPath: m_Name
+      value: SlowTrap_area
+      objectReference: {fileID: 0}
     - target: {fileID: 6816855509112148348, guid: a95931558a771374cbe419a360569101,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6803,10 +6818,15 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 34fdda24f1c78d34c92c35b71453b2cc, type: 2}
+    - target: {fileID: 8241476368693863703, guid: a95931558a771374cbe419a360569101,
+        type: 3}
+      propertyPath: m_Name
+      value: FreezeTrap_area
+      objectReference: {fileID: 0}
     - target: {fileID: 8618044691975198004, guid: a95931558a771374cbe419a360569101,
         type: 3}
       propertyPath: item_cost
-      value: 600
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 8618044691975198004, guid: a95931558a771374cbe419a360569101,
         type: 3}
@@ -6876,6 +6896,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: b51a64bd9715b1d488ee15ccec3f1dcf,
         type: 3}
+    - target: {fileID: 9060838179628189510, guid: a95931558a771374cbe419a360569101,
+        type: 3}
+      propertyPath: item_cost
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a95931558a771374cbe419a360569101, type: 3}
 --- !u!114 &8258437305221959786 stripped
