@@ -15,20 +15,23 @@ public class UIHealthDisplay : MonoBehaviour
 
     private void OnEnable()
     {
-        switch (characterClass)
+        if (healthCompRef)
         {
-            case CharacterClass.Player:
-                healthCompRef.OnPlayerHealthChanged += UpdateHealthUI;
-                break;
-            case CharacterClass.Enemy:
-                healthCompRef.OnEnemyHealthChanged += UpdateHealthUI;
-                break;
-            case CharacterClass.Caravan:
-                healthCompRef.OnCaravanHealthChanged += UpdateHealthUI;
-                break;
-            case CharacterClass.Obj:
-            default:
-                break;
+            switch (characterClass)
+            {
+                case CharacterClass.Player:
+                    healthCompRef.OnPlayerHealthChanged += UpdateHealthUI;
+                    break;
+                case CharacterClass.Enemy:
+                    healthCompRef.OnEnemyHealthChanged += UpdateHealthUI;
+                    break;
+                case CharacterClass.Caravan:
+                    healthCompRef.OnCaravanHealthChanged += UpdateHealthUI;
+                    break;
+                case CharacterClass.Obj:
+                default:
+                    break;
+            }
         }
     }
 
@@ -60,20 +63,23 @@ public class UIHealthDisplay : MonoBehaviour
 
     private void OnDisable()
     {
-        switch (characterClass)
+        if (healthCompRef)
         {
-            case CharacterClass.Player:
-                healthCompRef.OnPlayerHealthChanged += UpdateHealthUI;
-                break;
-            case CharacterClass.Enemy:
-                healthCompRef.OnEnemyHealthChanged += UpdateHealthUI;
-                break;
-            case CharacterClass.Caravan:
-                healthCompRef.OnCaravanHealthChanged += UpdateHealthUI;
-                break;
-            case CharacterClass.Obj:
-            default:
-                break;
+            switch (characterClass)
+            {
+                case CharacterClass.Player:
+                    healthCompRef.OnPlayerHealthChanged += UpdateHealthUI;
+                    break;
+                case CharacterClass.Enemy:
+                    healthCompRef.OnEnemyHealthChanged += UpdateHealthUI;
+                    break;
+                case CharacterClass.Caravan:
+                    healthCompRef.OnCaravanHealthChanged += UpdateHealthUI;
+                    break;
+                case CharacterClass.Obj:
+                default:
+                    break;
+            }
         }
     }
 }

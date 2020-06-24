@@ -13,7 +13,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3001
+  m_CustomRenderQueue: 2002
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -63,6 +63,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _RampTex:
+        m_Texture: {fileID: 2800000, guid: 736407722aba42143893cd11e552bed8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Amount: 0
     - _BumpScale: 1
@@ -85,6 +89,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BurnColor: {r: 1, g: 0, b: 0, a: 1}
-    - _Color: {r: 1.7207954, g: 1.7207954, b: 1.7207954, a: 1}
+    - _Color: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 1}
     - _ColorXRay: {r: 4, g: 0, b: 0.17060089, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SilColor: {r: 4, g: 0, b: 0, a: 1}

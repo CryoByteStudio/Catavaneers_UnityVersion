@@ -24,10 +24,10 @@
 
 			Stencil
 			{
-				Ref 4
-				Comp always
-				Pass replace
-				ZFail keep
+				Ref 2
+				Comp Always
+				Pass Replace
+				ZFail Keep
 			}
 
 			CGPROGRAM
@@ -41,7 +41,7 @@
 
 			struct  appdata
 			{
-				float4 vertex:POSITION;
+				float4 vertex : POSITION;
 			};
 
 			struct v2f
@@ -70,13 +70,13 @@
 			Cull Off
 		}
 			
-		Stencil
+		/*Stencil
 		{
-			Ref 3
+			Ref 1
 			Comp Less
-			Fail keep
-			Pass replace
-		}
+			Fail Keep
+			Pass Replace
+		}*/
 		
 		CGPROGRAM
 		#pragma surface surf Standard fullforwardshadows alpha
