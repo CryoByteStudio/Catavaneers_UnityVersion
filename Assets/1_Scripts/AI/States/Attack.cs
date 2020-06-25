@@ -142,7 +142,12 @@ namespace AI.States
                     else
                     {
                         if (damagePopupInstance)
-                            damagePopupInstance.Play("MISS");
+                        {
+                            if (!isTargetDodging)
+                                damagePopupInstance.Play("MISS");
+                            else
+                                damagePopupInstance.Play("DODGE");
+                        }
                     }
                 }
             }

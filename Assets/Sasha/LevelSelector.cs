@@ -54,9 +54,16 @@ namespace Catavaneer
 
         private void Update()
         {
-            if (Input.anyKeyDown)
+            if (Input.GetButtonDown("Submit/Interact"))
             {
                 GoToNext();
+            }
+            else if (!hasStartedTravelling)
+            {
+                if (Input.GetButtonDown("Cancel/Shop3"))
+                {
+                    MenuManager.LoadMainMenuLevel();
+                }
             }
         }
 
