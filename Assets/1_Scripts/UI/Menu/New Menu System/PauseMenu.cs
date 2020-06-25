@@ -27,8 +27,15 @@ namespace Catavaneer.MenuSystem
             MenuManager.RestartLevel();
         }
 
+        public void OnSettingsPressed()
+        {
+            SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
+            MenuManager.OpenSettingsMenu();
+        }
+
         public void OnMainMenuPressed()
         {
+            FindObjectOfType<BaseInputModule>().DeactivateModule();
             MenuManager.LoadMainMenuLevel(false);
         }
         #endregion

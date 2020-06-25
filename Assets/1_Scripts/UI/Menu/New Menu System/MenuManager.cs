@@ -30,6 +30,7 @@ namespace Catavaneer.MenuSystem
         public static Menu GameMenu { get { return MenuSystem.GameMenu.Instance; } }
         public static Menu WinMenu { get { return MenuSystem.WinMenu.Instance; } }
         public static Menu LoseMenu { get { return MenuSystem.LoseMenu.Instance; } }
+        public static Menu SettingsMenu { get { return MenuSystem.SettingsMenu.Instance; } }
 
         // private
         private static Dictionary<TransitionFaderType, TransitionFader> transitionFaderDictionary = new Dictionary<TransitionFaderType, TransitionFader>();
@@ -330,7 +331,14 @@ namespace Catavaneer.MenuSystem
 
             if (menuStack.Count > 0)
             {
-                menuStack.Peek().gameObject.SetActive(true);
+                menu = menuStack.Peek();
+                menu.gameObject.SetActive(true);
+            }
+
+            if (menu.selectedGameObject)
+            {
+                EventSystem.current.SetSelectedGameObject(menu.selectedGameObject);
+                menu.selectedGameObject.GetComponent<Selectable>().OnSelect(new BaseEventData(EventSystem.current));
             }
         }
 
@@ -383,6 +391,11 @@ namespace Catavaneer.MenuSystem
         public static void OpenGameMenu()
         {
             OpenMenu(GameMenu);
+        }
+
+        public static void OpenSettingsMenu()
+        {
+            OpenMenu(SettingsMenu);
         }
 
         public static void OpenWinMenu()
