@@ -11,6 +11,7 @@ public class PlayerSelectController : MonoBehaviour
     private int selectIndex;
     public List<Image> selections = new List<Image>();
     public float selectDelay = 1f;
+    public float loadDelay = 5f;
     private float timer = 0;
     public string inputHorizontalAxis;
     public string inputAcceptButton;   //Submit/Interact
@@ -98,7 +99,7 @@ public class PlayerSelectController : MonoBehaviour
 
     IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(loadDelay);
         CharacterManager.Instance.StartGame();
     }
 }
