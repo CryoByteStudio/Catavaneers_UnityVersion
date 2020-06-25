@@ -192,7 +192,6 @@ public class HealthComp : MonoBehaviour
             }
             else { AddHealth(1); }
         }
-
     }
 
     private void Reset()
