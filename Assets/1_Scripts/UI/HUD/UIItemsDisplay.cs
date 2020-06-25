@@ -12,6 +12,13 @@ public class UIItemsDisplay : MonoBehaviour
     [SerializeField] private Image consumableImage;
     [SerializeField] private PlayerInventory playerInventoryRef;
 
+    private Sprite defaultSprite;
+
+    private void Awake()
+    {
+        defaultSprite = weaponImage.sprite;
+    }
+
     private void OnEnable()
     {
         if (playerInventoryRef)
@@ -26,25 +33,45 @@ public class UIItemsDisplay : MonoBehaviour
     private void UpdateWeaponUI(Sprite sprite)
     {
         if (weaponImage)
+        {
             weaponImage.sprite = sprite;
+            return;
+        }
+
+        weaponImage.sprite = defaultSprite;
     }
 
     private void UpdateTrap1UI(Sprite sprite)
     {
         if (trap1Image)
+        {
             trap1Image.sprite = sprite;
+            return;
+        }
+
+        trap1Image.sprite = defaultSprite;
     }
 
     private void UpdateTrap2UI(Sprite sprite)
     {
         if (trap2Image)
+        {
             trap2Image.sprite = sprite;
+            return;
+        }
+
+        trap2Image.sprite = defaultSprite;
     }
 
     private void UpdateConsumableUI(Sprite sprite)
     {
         if (consumableImage)
+        {
             consumableImage.sprite = sprite;
+            return;
+        }
+
+        consumableImage.sprite = defaultSprite;
     }
 
     private void OnDisable()

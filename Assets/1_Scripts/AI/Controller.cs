@@ -108,6 +108,10 @@ namespace AI
         public ParticleSystem DamageEffect;
         public ParticleSystem SlowEffect;
         public ParticleSystem ReverseEffect;
+
+        private static bool active;
+        private bool hasStarted;
+
         private void OnEnable()
         {
             if (agent)
@@ -115,10 +119,28 @@ namespace AI
                 startPosition = transform.position;
                 agent.Warp(startPosition);
             }
+
+            if (hasStarted)
+                Start();
+
+            active = true;
+            HealthComp.OnCaravanDestroyed += OnCaravanDestroyedHandler;
+        }
+
+        private void OnDisable()
+        {
+            HealthComp.OnCaravanDestroyed -= OnCaravanDestroyedHandler;
+        }
+
+        private void OnCaravanDestroyedHandler()
+        {
+            active = false;
         }
 
         private void Start()
         {
+            hasStarted = true;
+
             Reset();
             PopulateTargetLists();
 
@@ -161,6 +183,7 @@ namespace AI
 
         private void Reset()
         {
+            active = true;
             allHealthCompsInScene = null;
             mouseTargets.Clear();
             catTargets.Clear();
@@ -184,7 +207,8 @@ namespace AI
 
         private void Update()
         {
-            finiteStateMachine.Update(Time.deltaTime);
+            if (active)
+                finiteStateMachine.Update(Time.deltaTime);
 
             if (currentTarget)
             {

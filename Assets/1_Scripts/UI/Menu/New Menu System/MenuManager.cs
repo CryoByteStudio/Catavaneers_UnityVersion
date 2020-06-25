@@ -213,7 +213,10 @@ namespace Catavaneer.MenuSystem
 
         private static IEnumerator LoadCampaignLevelRoutine()
         {
-            yield return PlayPreTransitionRoutine(TransitionFaderType.MainMenuTransition);
+            if (!LevelLoader.IsGameLevel())
+                yield return PlayPreTransitionRoutine(TransitionFaderType.MainMenuTransition);
+            else
+                yield return PlayPreTransitionRoutine(TransitionFaderType.WinScreenTransition);
             LevelLoader.LoadLevelAsync(instance, "Campaign");
             yield return PlayePostTransitionRoutine();
             OpenMenuPostTransition(GameMenu);
