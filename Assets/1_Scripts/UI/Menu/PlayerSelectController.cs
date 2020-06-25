@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using Catavaneer;
 using CustomMathLibrary;
 
 public class PlayerSelectController : MonoBehaviour
@@ -16,10 +14,10 @@ public class PlayerSelectController : MonoBehaviour
     private float timer = 0;
     public string inputHorizontalAxis;
     public string inputAcceptButton;   //Submit/Interact
-    //public string inputBackButton;
     public bool lockedIn = false;
     public int totalPlayers = 0;
     public bool LockedIn => lockedIn;
+
 
     private PlayerSelectController[] playerSelectControllers;
 
@@ -29,7 +27,7 @@ public class PlayerSelectController : MonoBehaviour
         playerSelectControllers = FindObjectsOfType<PlayerSelectController>();
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         if (!lockedIn)
         {
@@ -57,7 +55,6 @@ public class PlayerSelectController : MonoBehaviour
         selectIndex = CustomMathf.GetPreviousLoopIndex(selectIndex, selections.Count);
 
         playerSelectReference.transform.position = new Vector3(selections[selectIndex].transform.position.x, playerSelectReference.transform.position.y, playerSelectReference.transform.position.z);
-            
     }
 
     private void MoveRight()
@@ -74,7 +71,7 @@ public class PlayerSelectController : MonoBehaviour
             Debug.Log("Character Manager is null");
             return;
         }
-
+        
         int playersLocked = 0;
         totalPlayers = CharacterManager.Instance.playerCount;
         foreach (PlayerSelectController player in playerSelectControllers)
@@ -92,7 +89,7 @@ public class PlayerSelectController : MonoBehaviour
                 playersLocked++;
             }
         }
-        
+
         if (playersLocked >= totalPlayers)
         {
             StartCoroutine(StartGame());
