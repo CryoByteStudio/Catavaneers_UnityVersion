@@ -16,6 +16,7 @@ namespace AI.States
         private int attackDamage = 0;
         private float attackRange = 0;
         private float attackInterval = 0;
+        private float accuracy = 0;
         private float speedOffsetThreshold = 0.5f;
         private GameObject damagePopupPrefab = null;
 
@@ -55,6 +56,7 @@ namespace AI.States
             attackRange = controller.AttackRange;
             //attackInterval = controller.AttackInterval;
             attackInterval = equippedWeapon.GetWeaponAttackSpeed();
+            accuracy = controller.Accuracy;
         }
 
         override public void Update(float deltaTime)
@@ -114,14 +116,14 @@ namespace AI.States
         private void DealDamage()
         {
             HealthComp targetHealth = target.GetComponent<HealthComp>();
-
+            AttackSuccess();
             if (targetHealth && !targetHealth.IsDead())
             {
                 if (damagePopupPrefab)
                 {
                     DamagePopup damagePopupInstance = Object.Instantiate(damagePopupPrefab, target.position, Quaternion.identity).GetComponent<DamagePopup>();
 
-                    if (controller.DistanceToTarget <= attackRange)
+                    if (controller.DistanceToTarget <= attackRange && AttackSuccess())
                     {
                         if (damagePopupInstance)
                             damagePopupInstance.Play(attackDamage);
@@ -129,6 +131,7 @@ namespace AI.States
                         if (controller.hiteffect)
                             controller.hiteffect.Play();
 
+                        // take off health
                         targetHealth.TakeDamage(attackDamage);
                     }
                     else
@@ -144,6 +147,11 @@ namespace AI.States
             }
 
             RandomizeAttackInterval();
+        }
+
+        private bool AttackSuccess()
+        {
+            return Random.Range(0, 100f) / 100 < accuracy;
         }
 
         private void RandomizeAttackInterval()

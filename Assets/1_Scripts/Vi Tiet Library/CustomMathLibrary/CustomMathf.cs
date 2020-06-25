@@ -110,19 +110,26 @@ namespace CustomMathLibrary
         /// <param name="axis"></param>
         public static Vector3 RandomPointInCirclePerpendicularToAxis(float radius, Axis axis)
         {
-            Vector2 randomPosIn2DCircle = Random.insideUnitCircle * radius;
+            //Vector2 randomPosIn2DCircle = Random.insideUnitCircle * radius;
+            Vector3 randomPosInSphere = Random.insideUnitSphere * radius;
 
             switch (axis)
             {
                 case Axis.X:
-                    return new Vector3(0, randomPosIn2DCircle.y, randomPosIn2DCircle.x);
+                    //return new Vector3(0, randomPosIn2DCircle.y, randomPosIn2DCircle.x);
+                    randomPosInSphere.x = 0;
+                    break;
                 case Axis.Y:
-                    return new Vector3(randomPosIn2DCircle.x, 0, randomPosIn2DCircle.y);
+                    //return new Vector3(randomPosIn2DCircle.x, 0, randomPosIn2DCircle.y);
+                    randomPosInSphere.y = 0;
+                    break;
                 case Axis.Z:
-                    return new Vector3(randomPosIn2DCircle.x, randomPosIn2DCircle.y, 0);
+                    //return new Vector3(randomPosIn2DCircle.x, randomPosIn2DCircle.y, 0);
+                    randomPosInSphere.z = 0;
+                    break;
             }
 
-            return Vector3.zero;
+            return randomPosInSphere;
         }
 
         /// <summary>

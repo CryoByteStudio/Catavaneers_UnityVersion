@@ -38,6 +38,8 @@ namespace AI
         [SerializeField] private int attackDamage = 0;
         [SerializeField] private float attackRange = 0;
         [SerializeField] private float attackInterval = 0;
+        [Range(0f, 1f)]
+        [SerializeField] private float accuracy = 0.8f;
 
         [Header("Frenzy Settings")]
         [SerializeField] private float frenzyRadius = 0;
@@ -72,6 +74,7 @@ namespace AI
         public int BaseAttackDamage { get { return attackDamage; } }
         public float AttackRange { get { return attackRange; } }
         public float AttackInterval { get { return attackInterval; } }
+        public float Accuracy { get { return accuracy; } }
         public float FrenzyRadius { get { return frenzyRadius; } }
         public float FrenzySpeed { get { return frenzySpeed; } }
         public bool IsFrenzy { get { return isFrenzy; } }
@@ -572,7 +575,6 @@ namespace AI
             //TODO particle FX
         }
 
-        //----------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------

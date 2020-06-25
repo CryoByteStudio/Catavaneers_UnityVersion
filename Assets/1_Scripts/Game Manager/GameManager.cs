@@ -58,6 +58,7 @@ namespace Catavaneer
                 }
                 else
                 {
+                    ResetCampaignParams();
                     hasFinishedAllLevel = true;
                     MenuManager.LoadMainMenuLevel(true);
                 }
@@ -82,6 +83,12 @@ namespace Catavaneer
                 MenuManager.OpenMenu(MenuManager.CreditsMenu);
                 hasFinishedAllLevel = false;
             }
+        }
+
+        private static void ResetCampaignParams()
+        {
+            CurrentDay = 0;
+            LastEncounterIndex = 0;
         }
 
         private void Reset()
@@ -139,6 +146,7 @@ namespace Catavaneer
 
         private IEnumerator LoseDelay()
         {
+            ResetCampaignParams();
             yield return new WaitForSeconds(quitDelay);
             MenuManager.OpenLoseMenu();
         }

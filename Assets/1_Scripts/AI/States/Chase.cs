@@ -63,38 +63,15 @@ namespace AI.States
         }
 
         /// <summary>
-        /// Get random position inside circle with radius relative to a specified target position.
+        /// Get random position on 2D circle with radius relative to a specified target position.
         /// </summary>
         /// <param name="targetPosition"> The target position that the random position will be picked base on </param>
         /// <param name="radius"> The radius in which the random point will be picked from </param>
         private Vector3 FindPositionNearTarget(Vector3 targetPosition, float radius)
         {
-            //Vector3 positionNearTarget = CustomMathf.RandomPointInCirclePerpendicularToAxis(radius, Axis.Y) + targetPosition;
-            //positionNearTarget.y = targetPosition.y;
-            //return positionNearTarget;
-            Vector3 randomPosition = Random.onUnitSphere + targetPosition;
+            Vector3 randomPosition = Random.onUnitSphere;
             randomPosition.y = targetPosition.y;
-            Vector3 fromTargetToRandPos = randomPosition - targetPosition;
-            fromTargetToRandPos.Normalize();
-            randomPosition = fromTargetToRandPos * radius + targetPosition;
-
-            //int count = 0;
-            //while (GetProjectedDistanceMagnitude(randomPosition, targetPosition) > radius)
-            //{
-            //    if (count > 1000)
-            //    {
-            //        Debug.Log("Could not find suitable position. Keep slacking... Position: " + randomPosition);
-            //        return randomPosition;
-            //    }
-
-            //    randomPosition = Random.onUnitSphere;
-            //    randomPosition.y = targetPosition.y;
-            //    randomPosition.Normalize();
-            //    randomPosition *= radius;
-            //    count++;
-            //}
-
-            return randomPosition;
+            return (randomPosition - targetPosition).normalized * radius + targetPosition;
         }
 
         /// <summary>
