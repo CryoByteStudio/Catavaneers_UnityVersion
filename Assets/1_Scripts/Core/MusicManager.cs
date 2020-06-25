@@ -43,10 +43,10 @@ public class MusicManager : SingletonEntity<MusicManager>
     public AudioClip Clip_Buying;
     public AudioClip Clip_Bandage;
     public AudioClip Clip_TrapTrigger;
-    public AudioClip RussellSelect;
-    public AudioClip MomoSelect;
-    public AudioClip KikiSelect;
-    public AudioClip JojoSelect;
+    public AudioClip[] RussellSelect;
+    public AudioClip[] MomoSelect;
+    public AudioClip[] KikiSelect;
+    public AudioClip[] JojoSelect;
 
     //Singleton accessor
     //public static MusicManager Instance;
@@ -240,16 +240,16 @@ public class MusicManager : SingletonEntity<MusicManager>
                 break;
 
             case SoundClipsInts.RussellCharSelect:
-                A_Source.PlayOneShot(RussellSelect, charVolume);
+                A_Source.PlayOneShot(RussellSelect[Random.Range(0, 3)], charVolume);
                 break;
             case SoundClipsInts.JojoCharSelect:
-                A_Source.PlayOneShot(JojoSelect, charVolume);
+                A_Source.PlayOneShot(JojoSelect[Random.Range(0, 3)], charVolume);
                 break;
             case SoundClipsInts.MomoCharSelect:
-                A_Source.PlayOneShot(MomoSelect, charVolume);
+                A_Source.PlayOneShot(MomoSelect[Random.Range(0, 3)], charVolume);
                 break;
             case SoundClipsInts.KikiCharSelect:
-                A_Source.PlayOneShot(KikiSelect, charVolume);
+                A_Source.PlayOneShot(KikiSelect[Random.Range(0, 3)], charVolume);
                 break;
 
             default:
