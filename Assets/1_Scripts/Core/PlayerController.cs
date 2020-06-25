@@ -148,6 +148,7 @@ public class PlayerController : MonoBehaviour
         else animator.SetFloat("Walk", leftInputMagnitud);
 
         transform.position += LTumbInput * Time.deltaTime * movementFraction;
+        
     }
     void Dodge()
     {

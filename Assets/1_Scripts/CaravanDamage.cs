@@ -22,6 +22,32 @@ public class CaravanDamage : MonoBehaviour
             // TODO Add more partical
         } 
     }
+    public void ReverseDamageStageParticles()
+    {
+
+        if (damageparticles[damageStage] != null)
+        {
+            damageStage--;
+            if (damageStage < 0)
+            {
+                damageStage = 0;
+            }
+            damageparticles[damageStage].SetActive(false);
+           
+            // TODO Add more partical
+        }
+
+       
+    }
+    public void ResetDamage()
+    {
+        foreach(GameObject particle in damageparticles)
+        {
+            particle.SetActive(false);
+            
+        }
+        damageStage = 0;
+    }
 
     public void PlayVictory()
     {
@@ -48,11 +74,5 @@ public class CaravanDamage : MonoBehaviour
         
     }
 
-    private void Update()
-    {
-        /*if (Input.GetKeyDown(KeyCode.G))
-        {
-            TriggerDamageStageParticles();
-        }*/
-    }
+
 }
