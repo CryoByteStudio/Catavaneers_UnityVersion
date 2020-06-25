@@ -92,7 +92,6 @@ namespace SpawnSystem
                 {
                     SpawnNextWave();
                 }
-
             }
             
             timeElapsed += Time.deltaTime;

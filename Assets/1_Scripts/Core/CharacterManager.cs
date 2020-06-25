@@ -57,7 +57,6 @@ public class CharacterManager : SingletonEntity<CharacterManager>
         LevelLoader.OnSceneLoaded += OnSceneLoadedHandler;
     }
 
-
     private void OnLevelWasLoaded(int level)
     {
         if (level == 1)
@@ -65,6 +64,7 @@ public class CharacterManager : SingletonEntity<CharacterManager>
             Destroy(this.gameObject);
         }
     }
+
     private void OnSceneLoadedHandler(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
     {
         hasStarted = false;

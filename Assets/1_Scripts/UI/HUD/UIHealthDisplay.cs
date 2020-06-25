@@ -68,13 +68,13 @@ public class UIHealthDisplay : MonoBehaviour
             switch (characterClass)
             {
                 case CharacterClass.Player:
-                    healthCompRef.OnPlayerHealthChanged += UpdateHealthUI;
+                    healthCompRef.OnPlayerHealthChanged -= UpdateHealthUI;
                     break;
                 case CharacterClass.Enemy:
-                    healthCompRef.OnEnemyHealthChanged += UpdateHealthUI;
+                    healthCompRef.OnEnemyHealthChanged -= UpdateHealthUI;
                     break;
                 case CharacterClass.Caravan:
-                    healthCompRef.OnCaravanHealthChanged += UpdateHealthUI;
+                    healthCompRef.OnCaravanHealthChanged -= UpdateHealthUI;
                     break;
                 case CharacterClass.Obj:
                 default:

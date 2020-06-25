@@ -123,7 +123,12 @@ namespace AI.States
                 {
                     DamagePopup damagePopupInstance = Object.Instantiate(damagePopupPrefab, target.position, Quaternion.identity).GetComponent<DamagePopup>();
 
-                    if (controller.DistanceToTarget <= attackRange && AttackSuccess())
+                    bool isTargetDodging = false;
+
+                    if (targetHealth.myClass == CharacterClass.Player && targetHealth.GetComponent<PlayerController>())
+                        isTargetDodging = targetHealth.GetComponent<PlayerController>().IsDodging;
+
+                    if (controller.DistanceToTarget <= attackRange && AttackSuccess() && !isTargetDodging)
                     {
                         if (damagePopupInstance)
                             damagePopupInstance.Play(attackDamage);

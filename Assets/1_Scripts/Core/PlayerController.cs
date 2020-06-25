@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     HealthComp health;
     float weaponWeight = 1;
     float timeSinceLastDodge = -Mathf.Infinity;
+    private bool isDodging;
+    public bool IsDodging => isDodging;
 
     bool freeze = false;
     [SerializeField] float reverseValue = 1;
@@ -111,7 +113,8 @@ public class PlayerController : MonoBehaviour
                 case MoveStates.Dodge:
                     LTumbInput = Vector3.zero;
                     RTumbInput = Vector3.zero;
-                    Dodge();
+                    Dodge(); 
+                    isDodging = true;
                     break;
                 case MoveStates.Freeze:
                     LTumbInput = Vector3.zero;
@@ -121,13 +124,14 @@ public class PlayerController : MonoBehaviour
                     break;
                 default:
                     AxisInput();
+                    isDodging = false;
                     break;
             }
             CharacterMove(weaponWeight, reverseValue, slowValue);
             if (Input.GetAxis(dodgeButton) != 0 && timeSinceLastDodge < Time.time)
             {
                 states = MoveStates.Dodge;
-                timeSinceLastDodge = Time.time + dodgeCoolDown;                
+                timeSinceLastDodge = Time.time + dodgeCoolDown;               
             }
         }
     }
@@ -152,29 +156,29 @@ public class PlayerController : MonoBehaviour
     }
     void Dodge()
     {
-            switch(dodgeDirection)
-            {
-                case DodgeDirection.Forward:
-                    transform.Translate(Vector3.forward * dodgeSpeed * Time.deltaTime, Space.Self);
-                    animator.SetInteger("Roll",2);
-                    break;
-                case DodgeDirection.Backward:
-                    transform.Translate(Vector3.back * dodgeSpeed * Time.deltaTime, Space.Self);
-                    animator.SetInteger("Roll", 1);
-                    break;
-                case DodgeDirection.Left:
-                    transform.Translate(Vector3.left * dodgeSpeed * Time.deltaTime, Space.Self);
-                    animator.SetInteger("Roll", 3);
-                    break;
-                case DodgeDirection.Right:
-                    transform.Translate(Vector3.right * dodgeSpeed * Time.deltaTime, Space.Self);
-                    animator.SetInteger("Roll", 4);
-                    break;
-                default:
-                    break;
-            }
-
+        switch (dodgeDirection)
+        {
+            case DodgeDirection.Forward:
+                transform.Translate(Vector3.forward * dodgeSpeed * Time.deltaTime, Space.Self);
+                animator.SetInteger("Roll",2);
+                break;
+            case DodgeDirection.Backward:
+                transform.Translate(Vector3.back * dodgeSpeed * Time.deltaTime, Space.Self);
+                animator.SetInteger("Roll", 1);
+                break;
+            case DodgeDirection.Left:
+                transform.Translate(Vector3.left * dodgeSpeed * Time.deltaTime, Space.Self);
+                animator.SetInteger("Roll", 3);
+                break;
+            case DodgeDirection.Right:
+                transform.Translate(Vector3.right * dodgeSpeed * Time.deltaTime, Space.Self);
+                animator.SetInteger("Roll", 4);
+                break;
+            default:
+                break;
+        }
     }
+
     public void ResetValue()
     {
         animator.SetInteger("Roll", 0);
