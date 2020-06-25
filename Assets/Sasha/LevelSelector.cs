@@ -34,6 +34,8 @@ namespace Catavaneer
         private float currentSpeed;
         private Quaternion lookRotation;
 
+        private int buttonPressCount = 0;
+
         void Start()
         {
             GameManager.CurrentDay++;
@@ -54,13 +56,13 @@ namespace Catavaneer
 
         private void Update()
         {
-            if (Input.GetButtonDown("Submit/Interact"))
+            if (Input.GetButtonDown("Submit/Interact") && ButtonSmashPreventor.ShouldProceed(ref buttonPressCount))
             {
                 GoToNext();
             }
             else if (!hasStartedTravelling)
             {
-                if (Input.GetButtonDown("Cancel/Shop3"))
+                if (Input.GetButtonDown("Cancel/Shop3") && ButtonSmashPreventor.ShouldProceed(ref buttonPressCount))
                 {
                     MenuManager.LoadMainMenuLevel();
                 }
