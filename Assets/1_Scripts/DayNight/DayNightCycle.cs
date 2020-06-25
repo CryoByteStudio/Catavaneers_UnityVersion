@@ -1,6 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+[Serializable]
+public struct TimeOfDay
+{
+    public int Hour;
+    public int Minute;
+    public int Second;
+}
 
 public class DayNightCycle : MonoBehaviour
 {
@@ -11,6 +20,7 @@ public class DayNightCycle : MonoBehaviour
     public float TargetDayLength { get { return _TargetDayLength; } }
 
     [SerializeField] [Range(0f, 1f)] private float _TimeOfDay;
+    public Vector2 _TimeOfDayInHours;
     public float TimeOfay { get { return _TimeOfDay; } }
     private float _timeScale = 100f;
     private bool Pause = false;
@@ -34,6 +44,7 @@ public class DayNightCycle : MonoBehaviour
     private void UpdateTime()
     {
         _TimeOfDay += Time.deltaTime * _timeScale / 86400;
+        _TimeOfDay %= 1;
     }
 
     private void Update()
@@ -44,9 +55,16 @@ public class DayNightCycle : MonoBehaviour
             UpdateTime();
         }
 
+        CalculateTimeOfDayInHours();
         AdjustSunRotation();
         SunIntensity();
         UpdateModules();
+    }
+
+    private void CalculateTimeOfDayInHours()
+    {
+        _TimeOfDayInHours.x = (int)(_TimeOfDay * _timeScale / 60);
+        _TimeOfDayInHours.y = (int)(_TimeOfDay * _timeScale % 60);
     }
 
     private void AdjustSunRotation()

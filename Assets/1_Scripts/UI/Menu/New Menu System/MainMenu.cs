@@ -41,7 +41,6 @@ namespace Catavaneer.MenuSystem
 
         public void OnQuitPressed()
         {
-            SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
             MenuManager.QuitGame();
         }
 
