@@ -86,56 +86,62 @@ public class Trap : MonoBehaviour
 
             for (int i = 0; i < colliders.Length; i++)
             {
-                if( colliders[i].gameObject.tag == "Player")
+                if (other.tag == "Player")
                 {
-                    if(colliders[i].GetComponent<PlayerController>() != null )
+                    if (colliders[i].gameObject.tag == "Player")
                     {
+                        if (colliders[i].GetComponent<PlayerController>() != null)
+                        {
 
-                        CurrentTime++;
-                        target = colliders[i].GetComponent<PlayerController>();
-                        if (type == TrapType.Freeze) FreezeTrap();
-                        if (type == TrapType.Reverse) ReverseTrap(aflictionValue);
-                        if (type == TrapType.Slow) SlowTrap(aflictionValue);
-                        if (type == TrapType.Damage) {
-                            colliders[i].GetComponent<HealthComp>().TakeDamage(TrapDamage);
-                            if(target.DamageEffect)
-                            target.DamageEffect.Play();
+                            CurrentTime++;
+                            target = colliders[i].GetComponent<PlayerController>();
+                            if (type == TrapType.Freeze) FreezeTrap();
+                            if (type == TrapType.Reverse) ReverseTrap(aflictionValue);
+                            if (type == TrapType.Slow) SlowTrap(aflictionValue);
+                            if (type == TrapType.Damage)
+                            {
+                                colliders[i].GetComponent<HealthComp>().TakeDamage(TrapDamage);
+                                if (target.DamageEffect)
+                                    target.DamageEffect.Play();
+                            }
+                            target.GetComponent<TrapSystem>().Flash();
                         }
-                        target.GetComponent<TrapSystem>().Flash();
                     }
                 }
+                else {
 
-                if(colliders[i].gameObject.tag == "Enemy")
-                {
-                    if (colliders[i].gameObject.GetComponent<Controller>() != null)
+                    if (colliders[i].gameObject.tag == "Enemy")
                     {
-                        CurrentTime++;
-                        Controller EnemyController = colliders[i].gameObject.GetComponent<Controller>();
-
-                        if (type == TrapType.Reverse)
+                        if (colliders[i].gameObject.GetComponent<Controller>() != null)
                         {
-                            EnemyController.ToggleFrenzyStateWithTimer(duration);
-                            if (EnemyController.ReverseEffect)
+                            CurrentTime++;
+                            Controller EnemyController = colliders[i].gameObject.GetComponent<Controller>();
+
+                            if (type == TrapType.Reverse)
                             {
-                                EnemyController.ReverseEffect.Play();
+                                EnemyController.ToggleFrenzyStateWithTimer(duration);
+                                if (EnemyController.ReverseEffect)
+                                {
+                                    EnemyController.ReverseEffect.Play();
+                                }
                             }
-                        }
 
-                        if (type == TrapType.Freeze)
-                        {
-                            EnemyController.SetTemporaryMovementSpeed(EnemyController.ChaseSpeed * SpeedModifier, duration);
-                            if (EnemyController.FreezeEffect)
+                            if (type == TrapType.Freeze)
                             {
-                                EnemyController.FreezeEffect.Play();
+                                EnemyController.SetTemporaryMovementSpeed(EnemyController.ChaseSpeed * SpeedModifier, duration);
+                                if (EnemyController.FreezeEffect)
+                                {
+                                    EnemyController.FreezeEffect.Play();
+                                }
                             }
-                        }
 
-                        if (type == TrapType.Slow)
-                        {
-                            EnemyController.SetTemporaryMovementSpeed(EnemyController.ChaseSpeed * SpeedModifier, duration);
-                            if (EnemyController.SlowEffect)
+                            if (type == TrapType.Slow)
                             {
-                                EnemyController.SlowEffect.Play();
+                                EnemyController.SetTemporaryMovementSpeed(EnemyController.ChaseSpeed * SpeedModifier, duration);
+                                if (EnemyController.SlowEffect)
+                                {
+                                    EnemyController.SlowEffect.Play();
+                                }
                             }
                         }
                     }

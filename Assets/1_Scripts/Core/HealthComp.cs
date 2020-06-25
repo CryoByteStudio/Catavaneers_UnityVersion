@@ -21,7 +21,9 @@ public class HealthComp : MonoBehaviour
     public int startHealth = 100;
     public GameManager gman;
     public int damagethreshold;
+    public int firstthreshold;
     public int thresholdamount;
+    public int lasthitthreshold;
 
     public float healthscale2P=1.1f;
     public float healthscale3P=1.3f;
@@ -73,7 +75,8 @@ public class HealthComp : MonoBehaviour
         animator = GetComponent<Animator>();
         characterFader = GetComponent<CharacterFader>();
         A_Source = GetComponent<AudioSource>();
-        
+
+        firstthreshold = damagethreshold;
         if (CharacterManager.Instance)
         {
             switch (CharacterManager.Instance.playerCount)
@@ -165,7 +168,7 @@ public class HealthComp : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (debug)
             TestTakeDamage();
@@ -181,18 +184,42 @@ public class HealthComp : MonoBehaviour
 
         timeElapsed += Time.deltaTime;
 
+        DisplayHealth();
+
         if (myClass == CharacterClass.Caravan && is_Regenerating)
         {
-            DisplayHealth();
-            dmg_percentage = currentHealth % (startHealth / (int)GameManager.Instance.DifficultyLevel);
 
-            if (dmg_percentage == 0)
+
+
+            if (currentHealth == startHealth)
             {
                 is_Regenerating = false;
+                GetComponent<CaravanDamage>().ResetDamage();
+               
             }
-            else { AddHealth(1); }
+            
+           
+
+                AddHealth(3);
+
+            if (currentHealth > damagethreshold + thresholdamount)
+            {
+                damagethreshold += thresholdamount;
+                if (damagethreshold > firstthreshold)
+                {
+                    damagethreshold = firstthreshold;
+                    GetComponent<CaravanDamage>().ResetDamage();
+                }
+                else
+                {
+                    GetComponent<CaravanDamage>().ReverseDamageStageParticles();
+                }
+            }
+            
+            
         }
     }
+  
 
     private void Reset()
     {
@@ -267,8 +294,10 @@ public class HealthComp : MonoBehaviour
 
                 if (currentHealth <= damagethreshold && currentHealth > 0)
                 {
+                    lasthitthreshold = damagethreshold;
                     damagethreshold -= thresholdamount;
                     GetComponent<CaravanDamage>().TriggerDamageStageParticles();
+                    
                 }
 
                 A_Source.clip = MusicManager.Instance.Clip_Hit;
@@ -384,8 +413,8 @@ public class HealthComp : MonoBehaviour
     /// </summary>
     private IEnumerator RespawnRoutine()
     {
-        int deathAnimationDuration = 3;
-        int fadeOutDuration = 5;
+        int deathAnimationDuration = 1;
+        int fadeOutDuration = 2;
 
         yield return new WaitForSeconds(deathAnimationDuration);
         if (characterFader)
@@ -401,13 +430,13 @@ public class HealthComp : MonoBehaviour
         switch (GameManager.Instance.DifficultyLevel)
         {
             case DifficultyLevel.Normal:
-                yield return new WaitForSeconds(4);
+                yield return new WaitForSeconds(2);
                 break;
             case DifficultyLevel.IronCat:
-                yield return new WaitForSeconds(8);
+                yield return new WaitForSeconds(3);
                 break;
             case DifficultyLevel.Catapocalypse:
-                yield return new WaitForSeconds(12);
+                yield return new WaitForSeconds(4);
                 break;
         }
 
