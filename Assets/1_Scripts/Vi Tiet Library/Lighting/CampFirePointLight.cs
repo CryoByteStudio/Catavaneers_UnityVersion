@@ -1,93 +1,83 @@
-﻿using CustomMathLibrary;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using Type = CustomMathLibrary.Interpolation.Easing.Type;
+using DG.Tweening;
+using CustomMathLibrary;
+using Random = UnityEngine.Random;
+using System.Collections;
 
+[RequireComponent(typeof(Light))]
 public class CampFirePointLight : MonoBehaviour
 {
-    [SerializeField] private Light pointLight;
     [SerializeField] private bool flicker;
-    [Range(0f, 0.9f)]
+    [SerializeField] private Transform centerTransform;
+    [SerializeField] private float centerRadius;
+    [SerializeField] private float distanceTolerance;
+    [SerializeField] private float minSpeed;
+    [SerializeField] private float maxSpeed;
     [SerializeField] private float minIntensity;
-    [Range(0.1f, 1f)]
     [SerializeField] private float maxIntensity;
-    [SerializeField] private Type mode;
-    [Range(0f, 5f)]
-    [SerializeField] private float minFlickerSpeed;
-    [Range(0f, 5f)]
-    [SerializeField] private float maxFlickerSpeed;
-    
-    private float flickerSpeed;
-    private float lerpValue = 0f;
-    private float step = 0f;
-    private bool isZeroToOne = true;
-    private int index = 0;
-    private int nextIndex = 0;
+    [SerializeField] private float intensityTolerance;
+    [SerializeField] private float minIntensityChangeSpeed;
+    [SerializeField] private float maxIntensityChangeSpeed;
+
+    private float moveSpeed;
+    private float intensityChangeSpeed;
+    private Vector3 randomPosition;
+    private Vector3 direction;
+    private float distanceToTarget;
+    private float randomIntensity;
+    private float randomIntensityDuration;
+
+    private Light pointLight;
 
     private void Start()
     {
-        if (!pointLight)
-            pointLight = GetComponent<Light>();
+        pointLight = GetComponent<Light>();
 
-        RandomizeFlickerSpeed();
+        StartCoroutine(MoveLight());
+        StartCoroutine(FlickerLight());
     }
 
-    private void Update()
+    private IEnumerator FlickerLight()
     {
-        Flicker();
-    }
-
-    private void Flicker()
-    {
-        if (!flicker) return;
-
-        UpdateStep(flickerSpeed);
-        CalculateLerpValue();
-        LerpLightIntensity();
-        
-        if (ToggleBoolean(ref isZeroToOne, step == minIntensity || step == maxIntensity))
+        while (flicker)
         {
-            RandomizeFlickerSpeed();
+            randomIntensity = Random.Range(minIntensity, maxIntensity);
+            intensityChangeSpeed = Random.Range(minIntensityChangeSpeed, maxIntensityChangeSpeed);
+
+            while (Mathf.Abs(pointLight.intensity - randomIntensity) > intensityTolerance)
+            {
+                if (pointLight.intensity < randomIntensity)
+                    pointLight.intensity += Time.deltaTime * intensityChangeSpeed;
+                else
+                    pointLight.intensity -= Time.deltaTime * intensityChangeSpeed;
+                yield return null;
+            }
+            yield return null;
         }
     }
 
-    private void LerpLightIntensity()
+    private IEnumerator MoveLight()
     {
-        float intensityPreClamp;
-        pointLight.intensity = CustomMathf.CalculateLerpValue(lerpValue, mode, isZeroToOne);
-        intensityPreClamp = pointLight.intensity;
-        pointLight.intensity = Mathf.Clamp(pointLight.intensity, minIntensity, maxIntensity);
+        while (flicker)
+        {
+            randomPosition = CustomMathf.GetRandomPointInSphere(centerTransform.position, centerRadius);
+            distanceToTarget = Vector3.Distance(transform.position, randomPosition);
+            moveSpeed = Random.Range(minSpeed, maxSpeed);
+
+            while (distanceToTarget > distanceTolerance)
+            {
+                direction = (randomPosition - transform.position).normalized;
+                distanceToTarget = Vector3.Distance(transform.position, randomPosition);
+                transform.Translate(direction * moveSpeed * Time.deltaTime);
+                yield return null;
+            }
+            yield return null;
+        }
     }
 
-    private void CalculateLerpValue()
+    private void OnDrawGizmos()
     {
-        lerpValue = CustomMathf.CalculateLerpValueClamp01(step, mode, isZeroToOne);
-    }
-
-    private void UpdateStep(float speed)
-    {
-        step = isZeroToOne ? step + Time.deltaTime * speed : step - Time.deltaTime * speed;
-        step = CustomMathf.ClampMinMax(minIntensity, maxIntensity, step);
-    }
-
-    private void RandomizeFlickerSpeed()
-    {
-        flickerSpeed = Random.Range(minFlickerSpeed, maxFlickerSpeed);
-    }
-
-    private static bool ToggleBoolean(ref bool boolean, bool toggleCondition)
-    {
-        boolean = toggleCondition ? !boolean : boolean;
-        return toggleCondition;
-    }
-
-    private void OnValidate()
-    {
-        if (maxFlickerSpeed < minFlickerSpeed)
-            maxFlickerSpeed = minFlickerSpeed + 0.1f;
-
-        if (maxIntensity < minIntensity)
-            maxIntensity = minIntensity + 0.1f;
+        Gizmos.DrawWireSphere(centerTransform.position, centerRadius);
     }
 }

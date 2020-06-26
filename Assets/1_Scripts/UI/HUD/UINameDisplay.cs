@@ -16,9 +16,9 @@ public class UINameDisplay : MonoBehaviour
             characterName = CharacterManager.Instance.charNames.ElementAtOrDefault(playerInfoRef.PlayerID);
 
             if (textField && playerInfoRef && !string.IsNullOrEmpty(characterName))
-                textField.text = CharacterManager.Instance.charNames[playerInfoRef.PlayerID] + "\nPlayer " + playerInfoRef.PlayerID;
+                textField.text = CharacterManager.Instance.charNames[playerInfoRef.PlayerID] + " [P" + (playerInfoRef.PlayerID + 1) + "]";
             else
-                textField.text = "Player " + playerInfoRef.PlayerID;
+                textField.text = "[Player: " + playerInfoRef.PlayerID + 1 + "]";
         }
     }
 }

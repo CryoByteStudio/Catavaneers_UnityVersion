@@ -44,7 +44,7 @@ public class UIHealthDisplay : MonoBehaviour
         }
     }
 
-    private void UpdateHealthUI()
+    private void UpdateHealthUI(HealthComp healthComp)
     {
         if (!hasSetUpHealthBar)
         {

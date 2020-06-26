@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using Catavaneer;
 using CustomMathLibrary;
+using System;
+
+public enum CharacterNames
+{
+    None,
+    Russell,
+    Jojo,
+    Kiki,
+    Momo
+}
 
 public class PlayerSelectController : MonoBehaviour
 {
@@ -13,23 +21,26 @@ public class PlayerSelectController : MonoBehaviour
     private int selectIndex;
     public List<Image> selections = new List<Image>();
     public float selectDelay = 1f;
+    public float loadDelay = 5f;
     private float timer = 0;
     public string inputHorizontalAxis;
     public string inputAcceptButton;   //Submit/Interact
-    //public string inputBackButton;
     public bool lockedIn = false;
     public int totalPlayers = 0;
     public bool LockedIn => lockedIn;
 
+    private CharacterNames chosenCharacter = CharacterNames.None;
     private PlayerSelectController[] playerSelectControllers;
+    private MenuCharacterAnimation[] menuCharacterAnimations;
 
     private void Start()
     {
         selectIndex = PlayerID;
         playerSelectControllers = FindObjectsOfType<PlayerSelectController>();
+        menuCharacterAnimations = FindObjectsOfType<MenuCharacterAnimation>();
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         if (!lockedIn)
         {
@@ -57,7 +68,6 @@ public class PlayerSelectController : MonoBehaviour
         selectIndex = CustomMathf.GetPreviousLoopIndex(selectIndex, selections.Count);
 
         playerSelectReference.transform.position = new Vector3(selections[selectIndex].transform.position.x, playerSelectReference.transform.position.y, playerSelectReference.transform.position.z);
-            
     }
 
     private void MoveRight()
@@ -74,7 +84,7 @@ public class PlayerSelectController : MonoBehaviour
             Debug.Log("Character Manager is null");
             return;
         }
-
+        
         int playersLocked = 0;
         totalPlayers = CharacterManager.Instance.playerCount;
         foreach (PlayerSelectController player in playerSelectControllers)
@@ -82,26 +92,55 @@ public class PlayerSelectController : MonoBehaviour
             if (player.lockedIn)
             {
                 CharacterManager.Instance.charNames[player.PlayerID] = selections[player.selectIndex].name;
+
                 Debug.Log(selections[player.selectIndex].name);
 
-                if (selections[player.selectIndex].name == "Russell") MusicManager.Instance.PlaySoundTrack(SoundClipsInts.RussellCharSelect);
-                if (selections[player.selectIndex].name == "Jojo") MusicManager.Instance.PlaySoundTrack(SoundClipsInts.JojoCharSelect);
-                if (selections[player.selectIndex].name == "Kiki") MusicManager.Instance.PlaySoundTrack(SoundClipsInts.KikiCharSelect);
-                if (selections[player.selectIndex].name == "Momo") MusicManager.Instance.PlaySoundTrack(SoundClipsInts.MomoCharSelect);
+                switch (selections[player.selectIndex].name)
+                {
+                    case "Russell":
+                        MusicManager.Instance.PlaySoundTrack(SoundClipsInts.RussellCharSelect);
+                        chosenCharacter = CharacterNames.Russell;
+                        break;
+                    case "Jojo":
+                        MusicManager.Instance.PlaySoundTrack(SoundClipsInts.JojoCharSelect);
+                        chosenCharacter = CharacterNames.Jojo;
+                        break;
+                    case "Kiki":
+                        MusicManager.Instance.PlaySoundTrack(SoundClipsInts.KikiCharSelect);
+                        chosenCharacter = CharacterNames.Kiki;
+                        break;
+                    case "Momo":
+                        MusicManager.Instance.PlaySoundTrack(SoundClipsInts.MomoCharSelect);
+                        chosenCharacter = CharacterNames.Momo;
+                        break;
+                    default:
+                        break;
+                }
+
+                MakeCatDance();
 
                 playersLocked++;
             }
         }
-        
+
         if (playersLocked >= totalPlayers)
         {
             StartCoroutine(StartGame());
         }
     }
 
+    private void MakeCatDance()
+    {
+        foreach (var anim in menuCharacterAnimations)
+        {
+            if (anim.CharacterName == chosenCharacter)
+                anim.Dance();
+        }
+    }
+
     IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(loadDelay);
         CharacterManager.Instance.StartGame();
     }
 }

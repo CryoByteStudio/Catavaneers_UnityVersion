@@ -33,11 +33,11 @@ public class HealthComp : MonoBehaviour
 
 
 
-    public static event Action OnCaravanDestroyed;
-    public event Action OnEnemyDeath;
-    public event Action OnPlayerHealthChanged;
-    public event Action OnEnemyHealthChanged;
-    public event Action OnCaravanHealthChanged;
+    public static event Action<HealthComp> OnCaravanDestroyed;
+    public event Action<HealthComp> OnEnemyDeath;
+    public event Action<HealthComp> OnPlayerHealthChanged;
+    public event Action<HealthComp> OnEnemyHealthChanged;
+    public event Action<HealthComp> OnCaravanHealthChanged;
     public SoundClipsInts soundCue = SoundClipsInts.Death;
 
     [SerializeField]
@@ -152,15 +152,15 @@ public class HealthComp : MonoBehaviour
         {
             case CharacterClass.Player:
                 if (OnPlayerHealthChanged != null)
-                    OnPlayerHealthChanged.Invoke();
+                    OnPlayerHealthChanged.Invoke(this);
                 break;
             case CharacterClass.Enemy:
                 if (OnEnemyHealthChanged != null)
-                    OnEnemyHealthChanged.Invoke();
+                    OnEnemyHealthChanged.Invoke(this);
                 break;
             case CharacterClass.Caravan:
                 if (OnCaravanHealthChanged != null)
-                    OnCaravanHealthChanged.Invoke();
+                    OnCaravanHealthChanged.Invoke(this);
                 break;
             case CharacterClass.Obj:
             default:
@@ -227,7 +227,7 @@ public class HealthComp : MonoBehaviour
         currentHealth = startHealth;
 
         if (OnPlayerHealthChanged != null)
-            OnPlayerHealthChanged.Invoke();
+            OnPlayerHealthChanged.Invoke(this);
 
         GetComponent<CapsuleCollider>().enabled = true;
 
@@ -290,7 +290,7 @@ public class HealthComp : MonoBehaviour
         {
             case CharacterClass.Player:
                 if (OnPlayerHealthChanged != null)
-                    OnPlayerHealthChanged.Invoke();
+                    OnPlayerHealthChanged.Invoke(this);
 
                 if (currentHealth <= damagethreshold && currentHealth > 0)
                 {
@@ -306,7 +306,7 @@ public class HealthComp : MonoBehaviour
                 break;
             case CharacterClass.Enemy:
                 if (OnEnemyHealthChanged != null)
-                    OnEnemyHealthChanged.Invoke();
+                    OnEnemyHealthChanged.Invoke(this);
 
                 A_Source.clip = MusicManager.Instance.Clip_Attack;
                 A_Source.volume = MusicManager.Instance.sfxVolume - 0.2f;
@@ -314,7 +314,7 @@ public class HealthComp : MonoBehaviour
                 break;
             case CharacterClass.Caravan:
                 if (OnCaravanHealthChanged != null)
-                    OnCaravanHealthChanged.Invoke();
+                    OnCaravanHealthChanged.Invoke(this);
                 break;
             case CharacterClass.Obj:
             default:
@@ -341,7 +341,7 @@ public class HealthComp : MonoBehaviour
                 EnemyDeathBehaviour();
 
                 if (OnEnemyDeath != null)
-                    OnEnemyDeath.Invoke();
+                    OnEnemyDeath.Invoke(this);
                 break;
             case CharacterClass.Obj:
             default:
@@ -388,7 +388,7 @@ public class HealthComp : MonoBehaviour
         GetComponent<CaravanDamage>().TriggerFinalDamageStageParticle();
 
         if (OnCaravanDestroyed != null)
-            OnCaravanDestroyed.Invoke();
+            OnCaravanDestroyed.Invoke(this);
     }
 
     private void PlayerDeathBehaviour()
@@ -468,17 +468,17 @@ public class HealthComp : MonoBehaviour
             {
                 case CharacterClass.Player:
                     if (OnPlayerHealthChanged != null)
-                        OnPlayerHealthChanged.Invoke();
+                        OnPlayerHealthChanged.Invoke(this);
                     if (currentHealth < startHealth)
                         MusicManager.Instance.PlaySoundTrack(SoundClipsInts.Bandage);
                     break;
                 case CharacterClass.Enemy:
                     if (OnEnemyHealthChanged != null)
-                        OnEnemyHealthChanged.Invoke();
+                        OnEnemyHealthChanged.Invoke(this);
                     break;
                 case CharacterClass.Caravan:
                     if (OnCaravanHealthChanged != null)
-                        OnCaravanHealthChanged.Invoke();
+                        OnCaravanHealthChanged.Invoke(this);
                     break;
                 case CharacterClass.Obj:
                 default:

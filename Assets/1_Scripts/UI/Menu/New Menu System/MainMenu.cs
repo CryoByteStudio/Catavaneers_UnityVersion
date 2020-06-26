@@ -8,9 +8,13 @@ namespace Catavaneer.MenuSystem
     {
         [SerializeField] private GameObject firstSelected;
 
+        private int buttonPressCount = 0;
+
         #region UNITY ENGINE FUNCTIONS
         private void OnEnable()
         {
+            buttonPressCount = 0;
+
             if (selectedGameObject && !GameManager.Instance.HasFinishedAllLevel)
             {
                 ForceHighlightFirstSelected();
@@ -46,7 +50,8 @@ namespace Catavaneer.MenuSystem
 
         public void OnNormalPressed()
         {
-            FindObjectOfType<BaseInputModule>().DeactivateModule();
+            if (!ButtonSmashPreventor.ShouldProceed(ref buttonPressCount)) return;
+            //FindObjectOfType<BaseInputModule>().DeactivateModule();
             SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
             GameManager.SetDifficultyLevel(DifficultyLevel.Normal);
             MenuManager.LoadCharacterSelectScene();
@@ -54,7 +59,8 @@ namespace Catavaneer.MenuSystem
 
         public void OnIronCatPressed()
         {
-            FindObjectOfType<BaseInputModule>().DeactivateModule();
+            if (!ButtonSmashPreventor.ShouldProceed(ref buttonPressCount)) return;
+            //FindObjectOfType<BaseInputModule>().DeactivateModule();
             SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
             GameManager.SetDifficultyLevel(DifficultyLevel.IronCat);
             MenuManager.LoadCharacterSelectScene();
@@ -62,7 +68,8 @@ namespace Catavaneer.MenuSystem
 
         public void OnCatpocalypsePressed()
         {
-            FindObjectOfType<BaseInputModule>().DeactivateModule();
+            if (!ButtonSmashPreventor.ShouldProceed(ref buttonPressCount)) return;
+            //FindObjectOfType<BaseInputModule>().DeactivateModule();
             SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
             GameManager.SetDifficultyLevel(DifficultyLevel.Catapocalypse);
             MenuManager.LoadCharacterSelectScene();
@@ -70,7 +77,8 @@ namespace Catavaneer.MenuSystem
 
         public void OnCatFightPressed()
         {
-            FindObjectOfType<BaseInputModule>().DeactivateModule();
+            if (!ButtonSmashPreventor.ShouldProceed(ref buttonPressCount)) return;
+            //FindObjectOfType<BaseInputModule>().DeactivateModule();
             SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
             GameManager.SetDifficultyLevel(DifficultyLevel.Catfight);
         }

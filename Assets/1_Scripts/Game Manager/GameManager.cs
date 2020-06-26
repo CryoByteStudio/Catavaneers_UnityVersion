@@ -125,7 +125,7 @@ namespace Catavaneer
             return null;
         }
 
-        private void OnCaravanDestroyedHandler()
+        private void OnCaravanDestroyedHandler(HealthComp healthComp)
         {
             StartCoroutine(LoseDelay());
         }

@@ -26,7 +26,7 @@ public class Point : MonoBehaviour
             occupant.OnEnemyDeath += OnEnemyDeathHandler;
     }
 
-    private void OnEnemyDeathHandler()
+    private void OnEnemyDeathHandler(HealthComp healthComp)
     {
         SetOccupant(null);
     }

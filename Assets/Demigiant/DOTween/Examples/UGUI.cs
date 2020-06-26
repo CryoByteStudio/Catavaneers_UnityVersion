@@ -22,12 +22,12 @@ public class UGUI : MonoBehaviour
 		// Animate the circle outline's color and fillAmount
 		circleOutline.DOColor(RandomColor(), 1.5f).SetEase(Ease.Linear).Pause();
         circleOutline.DOFillAmount(0, 1.5f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo)
-			.OnStepComplete(() =>
+            .OnStepComplete(() =>
              {
                  circleOutline.fillClockwise = !circleOutline.fillClockwise;
                  circleOutline.DOColor(RandomColor(), 1.5f).SetEase(Ease.Linear);
-             })
-            .Pause();
+             });
+            //.Pause();
 
         // Animate the first text...
         text.DOText("This text will replace the existing one", 2).SetEase(Ease.Linear).SetAutoKill(false).Pause();
