@@ -122,6 +122,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!95 &46761070 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4717626068955037263, guid: 123cdf7edc424e747849509b18a4258e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1714847650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &277052156
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,11 +662,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1011049189180464204, guid: ee5843be89b1758428c560334ac4bd4e,
+        type: 3}
+      propertyPath: animationController
+      value: 
+      objectReference: {fileID: 1947820175}
     - target: {fileID: 6277978888921417999, guid: ee5843be89b1758428c560334ac4bd4e,
         type: 3}
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6277978888921417999, guid: ee5843be89b1758428c560334ac4bd4e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fb564e82b3c9b9a44a716ec09cb874ce, type: 2}
     - target: {fileID: 6277978890802182522, guid: ee5843be89b1758428c560334ac4bd4e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -735,6 +751,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jojo Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277978890802182524, guid: ee5843be89b1758428c560334ac4bd4e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277978890802182525, guid: ee5843be89b1758428c560334ac4bd4e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 25d0c6ae26523af48a28f27b144b0f8b, type: 2}
+    - target: {fileID: 6277978890802182525, guid: ee5843be89b1758428c560334ac4bd4e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee5843be89b1758428c560334ac4bd4e, type: 3}
@@ -1059,7 +1090,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1069376198586580, guid: 22fe19761e3008a46948dd985317f5f7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4864954197600496, guid: 22fe19761e3008a46948dd985317f5f7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1753,17 +1784,43 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 491016467648424302, guid: e340bcbf66454d24c82b32f8b98e4679,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 25d0c6ae26523af48a28f27b144b0f8b, type: 2}
+    - target: {fileID: 491016467648424302, guid: e340bcbf66454d24c82b32f8b98e4679,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 491016467648424303, guid: e340bcbf66454d24c82b32f8b98e4679,
         type: 3}
       propertyPath: m_Name
       value: Momo Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 491016467648424303, guid: e340bcbf66454d24c82b32f8b98e4679,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 491016467919608092, guid: e340bcbf66454d24c82b32f8b98e4679,
         type: 3}
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 491016467919608092, guid: e340bcbf66454d24c82b32f8b98e4679,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fb564e82b3c9b9a44a716ec09cb874ce, type: 2}
+    - target: {fileID: 3421532099371155960, guid: e340bcbf66454d24c82b32f8b98e4679,
+        type: 3}
+      propertyPath: animationController
+      value: 
+      objectReference: {fileID: 1736165511}
+    m_RemovedComponents:
+    - {fileID: 491016467648424302, guid: e340bcbf66454d24c82b32f8b98e4679, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e340bcbf66454d24c82b32f8b98e4679, type: 3}
 --- !u!1 &1491418211
 GameObject:
@@ -1821,6 +1878,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1550387221 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9133708465474037917, guid: d1f8c8b5750dd6f48966951e28a80b9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2058789741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1714847650
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1828,11 +1891,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4645329378052073135, guid: 123cdf7edc424e747849509b18a4258e,
+        type: 3}
+      propertyPath: animationController
+      value: 
+      objectReference: {fileID: 46761070}
     - target: {fileID: 4717626068955037263, guid: 123cdf7edc424e747849509b18a4258e,
         type: 3}
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4717626068955037263, guid: 123cdf7edc424e747849509b18a4258e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fb564e82b3c9b9a44a716ec09cb874ce, type: 2}
     - target: {fileID: 4717626069758627386, guid: 123cdf7edc424e747849509b18a4258e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1908,7 +1981,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kiki Menu
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4717626069758627388, guid: 123cdf7edc424e747849509b18a4258e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4717626069758627389, guid: 123cdf7edc424e747849509b18a4258e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 25d0c6ae26523af48a28f27b144b0f8b, type: 2}
+    - target: {fileID: 4717626069758627389, guid: 123cdf7edc424e747849509b18a4258e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4717626069758627389, guid: 123cdf7edc424e747849509b18a4258e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 123cdf7edc424e747849509b18a4258e, type: 3}
 --- !u!1 &1731336667
 GameObject:
@@ -2019,6 +2108,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!95 &1736165511 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 491016467919608092, guid: e340bcbf66454d24c82b32f8b98e4679,
+    type: 3}
+  m_PrefabInstance: {fileID: 1486655639}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1738191596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2768,6 +2863,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936510086}
   m_CullTransparentMesh: 0
+--- !u!95 &1947820175 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6277978888921417999, guid: ee5843be89b1758428c560334ac4bd4e,
+    type: 3}
+  m_PrefabInstance: {fileID: 847925885}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1954581311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4713471839939480, guid: f22df5a7e1d0b104da386f4ef2a49de2,
@@ -2781,6 +2882,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6998021138999852551, guid: d1f8c8b5750dd6f48966951e28a80b9c,
+        type: 3}
+      propertyPath: animationController
+      value: 
+      objectReference: {fileID: 1550387221}
     - target: {fileID: 9133708463597476072, guid: d1f8c8b5750dd6f48966951e28a80b9c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2856,12 +2962,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Russell Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 9133708463597476078, guid: d1f8c8b5750dd6f48966951e28a80b9c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9133708463597476079, guid: d1f8c8b5750dd6f48966951e28a80b9c,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 25d0c6ae26523af48a28f27b144b0f8b, type: 2}
+    - target: {fileID: 9133708463597476079, guid: d1f8c8b5750dd6f48966951e28a80b9c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9133708465474037917, guid: d1f8c8b5750dd6f48966951e28a80b9c,
         type: 3}
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9133708465474037917, guid: d1f8c8b5750dd6f48966951e28a80b9c,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fb564e82b3c9b9a44a716ec09cb874ce, type: 2}
+    m_RemovedComponents:
+    - {fileID: 9133708463597476079, guid: d1f8c8b5750dd6f48966951e28a80b9c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d1f8c8b5750dd6f48966951e28a80b9c, type: 3}
 --- !u!1 &2089547842
 GameObject:
