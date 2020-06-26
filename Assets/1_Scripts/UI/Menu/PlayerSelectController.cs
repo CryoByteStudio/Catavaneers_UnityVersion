@@ -118,10 +118,6 @@ public class PlayerSelectController : MonoBehaviour
                 }
 
                 MakeCatDance();
-                //if (selections[player.selectIndex].name == "Russell") MusicManager.Instance.PlaySoundTrack(SoundClipsInts.RussellCharSelect);
-                //if (selections[player.selectIndex].name == "Jojo") MusicManager.Instance.PlaySoundTrack(SoundClipsInts.JojoCharSelect);
-                //if (selections[player.selectIndex].name == "Kiki") MusicManager.Instance.PlaySoundTrack(SoundClipsInts.KikiCharSelect);
-                //if (selections[player.selectIndex].name == "Momo") MusicManager.Instance.PlaySoundTrack(SoundClipsInts.MomoCharSelect);
 
                 playersLocked++;
             }

@@ -159,7 +159,18 @@ namespace CustomMathLibrary
 
             return position;
         }
-        
+
+        /// <summary>
+        /// Returns a random point inside a sphere with specified radius
+        /// </summary>
+        /// <param name="center"> Center point </param>
+        /// <param name="radius"> Length of radius </param>
+        /// <returns></returns>
+        public static Vector3 GetRandomPointInSphere(Vector3 center, float radius)
+        {
+            return Random.insideUnitSphere * radius + center;
+        }
+
         public static int GetNextLoopIndex(int currentIndex, int elementsCount)
         {
             return GetLoopIndex(currentIndex + 1, elementsCount);

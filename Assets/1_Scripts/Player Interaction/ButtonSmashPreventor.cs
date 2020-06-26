@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public static class ButtonSmashPreventor
+﻿public static class ButtonSmashPreventor
 {
     private static int limit = 1;
     public static int Limit => limit;
