@@ -108,8 +108,8 @@ public class Trap : MonoBehaviour
                         }
                     }
                 }
-                else {
-
+                else
+                {
                     if (colliders[i].gameObject.tag == "Enemy")
                     {
                         if (colliders[i].gameObject.GetComponent<Controller>() != null)
