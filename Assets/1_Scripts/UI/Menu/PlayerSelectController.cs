@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CustomMathLibrary;
+using System;
+
+public enum CharacterNames
+{
+    None,
+    Russell,
+    Jojo,
+    Kiki,
+    Momo
+}
 
 public class PlayerSelectController : MonoBehaviour
 {
@@ -19,13 +29,15 @@ public class PlayerSelectController : MonoBehaviour
     public int totalPlayers = 0;
     public bool LockedIn => lockedIn;
 
-
+    private CharacterNames chosenCharacter = CharacterNames.None;
     private PlayerSelectController[] playerSelectControllers;
+    private MenuCharacterAnimation[] menuCharacterAnimations;
 
     private void Start()
     {
         selectIndex = PlayerID;
         playerSelectControllers = FindObjectsOfType<PlayerSelectController>();
+        menuCharacterAnimations = FindObjectsOfType<MenuCharacterAnimation>();
     }
 
     private void Update()
@@ -80,12 +92,36 @@ public class PlayerSelectController : MonoBehaviour
             if (player.lockedIn)
             {
                 CharacterManager.Instance.charNames[player.PlayerID] = selections[player.selectIndex].name;
+
                 Debug.Log(selections[player.selectIndex].name);
 
-                if (selections[player.selectIndex].name == "Russell") MusicManager.Instance.PlaySoundTrack(SoundClipsInts.RussellCharSelect);
-                if (selections[player.selectIndex].name == "Jojo") MusicManager.Instance.PlaySoundTrack(SoundClipsInts.JojoCharSelect);
-                if (selections[player.selectIndex].name == "Kiki") MusicManager.Instance.PlaySoundTrack(SoundClipsInts.KikiCharSelect);
-                if (selections[player.selectIndex].name == "Momo") MusicManager.Instance.PlaySoundTrack(SoundClipsInts.MomoCharSelect);
+                switch (selections[player.selectIndex].name)
+                {
+                    case "Russell":
+                        MusicManager.Instance.PlaySoundTrack(SoundClipsInts.RussellCharSelect);
+                        chosenCharacter = CharacterNames.Russell;
+                        break;
+                    case "Jojo":
+                        MusicManager.Instance.PlaySoundTrack(SoundClipsInts.JojoCharSelect);
+                        chosenCharacter = CharacterNames.Jojo;
+                        break;
+                    case "Kiki":
+                        MusicManager.Instance.PlaySoundTrack(SoundClipsInts.KikiCharSelect);
+                        chosenCharacter = CharacterNames.Kiki;
+                        break;
+                    case "Momo":
+                        MusicManager.Instance.PlaySoundTrack(SoundClipsInts.MomoCharSelect);
+                        chosenCharacter = CharacterNames.Momo;
+                        break;
+                    default:
+                        break;
+                }
+
+                MakeCatDance();
+                //if (selections[player.selectIndex].name == "Russell") MusicManager.Instance.PlaySoundTrack(SoundClipsInts.RussellCharSelect);
+                //if (selections[player.selectIndex].name == "Jojo") MusicManager.Instance.PlaySoundTrack(SoundClipsInts.JojoCharSelect);
+                //if (selections[player.selectIndex].name == "Kiki") MusicManager.Instance.PlaySoundTrack(SoundClipsInts.KikiCharSelect);
+                //if (selections[player.selectIndex].name == "Momo") MusicManager.Instance.PlaySoundTrack(SoundClipsInts.MomoCharSelect);
 
                 playersLocked++;
             }
@@ -94,6 +130,15 @@ public class PlayerSelectController : MonoBehaviour
         if (playersLocked >= totalPlayers)
         {
             StartCoroutine(StartGame());
+        }
+    }
+
+    private void MakeCatDance()
+    {
+        foreach (var anim in menuCharacterAnimations)
+        {
+            if (anim.CharacterName == chosenCharacter)
+                anim.Dance();
         }
     }
 
