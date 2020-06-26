@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SpawnSystem.Standard
 {
@@ -56,7 +57,8 @@ namespace SpawnSystem.Standard
         /// </summary>
         public void SetSpawnParams()
         {
-            for (int i = 0; i < enemiesToSpawn.Count; i++)
+            var uniqueSpawnPointList = enemiesToSpawn.Where(x => x.spawnPoint).Distinct().ToList();
+            for (int i = 0; i < uniqueSpawnPointList.Count; i++)
             {
                 enemiesToSpawn[i].spawnPoint.SetSpawnParams(enemiesToSpawn, spawnInterval);
             }
