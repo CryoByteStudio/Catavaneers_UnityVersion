@@ -57,11 +57,26 @@ namespace SpawnSystem.Standard
         /// </summary>
         public void SetSpawnParams()
         {
-            var uniqueSpawnPointList = enemiesToSpawn.Where(x => x.spawnPoint).Distinct().ToList();
-            for (int i = 0; i < uniqueSpawnPointList.Count; i++)
+            List<SpawnPoint> spawnPoints = GetUniqueSpawnPoints();
+
+            for (int i = 0; i < spawnPoints.Count; i++)
             {
-                enemiesToSpawn[i].spawnPoint.SetSpawnParams(enemiesToSpawn, spawnInterval);
+                //enemiesToSpawn[i].spawnPoint.SetSpawnParams(enemiesToSpawn, spawnInterval);
+                spawnPoints[i].SetSpawnParams(enemiesToSpawn, spawnInterval);
             }
+        }
+
+        private List<SpawnPoint> GetUniqueSpawnPoints()
+        {
+            List<SpawnPoint> uniqueSpawnPoints = new List<SpawnPoint>();
+            foreach (EnemyToSpawn enemyToSpawn in enemiesToSpawn)
+            {
+                if (!uniqueSpawnPoints.Contains(enemyToSpawn.spawnPoint))
+                {
+                    uniqueSpawnPoints.Add(enemyToSpawn.spawnPoint);
+                }
+            }
+            return uniqueSpawnPoints;
         }
     }
 }

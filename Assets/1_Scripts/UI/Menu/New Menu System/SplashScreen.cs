@@ -9,7 +9,8 @@ namespace Catavaneer.MenuSystem
     [RequireComponent(typeof(ScreenFader))]
     public class SplashScreen : MonoBehaviour
     {
-        [SerializeField] protected float delay = 0f;
+        [SerializeField] protected float loadDelay = 0f;
+        [SerializeField] protected float fadeDelay = 0f;
         [SerializeField] protected Slider loadingBar;
         [SerializeField] protected GameObject textObject;
 
@@ -43,9 +44,10 @@ namespace Catavaneer.MenuSystem
 
         private IEnumerator FadeAndLoadRoutine()
         {
+            yield return new WaitForSeconds(loadDelay);
             canvasGroup.interactable = false;
             LevelLoader.LoadNextLevelAsync(this);
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(fadeDelay);
             screenFader.FadeOff();
             Destroy(gameObject, screenFader.FadeOffDuration);
         }

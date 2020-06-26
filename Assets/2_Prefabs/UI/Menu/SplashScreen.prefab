@@ -144,7 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838f68414fe3fbc4791ed01802514d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0
+  loadDelay: 2
+  fadeDelay: 0
   loadingBar: {fileID: 6948538761480997559}
   textObject: {fileID: 6948538761308826090}
 --- !u!114 &6948538760585777077
@@ -542,10 +543,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 6948538761308826084}
-    characterCount: 24
+    characterCount: 26
     spriteCount: 0
-    spaceCount: 3
-    wordCount: 4
+    spaceCount: 4
+    wordCount: 5
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -941,7 +942,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6948538761782406246
 RectTransform:
   m_ObjectHideFlags: 0
