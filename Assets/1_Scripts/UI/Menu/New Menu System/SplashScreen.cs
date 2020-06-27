@@ -44,8 +44,8 @@ namespace Catavaneer.MenuSystem
 
         private IEnumerator FadeAndLoadRoutine()
         {
-            yield return new WaitForSeconds(loadDelay);
             canvasGroup.interactable = false;
+            yield return new WaitForSeconds(loadDelay);
             LevelLoader.LoadNextLevelAsync(this);
             yield return new WaitForSeconds(fadeDelay);
             screenFader.FadeOff();

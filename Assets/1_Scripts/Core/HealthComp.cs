@@ -133,10 +133,10 @@ public class HealthComp : MonoBehaviour
                     case DifficultyLevel.Normal:
                         break;
                     case DifficultyLevel.IronCat:
-                        startHealth = Mathf.RoundToInt(currentHealth * healthscaleIroncat * playerHealthScale);
+                        startHealth = Mathf.RoundToInt(startHealth * healthscaleIroncat * playerHealthScale);
                         break;
                     case DifficultyLevel.Catapocalypse:
-                        startHealth = Mathf.RoundToInt(currentHealth * healthscaleCatpoc * playerHealthScale);
+                        startHealth = Mathf.RoundToInt(startHealth * healthscaleCatpoc * playerHealthScale);
                         break;
                     case DifficultyLevel.Catfight:
                         break;
