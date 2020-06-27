@@ -16,7 +16,6 @@ public enum DifficultyLevel { Normal = 5, IronCat = 10, Catapocalypse = 25, Catf
 public class HealthComp : MonoBehaviour
 {
     public AudioSource A_Source;
-    [SerializeField] private DifficultyLevel gameDifficulty = DifficultyLevel.Normal;
     public CharacterClass myClass;
     public int startHealth = 100;
     public GameManager gman;
@@ -34,9 +33,10 @@ public class HealthComp : MonoBehaviour
 
 
     public static event Action<HealthComp> OnCaravanDestroyed;
+    public event Action<HealthComp> OnEnemyHealthChanged;
     public event Action<HealthComp> OnEnemyDeath;
     public event Action<HealthComp> OnPlayerHealthChanged;
-    public event Action<HealthComp> OnEnemyHealthChanged;
+    public event Action<HealthComp> OnPlayerDeath;
     public event Action<HealthComp> OnCaravanHealthChanged;
     public SoundClipsInts soundCue = SoundClipsInts.Death;
 
@@ -77,6 +77,88 @@ public class HealthComp : MonoBehaviour
         A_Source = GetComponent<AudioSource>();
 
         firstthreshold = damagethreshold;
+
+        ScalePlayerHealth();
+        SetGoldDropPercentage();
+        ScaleEnemyHealth();
+
+        currentHealth = startHealth;
+        UpdateHealthUI();
+    }
+
+    private void UpdateHealthUI()
+    {
+        switch (myClass)
+        {
+            case CharacterClass.Player:
+                if (OnPlayerHealthChanged != null)
+                    OnPlayerHealthChanged.Invoke(this);
+                break;
+            case CharacterClass.Enemy:
+                if (OnEnemyHealthChanged != null)
+                    OnEnemyHealthChanged.Invoke(this);
+                break;
+            case CharacterClass.Caravan:
+                if (OnCaravanHealthChanged != null)
+                    OnCaravanHealthChanged.Invoke(this);
+                break;
+            case CharacterClass.Obj:
+            default:
+                break;
+        }
+    }
+
+    private void SetGoldDropPercentage()
+    {
+        if (GetComponent<PlayerInventory>())
+        {
+            //set % of gold to lose based on difficulty
+            switch (GameManager.Instance.DifficultyLevel)
+            {
+                case DifficultyLevel.Normal:
+                    percentageOfGoldToKeep = 0.75f;
+                    break;
+                case DifficultyLevel.IronCat:
+                    percentageOfGoldToKeep = 0.50f;
+                    break;
+                case DifficultyLevel.Catapocalypse:
+                    percentageOfGoldToKeep = 0.25f;
+                    break;
+                case DifficultyLevel.Catfight:
+                    EditorHelper.NotSupportedException("DifficultyLevel.Catfight");
+                    break;
+                default:
+                    EditorHelper.NotSupportedException("default");
+                    break;
+            }
+        }
+    }
+
+    private void ScaleEnemyHealth()
+    {
+        if (myClass == CharacterClass.Enemy)
+        {
+            //set enemy health
+            switch (GameManager.Instance.DifficultyLevel)
+            {
+                case DifficultyLevel.Normal:
+                    break;
+                case DifficultyLevel.IronCat:
+                    startHealth = Mathf.RoundToInt(startHealth * healthscaleIroncat * playerHealthScale);
+                    break;
+                case DifficultyLevel.Catapocalypse:
+                    startHealth = Mathf.RoundToInt(startHealth * healthscaleCatpoc * playerHealthScale);
+                    break;
+                case DifficultyLevel.Catfight:
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void ScalePlayerHealth()
+    {
         if (CharacterManager.Instance)
         {
             switch (CharacterManager.Instance.playerCount)
@@ -100,72 +182,6 @@ public class HealthComp : MonoBehaviour
                     break;
             }
         }
-
-        if (GetComponent<PlayerInventory>())
-        {
-            //set % of gold to lose based on difficulty
-            switch (GameManager.Instance.DifficultyLevel)
-            {
-                case DifficultyLevel.Normal:
-                    percentageOfGoldToKeep = 0.75f;
-                    break;
-                case DifficultyLevel.IronCat:
-                    percentageOfGoldToKeep = 0.50f;
-                    break;
-                case DifficultyLevel.Catapocalypse:
-                    percentageOfGoldToKeep = 0.25f;
-                    break;
-                case DifficultyLevel.Catfight:
-                    EditorHelper.NotSupportedException("DifficultyLevel.Catfight");
-                    break;
-                default:
-                    EditorHelper.NotSupportedException("default");
-                    break;
-            }
-        }
-        else
-        {
-            if (myClass == CharacterClass.Enemy)
-            {
-                //set enemy health
-                switch (GameManager.Instance.DifficultyLevel)
-                {
-                    case DifficultyLevel.Normal:
-                        break;
-                    case DifficultyLevel.IronCat:
-                        startHealth = Mathf.RoundToInt(startHealth * healthscaleIroncat * playerHealthScale);
-                        break;
-                    case DifficultyLevel.Catapocalypse:
-                        startHealth = Mathf.RoundToInt(startHealth * healthscaleCatpoc * playerHealthScale);
-                        break;
-                    case DifficultyLevel.Catfight:
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
-        currentHealth = startHealth;
-
-        switch (myClass)
-        {
-            case CharacterClass.Player:
-                if (OnPlayerHealthChanged != null)
-                    OnPlayerHealthChanged.Invoke(this);
-                break;
-            case CharacterClass.Enemy:
-                if (OnEnemyHealthChanged != null)
-                    OnEnemyHealthChanged.Invoke(this);
-                break;
-            case CharacterClass.Caravan:
-                if (OnCaravanHealthChanged != null)
-                    OnCaravanHealthChanged.Invoke(this);
-                break;
-            case CharacterClass.Obj:
-            default:
-                break;
-        }
     }
 
     private void FixedUpdate()
@@ -187,20 +203,14 @@ public class HealthComp : MonoBehaviour
         DisplayHealth();
 
         if (myClass == CharacterClass.Caravan && is_Regenerating)
-        {
-
-
-
+        { 
             if (currentHealth == startHealth)
             {
                 is_Regenerating = false;
                 GetComponent<CaravanDamage>().ResetDamage();
-               
             }
-            
-           
 
-                AddHealth(3);
+            AddHealth(3);
 
             if (currentHealth > damagethreshold + thresholdamount)
             {
@@ -215,8 +225,6 @@ public class HealthComp : MonoBehaviour
                     GetComponent<CaravanDamage>().ReverseDamageStageParticles();
                 }
             }
-            
-            
         }
     }
   

@@ -7,6 +7,7 @@ using System.Collections;
 using UnityEngine;
 //using UnityEngine.SceneManagement;
 using Catavaneer.MenuSystem;
+using System;
 
 namespace Catavaneer
 {
@@ -15,20 +16,22 @@ namespace Catavaneer
         [SerializeField] private int mainMenuSceneIndex = 0;
         [SerializeField] private int characterSelectSceneIndex = 0;
         [SerializeField] private int firstGameSceneIndex = 0;
-        [SerializeField] private int catFightSceneIndex = 0;
+        //[SerializeField] private int catFightSceneIndex = 0;
 
         public float startDelay = 2;
         public float quitDelay = 4;
 
         private bool doneOnce = false;
 
-        private DifficultyLevel difficultyLevel;
+        private DifficultyLevel difficultyLevel = DifficultyLevel.Catapocalypse;
         public DifficultyLevel DifficultyLevel { get { return instance.difficultyLevel; } }
         private bool isGameOver;
         public bool IsGameOver { get { return isGameOver; } }
         private bool hasFinishedAllLevel = false;
         public bool HasFinishedAllLevel { get { return hasFinishedAllLevel; } }
         public int FirstGameSceneIndex { get { return firstGameSceneIndex; } }
+
+        public static event Action OnLevelComplete;
         
         public static int LastEncounterIndex = 0;
         public static int CurrentDay = 0;
@@ -52,13 +55,17 @@ namespace Catavaneer
 
             if (!doneOnce && isGameOver)
             {
-                if (LevelLoader.IsGameLevel() && LevelLoader.GetCurrentSceneIndex() < catFightSceneIndex)
+                //if (LevelLoader.IsGameLevel() && LevelLoader.GetCurrentSceneIndex() < catFightSceneIndex)
+                if (LevelLoader.IsGameLevel())
                 {
-                    if (FindObjectOfType<CaravanDamage>()){
+                    //if (FindObjectOfType<CaravanDamage>())
+                    //{
+                    //    FindObjectOfType<CaravanDamage>().PlayVictory();
+                    //}
 
-                        FindObjectOfType<CaravanDamage>().PlayVictory();
+                    if (OnLevelComplete != null)
+                        OnLevelComplete.Invoke();
 
-                    }
                     StartCoroutine(WinDelay());
                 }
                 else
@@ -80,7 +87,7 @@ namespace Catavaneer
             {
                 Reset();
 
-                if (LevelLoader.GetCurrentSceneIndex() < catFightSceneIndex)
+                //if (LevelLoader.GetCurrentSceneIndex() < catFightSceneIndex)
                     StartCoroutine(StartDelay());
             }
             else if (hasFinishedAllLevel)
@@ -140,11 +147,12 @@ namespace Catavaneer
             int currentSceneIndex = LevelLoader.GetCurrentSceneIndex();
 
             // if PVE mode
-            if (LevelLoader.IsGameLevel() && currentSceneIndex < catFightSceneIndex)
+            //if (LevelLoader.IsGameLevel() && currentSceneIndex < catFightSceneIndex)
+            if (LevelLoader.IsGameLevel())
                 return SpawnManager.HasFinishedSpawning && SpawnManager.EnemiesAlive <= 0;
             // if PVP mode
-            else if (currentSceneIndex >= catFightSceneIndex)
-                return Goldbag.HasWinner;
+            //else if (currentSceneIndex >= catFightSceneIndex)
+            //    return Goldbag.HasWinner;
 
             return false;
         }
