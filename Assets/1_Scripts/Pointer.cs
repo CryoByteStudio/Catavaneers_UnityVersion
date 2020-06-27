@@ -1,21 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using DG.Tweening;
 
 public class Pointer : MonoBehaviour
 {
-    public Transform target;
-    public Transform attached;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float moveDistance;
+    [SerializeField] private float duration;
+    [SerializeField] private Ease easeType;
+
+    private void Start()
     {
-        
+        transform.DOMoveY(moveDistance, duration).SetRelative().SetLoops(-1, LoopType.Yoyo).SetEase(easeType);
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void OnValidate()
     {
-        //transform.position = attached.position;
-        transform.LookAt(target);
+        transform.DORestart();
     }
 }
