@@ -735,7 +735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &369029537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2612,6 +2612,24 @@ PrefabInstance:
       propertyPath: CharacterAttackDamage
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1585446985555583351, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: objectPools.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 2581615893523032559, guid: e1e695c71bf896c4693da18ff830f7af,
+        type: 3}
+    - target: {fileID: 1585446985555583351, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: objectPools.Array.data[1].prefab
+      value: 
+      objectReference: {fileID: 7813726422831262653, guid: aa8f8fa9522cd9e479a327bf7b7d9d91,
+        type: 3}
+    - target: {fileID: 1585446985555583351, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: objectPools.Array.data[2].prefab
+      value: 
+      objectReference: {fileID: 8561702618565427845, guid: 88652ddda155b1e4cbf1e5299ec23160,
+        type: 3}
     - target: {fileID: 1660913070139754137, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -3065,6 +3083,11 @@ PrefabInstance:
     - target: {fileID: 3571862169275366007, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3942987360129710114, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206186564255065579, guid: 2d8825ec77388f24c8163e269ab0991d,
