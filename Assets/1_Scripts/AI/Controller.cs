@@ -128,13 +128,15 @@ namespace AI
 
             active = true;
             HealthComp.OnCaravanDestroyed += OnCaravanDestroyedHandler;
-            healthComponent.OnEnemyHealthChanged += OnHealthChangedHandler;
+            if (healthComponent)
+                healthComponent.OnEnemyHealthChanged += OnHealthChangedHandler;
         }
 
         private void OnDisable()
         {
             HealthComp.OnCaravanDestroyed -= OnCaravanDestroyedHandler;
-            healthComponent.OnEnemyHealthChanged -= OnHealthChangedHandler;
+            if (healthComponent)
+                healthComponent.OnEnemyHealthChanged -= OnHealthChangedHandler;
         }
 
         private void OnCaravanDestroyedHandler(HealthComp healthComp)

@@ -962,6 +962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _TargetDayLength: 0.5
   _TimeOfDay: 0
+  _TimeOfDayInHours: {x: 0, y: 0}
   DailyRotation: {fileID: 1589312842}
   Sun: {fileID: 1749295217}
   SunBaseIntensity: 0
@@ -1670,6 +1671,10 @@ MonoBehaviour:
   Clip_Buying: {fileID: 8300000, guid: 38b542b856a71454992afbe924686f55, type: 3}
   Clip_Bandage: {fileID: 0}
   Clip_TrapTrigger: {fileID: 0}
+  RussellSelect: []
+  MomoSelect: []
+  KikiSelect: []
+  JojoSelect: []
 --- !u!4 &206556027
 Transform:
   m_ObjectHideFlags: 0
@@ -16122,6 +16127,7 @@ GameObject:
   - component: {fileID: 1877018042}
   - component: {fileID: 1877018041}
   - component: {fileID: 1877018040}
+  - component: {fileID: 1877018045}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -16215,6 +16221,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1877018045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877018039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1640bf96a5f8ace4b91d1a1a0fccc4ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  integerToConvert: 8
+  stringToConvert: Encounter_03
+  levelImage: 0
 --- !u!1 &1906511397
 GameObject:
   m_ObjectHideFlags: 0
@@ -17899,7 +17920,9 @@ MonoBehaviour:
   startHealth: 100
   gman: {fileID: 0}
   damagethreshold: 0
+  firstthreshold: 0
   thresholdamount: 0
+  lasthitthreshold: 0
   healthscale2P: 1.1
   healthscale3P: 1.3
   healthscale4P: 1.5

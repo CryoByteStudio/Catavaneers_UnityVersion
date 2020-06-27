@@ -4,17 +4,29 @@ using UnityEngine.UI;
 using TMPro;
 using Catavaneer.LevelManagement;
 using ViTiet.Utils;
+using System.Collections.Generic;
+using Catavaneer.Extensions;
 
 namespace Catavaneer.MenuSystem
 {
     public class TransitionFader : ScreenFader
     {
-        [SerializeField] private TransitionFaderType type = TransitionFaderType.MainMenuTransition;
-        [SerializeField] private float displayDuration;
-        [SerializeField] private TMP_Text transitionTextField;
-        [SerializeField] private Slider loadingBar;
+        [System.Serializable]
+        public struct ImageToSwapData
+        {
+            public Sprite imageToSwap;
+            public IntendedLevelImage intendedFor;
+        }
+
+        [SerializeField] protected TransitionFaderType type = TransitionFaderType.MainMenuTransition;
+        [SerializeField] protected float displayDuration;
+        [SerializeField] protected TMP_Text transitionTextField;
+        [SerializeField] protected Slider loadingBar;
+        [SerializeField] private Image targetImage;
+        [SerializeField] private List<ImageToSwapData> imageToSwapDataList;
 
         public TransitionFaderType Type { get { return type; } }
+        public List<ImageToSwapData> ImageToSwapDataList { get { return imageToSwapDataList; } }
         public float DisplayDuration { get { return displayDuration; } }
         public float LifeTime { get { return FadeOnDuration + displayDuration + FadeOffDuration; } }
 
@@ -47,6 +59,23 @@ namespace Catavaneer.MenuSystem
 
         #region PRIVATE METHODS
 
+        private void ChangeDisplayImage(IntendedLevelImage intendedLevel)
+        {
+            foreach (ImageToSwapData data in imageToSwapDataList)
+            {
+                if (data.intendedFor == intendedLevel)
+                {
+                    targetImage.sprite = data.imageToSwap;
+                    break;
+                }
+            }
+        }
+
+        private void Play()
+        {
+            StartCoroutine(PlayRoutine());
+        }
+
         private IEnumerator PlayRoutine()
         {
             FadeOn();
@@ -72,14 +101,61 @@ namespace Catavaneer.MenuSystem
 
         #region PUBLIC METHODS
 
-        public void Play()
-        {
-            StartCoroutine(PlayRoutine());
-        }
-
         public void SetTransitionText(string text)
         {
-            transitionTextField.text = text;
+            if (transitionTextField)
+                transitionTextField.text = text;
+        }
+
+        public void PlayTransition(int levelIndex, TransitionFader transitionFader)
+        {
+            if (!transitionFader)
+            {
+                EditorHelper.ArgumentNullException("transitionFader");
+                return;
+            }
+
+            IntendedLevelImage intendedLevel = levelIndex.ToEnum<IntendedLevelImage>();
+
+            if (intendedLevel != IntendedLevelImage.Default)
+                ChangeDisplayImage(intendedLevel);
+
+            TransitionFader instance = Instantiate(transitionFader, Vector3.zero, Quaternion.identity);
+            instance.Play();
+        }
+
+        public void PlayTransition(string levelName, TransitionFader transitionFader)
+        {
+            if (!transitionFader)
+            {
+                EditorHelper.ArgumentNullException("transitionFader");
+                return;
+            }
+
+            IntendedLevelImage intendedLevel = levelName.ToEnum<IntendedLevelImage>();
+
+            if (intendedLevel != IntendedLevelImage.Default)
+                ChangeDisplayImage(intendedLevel);
+
+            TransitionFader instance = Instantiate(transitionFader, Vector3.zero, Quaternion.identity);
+            instance.Play();
+        }
+
+        #endregion
+
+        #region PRIVATE STATIC METHODS
+
+        private static Sprite GetSwapSprite(IntendedLevelImage intendedLevel, List<ImageToSwapData> imageToSwapDataList)
+        {
+            foreach (ImageToSwapData data in imageToSwapDataList)
+            {
+                if (data.intendedFor == intendedLevel)
+                {
+                    return data.imageToSwap;
+                }
+            }
+
+            return null;
         }
 
         #endregion

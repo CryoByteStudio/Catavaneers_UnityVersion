@@ -19,4 +19,12 @@
         LoseScreenTransition,
         EndGameTransition
     }
+
+    public enum IntendedLevelImage
+    {
+        Default = default,
+        Encounter_01 = 4,
+        Encounter_02 = 5,
+        Encounter_03 = 6,
+    }
 }
