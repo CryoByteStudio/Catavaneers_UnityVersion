@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float straffSensitiviy = 30.0f;
     public Animator animator = null;
     public float dodgeCoolDown = 2;
-   Vector3 LTumbInput = new Vector3(0,0,0);
+    Vector3 LTumbInput = new Vector3(0,0,0);
     Vector3 RTumbInput = new Vector3(0, 0, 0);
     float leftInputMagnitud = 0.0f;
     float rightinputMagnitud = 0.0f;
@@ -60,52 +60,68 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem DamageEffect;
     public ParticleSystem SlowEffect;
     public ParticleSystem ReverseEffect;
+
+    private AnimatorStateInfo animatorStateInfo;
+
     private void Start()
     {
         health = GetComponent<HealthComp>();
         animator = GetComponent<Animator>();
+        animatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
     }
 
-    void FixedUpdate()
+    void Update()
     {
         //constraints for the player
         if (transform.position.y < ymin)
         {
-           
+
             transform.position = new Vector3(transform.position.x, ymin + constraintbuffer, transform.position.z);
-           // rb.velocity = Vector3.zero;
+            // rb.velocity = Vector3.zero;
         }
         if (transform.position.y > ymax)
         {
-            
+
             transform.position = new Vector3(transform.position.x, ymax - constraintbuffer, transform.position.z);
-           // rb.velocity = Vector3.zero;
+            // rb.velocity = Vector3.zero;
         }
         if (transform.position.x < xmin)
         {
-           
+
             transform.position = new Vector3(xmin + constraintbuffer, transform.position.y, transform.position.z);
-           // rb.velocity = Vector3.zero;
+            // rb.velocity = Vector3.zero;
         }
-        if (transform.position.x >xmax)
+        if (transform.position.x > xmax)
         {
-            
+
             transform.position = new Vector3(xmax - constraintbuffer, transform.position.y, transform.position.z);
-           // rb.velocity = Vector3.zero;
+            // rb.velocity = Vector3.zero;
         }
-        if (transform.position.z <zmin )
+        if (transform.position.z < zmin)
         {
-          
+
             transform.position = new Vector3(transform.position.x, transform.position.y, zmin + constraintbuffer);
-          //  rb.velocity = Vector3.zero;
+            //  rb.velocity = Vector3.zero;
         }
         if (transform.position.z > zmax)
         {
-            
-            transform.position = new Vector3(transform.position.x, transform.position.y, zmax- constraintbuffer);
+
+            transform.position = new Vector3(transform.position.x, transform.position.y, zmax - constraintbuffer);
             //rb.velocity = Vector3.zero;
         }
 
+        if (!health.IsDead())
+        {
+            CharacterMove(weaponWeight, reverseValue, slowValue);
+            if (Input.GetAxis(dodgeButton) != 0 && timeSinceLastDodge < Time.time)
+            {
+                states = MoveStates.Dodge;
+                timeSinceLastDodge = Time.time + dodgeCoolDown;
+            }
+        }
+    }
+    private void FixedUpdate()
+    {
         if (!health.IsDead())
         {
             switch(states)
@@ -126,12 +142,6 @@ public class PlayerController : MonoBehaviour
                     AxisInput();
                     isDodging = false;
                     break;
-            }
-            CharacterMove(weaponWeight, reverseValue, slowValue);
-            if (Input.GetAxis(dodgeButton) != 0 && timeSinceLastDodge < Time.time)
-            {
-                states = MoveStates.Dodge;
-                timeSinceLastDodge = Time.time + dodgeCoolDown;               
             }
         }
     }
@@ -154,28 +164,32 @@ public class PlayerController : MonoBehaviour
         transform.position += LTumbInput * Time.deltaTime * movementFraction;
         
     }
+
     void Dodge()
     {
-        switch (dodgeDirection)
+        if (!animator.GetBool("Has Started Attacking"))
         {
-            case DodgeDirection.Forward:
-                transform.Translate(Vector3.forward * dodgeSpeed * Time.deltaTime, Space.Self);
-                animator.SetInteger("Roll",2);
-                break;
-            case DodgeDirection.Backward:
-                transform.Translate(Vector3.back * dodgeSpeed * Time.deltaTime, Space.Self);
-                animator.SetInteger("Roll", 1);
-                break;
-            case DodgeDirection.Left:
-                transform.Translate(Vector3.left * dodgeSpeed * Time.deltaTime, Space.Self);
-                animator.SetInteger("Roll", 3);
-                break;
-            case DodgeDirection.Right:
-                transform.Translate(Vector3.right * dodgeSpeed * Time.deltaTime, Space.Self);
-                animator.SetInteger("Roll", 4);
-                break;
-            default:
-                break;
+            switch (dodgeDirection)
+            {
+                case DodgeDirection.Forward:
+                    transform.Translate(Vector3.forward * dodgeSpeed * Time.deltaTime, Space.Self);
+                    animator.SetInteger("Roll", 2);
+                    break;
+                case DodgeDirection.Backward:
+                    transform.Translate(Vector3.back * dodgeSpeed * Time.deltaTime, Space.Self);
+                    animator.SetInteger("Roll", 1);
+                    break;
+                case DodgeDirection.Left:
+                    transform.Translate(Vector3.left * dodgeSpeed * Time.deltaTime, Space.Self);
+                    animator.SetInteger("Roll", 3);
+                    break;
+                case DodgeDirection.Right:
+                    transform.Translate(Vector3.right * dodgeSpeed * Time.deltaTime, Space.Self);
+                    animator.SetInteger("Roll", 4);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -191,6 +205,11 @@ public class PlayerController : MonoBehaviour
             characterRotation = Mathf.Atan2(Input.GetAxis(inputHorizontalRightThumb), Input.GetAxis(inputVerticalRightThumb)) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, characterRotation, 0));
             //GetComponent<Fighter>().UpdateRaycastOrientation(characterRotation);
+        }
+        else if (LTumbInput != Vector3.zero)
+        {
+            characterRotation = Mathf.Atan2(Input.GetAxis(inputHorizontalLeftThumb), Input.GetAxis(inputVerticalLeftThumb)) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(new Vector3(0, characterRotation, 0));
         }
     }
     //function that tells the animator if players is strafing and the direction
