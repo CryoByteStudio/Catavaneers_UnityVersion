@@ -90,7 +90,7 @@ namespace Catavaneer
             }
         }
 
-        private static void ResetCampaignParams()
+        public static void ResetCampaignParams()
         {
             CurrentDay = 0;
             LastEncounterIndex = 0;
