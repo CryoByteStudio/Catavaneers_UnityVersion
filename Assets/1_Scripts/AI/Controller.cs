@@ -83,7 +83,7 @@ namespace AI
         public Weapon EquippedWeapon { get { return equippedWeapon; } }
         public EnemyType Type { get { return type; } }
         public float Speed { get { return currentState == AIState.Chase ? ChaseSpeed : currentState == AIState.Frenzy ? frenzySpeed : 0; } }
-        
+
         private static List<HealthComp> mouseTargets = new List<HealthComp>();
         private static List<HealthComp> catTargets = new List<HealthComp>();
         private static List<HealthComp> dogTargets = new List<HealthComp>();
@@ -98,7 +98,7 @@ namespace AI
 
         public ParticleSystem KickUpGrassL;
         public ParticleSystem KickUpGrassR;
-       
+
 
 
         //gameobject references
@@ -169,7 +169,7 @@ namespace AI
             {
                 grassR = Instantiate(KickUpGrassR, transform.position, Quaternion.identity, null);
             }
-           
+
             if (KickUpGrassL)
             {
                 grassL = Instantiate(KickUpGrassL, transform.position, Quaternion.identity, null);

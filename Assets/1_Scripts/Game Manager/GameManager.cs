@@ -17,8 +17,8 @@ namespace Catavaneer
         [SerializeField] private int firstGameSceneIndex = 0;
         [SerializeField] private int catFightSceneIndex = 0;
 
-        public float startDelay = 1;
-        public float quitDelay = 0;
+        public float startDelay = 2;
+        public float quitDelay = 4;
 
         private bool doneOnce = false;
 
@@ -54,6 +54,11 @@ namespace Catavaneer
             {
                 if (LevelLoader.IsGameLevel() && LevelLoader.GetCurrentSceneIndex() < catFightSceneIndex)
                 {
+                    if (FindObjectOfType<CaravanDamage>()){
+
+                        FindObjectOfType<CaravanDamage>().PlayVictory();
+
+                    }
                     StartCoroutine(WinDelay());
                 }
                 else
