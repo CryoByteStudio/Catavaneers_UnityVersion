@@ -76,7 +76,7 @@ namespace Catavaneer.LevelManagement
 
         private static int GetNextLevelIndex()
         {
-            return CustomMathf.GetClampedLoopIndex(SceneManager.GetActiveScene().buildIndex + 1, mainMenuSceneIndex, SceneManager.sceneCountInBuildSettings);
+            return CustomMathf.GetClampedLoopIndex(GetCurrentSceneIndex() + 1, mainMenuSceneIndex, GetLevelCountInBuildSettings());
         }
 
         #endregion
@@ -98,14 +98,19 @@ namespace Catavaneer.LevelManagement
             firstGameSceneIndex = index;
         }
 
+        public static int GetCurrentSceneIndex()
+        {
+            return SceneManager.GetActiveScene().buildIndex;
+        }
+
         public static string GetCurrentSceneName()
         {
             return SceneManager.GetActiveScene().name;
         }
 
-        public static int GetCurrentSceneIndex()
+        public static int GetLevelCountInBuildSettings()
         {
-            return SceneManager.GetActiveScene().buildIndex;
+            return SceneManager.sceneCountInBuildSettings;
         }
 
         public static void LoadLevel(string sceneName)
@@ -122,7 +127,7 @@ namespace Catavaneer.LevelManagement
 
         public static void LoadLevel(int sceneIndex)
         {
-            if (sceneIndex >= 0 && sceneIndex < SceneManager.sceneCountInBuildSettings)
+            if (sceneIndex >= 0 && sceneIndex < GetLevelCountInBuildSettings())
             {
                 SceneManager.LoadScene(sceneIndex);
             }
@@ -144,7 +149,7 @@ namespace Catavaneer.LevelManagement
 
         public static void LoadMainMenuLevel()
         {
-            if (mainMenuSceneIndex >= 0 && mainMenuSceneIndex < SceneManager.sceneCountInBuildSettings)
+            if (mainMenuSceneIndex >= 0 && mainMenuSceneIndex < GetLevelCountInBuildSettings())
             {
                 LoadLevel(mainMenuSceneIndex);
             }
@@ -156,7 +161,7 @@ namespace Catavaneer.LevelManagement
 
         public static void LoadCharacterSelectLevel()
         {
-            if (characterSelectSceneIndex >= 0 && characterSelectSceneIndex < SceneManager.sceneCountInBuildSettings)
+            if (characterSelectSceneIndex >= 0 && characterSelectSceneIndex < GetLevelCountInBuildSettings())
             {
                 LoadLevel(characterSelectSceneIndex);
             }
@@ -208,7 +213,7 @@ namespace Catavaneer.LevelManagement
 
         public static void LoadMainMenuLevelAsync(MonoBehaviour instance)
         {
-            if (mainMenuSceneIndex >= 0 && mainMenuSceneIndex < SceneManager.sceneCountInBuildSettings)
+            if (mainMenuSceneIndex >= 0 && mainMenuSceneIndex < GetLevelCountInBuildSettings())
             {
                 LoadLevelAsync(instance, mainMenuSceneIndex);
             }
@@ -220,7 +225,7 @@ namespace Catavaneer.LevelManagement
 
         public static void LoadCharacterSelectLevelAsync(MonoBehaviour instance)
         {
-            if (characterSelectSceneIndex >= 0 && characterSelectSceneIndex < SceneManager.sceneCountInBuildSettings)
+            if (characterSelectSceneIndex >= 0 && characterSelectSceneIndex < GetLevelCountInBuildSettings())
             {
                 LoadLevelAsync(instance, characterSelectSceneIndex);
             }
