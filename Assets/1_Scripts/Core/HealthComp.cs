@@ -200,7 +200,7 @@ public class HealthComp : MonoBehaviour
             
            
 
-                AddHealth(3);
+                AddHealth(1);
 
             if (currentHealth > damagethreshold + thresholdamount)
             {
