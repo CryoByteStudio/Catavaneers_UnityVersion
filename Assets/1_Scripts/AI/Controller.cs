@@ -56,7 +56,7 @@ namespace AI
         private float distanceToTarget = Mathf.Infinity;
         private float distanceToTargetSqr = Mathf.Infinity;
         private NavMeshAgent agent = null;
-        private Animator animatorController = null;
+        [SerializeField]private Animator animatorController = null;
         private Transform targetPointTransform = null;
         private float distanceToTargetPointTransform = Mathf.Infinity;
         private float distanceToTargetPointTransformSqr = Mathf.Infinity;
@@ -155,8 +155,9 @@ namespace AI
 
             Reset();
             PopulateTargetLists();
+            if(!animatorController)
+                animatorController = GetComponent<Animator>();
 
-            animatorController = GetComponent<Animator>();
             healthComponent = GetComponent<HealthComp>();
 
             // override NavMeshAgent auto reposition when enabled
