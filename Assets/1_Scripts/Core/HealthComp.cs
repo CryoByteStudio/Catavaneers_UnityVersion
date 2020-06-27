@@ -203,14 +203,14 @@ public class HealthComp : MonoBehaviour
         DisplayHealth();
 
         if (myClass == CharacterClass.Caravan && is_Regenerating)
-        { 
+        {
             if (currentHealth == startHealth)
             {
                 is_Regenerating = false;
                 GetComponent<CaravanDamage>().ResetDamage();
             }
 
-            AddHealth(3);
+            AddHealth(1);
 
             if (currentHealth > damagethreshold + thresholdamount)
             {
@@ -227,7 +227,7 @@ public class HealthComp : MonoBehaviour
             }
         }
     }
-  
+
 
     private void Reset()
     {
@@ -305,7 +305,7 @@ public class HealthComp : MonoBehaviour
                     lasthitthreshold = damagethreshold;
                     damagethreshold -= thresholdamount;
                     GetComponent<CaravanDamage>().TriggerDamageStageParticles();
-                    
+
                 }
 
                 A_Source.clip = MusicManager.Instance.Clip_Hit;

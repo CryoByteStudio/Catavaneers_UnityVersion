@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LowPolyWaterMaterial
-  m_Shader: {fileID: 4800000, guid: 16516895e8a79bf49a6562c3c3b84cbf, type: 3}
+  m_Shader: {fileID: 4800000, guid: e020bc299d083664181ca7d252a3c5a7, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
@@ -25,6 +25,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Caustics:
         m_Texture: {fileID: 2800000, guid: eb9e91ee4c264b942a46baeec92ca0a4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CubeMap:
+        m_Texture: {fileID: 8900000, guid: 62bcfe9a50c43b04aa0ab4ff22d83f69, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DecalTex:
@@ -68,6 +72,10 @@ Material:
         m_Scale: {x: 0, y: 0}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -136,7 +144,9 @@ Material:
     - _DisplacementTiling: 18.586807
     - _DstBlend: 0
     - _FadeExp: 0.91503274
+    - _FoamDepth: 0.5
     - _FoamWaveDependency: 0.10205479
+    - _Frequency: 30
     - _FresnelPower: 1.7931035
     - _FresnelScale: 2.06
     - _GerstnerIntensity: 1.6714286
@@ -152,6 +162,7 @@ Material:
     - _NormalsDisplacement: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _PhaseMultiplier: 10
     - _RandomHeight: 0.5
     - _RandomSpeed: 0.5
     - _ReflDistort: 0.9267696
@@ -163,6 +174,7 @@ Material:
     - _SpecularHighlights: 1
     - _Speed: 0.4137931
     - _SrcBlend: 1
+    - _Strength: 0.05
     - _UVSec: 0
     - _WaterDepth: 40.98077
     - _WaveCapsAmount: 0.18275861
@@ -189,7 +201,8 @@ Material:
     - _DistortParams: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Extinction: {r: 4.5, g: 75, b: 300, a: 1}
-    - _Foam: {r: 1.03, g: 2.68, b: 0, a: 0}
+    - _Foam: {r: 2.5, g: 0, b: 0, a: 0}
+    - _FoamColor: {r: 0.13305447, g: 0.21914925, b: 0.24528301, a: 1}
     - _FoamWaveParams: {r: 0, g: 0.24918434, b: 3.3395782, a: 1}
     - _Fresnel_ST: {r: 1, g: 1, b: 0, a: 0}
     - _GAmplitude: {r: 0, g: 0, b: 0, a: 0}
@@ -199,7 +212,7 @@ Material:
     - _GSpeed: {r: -3, g: 2, b: 1, a: 3}
     - _GSteepness: {r: 7, g: 2, b: 6, a: 2}
     - _HorizonColor: {r: 0.052907113, g: 0.24486735, b: 0.2835821, a: 1}
-    - _InvFadeParemeter: {r: 2, g: -20, b: -20, a: 9.18}
+    - _InvFadeParemeter: {r: 1, g: 0, b: 0, a: 0}
     - _MainTex_ST: {r: 1, g: 1, b: 0, a: 0}
     - _ReflectionColor: {r: 0.5794164, g: 0.6849238, b: 0.76119405, a: 0.43137255}
     - _ReflectionTex_ST: {r: 1, g: 1, b: 0, a: 0}
@@ -215,6 +228,7 @@ Material:
     - _SpecColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
     - _SpecularColor: {r: 0.91791046, g: 0.91791046, b: 0.91791046, a: 1}
     - _UnderwaterColor: {r: 0.6950323, g: 0.89552236, b: 0.7502397, a: 1}
+    - _WaterColor: {r: 0.06132078, g: 0.816476, b: 1, a: 0.6392157}
     - _WaveOffset: {r: -0, g: -0, b: -0, a: -0}
     - _WaveScale4: {r: 0, g: 0, b: 0, a: 0}
     - _WorldLightDir: {r: -0.030375138, g: -0.20139083, b: -0.97903997, a: 0}
