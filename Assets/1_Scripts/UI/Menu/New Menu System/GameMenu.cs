@@ -12,7 +12,8 @@ namespace Catavaneer.MenuSystem
         {
             if (Input.GetButtonDown(pauseButton) || Input.GetKeyDown(KeyCode.Escape))
             {
-                OnPausePressed();
+                if (!GameManager.Instance.IsGameOver)
+                    OnPausePressed();
             }
         }
         #endregion

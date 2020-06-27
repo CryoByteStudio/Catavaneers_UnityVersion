@@ -56,7 +56,7 @@ namespace AI
         private float distanceToTarget = Mathf.Infinity;
         private float distanceToTargetSqr = Mathf.Infinity;
         private NavMeshAgent agent = null;
-        private Animator animatorController = null;
+        [SerializeField]private Animator animatorController = null;
         private Transform targetPointTransform = null;
         private float distanceToTargetPointTransform = Mathf.Infinity;
         private float distanceToTargetPointTransformSqr = Mathf.Infinity;
@@ -83,7 +83,7 @@ namespace AI
         public Weapon EquippedWeapon { get { return equippedWeapon; } }
         public EnemyType Type { get { return type; } }
         public float Speed { get { return currentState == AIState.Chase ? ChaseSpeed : currentState == AIState.Frenzy ? frenzySpeed : 0; } }
-        
+
         private static List<HealthComp> mouseTargets = new List<HealthComp>();
         private static List<HealthComp> catTargets = new List<HealthComp>();
         private static List<HealthComp> dogTargets = new List<HealthComp>();
@@ -98,7 +98,7 @@ namespace AI
 
         public ParticleSystem KickUpGrassL;
         public ParticleSystem KickUpGrassR;
-       
+
 
 
         //gameobject references
@@ -128,13 +128,15 @@ namespace AI
 
             active = true;
             HealthComp.OnCaravanDestroyed += OnCaravanDestroyedHandler;
-            healthComponent.OnEnemyHealthChanged += OnHealthChangedHandler;
+            if (healthComponent)
+                healthComponent.OnEnemyHealthChanged += OnHealthChangedHandler;
         }
 
         private void OnDisable()
         {
             HealthComp.OnCaravanDestroyed -= OnCaravanDestroyedHandler;
-            healthComponent.OnEnemyHealthChanged -= OnHealthChangedHandler;
+            if (healthComponent)
+                healthComponent.OnEnemyHealthChanged -= OnHealthChangedHandler;
         }
 
         private void OnCaravanDestroyedHandler(HealthComp healthComp)
@@ -153,8 +155,9 @@ namespace AI
 
             Reset();
             PopulateTargetLists();
+            if(!animatorController)
+                animatorController = GetComponent<Animator>();
 
-            animatorController = GetComponent<Animator>();
             healthComponent = GetComponent<HealthComp>();
 
             // override NavMeshAgent auto reposition when enabled
@@ -167,7 +170,7 @@ namespace AI
             {
                 grassR = Instantiate(KickUpGrassR, transform.position, Quaternion.identity, null);
             }
-           
+
             if (KickUpGrassL)
             {
                 grassL = Instantiate(KickUpGrassL, transform.position, Quaternion.identity, null);

@@ -175,7 +175,8 @@ namespace Catavaneer.MenuSystem
         {
             UnPaused();
             fader = transitionFaderDictionary[type];
-            TransitionFader.PlayTransition(fader);
+            //TransitionFader.PlayTransition(fader);
+            fader.PlayTransition(LevelLoader.GetCurrentSceneIndex(), fader);
         }
 
         private static void OpenMenuPostTransition(Menu menu)

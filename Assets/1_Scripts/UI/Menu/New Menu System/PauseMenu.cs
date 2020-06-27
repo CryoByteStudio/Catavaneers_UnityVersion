@@ -7,11 +7,18 @@ namespace Catavaneer.MenuSystem
     {
         [SerializeField] private GameObject firstSelected;
 
+        private int buttonPressCount;
+
         #region UNITY ENGINE FUNCTIONS
         protected override void Awake()
         {
             base.Awake();
             SetSelectedGameObject(firstSelected);
+        }
+
+        private void OnEnable()
+        {
+            buttonPressCount = 0;
         }
         #endregion
 
@@ -23,7 +30,7 @@ namespace Catavaneer.MenuSystem
 
         public void OnRestartPressed()
         {
-            FindObjectOfType<BaseInputModule>().DeactivateModule();
+            if (!ButtonSmashPreventor.ShouldProceed(ref buttonPressCount)) return;
             MenuManager.RestartLevel();
         }
 
@@ -35,7 +42,11 @@ namespace Catavaneer.MenuSystem
 
         public void OnMainMenuPressed()
         {
-            FindObjectOfType<BaseInputModule>().DeactivateModule();
+            if (!ButtonSmashPreventor.ShouldProceed(ref buttonPressCount)) return;
+
+            if (!GameManager.Instance.IsGameOver)
+                GameManager.ResetCampaignParams();
+
             MenuManager.LoadMainMenuLevel(false);
         }
         #endregion

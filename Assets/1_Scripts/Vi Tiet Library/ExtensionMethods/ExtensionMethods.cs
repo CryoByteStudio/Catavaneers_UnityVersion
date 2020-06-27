@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,7 +25,7 @@ namespace Catavaneer.Extensions
             return transformList;
         }
 
-        public static List<T> GetAllComponentsOfTypeInHierachy<T>(this Transform root, List<T> genericList = null, bool addRoot = true) where T : Object
+        public static List<T> GetAllComponentsOfTypeInHierachy<T>(this Transform root, List<T> genericList = null, bool addRoot = true) where T : UnityEngine.Object
         {
             if (genericList == null || genericList.Count <= 0)
                 genericList = new List<T>();
@@ -49,6 +49,24 @@ namespace Catavaneer.Extensions
             }
 
             return genericList;
+        }
+
+        public static T ToEnum<T>(this string stringValue) where T : struct, IConvertible
+        {
+            Type enumType = typeof(T);
+            if (!enumType.IsEnum)
+                throw new Exception("T should be an Enumeration type");
+            T enumValue;
+            return Enum.TryParse(stringValue, out enumValue) ? enumValue : default;
+        }
+
+        public static T ToEnum<T>(this int intValue) where T : struct, IConvertible
+        {
+            Type enumType = typeof(T);
+            if (!enumType.IsEnum)
+                throw new Exception("T should be an Enumeration type");
+            T enumValue = (T)Enum.ToObject(enumType, intValue);
+            return Enum.IsDefined(enumType,enumValue) ? enumValue : default;
         }
         #endregion
     }
