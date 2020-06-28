@@ -8,7 +8,7 @@ public class Shop : MonoBehaviour
     float restockTimer=5f;
     [SerializeField]
     float timeToRestock=5f;
-    
+
     public List<Item> availableItems=new List<Item>();
     public List<Item> displayedItems=new List<Item>();
     public List<Transform> displaypoints=new List<Transform>();
@@ -36,7 +36,7 @@ public class Shop : MonoBehaviour
     }
     void Unstock()
     {
-        
+
         for (int i = displayedItems.Count; i > 0; i--)
         {
             displayedItems[0].gameObject.SetActive(false);
@@ -48,21 +48,21 @@ public class Shop : MonoBehaviour
 
     void Stock()
     {
-      for(int i = 0; i < displaypoints.Count; i++)
+        for (int i = 0; i < displaypoints.Count; i++)
         {
             availableItems[0].gameObject.SetActive(true);
             availableItems[0].transform.position = displaypoints[i].position;
             displayedItems.Add(availableItems[0]);
             availableItems.RemoveAt(0);
-           
-            
+
+
         }
 
         foreach (ShopPlot plot in FindObjectsOfType<ShopPlot>())
         {
             plot.issoldout = false;
             plot.ItemDisplay.sprite = displayedItems[plot.plotid].Item_Display;
-            plot.CostDisplay.text = "-" + displayedItems    [plot.plotid].item_cost.ToString() + "GP";
+            plot.CostDisplay.text = "-" + displayedItems[plot.plotid].item_cost.ToString() + "GP";
             plot.SoldOut.gameObject.SetActive(false);
             plot.ispurchased = false;
         }
