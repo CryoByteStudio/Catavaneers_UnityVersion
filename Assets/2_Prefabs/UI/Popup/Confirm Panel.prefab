@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9182437930909024139}
   - component: {fileID: 6145439193519321437}
   m_Layer: 5
-  m_Name: Confirm Text (TMP)
+  m_Name: Description Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -246,18 +246,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a7a9f3990490e45b92523e8c12a665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: Are You Sure?
-  labelField: {fileID: 7613631175669702675}
-  labellColor: {r: 0, g: 0, b: 0, a: 1}
-  description: All your progress will be reset when going back to main menu.
-  descriptionField: {fileID: 6145439193519321437}
-  descriptionlColor: {r: 0, g: 0, b: 0, a: 1}
-  yesButtonText: Yes! Take me outta here!
-  yesButtonField: {fileID: 6336927600830895390}
-  noButtonText: No. I want to play more.
-  noButtonField: {fileID: 7105782151555994293}
-  textNormalColor: {r: 1, g: 0, b: 0, a: 1}
-  textSelectedColor: {r: 1, g: 1, b: 1, a: 1}
+  panelBackground: {fileID: 651600448779708903}
+  panelBackgroundColor: {r: 0, g: 0, b: 0, a: 0}
+  labelText: 
+  labelTextField: {fileID: 7613631175669702675}
+  labelTextColor: {r: 1, g: 0, b: 0, a: 1}
+  descriptionText: 
+  descriptionTextField: {fileID: 6145439193519321437}
+  descriptionTextColor: {r: 1, g: 1, b: 1, a: 1}
+  positiveButtonText: 
+  positiveButtonTextField: {fileID: 6336927600830895390}
+  positiveButtonBackground: {fileID: 0}
+  negativeButtonText: 
+  negativeButtonTextField: {fileID: 7105782151555994293}
+  negativeButtonBackground: {fileID: 0}
+  buttonTextNormalColor: {r: 1, g: 0, b: 0, a: 1}
+  buttonTextSelectedColor: {r: 1, g: 1, b: 1, a: 1}
+  buttonNormalColor: {r: 1, g: 1, b: 1, a: 1}
+  buttonSelectedColor: {r: 1, g: 0, b: 0, a: 1}
   firstSelectButton: {fileID: 5115710337876066523}
   inEaseType: 24
   outEaseType: 23
@@ -276,7 +282,7 @@ GameObject:
   - component: {fileID: 6017525964269811004}
   - component: {fileID: 1477201183060875870}
   m_Layer: 5
-  m_Name: No Button
+  m_Name: Negative Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -356,7 +362,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 4457088485257004147}
     m_SelectOnRight: {fileID: 4457088485257004147}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
@@ -432,7 +438,7 @@ GameObject:
   - component: {fileID: 2530577183753000114}
   - component: {fileID: 6336927600830895390}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Positive Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -587,7 +593,7 @@ GameObject:
   - component: {fileID: 8184373564569978925}
   - component: {fileID: 7105782151555994293}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Negative Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -742,7 +748,7 @@ GameObject:
   - component: {fileID: 3226322699051267230}
   - component: {fileID: 7613631175669702675}
   m_Layer: 5
-  m_Name: Confirm Label Text (TMP)
+  m_Name: Label Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -900,7 +906,7 @@ GameObject:
   - component: {fileID: 4457088485257004147}
   - component: {fileID: 5067888562086580718}
   m_Layer: 5
-  m_Name: Yes Button
+  m_Name: Positive Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -980,7 +986,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 6017525964269811004}
     m_SelectOnRight: {fileID: 6017525964269811004}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
@@ -1001,7 +1007,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 4615637137686270145}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:

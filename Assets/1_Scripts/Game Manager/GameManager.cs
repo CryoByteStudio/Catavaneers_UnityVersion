@@ -55,26 +55,30 @@ namespace Catavaneer
 
             if (!doneOnce && isGameOver)
             {
-                //if (LevelLoader.IsGameLevel() && LevelLoader.GetCurrentSceneIndex() < catFightSceneIndex)
-                if (LevelLoader.IsGameLevel())
-                {
-                    //if (FindObjectOfType<CaravanDamage>())
-                    //{
-                    //    FindObjectOfType<CaravanDamage>().PlayVictory();
-                    //}
+                //if (LevelLoader.IsGameLevel())
+                //{ 
+                //    //if (FindObjectOfType<CaravanDamage>())
+                //    //{
+                //    //    FindObjectOfType<CaravanDamage>().PlayVictory();
+                //    //}
 
-                    if (OnLevelComplete != null)
-                        OnLevelComplete.Invoke();
+                //    if (OnLevelComplete != null)
+                //        OnLevelComplete.Invoke();
 
-                    StartCoroutine(WinDelay());
-                }
-                else
-                {
-                    ResetCampaignParams();
-                    hasFinishedAllLevel = true;
-                    MenuManager.LoadMainMenuLevel(true);
-                }
+                //    StartCoroutine(WinDelay());
+                //}
+                //else
+                //{
+                //    ResetCampaignParams();
+                //    hasFinishedAllLevel = true;
+                //    MenuManager.LoadMainMenuLevel(true);
+                //}
+                
+                if (OnLevelComplete != null)
+                    OnLevelComplete.Invoke();
 
+                StartCoroutine(WinDelay());
+                
                 doneOnce = true;
             }
         }
@@ -83,17 +87,28 @@ namespace Catavaneer
         {
             base.SceneLoadedHandler(scene, mode);
 
-            if (LevelLoader.IsGameLevel())
-            {
-                Reset();
+            //if (LevelLoader.IsGameLevel())
+            //{
+            //    Reset();
 
-                //if (LevelLoader.GetCurrentSceneIndex() < catFightSceneIndex)
-                    StartCoroutine(StartDelay());
-            }
-            else if (hasFinishedAllLevel)
+            //    //if (LevelLoader.GetCurrentSceneIndex() < catFightSceneIndex)
+            //        StartCoroutine(StartDelay());
+            //}
+            //else if (hasFinishedAllLevel)
+            //{
+            //    MenuManager.OpenMenu(MenuManager.CreditsMenu);
+            //    hasFinishedAllLevel = false;
+            //}
+            
+            if (hasFinishedAllLevel)
             {
                 MenuManager.OpenMenu(MenuManager.CreditsMenu);
                 hasFinishedAllLevel = false;
+            }
+            else
+            {
+                Reset();
+                StartCoroutine(StartDelay());
             }
         }
 
@@ -167,7 +182,14 @@ namespace Catavaneer
         private IEnumerator WinDelay()
         {
             yield return new WaitForSeconds(quitDelay);
-            MenuManager.LoadCampaignLevel();
+            if (LevelLoader.IsNextLevelGameLevel())
+                MenuManager.LoadCampaignLevel();
+            else
+            {
+                ResetCampaignParams();
+                hasFinishedAllLevel = true;
+                MenuManager.LoadMainMenuLevel(true);
+            }
         }
 
         public IEnumerator StartDelay()

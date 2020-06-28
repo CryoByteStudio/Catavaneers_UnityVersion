@@ -58,7 +58,7 @@ namespace Catavaneer
 
         private void Update()
         {
-            if (confirmPopup.IsFocused) return;
+            if (confirmPopup && confirmPopup.IsFocused) return;
 
             if (Input.GetButtonDown("Submit/Interact") && !ButtonSmashPreventor.ShouldProceed(ref buttonPressCount))
             {
@@ -68,7 +68,7 @@ namespace Catavaneer
             {
                 if (Input.GetButtonDown("Cancel/Shop3"))
                 {
-                    //StartCoroutine(GetConfirmation());
+                    // Confirm action with popup warning
                     if (confirmPopup)
                         confirmPopup.ExecuteOnConfirm(() =>
                         {

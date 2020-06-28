@@ -10,22 +10,41 @@ using DG.Tweening;
 
 public class ConfirmPopup : MonoBehaviour
 {
-    [SerializeField] private string label;
-    [SerializeField] private TMP_Text labelField;
-    [SerializeField] private Color labellColor;
+    [Header("Panel Properties")]
+    [SerializeField] private Image panelBackground;
+    [SerializeField] private Color panelBackgroundColor;
+
+    [Header("Label Properties")]
+    [SerializeField] private string labelText;
+    [SerializeField] private TMP_Text labelTextField;
+    [SerializeField] private Color labelTextColor;
+
+    [Header("Description Properties")]
     [Multiline]
-    [SerializeField] private string description;
-    [SerializeField] private TMP_Text descriptionField;
-    [SerializeField] private Color descriptionlColor;
-    [SerializeField] private string yesButtonText;
-    [SerializeField] private TMP_Text yesButtonField;
-    [SerializeField] private string noButtonText;
-    [SerializeField] private TMP_Text noButtonField;
-    [SerializeField] private Color textNormalColor;
-    [SerializeField] private Color textSelectedColor;
+    [SerializeField] private string descriptionText;
+    [SerializeField] private TMP_Text descriptionTextField;
+    [SerializeField] private Color descriptionTextColor;
+
+    [Header("Positive Button Properties")]
+    [SerializeField] private string positiveButtonText;
+    [SerializeField] private TMP_Text positiveButtonTextField;
+    [SerializeField] private Image positiveButtonBackground;
+
+    [Header("Negative Button Properties")]
+    [SerializeField] private string negativeButtonText;
+    [SerializeField] private TMP_Text negativeButtonTextField;
+    [SerializeField] private Image negativeButtonBackground;
+
+    [Header("Button Settings")]
+    [SerializeField] private Color buttonTextNormalColor;
+    [SerializeField] private Color buttonTextSelectedColor;
+    [SerializeField] private Color buttonNormalColor;
+    [SerializeField] private Color buttonSelectedColor;
     [SerializeField] private GameObject firstSelectButton;
-    [SerializeField] private Ease inEaseType;
+
+    [Header("Animation Settings")]
     [SerializeField] private Ease outEaseType;
+    [SerializeField] private Ease inEaseType;
     [SerializeField] private float animateDuration;
 
     private bool isActivated;
@@ -56,19 +75,19 @@ public class ConfirmPopup : MonoBehaviour
         hasConfirmed = false;
         proceed = false;
 
-        if (labelField) labelField.text = label;
-        if (descriptionField) descriptionField.text = description;
+        if (labelTextField) labelTextField.text = labelText;
+        if (descriptionTextField) descriptionTextField.text = descriptionText;
 
-        if (yesButtonField)
+        if (positiveButtonTextField)
         {
-            yesButtonField.text = yesButtonText;
-            yesButtonField.color = textNormalColor;
+            positiveButtonTextField.text = positiveButtonText;
+            positiveButtonTextField.color = buttonTextNormalColor;
         }
 
-        if (noButtonField)
+        if (negativeButtonTextField)
         {
-            noButtonField.text = noButtonText;
-            noButtonField.color = textNormalColor;
+            negativeButtonTextField.text = negativeButtonText;
+            negativeButtonTextField.color = buttonTextNormalColor;
         }
 
         transform.localScale = Vector3.zero;
@@ -76,14 +95,18 @@ public class ConfirmPopup : MonoBehaviour
 
     public void OnMoveToYes()
     {
-        yesButtonField.color = textSelectedColor;
-        noButtonField.color = textNormalColor;
+        positiveButtonTextField.color = buttonTextSelectedColor;
+        positiveButtonBackground.color = buttonSelectedColor;
+        negativeButtonTextField.color = buttonTextNormalColor;
+        negativeButtonBackground.color = buttonNormalColor;
     }
 
     public void OnMoveToNo()
     {
-        noButtonField.color = textSelectedColor;
-        yesButtonField.color = textNormalColor;
+        negativeButtonTextField.color = buttonTextSelectedColor;
+        negativeButtonBackground.color = buttonSelectedColor;
+        positiveButtonTextField.color = buttonTextNormalColor;
+        positiveButtonBackground.color = buttonNormalColor;
     }
 
     public void OnYesPressed()
@@ -101,7 +124,7 @@ public class ConfirmPopup : MonoBehaviour
     public void OpenPopup()
     {
         EventSystem.current.SetSelectedGameObject(firstSelectButton);
-        transform.DOScale(1, animateDuration).SetEase(inEaseType).OnComplete(() => enableInput = true);
+        transform.DOScale(1, animateDuration).SetEase(outEaseType).OnComplete(() => enableInput = true);
         isActivated = true;
         isFocused = true;
     }
@@ -109,7 +132,7 @@ public class ConfirmPopup : MonoBehaviour
     public void ClosePopup()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        transform.DOScale(0, animateDuration).SetEase(outEaseType).OnComplete(() => Reset());
+        transform.DOScale(0, animateDuration).SetEase(inEaseType).OnComplete(() => Reset());
     }
 
     public void ExecuteOnConfirm(ConfirmCallback yesAction, ConfirmCallback noAction)
@@ -139,5 +162,32 @@ public class ConfirmPopup : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    private void OnValidate()
+    {
+        if (panelBackground) panelBackground.color = panelBackgroundColor;
+        if (labelTextField)
+        {
+            labelTextField.text = labelText;
+            labelTextField.color = labelTextColor;
+        }
+        if (descriptionTextField)
+        {
+            descriptionTextField.text = descriptionText;
+            descriptionTextField.color = descriptionTextColor;
+        }
+        if (positiveButtonTextField)
+        {
+            positiveButtonTextField.text = positiveButtonText;
+            positiveButtonTextField.color = buttonTextNormalColor;
+        }
+        if (negativeButtonTextField)
+        {
+            negativeButtonTextField.text = negativeButtonText;
+            negativeButtonTextField.color = buttonTextNormalColor;
+        }
+        if (positiveButtonBackground) positiveButtonBackground.color = buttonNormalColor;
+        if (negativeButtonBackground) negativeButtonBackground.color = buttonNormalColor;
     }
 }
