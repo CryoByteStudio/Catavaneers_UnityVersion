@@ -63,7 +63,6 @@ public class HealthComp : MonoBehaviour
 
     Animator animator;
     private float playerHealthScale;
-    public Text healthuitext;
 
     [HideInInspector] public bool debug;
     [HideInInspector] public int damageTakenPerSecond;

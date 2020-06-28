@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 99945769043038959}
-  m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 1.099031, y: 0, z: 0}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -1.2809689, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4423988102528110094}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 89.991005}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!33 &1917064314397546265
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 8306678287630491441}
   - component: {fileID: 1653012100206141596}
   m_Layer: 0
-  m_Name: Bandage 1
+  m_Name: Consumable_Bandage_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,7 +106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 225968435545840960}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0.07999992}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 1317543150814743087}
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item_Display: {fileID: 21300000, guid: 49ddf91a3a2c3b14fbe44b2dcbb1d89c, type: 3}
   item_name: Bandage1
-  item_cost: 200
+  item_cost: 75
   WeaponRef: {fileID: 0}
   TrapRef: {fileID: 0}
   type: 3
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 399655145472723666}
   - component: {fileID: 4963242986197047927}
   m_Layer: 0
-  m_Name: FreezeTrap
+  m_Name: Trap_Freeze
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,7 +205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350567158333913566}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39999998, z: 0.07999992}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 2242669806937264717}
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 2892622260902107381}
   - component: {fileID: 1819596234379202053}
   m_Layer: 0
-  m_Name: Shop_Item_Rapier
+  m_Name: Weapon_Rapier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item_Display: {fileID: 21300000, guid: a8d5c9ec16908364b9100b36d2fba229, type: 3}
   item_name: Rapier
-  item_cost: 100
+  item_cost: 150
   WeaponRef: {fileID: 11400000, guid: a9143a414acf848449711eb86e339ef6, type: 2}
   TrapRef: {fileID: 0}
   type: 1
@@ -589,13 +589,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2294848847988135590}
-  m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 1.259031, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.6}
   m_Children: []
   m_Father: {fileID: 2892622260902107381}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
 --- !u!33 &297557730291307344
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -654,7 +654,7 @@ GameObject:
   - component: {fileID: 8114425230527703192}
   - component: {fileID: 820860937783796595}
   m_Layer: 0
-  m_Name: Shop_Item_Axe
+  m_Name: Weapon_Axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -689,7 +689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item_Display: {fileID: 21300000, guid: 92ccae6e68496474abe88df3ed594486, type: 3}
   item_name: Axe
-  item_cost: 100
+  item_cost: 200
   WeaponRef: {fileID: 11400000, guid: 0e21c98e964933a468fb9c54b9c9fea7, type: 2}
   TrapRef: {fileID: 0}
   type: 1
@@ -706,7 +706,7 @@ GameObject:
   - component: {fileID: 498663535640990018}
   - component: {fileID: 4423595240095326138}
   m_Layer: 0
-  m_Name: SlowTrap
+  m_Name: Trap_Slow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -720,7 +720,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2883106592657872557}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39999998, z: 0.07999992}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 7913027928964814436}
@@ -1123,7 +1123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3739528523260406174
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1284,7 +1284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3739528523844661803
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1904,7 +1904,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c73d4ae7e89a10d4084438e817ac3524, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9195c4ba94800b545b45ac6886367af7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1991,7 +1991,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c73d4ae7e89a10d4084438e817ac3524, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9195c4ba94800b545b45ac6886367af7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2319,7 +2319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3739528525153487394
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2440,7 +2440,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c73d4ae7e89a10d4084438e817ac3524, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9195c4ba94800b545b45ac6886367af7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2712,7 +2712,7 @@ GameObject:
   - component: {fileID: 6017243321014647451}
   - component: {fileID: 1358986077019503334}
   m_Layer: 0
-  m_Name: ReverseTrap_Area
+  m_Name: Trap_Reverse_Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2726,7 +2726,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3888806323161953312}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39999998, z: 0.07999992}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 3186633425023143688}
@@ -3048,7 +3048,7 @@ GameObject:
   - component: {fileID: 5242044674893413071}
   - component: {fileID: 3245100270171981154}
   m_Layer: 0
-  m_Name: Bandage 3
+  m_Name: Consumable_Bandage_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3062,7 +3062,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4096737614482946238}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0.07999992}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 1895765852631589808}
@@ -3130,7 +3130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item_Display: {fileID: 21300000, guid: 49ddf91a3a2c3b14fbe44b2dcbb1d89c, type: 3}
   item_name: bandage3
-  item_cost: 200
+  item_cost: 75
   WeaponRef: {fileID: 0}
   TrapRef: {fileID: 0}
   type: 3
@@ -3147,7 +3147,7 @@ GameObject:
   - component: {fileID: 5242044675952657144}
   - component: {fileID: 3245100271268609365}
   m_Layer: 0
-  m_Name: Bandage 2
+  m_Name: Consumable_Bandage_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3161,7 +3161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4096737615542321289}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0.07999992}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 4339088193701290302}
@@ -3229,7 +3229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item_Display: {fileID: 21300000, guid: 49ddf91a3a2c3b14fbe44b2dcbb1d89c, type: 3}
   item_name: bandage2
-  item_cost: 200
+  item_cost: 75
   WeaponRef: {fileID: 0}
   TrapRef: {fileID: 0}
   type: 3
@@ -3366,7 +3366,7 @@ GameObject:
   - component: {fileID: 7990947824818884955}
   - component: {fileID: 6155808320867098531}
   m_Layer: 0
-  m_Name: ReverseTrap
+  m_Name: Trap_Reverse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3380,7 +3380,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4615289432598468276}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39999998, z: 0.07999992}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 7913027928041064500}
@@ -3465,7 +3465,7 @@ GameObject:
   - component: {fileID: 7990947823918707543}
   - component: {fileID: 6155808321777778095}
   m_Layer: 0
-  m_Name: damageTrap
+  m_Name: Trap_Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3479,7 +3479,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4615289433577305272}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39999998, z: 0.07999992}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 7913027927184935462}
@@ -4115,7 +4115,7 @@ GameObject:
   - component: {fileID: 6650122269341777684}
   - component: {fileID: 4552885604946420719}
   m_Layer: 0
-  m_Name: damageTrap_Area
+  m_Name: Trap_Damage_Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4129,7 +4129,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5184472875001310516}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39999998, z: 0.07999992}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 1497569346387551379}
@@ -4449,7 +4449,7 @@ GameObject:
   - component: {fileID: 4423988102528110094}
   - component: {fileID: 1058730808003765026}
   m_Layer: 0
-  m_Name: Shop_Item_Sword
+  m_Name: Weapon_Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4484,7 +4484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item_Display: {fileID: 21300000, guid: 94f4893032948e54282d3db45471a633, type: 3}
   item_name: Sword
-  item_cost: 100
+  item_cost: 150
   WeaponRef: {fileID: 11400000, guid: 8a36c59b744505144a701d151ffe297a, type: 2}
   TrapRef: {fileID: 0}
   type: 1
@@ -5295,7 +5295,7 @@ GameObject:
   - component: {fileID: 643862191274609923}
   - component: {fileID: 4105156272406709281}
   m_Layer: 0
-  m_Name: SlowTrap_Area
+  m_Name: Trap_Slow_Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5309,7 +5309,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6743497994694271520}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39999998, z: 0.07999992}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 9029800848461069945}
@@ -5406,7 +5406,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7082773924236486888}
-  m_LocalRotation: {x: -0.50000006, y: 0.49999994, z: -0.4999985, w: 0.50000155}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 0.85374004, y: 0.85374004, z: 0.85374004}
   m_Children: []
@@ -5552,7 +5552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73dc8ea2c622442469e54a2e50444169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item_Display: {fileID: 21300000, guid: 1dea4a5bfa8b3c142a2c536768e82e0e, type: 3}
+  Item_Display: {fileID: 21300000, guid: da4cc63920a1623448e110a78ede7d3b, type: 3}
   item_name: Whip
   item_cost: 400
   WeaponRef: {fileID: 11400000, guid: fac5810acc9bd0b47a109239005dd2a1, type: 2}
@@ -5583,13 +5583,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7600301155079755082}
-  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: -0.42003104, y: 0, z: 0}
-  m_LocalScale: {x: 1.2384, y: 1.2384, z: 1.2384}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.6, y: 0, z: 0}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
   m_Children: []
   m_Father: {fileID: 2937961380093439779}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &7788849213218417306
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5887,7 +5887,7 @@ GameObject:
   - component: {fileID: 8652818475537703113}
   - component: {fileID: 4313377526922131967}
   m_Layer: 0
-  m_Name: FreezeTrap_Area
+  m_Name: Trap_Freeze_Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5901,7 +5901,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8241476368693863703}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39999998, z: 0.07999992}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 987246658151544948}
@@ -5984,7 +5984,7 @@ GameObject:
   - component: {fileID: 2937961380093439779}
   - component: {fileID: 9201973128315473982}
   m_Layer: 0
-  m_Name: Shop_Item_Hammer
+  m_Name: Weapon_Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6019,7 +6019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item_Display: {fileID: 21300000, guid: b51a64bd9715b1d488ee15ccec3f1dcf, type: 3}
   item_name: Hammer
-  item_cost: 600
+  item_cost: 300
   WeaponRef: {fileID: 11400000, guid: e97e20a50248b794ca4f82fcc24cd30a, type: 2}
   TrapRef: {fileID: 0}
   type: 1

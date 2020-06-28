@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Fighter : MonoBehaviour
 {
-    [SerializeField] float CharacterAttackSpeed = 0.0f;
-    [SerializeField] int CharacterAttackDamage = 0;
+    [SerializeField] float attackSpeedMultiplier = 1f;
+    [SerializeField] float attackDamageMultiplier = 1f;
     [SerializeField] Weapon defaultWeapon = null;
     [SerializeField] GameObject[] weaponColliders;
     [SerializeField] Transform rightHandTransform = null;
@@ -111,11 +111,11 @@ public class Fighter : MonoBehaviour
        // Debug.Log("character attack speed: " + CharacterAttackSpeed);
        // Debug.Log("weapon attack speed: " + currentWeapon.GetWeaponAttackSpeed());
        // Debug.Log("final attack speed: " + CharacterAttackSpeed * currentWeapon.GetWeaponAttackSpeed());
-        return CharacterAttackSpeed * currentWeapon.GetWeaponAttackSpeed();
+        return attackSpeedMultiplier * currentWeapon.GetWeaponAttackSpeed();
     }
     int GetCurrentAttackDamage()
     {
-        return CharacterAttackDamage * currentWeapon.GetDamage();
+        return Mathf.RoundToInt(attackDamageMultiplier * currentWeapon.GetDamage());
     }
     public float GetWeaponWeight()
     {
@@ -148,10 +148,12 @@ public class Fighter : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            other.GetComponent<HealthComp>().TakeDamage(this, currentWeapon.GetDamage());
+            //other.GetComponent<HealthComp>().TakeDamage(this, currentWeapon.GetDamage());
+            other.GetComponent<HealthComp>().TakeDamage(this, GetCurrentAttackDamage());
         } else if (other.tag == "Player" && FindObjectOfType<GameDifficultyManager>().dif == DifficultyLevel.Catfight)
         {
-            other.GetComponent<HealthComp>().TakeDamage(currentWeapon.GetDamage());
+            //other.GetComponent<HealthComp>().TakeDamage(currentWeapon.GetDamage());
+            other.GetComponent<HealthComp>().TakeDamage(GetCurrentAttackDamage());
         }
     }
 
