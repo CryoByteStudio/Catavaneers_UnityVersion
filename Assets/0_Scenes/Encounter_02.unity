@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00015609521, g: 0.0000015667421, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.13860361, g: 0.16769508, b: 0.2358889, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -73,7 +73,7 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
-    m_BakeBackend: 0
+    m_BakeBackend: 1
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 512
@@ -4993,7 +4993,7 @@ PrefabInstance:
     - target: {fileID: 621215470679005793, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: _TargetDayLength
-      value: 0.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 621215470679005793, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
@@ -6663,6 +6663,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4812088565586324647, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eebd0c615c80c7d42b88174c590d895b, type: 2}
     - target: {fileID: 4874975406683579844, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -6713,6 +6718,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5389412695792728601, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eebd0c615c80c7d42b88174c590d895b, type: 2}
     - target: {fileID: 5567065169338334642, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -7008,6 +7018,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8078622667611789357, guid: 2d8825ec77388f24c8163e269ab0991d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eebd0c615c80c7d42b88174c590d895b, type: 2}
     - target: {fileID: 8128551938881523185, guid: 2d8825ec77388f24c8163e269ab0991d,
         type: 3}
       propertyPath: m_Name
