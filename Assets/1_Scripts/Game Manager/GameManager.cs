@@ -1,11 +1,9 @@
 ﻿using Catavaneer.LevelManagement;
 using Catavaneer.Singleton;
 using ViTiet.Utils;
-using ObjectPooling;
 using SpawnSystem;
 using System.Collections;
 using UnityEngine;
-//using UnityEngine.SceneManagement;
 using Catavaneer.MenuSystem;
 using System;
 
@@ -16,7 +14,6 @@ namespace Catavaneer
         [SerializeField] private int mainMenuSceneIndex = 0;
         [SerializeField] private int characterSelectSceneIndex = 0;
         [SerializeField] private int firstGameSceneIndex = 0;
-        //[SerializeField] private int catFightSceneIndex = 0;
 
         public float startDelay = 2;
         public float quitDelay = 4;
@@ -39,6 +36,7 @@ namespace Catavaneer
         protected override void Awake()
         {
             base.Awake();
+            Debug.Log("Total scene count in build settings" + UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings);
             Reset();
         }
 
@@ -54,26 +52,7 @@ namespace Catavaneer
             isGameOver = CheckObjectiveCondition();
 
             if (!doneOnce && isGameOver)
-            {
-                //if (LevelLoader.IsGameLevel())
-                //{ 
-                //    //if (FindObjectOfType<CaravanDamage>())
-                //    //{
-                //    //    FindObjectOfType<CaravanDamage>().PlayVictory();
-                //    //}
-
-                //    if (OnLevelComplete != null)
-                //        OnLevelComplete.Invoke();
-
-                //    StartCoroutine(WinDelay());
-                //}
-                //else
-                //{
-                //    ResetCampaignParams();
-                //    hasFinishedAllLevel = true;
-                //    MenuManager.LoadMainMenuLevel(true);
-                //}
-                
+            {   
                 if (OnLevelComplete != null)
                     OnLevelComplete.Invoke();
 
@@ -87,25 +66,13 @@ namespace Catavaneer
         {
             base.SceneLoadedHandler(scene, mode);
 
-            //if (LevelLoader.IsGameLevel())
-            //{
-            //    Reset();
-
-            //    //if (LevelLoader.GetCurrentSceneIndex() < catFightSceneIndex)
-            //        StartCoroutine(StartDelay());
-            //}
-            //else if (hasFinishedAllLevel)
-            //{
-            //    MenuManager.OpenMenu(MenuManager.CreditsMenu);
-            //    hasFinishedAllLevel = false;
-            //}
-            
-            if (hasFinishedAllLevel)
+            if (LevelLoader.IsMainMenuLevel() && hasFinishedAllLevel)
             {
-                MenuManager.OpenMenu(MenuManager.CreditsMenu);
+                ResetCampaignParams();
                 hasFinishedAllLevel = false;
             }
-            else
+            
+            if (!hasFinishedAllLevel)
             {
                 Reset();
                 StartCoroutine(StartDelay());
@@ -182,14 +149,11 @@ namespace Catavaneer
         private IEnumerator WinDelay()
         {
             yield return new WaitForSeconds(quitDelay);
-            if (LevelLoader.IsNextLevelGameLevel())
-                MenuManager.LoadCampaignLevel();
-            else
-            {
-                ResetCampaignParams();
+            
+            if (!LevelLoader.IsNextLevelGameLevel())
                 hasFinishedAllLevel = true;
-                MenuManager.LoadMainMenuLevel(true);
-            }
+
+            MenuManager.LoadCampaignLevel();
         }
 
         public IEnumerator StartDelay()

@@ -116,9 +116,16 @@ namespace Catavaneer
                     yield return null;
                 }
 
-                lastEncounter = currentPoint;
-                GameManager.LastEncounterIndex = destinations.IndexOf(currentPoint);
-                MenuManager.LoadGameLevel(currentPoint.leveltoload);
+                if (!GameManager.Instance.HasFinishedAllLevel)
+                {
+                    lastEncounter = currentPoint;
+                    GameManager.LastEncounterIndex = destinations.IndexOf(currentPoint);
+                    MenuManager.LoadGameLevel(currentPoint.leveltoload);
+                }
+                else
+                {
+                    MenuManager.LoadMainMenuLevel(true);
+                }
             }
         }
 
