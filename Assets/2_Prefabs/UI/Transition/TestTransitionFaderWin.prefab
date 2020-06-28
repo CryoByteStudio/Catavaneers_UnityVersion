@@ -1,31 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &3931080981209788385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1409598478803963772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90e4532c44d104a4ea11738779163754, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeOnDuration: 1
-  fadeOffDuration: 0.5
-  type: 2
-  displayDuration: 1
-  transitionTextField: {fileID: 494304230218015991}
-  loadingBar: {fileID: 0}
-  targetImage: {fileID: 1409598478709554797}
-  imageToSwapDataList:
-  - imageToSwap: {fileID: 21300000, guid: 9dba07d024921684fa7626dc6d4b9051, type: 3}
-    intendedFor: 4
-  - imageToSwap: {fileID: 21300000, guid: 3aaf363b4fdfa9149bb04b5918b4d565, type: 3}
-    intendedFor: 5
-  - imageToSwap: {fileID: 21300000, guid: 3a3704154ca409b4d83c5ca46dd09440, type: 3}
-    intendedFor: 6
 --- !u!1001 &2954497655905685323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40,8 +14,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2875465825942385689, guid: b6355c65cdb4d2c4ba572420419ff80e,
         type: 3}
+      propertyPath: imageToSwapDataList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875465825942385689, guid: b6355c65cdb4d2c4ba572420419ff80e,
+        type: 3}
       propertyPath: type
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2875465825942385689, guid: b6355c65cdb4d2c4ba572420419ff80e,
         type: 3}
@@ -50,9 +29,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2875465825942385689, guid: b6355c65cdb4d2c4ba572420419ff80e,
         type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: imageToSwapDataList.Array.data[0].imageToSwap
+      value: 
+      objectReference: {fileID: 21300000, guid: 9dba07d024921684fa7626dc6d4b9051,
+        type: 3}
+    - target: {fileID: 2875465825942385689, guid: b6355c65cdb4d2c4ba572420419ff80e,
+        type: 3}
+      propertyPath: imageToSwapDataList.Array.data[0].intendedFor
+      value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2875465825942385689, guid: b6355c65cdb4d2c4ba572420419ff80e,
+        type: 3}
+      propertyPath: imageToSwapDataList.Array.data[1].imageToSwap
+      value: 
+      objectReference: {fileID: 21300000, guid: 3aaf363b4fdfa9149bb04b5918b4d565,
+        type: 3}
+    - target: {fileID: 2875465825942385689, guid: b6355c65cdb4d2c4ba572420419ff80e,
+        type: 3}
+      propertyPath: imageToSwapDataList.Array.data[1].intendedFor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875465825942385689, guid: b6355c65cdb4d2c4ba572420419ff80e,
+        type: 3}
+      propertyPath: imageToSwapDataList.Array.data[2].imageToSwap
+      value: 
+      objectReference: {fileID: 21300000, guid: 3a3704154ca409b4d83c5ca46dd09440,
+        type: 3}
+    - target: {fileID: 2875465825942385689, guid: b6355c65cdb4d2c4ba572420419ff80e,
+        type: 3}
+      propertyPath: imageToSwapDataList.Array.data[2].intendedFor
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875465825942385689, guid: b6355c65cdb4d2c4ba572420419ff80e,
+        type: 3}
+      propertyPath: targetImage
+      value: 
+      objectReference: {fileID: 1409598478709554797}
     - target: {fileID: 3448742340525927356, guid: b6355c65cdb4d2c4ba572420419ff80e,
         type: 3}
       propertyPath: m_text
@@ -75,6 +87,11 @@ PrefabInstance:
       propertyPath: m_textInfo.characterCount
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3897764135660232556, guid: b6355c65cdb4d2c4ba572420419ff80e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4219764753556631227, guid: b6355c65cdb4d2c4ba572420419ff80e,
         type: 3}
       propertyPath: m_fontAsset
@@ -89,7 +106,7 @@ PrefabInstance:
     - target: {fileID: 4219764754990825527, guid: b6355c65cdb4d2c4ba572420419ff80e,
         type: 3}
       propertyPath: m_Name
-      value: SwappableWinScreenTransition
+      value: TestTransitionFaderWin
       objectReference: {fileID: 0}
     - target: {fileID: 4219764754990825676, guid: b6355c65cdb4d2c4ba572420419ff80e,
         type: 3}
@@ -203,12 +220,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6355c65cdb4d2c4ba572420419ff80e, type: 3}
---- !u!1 &1409598478803963772 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4219764754990825527, guid: b6355c65cdb4d2c4ba572420419ff80e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2954497655905685323}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1409598478709554797 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4219764754883965222, guid: b6355c65cdb4d2c4ba572420419ff80e,
@@ -219,17 +230,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &494304230218015991 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3448742340525927356, guid: b6355c65cdb4d2c4ba572420419ff80e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2954497655905685323}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -36,6 +36,8 @@ namespace Catavaneer
 
         private int buttonPressCount = 0;
 
+        public ConfirmPopup confirmPopup;
+
         void Start()
         {
             GameManager.CurrentDay++;
@@ -56,17 +58,30 @@ namespace Catavaneer
 
         private void Update()
         {
+            if (confirmPopup && confirmPopup.IsFocused) return;
+
             if (Input.GetButtonDown("Submit/Interact") && ButtonSmashPreventor.ShouldProceed(ref buttonPressCount))
             {
                 GoToNext();
             }
             else if (!hasStartedTravelling)
             {
-                if (Input.GetButtonDown("Cancel/Shop3") && ButtonSmashPreventor.ShouldProceed(ref buttonPressCount))
+                if (Input.GetButtonDown("Cancel/Shop3"))
                 {
-                    MenuManager.LoadMainMenuLevel();
+                    // Confirm action with popup warning
+                    if (confirmPopup)
+                        confirmPopup.ExecuteOnConfirm(() =>
+                        {
+                            GameManager.ResetCampaignParams();
+                            MenuManager.LoadMainMenuLevel();
+                        }, () => ResetButtonPressCount());
                 }
             }
+        }
+
+        private void ResetButtonPressCount()
+        {
+            buttonPressCount = 0;
         }
 
         //void FixedUpdate()
