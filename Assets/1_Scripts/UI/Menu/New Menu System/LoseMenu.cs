@@ -26,14 +26,14 @@ namespace Catavaneer.MenuSystem
         public void OnRestartPressed()
         {
             if (!ButtonSmashPreventor.ShouldProceed(ref buttonPressCount)) return;
-            FindObjectOfType<BaseInputModule>().DeactivateModule();
+            //FindObjectOfType<BaseInputModule>().DeactivateModule();
             MenuManager.RestartLevel();
         }
 
         public void OnMainMenuPressed()
         {
             if (!ButtonSmashPreventor.ShouldProceed(ref buttonPressCount)) return;
-            FindObjectOfType<BaseInputModule>().DeactivateModule();
+            //FindObjectOfType<BaseInputModule>().DeactivateModule();
             MenuManager.LoadMainMenuLevel();
         }
         #endregion

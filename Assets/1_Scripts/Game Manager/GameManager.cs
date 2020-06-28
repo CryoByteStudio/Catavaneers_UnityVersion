@@ -176,7 +176,7 @@ namespace Catavaneer
         {
             ResetCampaignParams();
             yield return new WaitForSeconds(quitDelay);
-            MenuManager.OpenLoseMenu();
+            MenuManager.Instance.OpenLoseMenu();
         }
 
         private IEnumerator WinDelay()

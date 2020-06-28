@@ -1,24 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1563886822004718795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9057881644497527421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90e4532c44d104a4ea11738779163754, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeOnDuration: 1
-  fadeOffDuration: 0.5
-  type: 3
-  displayDuration: 1
-  transitionTextField: {fileID: 7559281049853413878}
-  loadingBar: {fileID: 0}
---- !u!1001 &5132857770902512202
+--- !u!1001 &3221963710520146575
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -40,20 +22,15 @@ PrefabInstance:
       propertyPath: loadingBar
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 2875465825942385689, guid: b6355c65cdb4d2c4ba572420419ff80e,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3448742340525927356, guid: b6355c65cdb4d2c4ba572420419ff80e,
         type: 3}
       propertyPath: m_text
-      value: YOU LOSE
+      value: GAME OVER
       objectReference: {fileID: 0}
     - target: {fileID: 4219764754990825527, guid: b6355c65cdb4d2c4ba572420419ff80e,
         type: 3}
       propertyPath: m_Name
-      value: SwappableLoseScreenTransition
+      value: TestTransitionFader
       objectReference: {fileID: 0}
     - target: {fileID: 4219764754990825676, guid: b6355c65cdb4d2c4ba572420419ff80e,
         type: 3}
@@ -167,21 +144,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6355c65cdb4d2c4ba572420419ff80e, type: 3}
---- !u!1 &9057881644497527421 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4219764754990825527, guid: b6355c65cdb4d2c4ba572420419ff80e,
-    type: 3}
-  m_PrefabInstance: {fileID: 5132857770902512202}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7559281049853413878 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3448742340525927356, guid: b6355c65cdb4d2c4ba572420419ff80e,
-    type: 3}
-  m_PrefabInstance: {fileID: 5132857770902512202}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

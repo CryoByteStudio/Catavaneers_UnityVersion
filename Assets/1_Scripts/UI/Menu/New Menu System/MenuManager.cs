@@ -7,6 +7,7 @@ using Catavaneer.LevelManagement;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
 namespace Catavaneer.MenuSystem
 {
@@ -40,6 +41,8 @@ namespace Catavaneer.MenuSystem
         private static Transform menuParent;
         private static TransitionFader fader;
 
+        [SerializeField] private LoseTransitionFader loseTransitionFader;
+
         #endregion
 
         #region UNITY ENGINE FUNCTIONS
@@ -47,31 +50,34 @@ namespace Catavaneer.MenuSystem
         {
             base.Awake();
             Reset();
+
+            if (!loseTransitionFader)
+                loseTransitionFader = FindObjectOfType<LoseTransitionFader>();
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (LevelLoader.IsGameLevel() && !isInBetweenScene)
-                {
-                    if (!isPaused)
-                    {
-                        PauseGame();
-                    }
-                    else
-                    {
-                        ResumeGame();
-                    }
-                }
-                else if (LevelLoader.IsMainMenuLevel())
-                {
-                    if (menuStack.Count > 1)
-                    {
-                        CloseMenu();
-                    }
-                }
-            }
+            //if (Input.GetKeyDown(KeyCode.Escape))
+            //{
+            //    if (LevelLoader.IsGameLevel() && !isInBetweenScene)
+            //    {
+            //        if (!isPaused)
+            //        {
+            //            PauseGame();
+            //        }
+            //        else
+            //        {
+            //            ResumeGame();
+            //        }
+            //    }
+            //    else if (LevelLoader.IsMainMenuLevel())
+            //    {
+            //        if (menuStack.Count > 1)
+            //        {
+            //            CloseMenu();
+            //        }
+            //    }
+            //}
         }
         #endregion
 
@@ -175,7 +181,9 @@ namespace Catavaneer.MenuSystem
         {
             UnPaused();
             fader = transitionFaderDictionary[type];
-            //TransitionFader.PlayTransition(fader);
+            //if (type == TransitionFaderType.LoseScreenTransition)
+            //    TransitionFader.PlayTransition(fader);
+            //else
             fader.PlayTransition(LevelLoader.GetCurrentSceneIndex(), fader);
         }
 
@@ -412,7 +420,8 @@ namespace Catavaneer.MenuSystem
             instance.StartCoroutine(OpenWinMenuRoutine());
         }
 
-        public static void OpenLoseMenu()
+        [Obsolete]
+        public static void OpenLoseMenuDepricated()
         {
             if (!instance)
             {
@@ -420,8 +429,14 @@ namespace Catavaneer.MenuSystem
                 return;
             }
 
-            isInBetweenScene = true;
+            //isInBetweenScene = true;
             instance.StartCoroutine(OpenLoseMenuRoutine());
+        }
+
+        public void OpenLoseMenu()
+        {
+            loseTransitionFader.gameObject.SetActive(true);
+            loseTransitionFader.Play();
         }
 
         public static void QuitGame()

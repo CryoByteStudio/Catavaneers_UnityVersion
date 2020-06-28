@@ -61,6 +61,9 @@ namespace Catavaneer.MenuSystem
 
         private void ChangeDisplayImage(IntendedLevelImage intendedLevel)
         {
+            if (imageToSwapDataList == null && imageToSwapDataList.Count <= 0)
+                return;
+
             foreach (ImageToSwapData data in imageToSwapDataList)
             {
                 if (data.intendedFor == intendedLevel)
@@ -81,19 +84,19 @@ namespace Catavaneer.MenuSystem
             FadeOn();
             yield return new WaitForSeconds(FadeOnDuration + displayDuration);
 
-            if (loadingBar)
-                yield return LoadingRoutine();
+            //if (loadingBar)
+            //    yield return LoadingRoutine();
 
             FadeOff(FadeOffDuration);
-            Destroy(gameObject, FadeOffDuration);
+            Destroy(gameObject, FadeOffDuration + .5f);
         }
 
         private IEnumerator LoadingRoutine()
         {
-            while (loadingBar && LevelLoader.IsLoading)
+            while (LevelLoader.IsLoading)
             {
                 loadingBar.value = LevelLoader.LoadingProgress;
-                yield return new WaitForEndOfFrame();
+                yield return null;
             }
         }
 
@@ -117,7 +120,7 @@ namespace Catavaneer.MenuSystem
 
             IntendedLevelImage intendedLevel = levelIndex.ToEnum<IntendedLevelImage>();
 
-            if (intendedLevel != IntendedLevelImage.Default)
+            if (intendedLevel != IntendedLevelImage.Default && targetImage)
                 ChangeDisplayImage(intendedLevel);
 
             TransitionFader instance = Instantiate(transitionFader, Vector3.zero, Quaternion.identity);
@@ -145,18 +148,18 @@ namespace Catavaneer.MenuSystem
 
         #region PRIVATE STATIC METHODS
 
-        private static Sprite GetSwapSprite(IntendedLevelImage intendedLevel, List<ImageToSwapData> imageToSwapDataList)
-        {
-            foreach (ImageToSwapData data in imageToSwapDataList)
-            {
-                if (data.intendedFor == intendedLevel)
-                {
-                    return data.imageToSwap;
-                }
-            }
+        //private static Sprite GetSwapSprite(IntendedLevelImage intendedLevel, List<ImageToSwapData> imageToSwapDataList)
+        //{
+        //    foreach (ImageToSwapData data in imageToSwapDataList)
+        //    {
+        //        if (data.intendedFor == intendedLevel)
+        //        {
+        //            return data.imageToSwap;
+        //        }
+        //    }
 
-            return null;
-        }
+        //    return null;
+        //}
 
         #endregion
 

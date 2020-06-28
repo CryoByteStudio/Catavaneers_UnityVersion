@@ -60,7 +60,7 @@ namespace Catavaneer
         {
             if (confirmPopup && confirmPopup.IsFocused) return;
 
-            if (Input.GetButtonDown("Submit/Interact") && !ButtonSmashPreventor.ShouldProceed(ref buttonPressCount))
+            if (Input.GetButtonDown("Submit/Interact") && ButtonSmashPreventor.ShouldProceed(ref buttonPressCount))
             {
                 GoToNext();
             }
