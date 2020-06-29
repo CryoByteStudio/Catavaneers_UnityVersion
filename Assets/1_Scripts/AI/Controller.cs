@@ -37,7 +37,6 @@ namespace AI
         [Header("Attack Settings")]
         [SerializeField] private int attackDamage = 0;
         [SerializeField] private float attackRange = 0;
-        [SerializeField] private float attackInterval = 0;
         [Range(0f, 1f)]
         [SerializeField] private float accuracy = 0.8f;
 
@@ -50,6 +49,7 @@ namespace AI
         [SerializeField] private float fadeDuration = 5;
 
         public event Action OnHit;
+        public void InvokeOnHit() { if (OnHit != null) OnHit.Invoke(); }
 
         private FSM finiteStateMachine = new FSM();
         private HealthComp healthComponent = null;
@@ -73,7 +73,6 @@ namespace AI
         public float ChaseSpeed { get { return chaseSpeed; } }
         public int BaseAttackDamage { get { return attackDamage; } }
         public float AttackRange { get { return attackRange; } }
-        public float AttackInterval { get { return attackInterval; } }
         public float Accuracy { get { return accuracy; } }
         public float FrenzyRadius { get { return frenzyRadius; } }
         public float FrenzySpeed { get { return frenzySpeed; } }
@@ -550,8 +549,7 @@ namespace AI
             //    hiteffect.Play();
             //}
 
-            if (OnHit != null)
-                OnHit.Invoke();
+            InvokeOnHit();
         }
 
         private void FootL()
