@@ -279,7 +279,9 @@ namespace Catavaneer.MenuSystem
             LevelLoader.LoadMainMenuLevelAsync(instance);
             yield return PlayePostTransitionRoutine();
             OpenMenuPostTransition(MainMenu);
-            OpenMenu(CreditsMenu);
+
+            if (isTransitionFromLastLevel)
+                OpenMenu(CreditsMenu);
         }
 
         private static IEnumerator OpenWinMenuRoutine()

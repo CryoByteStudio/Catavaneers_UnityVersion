@@ -44,7 +44,7 @@ public class PlayerSelectController : MonoBehaviour
 
     private void Update()
     {
-        if (!lockedIn && Time.time > startDelay)
+        if (!lockedIn && Time.time > timer)
         {
             if (Input.GetButtonDown(inputAcceptButton))
             {
