@@ -142,4 +142,9 @@ public class ShopPlot : MonoBehaviour
             issoldout = true;
         }
     }
+
+    public void CleanUnusedTrap()
+    {
+
+    }
 }
