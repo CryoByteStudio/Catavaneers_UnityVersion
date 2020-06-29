@@ -45,7 +45,7 @@ public class Fighter : MonoBehaviour
     {
         timeSinceLastAttack += Time.deltaTime;
         if (player.GetMoveState() == PlayerController.MoveStates.Freeze ) return;
-        if(Input.GetAxis(attackAxis) >0 && timeSinceLastAttack > GetCurrentAttackSpeed())
+        if(Input.GetAxis(attackAxis) > 0 && timeSinceLastAttack > GetCurrentAttackSpeed())
         {
             timeSinceLastAttack = 0;
             player.animator.SetTrigger("Attack");
