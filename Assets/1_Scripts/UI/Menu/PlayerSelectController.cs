@@ -22,6 +22,7 @@ public class PlayerSelectController : MonoBehaviour
     public List<Image> selections = new List<Image>();
     public float selectDelay = 1f;
     public float loadDelay = 5f;
+    public float startDelay = 3f;
     private float timer = 0;
     public string inputHorizontalAxis;
     public string inputAcceptButton;   //Submit/Interact
@@ -35,6 +36,7 @@ public class PlayerSelectController : MonoBehaviour
 
     private void Start()
     {
+        timer = Time.time + startDelay;
         selectIndex = PlayerID;
         playerSelectControllers = FindObjectsOfType<PlayerSelectController>();
         menuCharacterAnimations = FindObjectsOfType<MenuCharacterAnimation>();
@@ -42,7 +44,7 @@ public class PlayerSelectController : MonoBehaviour
 
     private void Update()
     {
-        if (!lockedIn)
+        if (!lockedIn && Time.time > startDelay)
         {
             if (Input.GetButtonDown(inputAcceptButton))
             {
