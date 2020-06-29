@@ -11,6 +11,7 @@ public class UIItemsDisplay : MonoBehaviour
     [SerializeField] private Image trap2Image;
     [SerializeField] private Image consumableImage;
     [SerializeField] private PlayerInventory playerInventoryRef;
+    [SerializeField] private TrapSystem trapSystemRef;
 
     private Sprite defaultSprite;
 
@@ -24,9 +25,13 @@ public class UIItemsDisplay : MonoBehaviour
         if (playerInventoryRef)
         {
             playerInventoryRef.OnWeaponChanged += UpdateWeaponUI;
-            playerInventoryRef.OnTrap1Changed += UpdateTrap1UI;
-            playerInventoryRef.OnTrap2Changed += UpdateTrap2UI;
             playerInventoryRef.OnConsumableChanged += UpdateConsumableUI;
+        }
+
+        if (trapSystemRef)
+        {
+            trapSystemRef.OnTrap1Updated += UpdateTrap1UI;
+            trapSystemRef.OnTrap2Updated += UpdateTrap2UI;
         }
     }
 
@@ -79,9 +84,13 @@ public class UIItemsDisplay : MonoBehaviour
         if (playerInventoryRef)
         {
             playerInventoryRef.OnWeaponChanged -= UpdateWeaponUI;
-            playerInventoryRef.OnTrap1Changed -= UpdateTrap1UI;
-            playerInventoryRef.OnTrap2Changed -= UpdateTrap2UI;
             playerInventoryRef.OnConsumableChanged -= UpdateConsumableUI;
+        }
+
+        if (trapSystemRef)
+        {
+            trapSystemRef.OnTrap1Updated -= UpdateTrap1UI;
+            trapSystemRef.OnTrap2Updated -= UpdateTrap2UI;
         }
     }
 }

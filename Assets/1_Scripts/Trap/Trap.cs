@@ -1,5 +1,4 @@
 ﻿using AI;
-using System.Collections;
 using UnityEngine;
 
 public class Trap : MonoBehaviour

@@ -28,8 +28,6 @@ public class PlayerInventory : MonoBehaviour //Sasha
     public event Action OnGoldChanged;
     public event Action<Sprite> OnConsumableChanged;
     public event Action<Sprite> OnWeaponChanged;
-    public event Action<Sprite> OnTrap1Changed;
-    public event Action<Sprite> OnTrap2Changed;
 
     private void Start()
     {
@@ -90,8 +88,6 @@ public class PlayerInventory : MonoBehaviour //Sasha
                         case 1:
                             Debug.Log("Trap1");
                             //Trap1UI.sprite = TrapItem.Item_Display;
-                            if (OnTrap1Changed != null)
-                                OnTrap1Changed.Invoke(TrapItem.Item_Display);
                             MusicManager.Instance.PlaySoundTrack(soundCue);
                             break;
                         case 2:
@@ -101,8 +97,6 @@ public class PlayerInventory : MonoBehaviour //Sasha
                         case 3:
                             Debug.Log("both traps");
                             //Trap2UI.sprite = TrapItem.Item_Display;
-                            if (OnTrap2Changed != null)
-                                OnTrap2Changed.Invoke(TrapItem.Item_Display);
                             break;
                     }
 
@@ -159,22 +153,14 @@ public class PlayerInventory : MonoBehaviour //Sasha
                         Debug.Log("no traps");
                         //Trap1UI = null;
                         //Trap2UI = null;
-                        if (OnTrap1Changed != null)
-                            OnTrap1Changed.Invoke(null);
-                        if (OnTrap2Changed != null)
-                            OnTrap2Changed.Invoke(null);
                         break;
                     case 1:
                         Debug.Log("Trap1");
                         //Trap2UI = null;
-                        if (OnTrap1Changed != null)
-                            OnTrap1Changed.Invoke(null);
                         break;
                     case 2:
                         Debug.Log("Only Trap 2");
                         //Trap1UI = null;
-                        if (OnTrap2Changed != null)
-                            OnTrap2Changed.Invoke(null);
                         break;
                     case 3:
                         Debug.Log("both traps");

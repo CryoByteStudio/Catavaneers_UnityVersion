@@ -4,10 +4,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Trap", menuName = "Trap/Make New Trap", order = 2)]
 public class TrapScriptable : ScriptableObject
 {
-    [SerializeField] GameObject TrapPrefab = null;
+    [SerializeField] GameObject trapPrefab = null;
+    public Sprite sprite = null;
 
     public void SpawnTrap(Vector3 DropLocation)
     {
-        Instantiate(TrapPrefab, DropLocation, Quaternion.identity);
+        Instantiate(trapPrefab, DropLocation, Quaternion.identity);
     }
 }
