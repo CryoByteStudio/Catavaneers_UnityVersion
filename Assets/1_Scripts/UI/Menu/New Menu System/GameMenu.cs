@@ -10,7 +10,8 @@ namespace Catavaneer.MenuSystem
         #region UNITY ENGINE FUNCTIONS
         private void Update()
         {
-            if (Input.GetButtonDown(pauseButton) || Input.GetKeyDown(KeyCode.Escape))
+            //if (Input.GetButtonDown(pauseButton) || Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetButtonDown(pauseButton))
             {
                 if (!GameManager.Instance.IsGameOver)
                     OnPausePressed();
