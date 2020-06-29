@@ -121,7 +121,7 @@ namespace AI.States
             {
                 if (damagePopupPrefab)
                 {
-                    DamagePopup damagePopupInstance = Object.Instantiate(damagePopupPrefab, target.position, Quaternion.identity).GetComponent<DamagePopup>();
+                    DisplayPopup damagePopupInstance = Object.Instantiate(damagePopupPrefab, target.position, Quaternion.identity).GetComponent<DisplayPopup>();
 
                     bool isTargetDodging = false;
 

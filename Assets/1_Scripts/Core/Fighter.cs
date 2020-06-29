@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Catavaneer;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class Fighter : MonoBehaviour
     [SerializeField] Weapon currentWeapon;
     [SerializeField] BoxCollider currentWeaponCollider;
     [SerializeField] Transform projectileSpwanPoint;
+
+    
 
     HealthComp target;
     float timeSinceLastAttack = Mathf.Infinity;
@@ -150,7 +153,7 @@ public class Fighter : MonoBehaviour
         {
             //other.GetComponent<HealthComp>().TakeDamage(this, currentWeapon.GetDamage());
             other.GetComponent<HealthComp>().TakeDamage(this, GetCurrentAttackDamage());
-        } else if (other.tag == "Player" && FindObjectOfType<GameDifficultyManager>().dif == DifficultyLevel.Catfight)
+        } else if (other.tag == "Player" && GameManager.Instance.DifficultyLevel == DifficultyLevel.Catfight)
         {
             //other.GetComponent<HealthComp>().TakeDamage(currentWeapon.GetDamage());
             other.GetComponent<HealthComp>().TakeDamage(GetCurrentAttackDamage());

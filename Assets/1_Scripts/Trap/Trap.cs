@@ -1,5 +1,4 @@
 ﻿using AI;
-using System.Collections;
 using UnityEngine;
 
 public class Trap : MonoBehaviour
@@ -143,10 +142,11 @@ public class Trap : MonoBehaviour
                                     EnemyController.SlowEffect.Play();
                                 }
                             }
+
+                            if (type == TrapType.Damage) colliders[i].GetComponent<HealthComp>().TakeDamage(TrapDamage);
                         }
                     }
 
-                    if (type == TrapType.Damage) colliders[i].GetComponent<HealthComp>().TakeDamage(TrapDamage);
                 }
             }
         }
