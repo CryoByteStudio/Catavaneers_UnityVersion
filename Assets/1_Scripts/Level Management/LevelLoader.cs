@@ -270,7 +270,7 @@ namespace Catavaneer.LevelManagement
 
         public static bool IsNextLevelGameLevel()
         {
-            return GetNextLevelIndex() >= firstGameSceneIndex;
+            return GetNextLevelIndex() >= firstGameSceneIndex && GetNextLevelIndex() < GetLevelCountInBuildSettings();
         }
 
         public static bool IsNextLevelMainMenuLevel()

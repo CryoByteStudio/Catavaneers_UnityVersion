@@ -279,6 +279,7 @@ namespace Catavaneer.MenuSystem
             LevelLoader.LoadMainMenuLevelAsync(instance);
             yield return PlayePostTransitionRoutine();
             OpenMenuPostTransition(MainMenu);
+            OpenMenu(CreditsMenu);
         }
 
         private static IEnumerator OpenWinMenuRoutine()
@@ -406,6 +407,18 @@ namespace Catavaneer.MenuSystem
         public static void OpenSettingsMenu()
         {
             OpenMenu(SettingsMenu);
+        }
+
+        public static void OpenCreditsMenu()
+        {
+            if (!instance)
+            {
+                EditorHelper.ArgumentNullException("instance");
+                return;
+            }
+
+            isInBetweenScene = true;
+            instance.StartCoroutine(OpenWinMenuRoutine());
         }
 
         public static void OpenWinMenu()
