@@ -14,6 +14,7 @@ namespace Catavaneer
         [SerializeField] private int mainMenuSceneIndex = 0;
         [SerializeField] private int characterSelectSceneIndex = 0;
         [SerializeField] private int firstGameSceneIndex = 0;
+        [SerializeField] private bool disableCursor;
 
         public float startDelay = 2;
         public float quitDelay = 4;
@@ -36,7 +37,13 @@ namespace Catavaneer
         protected override void Awake()
         {
             base.Awake();
-            Debug.Log("Total scene count in build settings" + UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings);
+
+            if (disableCursor)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+
             Reset();
         }
 

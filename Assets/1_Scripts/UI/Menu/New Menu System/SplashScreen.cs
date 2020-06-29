@@ -13,9 +13,12 @@ namespace Catavaneer.MenuSystem
         [SerializeField] protected float fadeDelay = 0f;
         [SerializeField] protected Slider loadingBar;
         [SerializeField] protected GameObject textObject;
+        [SerializeField] protected GameObject loadButtonObject;
 
         protected ScreenFader screenFader;
         protected CanvasGroup canvasGroup;
+
+        //private float allowInputTime = Mathf.Infinity;
 
         #region UNITY ENGINE FUNCTION
 
@@ -30,11 +33,18 @@ namespace Catavaneer.MenuSystem
 
         virtual protected void Start()
         {
+            //allowInputTime = Time.time + loadDelay + 0.1f;
             FadeOn();
         }
 
         virtual protected void Update()
         {
+            //if (Time.time > allowInputTime && Input.anyKeyDown)
+            //{
+            //    FadeAndLoad();
+            //    allowInputTime = Mathf.Infinity;
+            //}
+
             loadingBar.value = LevelLoader.LoadingProgress;
         }
 
