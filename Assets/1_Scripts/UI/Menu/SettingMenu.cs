@@ -95,13 +95,32 @@ public class SettingMenu : MonoBehaviour
 
     void Start()
     {
-        MM.menuState.setVolume(PlayerPrefs.GetFloat("MVolume"));
-        MM.caravanState.setVolume(PlayerPrefs.GetFloat("MVolume"));
+        if(PlayerPrefs.HasKey("MVolume"))
+        {
+            MM.menuState.setVolume(PlayerPrefs.GetFloat("MVolume", 1f));
+            MM.caravanState.setVolume(PlayerPrefs.GetFloat("MVolume",1f));
+            VolumeSlider.value = PlayerPrefs.GetFloat("MVolume", 1f);
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("MVolume", 1f);
+            MM.menuState.setVolume(1f);
+            MM.caravanState.setVolume(1f);
+            VolumeSlider.value = 1f;
+        }
 
-        VolumeSlider.value = PlayerPrefs.GetFloat("MVolume", 1f);
         //VolMixer.SetFloat("Volume", PlayerPrefs.GetFloat("MVolume"));
 
-        SFXVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1);
+        if (PlayerPrefs.HasKey("SFXVolume"))
+        {
+            SFXVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("SFXVolume", 1f);
+            SFXVolumeSlider.value = 1f;
+        }
+
 
         QualityDropDown.value = PlayerPrefs.GetInt(prefName, 3);
 
