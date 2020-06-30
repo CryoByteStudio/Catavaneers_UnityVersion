@@ -41,6 +41,7 @@ namespace Catavaneer.MenuSystem
         {
             SetSelectedGameObject(EventSystem.current.currentSelectedGameObject);
             CreditsMenu.Open();
+            CreditsMenu.Instance.Play();
         }
 
         public void OnQuitPressed()

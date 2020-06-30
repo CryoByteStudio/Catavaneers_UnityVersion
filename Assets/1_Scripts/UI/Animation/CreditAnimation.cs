@@ -13,7 +13,7 @@ public class CreditAnimation : MonoBehaviour
     [SerializeField] private List<MaskableGraphic> graphics;
     [SerializeField] private MaskableGraphic endingText;
 
-    private void OnEnable()
+    public void Play()
     {
         foreach (var graphic in graphics)
         {

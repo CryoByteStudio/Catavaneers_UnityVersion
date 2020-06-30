@@ -3192,10 +3192,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backButton: {fileID: 8351590312742770947}
   backDelay: 5
-  graphicsToFade:
+  buttonGraphics:
   - {fileID: 8351590312742770950}
   - {fileID: 8351590313698436333}
   - {fileID: 1520759061095044562}
+  moveDistance: 5000
+  duration: 30
+  delay: 2
+  creditRollTransform: {fileID: 8351590313206541473}
+  textGraphics:
+  - {fileID: 7321709249039488686}
+  - {fileID: 1207318067327089545}
+  endingText: {fileID: 6469637138238712096}
 --- !u!1 &8351590313078308822
 GameObject:
   m_ObjectHideFlags: 0
@@ -3687,7 +3695,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: B
+  m_text: A
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c9206e58fb077394293851f5c8f9ad54, type: 2}
   m_sharedMaterial: {fileID: 800541350062561140, guid: c9206e58fb077394293851f5c8f9ad54,
@@ -3697,8 +3705,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4284415744
+  m_fontColor: {r: 0, g: 1, b: 0.36727, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

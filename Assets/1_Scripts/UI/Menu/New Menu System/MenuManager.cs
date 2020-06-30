@@ -281,7 +281,10 @@ namespace Catavaneer.MenuSystem
             OpenMenuPostTransition(MainMenu);
 
             if (isTransitionFromLastLevel)
+            {
                 OpenMenu(CreditsMenu);
+                MenuSystem.CreditsMenu.Instance.Play();
+            }
         }
 
         private static IEnumerator OpenWinMenuRoutine()
