@@ -148,7 +148,7 @@ namespace Catavaneer
 
         private IEnumerator LoseDelay()
         {
-            ResetCampaignParams();
+            //ResetCampaignParams();
             yield return new WaitForSeconds(quitDelay);
             MenuManager.Instance.OpenLoseMenu();
         }

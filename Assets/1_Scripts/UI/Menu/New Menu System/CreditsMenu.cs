@@ -16,16 +16,18 @@ namespace Catavaneer.MenuSystem
         [SerializeField] private List<MaskableGraphic> buttonGraphics;
 
         [Header("Credit Roll Settings")]
-        [SerializeField] private float moveDistance;
         [SerializeField] private float duration;
         [SerializeField] private float delay;
         [SerializeField] private Transform creditRollTransform;
+        [SerializeField] private Transform destination;
         [SerializeField] private List<MaskableGraphic> textGraphics;
         [SerializeField] private MaskableGraphic endingText;
 
         private Vector3 startPosition;
         
         private float backTimer;
+        private Tween creditRollTween;
+        private Tween endingTextTween;
 
         #region UNITY ENGINE FUNCTIONS
         private void OnEnable()
@@ -44,8 +46,9 @@ namespace Catavaneer.MenuSystem
                 graphic.DOFade(1, delay).From(0);
             }
 
-            creditRollTransform.DOMoveY(moveDistance, duration).SetEase(Ease.Linear).SetDelay(delay);
-            endingText.DOFade(1, 1).SetDelay(duration);
+            creditRollTween = creditRollTransform.DOMove(destination.position, duration)
+                                .SetDelay(delay).SetEase(Ease.Linear).SetRecyclable();
+            endingTextTween = endingText.DOFade(1, 1).SetDelay(duration).SetRecyclable();
         }
 
         private void BackButtonFadeOn()
@@ -67,6 +70,8 @@ namespace Catavaneer.MenuSystem
         public override void OnBackPressed()
         {
             base.OnBackPressed();
+            endingTextTween.Kill();
+            creditRollTween.Kill();
             Reset();
         }
 
@@ -79,7 +84,7 @@ namespace Catavaneer.MenuSystem
                     graphic.DOFade(0, 0);
                 }
             }
-
+            endingText.DOFade(0, 0);
             creditRollTransform.position = startPosition;
         }
         #endregion

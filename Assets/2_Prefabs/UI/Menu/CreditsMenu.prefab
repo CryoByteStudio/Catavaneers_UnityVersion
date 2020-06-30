@@ -1277,7 +1277,7 @@ GameObject:
   - component: {fileID: 8848242388309741903}
   - component: {fileID: 6105228376509316880}
   m_Layer: 5
-  m_Name: ThanksPlayer
+  m_Name: ClosingStatement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2431,6 +2431,41 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &6386158134342449708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5674723776546298282}
+  m_Layer: 5
+  m_Name: CreditRollDestination
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5674723776546298282
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6386158134342449708}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8351590313230505945}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 5000}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7307778401021806816
 GameObject:
   m_ObjectHideFlags: 0
@@ -3196,10 +3231,10 @@ MonoBehaviour:
   - {fileID: 8351590312742770950}
   - {fileID: 8351590313698436333}
   - {fileID: 1520759061095044562}
-  moveDistance: 5000
   duration: 30
   delay: 2
   creditRollTransform: {fileID: 8351590313206541473}
+  destination: {fileID: 5674723776546298282}
   textGraphics:
   - {fileID: 7321709249039488686}
   - {fileID: 1207318067327089545}
@@ -3446,7 +3481,7 @@ GameObject:
   - component: {fileID: 2212276569052420072}
   - component: {fileID: 1884658020541624328}
   m_Layer: 5
-  m_Name: TextGroup
+  m_Name: CreditRoll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3576,6 +3611,7 @@ RectTransform:
   - {fileID: 8351590313206541473}
   - {fileID: 8848242388309741903}
   - {fileID: 8351590312742770944}
+  - {fileID: 5674723776546298282}
   m_Father: {fileID: 8351590312903685446}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

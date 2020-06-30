@@ -34,6 +34,7 @@ namespace Catavaneer.MenuSystem
         {
             if (!ButtonSmashPreventor.ShouldProceed(ref buttonPressCount)) return;
             //FindObjectOfType<BaseInputModule>().DeactivateModule();
+            GameManager.ResetCampaignParams();
             MenuManager.LoadMainMenuLevel();
         }
         #endregion
