@@ -8,9 +8,9 @@ namespace AI.States
     public class Investigate : State
     {
         // reference from external variables
-        private Controller controller = null;
+        private AIController controller = null;
 
-        public Investigate(Controller controller)
+        public Investigate(AIController controller)
         {
             this.controller = controller;
         }

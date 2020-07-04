@@ -8,15 +8,15 @@ using System;
 
 namespace AI
 {
-    public enum AIState
-    {
-        FindTarget,
-        Chase,
-        PreAttack,
-        Attack,
-        Frenzy,
-        Death
-    }
+    //public enum AIState
+    //{
+    //    FindTarget,
+    //    Chase,
+    //    PreAttack,
+    //    Attack,
+    //    Frenzy,
+    //    Death
+    //}
 
     public enum EnemyType
     {
@@ -25,50 +25,52 @@ namespace AI
         Dog
     }
 
-    public class Controller : MonoBehaviour
+    // An exact copy of AIController
+    // restore if failed to refactor AIController
+    public class AIBrain : MonoBehaviour
     {
         [Header("Core Settings")]
         [SerializeField] private EnemyType type = EnemyType.Cat;
 
         [Header("Chase Settings")]
-        [SerializeField] private float chaseSpeed = 0;
-        [SerializeField] private float transitionDistanceTolerant = 0;
+        [SerializeField] protected float chaseSpeed = 0;
+        [SerializeField] protected float transitionDistanceTolerant = 0;
 
         [Header("Attack Settings")]
-        [SerializeField] private int attackDamage = 0;
-        [SerializeField] private float attackRange = 0;
+        [SerializeField] protected int attackDamage = 0;
+        [SerializeField] protected float attackRange = 0;
         [Range(0f, 1f)]
-        [SerializeField] private float accuracy = 0.8f;
+        [SerializeField] protected float accuracy = 0.8f;
 
         [Header("Frenzy Settings")]
-        [SerializeField] private float frenzyRadius = 0;
-        [SerializeField] private float frenzySpeed = 0;
+        [SerializeField] protected float frenzyRadius = 0;
+        [SerializeField] protected float frenzySpeed = 0;
 
         [Header("Death Settings")]
-        [SerializeField] private float deathAnimationDuration = 3;
-        [SerializeField] private float fadeDuration = 5;
+        [SerializeField] protected float deathAnimationDuration = 3;
+        [SerializeField] protected float fadeDuration = 5;
 
         public event Action OnHit;
         public void InvokeOnHit() { if (OnHit != null) OnHit.Invoke(); }
 
-        private FSM finiteStateMachine = new FSM();
-        private HealthComp healthComponent = null;
-        private float distanceToTarget = Mathf.Infinity;
-        private float distanceToTargetSqr = Mathf.Infinity;
-        private NavMeshAgent agent = null;
-        [SerializeField]private Animator animatorController = null;
-        private Transform targetPointTransform = null;
-        private float distanceToTargetPointTransform = Mathf.Infinity;
-        private float distanceToTargetPointTransformSqr = Mathf.Infinity;
-        private Transform currentTarget = null;
-        private Weapon equippedWeapon;
-        private bool isFrenzy = false;
+        protected FSM finiteStateMachine = new FSM();
+        protected HealthComp healthComponent = null;
+        protected float distanceToTarget = Mathf.Infinity;
+        protected float distanceToTargetSqr = Mathf.Infinity;
+        protected NavMeshAgent agent = null;
+        [SerializeField] protected Animator animatorController = null;
+        protected Transform targetPointTransform = null;
+        protected float distanceToTargetPointTransform = Mathf.Infinity;
+        protected float distanceToTargetPointTransformSqr = Mathf.Infinity;
+        protected Transform currentTarget = null;
+        protected Weapon equippedWeapon;
+        protected bool isFrenzy = false;
 
         public HealthComp HealthComponent { get { return healthComponent; } }
         public float DistanceToTarget { get { return distanceToTarget; } }
         public NavMeshAgent Agent { get { return agent; } }
         public Animator AnimatorController { get { return animatorController; } }
-        public Transform TargetPointTransform { get { return targetPointTransform; }}
+        public Transform TargetPointTransform { get { return targetPointTransform; } }
         public Transform CurrentTarget { get { return currentTarget; } }
         public float ChaseSpeed { get { return chaseSpeed; } }
         public int BaseAttackDamage { get { return attackDamage; } }
@@ -83,12 +85,12 @@ namespace AI
         public EnemyType Type { get { return type; } }
         public float Speed { get { return currentState == AIState.Chase ? ChaseSpeed : currentState == AIState.Frenzy ? frenzySpeed : 0; } }
 
-        private static List<HealthComp> mouseTargets = new List<HealthComp>();
-        private static List<HealthComp> catTargets = new List<HealthComp>();
-        private static List<HealthComp> dogTargets = new List<HealthComp>();
+        protected static List<HealthComp> mouseTargets = new List<HealthComp>();
+        protected static List<HealthComp> catTargets = new List<HealthComp>();
+        protected static List<HealthComp> dogTargets = new List<HealthComp>();
 
-        private static HealthComp[] allHealthCompsInScene;
-        private Vector3 startPosition;
+        protected static HealthComp[] allHealthCompsInScene;
+        protected Vector3 startPosition;
 
         public AIState currentState = AIState.FindTarget;
 
@@ -154,7 +156,7 @@ namespace AI
 
             Reset();
             PopulateTargetLists();
-            if(!animatorController)
+            if (!animatorController)
                 animatorController = GetComponent<Animator>();
 
             healthComponent = GetComponent<HealthComp>();
@@ -240,25 +242,25 @@ namespace AI
         /// </summary>
         private void InitFSM()
         {
-            // add states
-            finiteStateMachine.AddState(AIState.FindTarget.ToString(), new FindTarget(this));
-            finiteStateMachine.AddState(AIState.Chase.ToString(), new Chase(this));
-            finiteStateMachine.AddState(AIState.Attack.ToString(), new Attack(this));
-            finiteStateMachine.AddState(AIState.Frenzy.ToString(), new Frenzy(this));
-            finiteStateMachine.AddState(AIState.PreAttack.ToString(), new PreAttack(this));
-            finiteStateMachine.AddState(AIState.Death.ToString(), new Death(this));
+            //// add states
+            //finiteStateMachine.AddState(AIState.FindTarget.ToString(), new FindTarget(this));
+            //finiteStateMachine.AddState(AIState.Chase.ToString(), new Chase(this));
+            //finiteStateMachine.AddState(AIState.Attack.ToString(), new Attack(this));
+            //finiteStateMachine.AddState(AIState.Frenzy.ToString(), new Frenzy(this));
+            //finiteStateMachine.AddState(AIState.PreAttack.ToString(), new PreAttack(this));
+            //finiteStateMachine.AddState(AIState.Death.ToString(), new Death(this));
 
-            // add transitions
-            finiteStateMachine.AddTransition(AIState.FindTarget.ToString(), AIState.Frenzy.ToString(), BaseConditionToFrenzy);
-            finiteStateMachine.AddTransition(AIState.Chase.ToString(), AIState.Frenzy.ToString(), BaseConditionToFrenzy);
-            finiteStateMachine.AddTransition(AIState.Attack.ToString(), AIState.Frenzy.ToString(), BaseConditionToFrenzy);
+            //// add transitions
+            //finiteStateMachine.AddTransition(AIState.FindTarget.ToString(), AIState.Frenzy.ToString(), BaseConditionToFrenzy);
+            //finiteStateMachine.AddTransition(AIState.Chase.ToString(), AIState.Frenzy.ToString(), BaseConditionToFrenzy);
+            //finiteStateMachine.AddTransition(AIState.Attack.ToString(), AIState.Frenzy.ToString(), BaseConditionToFrenzy);
 
-            finiteStateMachine.AddTransition(AIState.Chase.ToString(), AIState.PreAttack.ToString(), BaseConditionToPreAttack);
+            //finiteStateMachine.AddTransition(AIState.Chase.ToString(), AIState.PreAttack.ToString(), BaseConditionToPreAttack);
 
-            finiteStateMachine.AddAnyStateTransition(AIState.FindTarget.ToString(), BaseConditionToFindTarget);
-            finiteStateMachine.AddAnyStateTransition(AIState.Chase.ToString(), BaseConditionToChase);
-            finiteStateMachine.AddAnyStateTransition(AIState.Attack.ToString(), BaseConditionToAttack);
-            finiteStateMachine.AddAnyStateTransition(AIState.Death.ToString(), BaseConditionToDeath);
+            //finiteStateMachine.AddAnyStateTransition(AIState.FindTarget.ToString(), BaseConditionToFindTarget);
+            //finiteStateMachine.AddAnyStateTransition(AIState.Chase.ToString(), BaseConditionToChase);
+            //finiteStateMachine.AddAnyStateTransition(AIState.Attack.ToString(), BaseConditionToAttack);
+            //finiteStateMachine.AddAnyStateTransition(AIState.Death.ToString(), BaseConditionToDeath);
         }
 
         #region TRANSITIONS
@@ -513,7 +515,7 @@ namespace AI
             {
                 yield return null;
             }
-            if(GetComponent<Animator>() != null)
+            if (GetComponent<Animator>() != null)
             {
                 GetComponent<Animator>().SetFloat("Chase", agent.speed);
             }

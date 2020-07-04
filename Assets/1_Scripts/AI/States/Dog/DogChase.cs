@@ -1,20 +1,19 @@
-﻿using UnityEngine;
+﻿using FiniteStateMachine.StatePolymorphism;
+using UnityEngine;
 using UnityEngine.AI;
-using FiniteStateMachine.StatePolymorphism;
-using CustomMathLibrary;
 
 namespace AI.States
 {
-    public class Chase : State
+    public class DogChase : State
     {
-        private AIController controller = null;
+        private DogAIController controller = null;
         private Animator animatorController = null;
         private Transform target = null;
         private HealthComp targetHealth = null;
         private NavMeshAgent agent = null;
         private Vector3 destination = Vector3.zero;
 
-        public Chase(AIController controller)
+        public DogChase(DogAIController controller)
         {
             this.controller = controller;
         }
@@ -62,11 +61,6 @@ namespace AI.States
             agent.isStopped = false;
         }
 
-        /// <summary>
-        /// Get random position on 2D circle with radius relative to a specified target position.
-        /// </summary>
-        /// <param name="targetPosition"> The target position that the random position will be picked base on </param>
-        /// <param name="radius"> The radius in which the random point will be picked from </param>
         private Vector3 FindPositionNearTarget(Vector3 targetPosition, float radius)
         {
             Vector3 randomPosition = Random.onUnitSphere;
@@ -74,12 +68,6 @@ namespace AI.States
             return (randomPosition - targetPosition).normalized * radius + targetPosition;
         }
 
-        /// <summary>
-        /// Find the position of the open point inside the target region.
-        /// Return random position inside circle with attack radius if no open point found.
-        /// Set target point transform for transition condition in controller.
-        /// </summary>
-        /// <param name="targetRegion"> The target region to get open point from </param>
         private Vector3 FindOpenPoint(Region targetRegion)
         {
             for (int i = 0; i < targetRegion.InnerRegion.pointsList.Count; i++)
@@ -107,9 +95,6 @@ namespace AI.States
             return positionNearTarget;
         }
 
-        /// <summary>
-        /// The stuff that will be done in chase mode
-        /// </summary>
         private void ChaseBehaviour()
         {
             if (!target) return;
@@ -136,7 +121,7 @@ namespace AI.States
             }
             else
             {
-                //AIController.RemoveFromTargetList(targetHealth);
+                MouseAIController.RemoveFromTargetList(targetHealth);
                 controller.SetCurrentTarget(null);
             }
         }

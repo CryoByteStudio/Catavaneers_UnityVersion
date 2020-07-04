@@ -10,7 +10,7 @@ namespace AI.States
     public class Patrol : State
     {
         // reference from external variables
-        private Controller controller = null;
+        private AIController controller = null;
         private NavMeshAgent agent = null;
         private PatrolPathGraph patrolPath = null;
         private float speed = 0;
@@ -22,7 +22,7 @@ namespace AI.States
         private float timeSinceArrivedAtWaypoint = Mathf.Infinity;
         private int currentWaypointIndex = 0;
 
-        public Patrol(Controller controller)
+        public Patrol(AIController controller)
         {
             this.controller = controller;
         }

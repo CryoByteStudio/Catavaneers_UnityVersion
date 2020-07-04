@@ -1,23 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using FiniteStateMachine.StatePolymorphism;
 using CustomMathLibrary;
 
 namespace AI.States
 {
-    public class Frenzy : State
+    public class CatFrenzy : State
     {
-        // reference from external variables
-        private AIController controller = null;
+        private CatAIController controller = null;
         private Animator animatorController = null;
         private NavMeshAgent agent = null;
         private float radius = 0;
         private Vector3 randomPosition;
         private float distanceToRandomPosition = 0;
-        
-        public Frenzy(AIController controller)
+
+        public CatFrenzy(CatAIController controller)
         {
             this.controller = controller;
         }
@@ -53,9 +50,6 @@ namespace AI.States
             agent.isStopped = true;
         }
 
-        /// <summary>
-        /// The stuff that will be done in frenzy mode
-        /// </summary>
         private void FrenzyBehaviour()
         {
             if (animatorController)
@@ -72,9 +66,6 @@ namespace AI.States
             agent.SetDestination(randomPosition);
         }
 
-        /// <summary>
-        /// Get a new random position
-        /// </summary>
         private void GetNewRandomPosition()
         {
             randomPosition = CustomMathf.RandomPointInCirclePerpendicularToAxis(radius, Axis.Y) + controller.transform.position;

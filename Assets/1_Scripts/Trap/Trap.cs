@@ -65,7 +65,7 @@ public class Trap : MonoBehaviour
                 TrapAnim.SetTrigger("Activate");
                 Debug.Log("trap Activate");
                 UsageLeft--;
-                Controller TempEnemyController = other.GetComponent<Controller>();
+                AIController TempEnemyController = other.GetComponent<AIController>();
                 if (type == TrapType.Damage) other.GetComponent<HealthComp>().TakeDamage(TrapDamage);
                 if (type == TrapType.Reverse) TempEnemyController.ToggleFrenzyStateWithTimer(duration);
                 if (type == TrapType.Freeze) TempEnemyController.SetTemporaryMovementSpeed(TempEnemyController.ChaseSpeed * SpeedModifier, duration);
@@ -111,10 +111,10 @@ public class Trap : MonoBehaviour
                 {
                     if (colliders[i].gameObject.tag == "Enemy")
                     {
-                        if (colliders[i].gameObject.GetComponent<Controller>() != null)
+                        if (colliders[i].gameObject.GetComponent<AIController>() != null)
                         {
                             CurrentTime++;
-                            Controller EnemyController = colliders[i].gameObject.GetComponent<Controller>();
+                            AIController EnemyController = colliders[i].gameObject.GetComponent<AIController>();
 
                             if (type == TrapType.Reverse)
                             {

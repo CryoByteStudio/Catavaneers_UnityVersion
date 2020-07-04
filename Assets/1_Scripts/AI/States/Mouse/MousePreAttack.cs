@@ -1,21 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using FiniteStateMachine.StatePolymorphism;
 
 namespace AI.States
 {
-    public class PreAttack : State
+    public class MousePreAttack : State
     {
-        private AIController controller = null;
+        private MouseAIController controller = null;
         private Animator animatorController = null;
         private Transform target = null;
         private HealthComp targetHealth = null;
         private NavMeshAgent agent = null;
         private Vector3 destination = Vector3.zero;
 
-        public PreAttack(AIController controller)
+        public MousePreAttack(MouseAIController controller)
         {
             this.controller = controller;
         }
@@ -55,10 +53,7 @@ namespace AI.States
             destination = Vector3.zero;
             agent.isStopped = false;
         }
-
-        /// <summary>
-        /// The stuff that will be done in pre attack mode
-        /// </summary>
+        
         private void PreAttackBehaviour()
         {
             if (!target) return;
@@ -84,7 +79,7 @@ namespace AI.States
             }
             else
             {
-                newPos = target.position; 
+                newPos = target.position;
             }
 
             return newPos;

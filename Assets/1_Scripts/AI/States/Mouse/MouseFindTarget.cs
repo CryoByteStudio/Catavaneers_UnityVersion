@@ -1,23 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using FiniteStateMachine.StatePolymorphism;
 
 namespace AI.States
 {
-    public class FindTarget : State
+    public class MouseFindTarget : State
     {
-        // reference from external variables
-        private AIController controller = null;
-        //private NavMeshAgent agent = null;
+        private MouseAIController controller = null;
         private Animator animatorController = null;
         private List<HealthComp> targets = new List<HealthComp>();
         private Transform target = null;
         private float distanceToTarget = Mathf.Infinity;
         private NavMeshPath path = new NavMeshPath();
 
-        public FindTarget(AIController controller)
+        public MouseFindTarget(MouseAIController controller)
         {
             this.controller = controller;
         }
@@ -37,7 +34,7 @@ namespace AI.States
                 animatorController = controller.AnimatorController;
 
             distanceToTarget = controller.DistanceToTarget;
-            //targets = controller.GetTargets();
+            targets = MouseAIController.Targets;
             target = FindClosestTarget();
             controller.SetCurrentTarget(target);
         }
@@ -80,12 +77,10 @@ namespace AI.States
             if (targets.Count > 0)
             {
                 closestTarget = targets[0].transform;
-                //closestDistance = Vector3.Distance(controller.transform.position, closestTarget.position);
                 closestDistance = GetPathLength(closestTarget.position);
 
                 for (int i = 1; i < targets.Count; i++)
                 {
-                    //float distanceToTarget = Vector3.Distance(controller.transform.position, targets[i].transform.position);
                     float distanceToTarget = GetPathLength(targets[i].transform.position);
 
                     if (distanceToTarget < closestDistance)
@@ -95,18 +90,10 @@ namespace AI.States
                     }
                 }
             }
-            else
-            {
-                //Debug.Log("No more target");
-            }
 
             return closestTarget;
         }
-
-        /// <summary>
-        /// Get the path length on navigation mesh if available, otherwise return a direct distance in 3D space
-        /// </summary>
-        /// <param name="target"> The location of the target </param>
+        
         private float GetPathLength(Vector3 target)
         {
             float length = 0;

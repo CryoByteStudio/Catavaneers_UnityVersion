@@ -450,7 +450,9 @@ public class HealthComp : MonoBehaviour
         transform.position = playerSpawnPos.position;
         characterFader.ResetFade();
         Reset();
-        Controller.AddToTargetList(this);
+        //AIController.AddToTargetList(this);
+        DogAIController.AddToTargetsList(this);
+        CatAIController.AddToTargetsList(this);
         animator.SetTrigger("Spawn");
         //TODO Play Particle FX
     }

@@ -1,15 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI;
+﻿using UnityEngine;
 using FiniteStateMachine.StatePolymorphism;
+using UnityEngine.AI;
 
 namespace AI.States
 {
-    public class Attack : State
+    public class MouseAttack : State
     {
-        // reference from external variables
-        private AIController controller = null;
+        private MouseAIController controller = null;
         private Animator animatorController = null;
         private NavMeshAgent agent = null;
         private Weapon equippedWeapon = null;
@@ -19,12 +16,11 @@ namespace AI.States
         private float accuracy = 0;
         private float speedOffsetThreshold = 0.5f;
         private GameObject damagePopupPrefab = null;
-
-        // internal variables
+        
         private float timeSinceLastAttack = Mathf.Infinity;
         private Transform target = null;
 
-        public Attack(AIController controller)
+        public MouseAttack(MouseAIController controller)
         {
             this.controller = controller;
         }
@@ -51,10 +47,8 @@ namespace AI.States
                 equippedWeapon = controller.EquippedWeapon;
 
             target = controller.CurrentTarget;
-            //attackDamage = controller.AttackDamage;
             attackDamage = controller.BaseAttackDamage + equippedWeapon.GetDamage();
             attackRange = controller.AttackRange;
-            //attackInterval = controller.AttackInterval;
             attackInterval = equippedWeapon.GetWeaponAttackSpeed();
             accuracy = controller.Accuracy;
         }
@@ -75,10 +69,7 @@ namespace AI.States
             lookPoint.y = controller.transform.position.y;
             controller.transform.LookAt(lookPoint);
         }
-
-        /// <summary>
-        /// The stuff that will be done in attack mode
-        /// </summary>
+        
         private void AttackBehaviour(float deltaTime)
         {
             if (!target) return;
@@ -94,10 +85,7 @@ namespace AI.States
 
             timeSinceLastAttack += deltaTime;
         }
-
-        /// <summary>
-        /// Check if it's time for attack
-        /// </summary>
+        
         private bool TimeToAttack()
         {
             return timeSinceLastAttack >= attackInterval;
@@ -108,11 +96,7 @@ namespace AI.States
             animatorController.SetTrigger("Attack");
             animatorController.SetFloat("Chase", 0f);
         }
-
-        /// <summary>
-        /// Call TakeDamage method from HealthComp if target is not dead, otherwise handle dead target
-        /// </summary>
-        /// <param name="damage"> The amout of damage that will be dealt </param>
+        
         private void DealDamage()
         {
             HealthComp targetHealth = target.GetComponent<HealthComp>();
@@ -175,7 +159,7 @@ namespace AI.States
         /// <param name="targetHealth"> The target to be handled </param>
         private void HandleTargetIsDead(HealthComp targetHealth)
         {
-            //AIController.RemoveFromTargetList(targetHealth);
+            MouseAIController.RemoveFromTargetList(targetHealth);
             controller.SetCurrentTarget(null);
         }
     }

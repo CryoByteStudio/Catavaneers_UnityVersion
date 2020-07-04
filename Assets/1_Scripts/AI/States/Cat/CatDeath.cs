@@ -6,9 +6,9 @@ using UnityEngine.AI;
 
 namespace AI.States
 {
-    public class Death : State
+    public class CatDeath : State
     {
-        private AIController controller = null;
+        private CatAIController controller = null;
         private Animator animatorController = null;
         private HealthComp healthComponent = null;
         private NavMeshAgent agent = null;
@@ -18,7 +18,7 @@ namespace AI.States
         private float deathAnimationDuration = 0;
         private float fadeDuration = 0;
 
-        public Death(AIController controller)
+        public CatDeath(CatAIController controller)
         {
             this.controller = controller;
         }
