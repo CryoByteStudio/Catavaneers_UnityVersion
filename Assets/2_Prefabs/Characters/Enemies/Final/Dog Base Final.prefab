@@ -1,5 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2544104773715050021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6907936865073788524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b4b425bd77c384692c098a0658ba35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseSpeed: 3.5
+  transitionDistanceTolerant: 1
+  attackDamage: 22
+  attackRange: 4
+  accuracy: 0.8
+  frenzyRadius: 5
+  frenzySpeed: 8
+  deathAnimationDuration: 3
+  fadeDuration: 5
+  animatorControllerComponent: {fileID: 5849718654982715113}
+  currentState: 0
+  KickUpGrassL: {fileID: 3964913852255945676, guid: e114b39b2e204ef489c340f484c1d3dd,
+    type: 3}
+  KickUpGrassR: {fileID: 5023154506843940660, guid: d6c0da5d20e341d42b1102ef2e9b59c7,
+    type: 3}
+  hiteffect: {fileID: 6437049819428764421}
+  grassR: {fileID: 0}
+  grassL: {fileID: 0}
+  FreezeEffect: {fileID: 7554646117242602015}
+  DamageEffect: {fileID: 3824196138837026493}
+  SlowEffect: {fileID: 5286510938897070471}
+  ReverseEffect: {fileID: 575001037160123285}
 --- !u!1001 &3175883900522305852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -597,7 +631,14 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5864580670975974090, guid: 760ef8b9db219b544b539891a5ee5f04, type: 3}
     - {fileID: 488834129994318559, guid: 760ef8b9db219b544b539891a5ee5f04, type: 3}
+    - {fileID: -801627747399720205, guid: 760ef8b9db219b544b539891a5ee5f04, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 760ef8b9db219b544b539891a5ee5f04, type: 3}
+--- !u!1 &6907936865073788524 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 55997200749929121, guid: 760ef8b9db219b544b539891a5ee5f04,
+    type: 3}
+  m_PrefabInstance: {fileID: 6853100750819677389}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7823673197892570223 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3713322899108550818, guid: 760ef8b9db219b544b539891a5ee5f04,
@@ -610,12 +651,18 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 6853100750819677389}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6907936865073788524}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7784c49aa9ec001478701ddc8f0f581e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &5849718654982715113 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1023859513140814372, guid: 760ef8b9db219b544b539891a5ee5f04,
+    type: 3}
+  m_PrefabInstance: {fileID: 6853100750819677389}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &3898080452958065957 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 7567130763223908840, guid: 760ef8b9db219b544b539891a5ee5f04,

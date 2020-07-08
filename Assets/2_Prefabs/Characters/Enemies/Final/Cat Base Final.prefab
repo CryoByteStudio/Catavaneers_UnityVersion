@@ -1,5 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &5268573627227709242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4534022950412767860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5459de2e886a649b7b17a6931dfd1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseSpeed: 4.2
+  transitionDistanceTolerant: 1
+  attackDamage: 14
+  attackRange: 4
+  accuracy: 0.8
+  frenzyRadius: 5
+  frenzySpeed: 9
+  deathAnimationDuration: 3
+  fadeDuration: 5
+  animatorControllerComponent: {fileID: 842177501158888568}
+  currentState: 0
+  KickUpGrassL: {fileID: 3964913852255945676, guid: e114b39b2e204ef489c340f484c1d3dd,
+    type: 3}
+  KickUpGrassR: {fileID: 5023154506843940660, guid: d6c0da5d20e341d42b1102ef2e9b59c7,
+    type: 3}
+  hiteffect: {fileID: 4994370361761399755}
+  grassR: {fileID: 0}
+  grassL: {fileID: 0}
+  FreezeEffect: {fileID: 4497620961287830180}
+  DamageEffect: {fileID: 8296091362208027954}
+  SlowEffect: {fileID: 6354517460213131164}
+  ReverseEffect: {fileID: 4286908083121213419}
 --- !u!1001 &858294855334549455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -519,8 +553,15 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 2.25
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2210368195524477101, guid: d242d3fc1245abc42be5fc32c3f565e7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d242d3fc1245abc42be5fc32c3f565e7, type: 3}
+--- !u!1 &4534022950412767860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7623980924273874604, guid: d242d3fc1245abc42be5fc32c3f565e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6278518811974993112}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4534022950412767867 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7623980924273874595, guid: d242d3fc1245abc42be5fc32c3f565e7,
@@ -533,12 +574,18 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 6278518811974993112}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4534022950412767860}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7784c49aa9ec001478701ddc8f0f581e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &842177501158888568 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6670328446235070624, guid: d242d3fc1245abc42be5fc32c3f565e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6278518811974993112}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &3388297593830676418 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 8657151231878632218, guid: d242d3fc1245abc42be5fc32c3f565e7,

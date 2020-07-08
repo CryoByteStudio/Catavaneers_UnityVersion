@@ -21,6 +21,7 @@ namespace AI
         protected override void Start()
         {
             base.Start();
+            targets = GetAllTargets();
         }
 
         protected override void Reset()

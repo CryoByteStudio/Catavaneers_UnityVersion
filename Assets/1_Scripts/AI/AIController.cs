@@ -47,7 +47,6 @@ namespace AI
         [SerializeField] protected Animator animatorControllerComponent = null;
         protected Transform targetPointTransform = null;
         protected float distanceToTargetPointTransform = Mathf.Infinity;
-        protected float distanceToTargetPointTransformSqr = Mathf.Infinity;
         protected Transform currentTarget = null;
         protected Weapon equippedWeapon;
         protected bool isFrenzy = false;

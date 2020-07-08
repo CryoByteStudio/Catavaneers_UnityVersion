@@ -11,7 +11,6 @@ namespace AI.States
         private Animator animatorController = null;
         private List<HealthComp> targets = new List<HealthComp>();
         private Transform target = null;
-        private float distanceToTarget = Mathf.Infinity;
         private NavMeshPath path = new NavMeshPath();
 
         public DogFindTarget(DogAIController controller)
@@ -32,16 +31,12 @@ namespace AI.States
                 Debug.LogWarning("Controller is not set in FindTarget state");
             if (!animatorController)
                 animatorController = controller.AnimatorController;
-
-            distanceToTarget = controller.DistanceToTarget;
-            targets = MouseAIController.Targets;
-            target = FindClosestTarget();
-            controller.SetCurrentTarget(target);
         }
 
         override public void Update(float deltaTime)
         {
             if (target) return;
+
             FindTargetBehaviour();
         }
 
@@ -50,25 +45,21 @@ namespace AI.States
 
         }
 
-        /// <summary>
-        /// The stuff that will be done in find target mode
-        /// </summary>
         private void FindTargetBehaviour()
         {
             if (animatorController)
                 animatorController.SetFloat("Chase", 0f);
 
-            // find target
-            target = FindClosestTarget();
+            FindAndSetTarget();
+        }
 
-            // set target
+        private void FindAndSetTarget()
+        {
+            targets = DogAIController.Targets;
+            target = FindClosestTarget();
             controller.SetCurrentTarget(target);
         }
 
-        /// <summary>
-        /// Find the closest target to the agent
-        /// </summary>
-        /// <returns></returns>
         private Transform FindClosestTarget()
         {
             Transform closestTarget = null;
