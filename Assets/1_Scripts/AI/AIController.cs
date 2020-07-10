@@ -49,6 +49,7 @@ namespace AI
         protected float distanceToTargetPointTransform = Mathf.Infinity;
         protected Transform currentTarget = null;
         protected Weapon equippedWeapon;
+        protected ParticleEffectCallback particleFXcallback;
         protected bool isFrenzy = false;
 
         public HealthComp HealthComponent { get { return healthComponent; } }
@@ -67,30 +68,12 @@ namespace AI
         public float DeathAnimationDuration { get { return deathAnimationDuration; } }
         public float FadeDuration { get { return fadeDuration; } }
         public Weapon EquippedWeapon { get { return equippedWeapon; } }
+        public ParticleEffectCallback ParticleFXcallback { get { return particleFXcallback; } }
 
         protected static HealthComp[] allTargetsWithHealthComponent;
         protected Vector3 startPosition;
 
         public AIState currentState = AIState.FindTarget;
-
-
-        //Particle Prefab References:
-
-        public ParticleSystem KickUpGrassL;
-        public ParticleSystem KickUpGrassR;
-
-
-
-        //gameobject references
-
-        public ParticleSystem hiteffect;
-        public ParticleSystem grassR;
-        public ParticleSystem grassL;
-
-        public ParticleSystem FreezeEffect;
-        public ParticleSystem DamageEffect;
-        public ParticleSystem SlowEffect;
-        public ParticleSystem ReverseEffect;
 
         protected bool active;
 
@@ -113,16 +96,6 @@ namespace AI
             InitializeReferences();
             OverrideNavMeshAgentAutoRepositioning();
             InitializeFSM();
-
-            if (KickUpGrassR)
-            {
-                grassR = Instantiate(KickUpGrassR, transform.position, Quaternion.identity, null);
-            }
-
-            if (KickUpGrassL)
-            {
-                grassL = Instantiate(KickUpGrassL, transform.position, Quaternion.identity, null);
-            }
         }
 
         protected virtual void Reset()
@@ -179,6 +152,16 @@ namespace AI
             GetNavMeshAgentReference();
             GetHealthComponentReference();
             GetWeaponReference();
+            GetParticalFXcallbackReference();
+        }
+
+        private void OverrideNavMeshAgentAutoRepositioning()
+        {
+            if (navMeshAgentComponent)
+            {
+                startPosition = transform.position;
+                navMeshAgentComponent.Warp(startPosition);
+            }
         }
 
         private void GetHealthComponentReference()
@@ -205,15 +188,6 @@ namespace AI
                 allTargetsWithHealthComponent = FindObjectsOfType<HealthComp>();
         }
 
-        private void OverrideNavMeshAgentAutoRepositioning()
-        {
-            if (navMeshAgentComponent)
-            {
-                startPosition = transform.position;
-                navMeshAgentComponent.Warp(startPosition);
-            }
-        }
-
         private void GetWeaponReference()
         {
             EnemyWeapon weaponComponent = GetComponent<EnemyWeapon>();
@@ -222,6 +196,12 @@ namespace AI
                 weaponComponent.Init();
                 equippedWeapon = weaponComponent.CurrentWeapon;
             }
+        }
+
+        private void GetParticalFXcallbackReference()
+        {
+            if (!particleFXcallback)
+                particleFXcallback = GetComponent<ParticleEffectCallback>();
         }
 
         public void SetCurrentTarget(Transform target)
@@ -294,53 +274,6 @@ namespace AI
             yield return new WaitForSeconds(timer);
             isFrenzy = !isFrenzy;
         }
-
-        //----------------------------------------------------------------------------------------------
-        //-------------------------------------- ANIMATION EVENTS --------------------------------------
-        //----------------------------------------------------------------------------------------------
-        private void Hit()
-        {
-            //if (hiteffect)
-            //{
-            //    hiteffect.Play();
-            //}
-
-            InvokeOnHit();
-        }
-
-        private void FootL()
-        {
-            if (grassL)
-            {
-                grassL.Stop();
-                grassL.transform.position = new Vector3(transform.position.x, grassL.transform.position.y, transform.position.z);
-                grassL.Play();
-            }
-            else
-            {
-                Debug.LogWarning("No Particle effect attached to " + name + " for footL");
-            }
-            //TODO particle FX
-        }
-
-        private void FootR()
-        {
-            if (grassR)
-            {
-                grassR.Stop();
-                grassR.transform.position = new Vector3(transform.position.x, grassR.transform.position.y, transform.position.z);
-                grassR.Play();
-
-            }
-            else
-            {
-                Debug.LogWarning("No Particle effect attached to " + name + " for footR");
-            }
-            //TODO particle FX
-        }
-        //----------------------------------------------------------------------------------------------
-        //----------------------------------------------------------------------------------------------
-        //----------------------------------------------------------------------------------------------
         
         private void OnDrawGizmosSelected()
         {

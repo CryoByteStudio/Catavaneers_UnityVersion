@@ -117,8 +117,8 @@ namespace AI.States
                         if (damagePopupInstance)
                             damagePopupInstance.Play(attackDamage);
 
-                        if (controller.hiteffect)
-                            controller.hiteffect.Play();
+                        if (controller.ParticleFXcallback.hitEffect)
+                            controller.ParticleFXcallback.hitEffect.Play();
 
                         // take off health
                         targetHealth.TakeDamage(attackDamage);

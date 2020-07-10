@@ -29,6 +29,7 @@ public class Trap : MonoBehaviour
     private float AreaEffectRadius =5f;
 
     [SerializeField] Animator TrapAnim;
+
     private void Start()
     {
         CurrentTime = ActivateTimer;
@@ -115,31 +116,32 @@ public class Trap : MonoBehaviour
                         {
                             CurrentTime++;
                             AIController EnemyController = colliders[i].gameObject.GetComponent<AIController>();
+                            ParticleEffectCallback particleFXcallback = EnemyController?.GetComponent<ParticleEffectCallback>();
 
                             if (type == TrapType.Reverse)
                             {
                                 EnemyController.ToggleFrenzyStateWithTimer(duration);
-                                if (EnemyController.ReverseEffect)
+                                if (particleFXcallback.ReverseEffect)
                                 {
-                                    EnemyController.ReverseEffect.Play();
+                                    particleFXcallback.ReverseEffect.Play();
                                 }
                             }
 
                             if (type == TrapType.Freeze)
                             {
                                 EnemyController.SetTemporaryMovementSpeed(EnemyController.ChaseSpeed * SpeedModifier, duration);
-                                if (EnemyController.FreezeEffect)
+                                if (particleFXcallback.FreezeEffect)
                                 {
-                                    EnemyController.FreezeEffect.Play();
+                                    particleFXcallback.FreezeEffect.Play();
                                 }
                             }
 
                             if (type == TrapType.Slow)
                             {
                                 EnemyController.SetTemporaryMovementSpeed(EnemyController.ChaseSpeed * SpeedModifier, duration);
-                                if (EnemyController.SlowEffect)
+                                if (particleFXcallback.SlowEffect)
                                 {
-                                    EnemyController.SlowEffect.Play();
+                                    particleFXcallback.SlowEffect.Play();
                                 }
                             }
 
