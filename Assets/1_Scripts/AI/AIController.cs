@@ -49,7 +49,7 @@ namespace AI
         protected float distanceToTargetPointTransform = Mathf.Infinity;
         protected Transform currentTarget = null;
         protected Weapon equippedWeapon;
-        protected ParticleEffectCallback particleFXcallback;
+        protected EnemyParticleEffectCallback particleFXcallback;
         protected bool isFrenzy = false;
 
         public HealthComp HealthComponent { get { return healthComponent; } }
@@ -68,7 +68,7 @@ namespace AI
         public float DeathAnimationDuration { get { return deathAnimationDuration; } }
         public float FadeDuration { get { return fadeDuration; } }
         public Weapon EquippedWeapon { get { return equippedWeapon; } }
-        public ParticleEffectCallback ParticleFXcallback { get { return particleFXcallback; } }
+        public EnemyParticleEffectCallback ParticleFXcallback { get { return particleFXcallback; } }
 
         protected static HealthComp[] allTargetsWithHealthComponent;
         protected Vector3 startPosition;
@@ -201,7 +201,7 @@ namespace AI
         private void GetParticalFXcallbackReference()
         {
             if (!particleFXcallback)
-                particleFXcallback = GetComponent<ParticleEffectCallback>();
+                particleFXcallback = GetComponent<EnemyParticleEffectCallback>();
         }
 
         public void SetCurrentTarget(Transform target)

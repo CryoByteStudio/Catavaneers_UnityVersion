@@ -32,8 +32,5 @@ public class particlekiller : MonoBehaviour
             //Debug.Log("destroy");
             Destroy(this.gameObject);
         }
-       
-        
-       
     }
 }

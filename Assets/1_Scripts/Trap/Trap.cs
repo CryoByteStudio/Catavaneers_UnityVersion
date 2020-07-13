@@ -116,32 +116,32 @@ public class Trap : MonoBehaviour
                         {
                             CurrentTime++;
                             AIController EnemyController = colliders[i].gameObject.GetComponent<AIController>();
-                            ParticleEffectCallback particleFXcallback = EnemyController?.GetComponent<ParticleEffectCallback>();
+                            EnemyParticleEffectCallback particleFXcallback = EnemyController?.GetComponent<EnemyParticleEffectCallback>();
 
                             if (type == TrapType.Reverse)
                             {
                                 EnemyController.ToggleFrenzyStateWithTimer(duration);
-                                if (particleFXcallback.ReverseEffect)
+                                if (particleFXcallback.reverseEffect)
                                 {
-                                    particleFXcallback.ReverseEffect.Play();
+                                    particleFXcallback.reverseEffect.Play();
                                 }
                             }
 
                             if (type == TrapType.Freeze)
                             {
                                 EnemyController.SetTemporaryMovementSpeed(EnemyController.ChaseSpeed * SpeedModifier, duration);
-                                if (particleFXcallback.FreezeEffect)
+                                if (particleFXcallback.freezeEffect)
                                 {
-                                    particleFXcallback.FreezeEffect.Play();
+                                    particleFXcallback.freezeEffect.Play();
                                 }
                             }
 
                             if (type == TrapType.Slow)
                             {
                                 EnemyController.SetTemporaryMovementSpeed(EnemyController.ChaseSpeed * SpeedModifier, duration);
-                                if (particleFXcallback.SlowEffect)
+                                if (particleFXcallback.slowEffect)
                                 {
-                                    particleFXcallback.SlowEffect.Play();
+                                    particleFXcallback.slowEffect.Play();
                                 }
                             }
 
