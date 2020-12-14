@@ -38,7 +38,7 @@ namespace BehaviourTree
             if (context == null)
             {
                 SetStatus(TaskStatus.Failure);
-                return GetStatus();
+                return Status;
             }
 
             // attack!!!
@@ -55,7 +55,7 @@ namespace BehaviourTree
                 SetStatus(TaskStatus.Failure);
             }
 
-            return GetStatus();
+            return Status;
         }
         #endregion
         #region PRIVATE

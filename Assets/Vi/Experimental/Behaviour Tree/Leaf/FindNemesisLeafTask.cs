@@ -22,7 +22,7 @@ namespace BehaviourTree
             if (context == null)
             {
                 SetStatus(TaskStatus.Failure);
-                return GetStatus();
+                return Status;
             }
 
             if (context.SetTarget(context.Self.GetNemesis()))
@@ -34,7 +34,7 @@ namespace BehaviourTree
                 SetStatus(TaskStatus.Failure);
             }
 
-            return GetStatus();
+            return Status;
         }
     }
 }

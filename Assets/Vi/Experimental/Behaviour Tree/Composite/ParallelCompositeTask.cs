@@ -51,7 +51,7 @@ namespace BehaviourTree
                 SetStatus(TaskStatus.Success);
             }
 
-            return GetStatus();
+            return Status;
         }
 
         protected virtual bool IsParallelTaskFailure(TaskStatus childStatus)

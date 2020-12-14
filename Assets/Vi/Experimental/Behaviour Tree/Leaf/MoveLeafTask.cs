@@ -42,7 +42,7 @@ namespace BehaviourTree
             if (context == null)
             {
                 SetStatus(TaskStatus.Failure);
-                return GetStatus();
+                return Status;
             }
 
             Vector3 currentPosition = context.Self.Position;
@@ -56,7 +56,7 @@ namespace BehaviourTree
                 SetStatus(Move());
             }
 
-            return GetStatus();
+            return Status;
         }
         #endregion
         #region PRIVATE

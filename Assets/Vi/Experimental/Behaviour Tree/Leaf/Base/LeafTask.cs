@@ -22,7 +22,7 @@ namespace BehaviourTree
 
         public override string Debug()
         {
-            return "Leaf task [" + name + "] - Status [" + GetStatus().ToString() + "]";
+            return "Leaf task [" + name + "] - Status [" + Status.ToString() + "]";
         }
         #endregion
         #region PROTECTED

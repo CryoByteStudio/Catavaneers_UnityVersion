@@ -38,7 +38,7 @@ namespace BehaviourTree
                 child.Reset();
             }
 
-            return GetStatus();
+            return Status;
         }
         #endregion
         #region PRIVATE

@@ -53,7 +53,7 @@ namespace BehaviourTree
 
         public override string Debug()
         {
-            string logger = "Composite task [" + name + "] - Status [" + GetStatus().ToString() + "]";
+            string logger = "Composite task [" + name + "] - Status [" + Status.ToString() + "]";
 
             if (GetCurrentChild() != null)
             {

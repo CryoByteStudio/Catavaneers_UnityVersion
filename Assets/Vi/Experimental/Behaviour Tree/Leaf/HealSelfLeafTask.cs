@@ -24,7 +24,7 @@ namespace BehaviourTree
             if (context == null)
             {
                 SetStatus(TaskStatus.Failure);
-                return GetStatus();
+                return Status;
             }
 
             BotInfo bot = context.Self;
@@ -35,7 +35,7 @@ namespace BehaviourTree
                 SetStatus(TaskStatus.Success);
             }
 
-            return GetStatus();
+            return Status;
         }
 
         private float healRate = 1f;

@@ -38,7 +38,7 @@ namespace BehaviourTree
             if (context == null)
             {
                 SetStatus(TaskStatus.Failure);
-                return GetStatus();
+                return Status;
             }
 
             if (context.SetMoveToPosition(GetRandomPosition()))
@@ -50,7 +50,7 @@ namespace BehaviourTree
                 SetStatus(TaskStatus.Failure);
             }
 
-            return GetStatus();
+            return Status;
         }
         #endregion
         #region PRIVATE

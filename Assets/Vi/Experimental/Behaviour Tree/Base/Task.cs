@@ -16,7 +16,11 @@ namespace BehaviourTree
             Error
         }
 
-        public string Name { get => name; }
+        public virtual string Name => name;
+
+        public virtual TaskStatus Status => status;
+
+        public virtual ExecutionContext Context => context;
 
         public Task(string name)
         {
@@ -31,18 +35,13 @@ namespace BehaviourTree
             status = TaskStatus.Waiting;
         }
 
-        public virtual TaskStatus Update()
-        {
-            return Update(context);
-        }
-
         public virtual TaskStatus Update(ExecutionContext context)
         {
             if (context == null)
             {
                 SetStatus(TaskStatus.Error);
-                UnityEngine.Debug.LogError("Context is [" + context + "], please provide a valid context.");
-                return GetStatus();
+                UnityEngine.Debug.LogError("Context is null, please provide a valid context.");
+                return Status;
             }
 
             this.context = context;
@@ -51,23 +50,23 @@ namespace BehaviourTree
             {
                 SetStatus(PerformAction());
             }
-            return GetStatus();
+            return Status;
         }
 
         public virtual bool IsFailure()
         {
-            return GetStatus() == TaskStatus.Failure;
+            return Status == TaskStatus.Failure;
         }
 
         public virtual bool IsTerminated()
         {
-            return GetStatus() == TaskStatus.Success
-                || GetStatus() == TaskStatus.Failure;
+            return Status == TaskStatus.Success
+                || Status == TaskStatus.Failure;
         }
 
-        public virtual TaskStatus GetStatus()
+        public virtual bool IsRunning()
         {
-            return status;
+            return Status == TaskStatus.Running;
         }
 
         public virtual void Reset()
@@ -96,7 +95,7 @@ namespace BehaviourTree
 
         protected virtual bool IsStatusWaiting()
         {
-            return GetStatus() == TaskStatus.Waiting;
+            return Status == TaskStatus.Waiting;
         }
         #endregion
         #region PRIVATE

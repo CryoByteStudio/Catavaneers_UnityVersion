@@ -38,7 +38,7 @@ namespace BehaviourTree
                 timeElapsed += Time.fixedDeltaTime;
             }
 
-            return GetStatus();
+            return Status;
         }
         #endregion
         #region PRIVATE

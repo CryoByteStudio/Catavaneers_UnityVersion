@@ -17,7 +17,7 @@ namespace BehaviourTree
 
         public override string Debug()
         {
-            string logger = "Decorator task [" + name + "] - Status [" + GetStatus().ToString() + "]";
+            string logger = "Decorator task [" + name + "] - Status [" + Status.ToString() + "]";
 
             if (child != null)
             {

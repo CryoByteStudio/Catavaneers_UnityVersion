@@ -30,16 +30,16 @@ namespace BehaviourTree
                 {
                     childStatus = currentChild.Update(context);
                 }
+                else if (childStatus != TaskStatus.Running)
+                {
+                    AdvanceToNextChild();
+                }
 
                 // If child failed...
                 if (currentChild.IsFailure())
                 {
                     // ...propagate status up
-                    childStatus = currentChild.GetStatus();
-                }
-                else if (childStatus != TaskStatus.Running)
-                {
-                    AdvanceToNextChild();
+                    childStatus = currentChild.Status;
                 }
             }
 
@@ -53,7 +53,7 @@ namespace BehaviourTree
                 SetStatus(TaskStatus.Success);
             }
 
-            return GetStatus();
+            return Status;
         }
 
         protected virtual bool IsSequenceFailure(TaskStatus childStatus)

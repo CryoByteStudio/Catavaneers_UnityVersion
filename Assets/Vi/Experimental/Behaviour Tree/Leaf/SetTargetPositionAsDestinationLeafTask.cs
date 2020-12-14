@@ -26,14 +26,14 @@ namespace BehaviourTree
             if (context == null)
             {
                 SetStatus(TaskStatus.Failure);
-                return GetStatus();
+                return Status;
             }
 
             IEntityInfo target = context.Target;
             if (target == null)
             {
                 SetStatus(TaskStatus.Failure);
-                return GetStatus();
+                return Status;
             }
 
             if (context.SetMoveToPosition(target.Position))
@@ -45,7 +45,7 @@ namespace BehaviourTree
                 SetStatus(TaskStatus.Failure);
             }
 
-            return GetStatus();
+            return Status;
         }
         #endregion
         #region PRIVATE

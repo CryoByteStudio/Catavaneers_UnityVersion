@@ -38,7 +38,7 @@ namespace BehaviourTree
                 else
                 {
                     // ...propagate status up
-                    childStatus = currentChild.GetStatus();
+                    childStatus = currentChild.Status;
                 }
             }
 
@@ -52,7 +52,7 @@ namespace BehaviourTree
                 SetStatus(TaskStatus.Failure);
             }
 
-            return GetStatus();
+            return Status;
         }
 
         protected virtual bool IsSelectorSuccess(TaskStatus childStatus)
